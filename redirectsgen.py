@@ -98,6 +98,8 @@ def main():
                         redirects.add(re.sub(ur"Lista de centros sociales ", ur"Lista de CSO ", wtitle))
                     elif wtitle.startswith(u'Lista de medios de comunicación ') and len(wtitle)>40:
                         redirects.add(re.sub(ur"Lista de medios de comunicación ", ur"Lista de medios ", wtitle))
+                    elif wtitle.startswith(u'Lista de círculos de Podemos ') and len(wtitle)>40:
+                        redirects.add(re.sub(ur"Lista de círculos de Podemos ", ur"Lista de nodos de Podemos ", wtitle))
                     
                     #gentilicios para ccaa
                     #solo los que no sean ambiguos, ej: Andalucía. Ej ambiguos: Madrileños (pq abarcaría ccaa, prov, municipio)
