@@ -15,6 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#This script generates redirects for wiki articles
+#removing uppercase, accents and other symbols
+
 import re
 import sys
 
@@ -38,9 +41,6 @@ def unquote(s):
     return s
 
 def main():
-	#This script generates redirects for wiki articles
-	#removing uppercase, accents and other symbols
-	
     skip = u''
     if len(sys.argv) > 1:
         site = wikipedia.Site(sys.argv[1], sys.argv[1])
@@ -80,18 +80,34 @@ def main():
                 
                 #redirects para Lista de acampadas/asambleas/... de/del/de la Madrid/provincia de Madrid
                 if sys.argv[1].lower() == '15mpedia':
-                    for colectivo in [u'acampadas', u'asambleas', u'bancos de tiempo', u'centros sociales', u'comedores sociales']:
-                        #!!!no incluir asociaciones, ni comisiones, ni manifestaciones, ni plataformas porque detrás del "de " puede venir un tema y no un lugar
+                    #preposiciones en/de para listas de colectivos
+                    for colectivo in [u'acampadas', u'asambleas', u'bancos de tiempo', u'centros sociales', u'CSOA', u'CSO', u'comedores sociales']:
+                        #!!!no incluir asociaciones, ni comisiones, ni manifestaciones, ni medios, ni plataformas porque detrás del "de " puede venir un tema y no un lugar
                         if wtitle.startswith('Lista de %s de ' % colectivo):
                             redirects.add(re.sub(ur"Lista de %s de " % colectivo, ur"Lista de %s en " % colectivo, wtitle))
                         elif wtitle.startswith('Lista de %s del ' % colectivo):
                             redirects.add(re.sub(ur"Lista de %s del " % colectivo, ur"Lista de %s en el " % colectivo, wtitle))
                         elif wtitle.startswith('Lista de %s de la ' % colectivo):
                             redirects.add(re.sub(ur"Lista de %s de la " % colectivo, ur"Lista de %s en la " % colectivo, wtitle))
-                     
-                     if wtitle.startswith('Lista de comedores sociales ') and len(wtitle)>30:
-						 redirects.add(re.sub(ur"Lista de comedores sociales ", ur"Lista de comedores ", wtitle))
-            
+                    
+                    #sinonimos para listas de comedores sociales, centros sociales y medios de comunicación
+                    if wtitle.startswith(u'Lista de comedores sociales ') and len(wtitle)>30:
+                        redirects.add(re.sub(ur"Lista de comedores sociales ", ur"Lista de comedores ", wtitle))
+                    elif wtitle.startswith(u'Lista de centros sociales ') and len(wtitle)>30:
+                        redirects.add(re.sub(ur"Lista de centros sociales ", ur"Lista de CSOA ", wtitle))
+                        redirects.add(re.sub(ur"Lista de centros sociales ", ur"Lista de CSO ", wtitle))
+                    elif wtitle.startswith(u'Lista de medios de comunicación ') and len(wtitle)>40:
+                        redirects.add(re.sub(ur"Lista de medios de comunicación ", ur"Lista de medios ", wtitle))
+                    
+                    #gentilicios para ccaa
+                    #solo los que no sean ambiguos, ej: Andalucía. Ej ambiguos: Madrileños (pq abarcaría ccaa, prov, municipio)
+                    #división entre feminimo y masculino
+                    for xccaa, xfem, xmas in [[u"Andalucía", u"andaluzas", u"andaluces"], [u"Extremadura", u"extremeñas", u"extremeños"], ]:
+                        if re.search(ur"(?im)^Lista de (acampadas|asambleas) (de|en) %s$" % (xccaa), wtitle):
+                            redirects.add(re.sub(ur"(?im)^Lista de (acampadas|asambleas) (de|en) %s$" % (xccaa), ur"Lista de \1 %s" % (xfem), wtitle))
+                        if re.search(ur"(?im)^Lista de (bancos de tiempo|centros sociales|CSOA|CSO|comedores sociales) (de|en) %s$" % (xccaa), wtitle):
+                            redirects.add(re.sub(ur"(?im)^Lista de (bancos de tiempo|centros sociales|CSOA|CSO|comedores sociales) (de|en) %s$" % (xccaa), ur"Lista de \1 %s" % (xmas), wtitle))
+                    
             print redirects
             for redirect in redirects:
                 redirect = redirect.strip()
