@@ -25,31 +25,31 @@ def main():
     
     for year in range(1999, 2015):
         for month in range(1, 13):
-            outputmonth = u"""La siguiente es una '''lista de noticias de %(monthname2)s de %(year)s'''. En este momento hay información sobre '''{{noticias por fecha|fecha inicio=%(year)s-%(month)02d-01|fecha fin=%(year)s-%(month)02d-%(monthdays)s|format=count}} noticias'''.
+            outputmonth = u"""La siguiente es una '''lista de noticias en %(monthname2)s de %(year)s'''. En este momento hay información sobre '''{{noticias por fecha|fecha inicio=%(year)s-%(month)02d-01|fecha fin=%(year)s-%(month)02d-%(monthdays)s|format=count}} noticias'''.
 
-== Noticias de %(monthname2)s de %(year)s ==
+== Noticias en %(monthname2)s de %(year)s ==
 {{semántica}}
 {{noticias por fecha|fecha inicio=%(year)s-%(month)02d-01|fecha fin=%(year)s-%(month)02d-%(monthdays)s}}
 
 == Véase también ==
-* [[Lista de noticias de %(year)s]]
+* [[Lista de noticias en %(year)s]]
 * [[%(monthname)s de %(year)s]]
 * [[Hemeroteca]]
 
 {{noticias}}
 
-[[Categoría:Listas|Noticias de %(monthname2)s de %(year)s]]
-[[Categoría:Noticias de %(year)s| %(year)s-%(month)02d]]
-[[Categoría:%(monthname)s de %(year)s| Noticias de %(monthname2)s de %(year)s]]
+[[Categoría:Listas|Noticias en %(monthname2)s de %(year)s]]
+[[Categoría:Noticias en %(year)s| %(year)s-%(month)02d]]
+[[Categoría:%(monthname)s de %(year)s| Noticias en %(monthname2)s de %(year)s]]
 
 """ % ({"monthname": monthnames[month], "monthname2": monthnames[month].lower(), "year": year, "month": month, "monthdays": monthdays[month]})
             print outputmonth
-            pagemonth = wikipedia.Page(site, u"Lista de noticias de %s de %s" % (monthnames[month].lower(), year))
+            pagemonth = wikipedia.Page(site, u"Lista de noticias en %s de %s" % (monthnames[month].lower(), year))
             pagemonth.put(outputmonth, u"BOT - Creando lista de noticias por mes")
-            redmonth = wikipedia.Page(site, u"Lista de noticias en %s de %s" % (monthnames[month].lower(), year))
-            redmonth.put(u"#REDIRECT [[Lista de noticias de %s de %s]]" % (monthnames[month].lower(), year), u"BOT - Creando redirección")
+            redmonth = wikipedia.Page(site, u"Lista de noticias de %s de %s" % (monthnames[month].lower(), year))
+            redmonth.put(u"#REDIRECT [[Lista de noticias en %s de %s]]" % (monthnames[month].lower(), year), u"BOT - Creando redirección")
         
-        outputyear = u"""La siguiente es una '''lista de noticias de %(year)s'''. En este momento hay información sobre '''{{noticias por fecha|fecha inicio=%(year)s-01-01|fecha fin=%(year)s-12-31|format=count}} noticias'''.
+        outputyear = u"""La siguiente es una '''lista de noticias en %(year)s'''. En este momento hay información sobre '''{{noticias por fecha|fecha inicio=%(year)s-01-01|fecha fin=%(year)s-12-31|format=count}} noticias'''.
 
 Según el '''mes''':
 {{div col|2}}
@@ -67,7 +67,7 @@ Según el '''mes''':
 * [[Lista de noticias en diciembre de %(year)s]] ({{noticias por fecha|fecha inicio=%(year)s-12-01|fecha fin=%(year)s-12-31|format=count}})
 {{div col end}}
 
-== Noticias de %(year)s ==
+== Noticias en %(year)s ==
 {{semántica}}
 {{noticias por fecha|fecha inicio=%(year)s-01-01|fecha fin=%(year)s-12-31}}
 
@@ -78,14 +78,14 @@ Según el '''mes''':
 
 {{noticias}}
 
-[[Categoría:Listas|Noticias de %(year)s]]
+[[Categoría:Listas|Noticias en %(year)s]]
 [[Categoría:Noticias| %(year)s]]
-[[Categoría:%(year)s| Noticias de %(year)s]]""" % ({"year":year})
+[[Categoría:%(year)s| Noticias en %(year)s]]""" % ({"year":year})
         print outputyear
-        pageyear = wikipedia.Page(site, u"Lista de noticias de %s" % (year))
-        pageyear.put(outputyear, u"BOT - Creando lista de noticias por año", botflag=False)
-        redyear = wikipedia.Page(site, u"Lista de noticias en %s" % (year))
-        redyear.put(u"#REDIRECT [[Lista de noticias de %s]]" % (year), u"BOT - Creando redirección")
+        pageyear = wikipedia.Page(site, u"Lista de noticias en %s" % (year))
+        pageyear.put(outputyear, u"BOT - Creando lista de noticias por año")
+        redyear = wikipedia.Page(site, u"Lista de noticias de %s" % (year))
+        redyear.put(u"#REDIRECT [[Lista de noticias en %s]]" % (year), u"BOT - Creando redirección")
 
 if __name__ == '__main__':
     main()
