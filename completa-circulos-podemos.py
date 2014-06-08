@@ -62,7 +62,7 @@ def main():
         if not re.search(ur"(?im)\|\s*imagen\s*=", newtext):
             twitter = re.findall(ur"(?im)\|\s*twitter\s*=([^\r\n]+)\r\n", newtext)
             if twitter:
-                twitter = twitter[0].strip()
+                twitter = twitter[0].split(',')[0].strip()
                 f = urllib.urlopen("https://twitter.com/%s" % twitter)
                 html = unicode(f.read(), 'utf-8')
                 imageurl = re.findall(ur"data-resolved-url-large=\"(https://pbs.twimg.com/profile_images/[^\"]+)\"", html)
