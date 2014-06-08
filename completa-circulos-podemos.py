@@ -42,8 +42,8 @@ def main():
         if re.search(ur"(?im)\{\{\s*nodos\s*\}\}", newtext) and not re.search(ur"(?im)\{\{\s*podemos\s*\}\}", newtext):
             newtext = re.sub(ur"(?im)\{\{\s*nodos\s*\}\}", ur"{{podemos}}", newtext)
         
-        if re.search(ur"(?im)^'''([^\']+)''' es un \[\[nodo\]\] de \[\[Podemos\]\]\.", newtext):
-            newtext = re.sub(ur"(?im)^'''([^\']+)''' es un \[\[nodo\]\] de \[\[Podemos\]\]\.", ur"'''\1''' es un [[Lista de círculos de Podemos|círculo]] de [[Podemos]] de [[%s]]." % (suffix), newtext)
+        if re.search(ur"(?im)^'''([^\']+)''' es un \[\[nodo\]\]( de \[\[Podemos\]\])?\.", newtext):
+            newtext = re.sub(ur"(?im)^'''([^\']+)''' es un \[\[nodo\]\](?: de \[\[Podemos\]\])?\.", ur"'''\1''' es un [[Lista de círculos de Podemos|círculo]] de [[Podemos]] de [[%s]]." % (suffix), newtext)
         
         if re.search(ur"(?im)== Enlaces externos ==\s*\*[^\r\n]+\r\n", newtext):
             newtext = re.sub(ur"(?im)== Enlaces externos ==\s*\*[^\r\n]+\r\n", ur"== Enlaces externos ==\n{{enlaces externos}}\n", newtext)
@@ -81,7 +81,7 @@ def main():
                         continue
                     imagename = u"%s.%s" % (wtitle, ext)
                     #https://www.mediawiki.org/wiki/Manual:Pywikibot/upload.py
-                    os.system('python upload.py -lang:15mpedia -family:15mpedia -filename:"%s" -noverify "%s" "%s"' % (imagename.encode('utf-8'), imageurl.encode('utf-8'), desc.encode('utf-8')))
+                    os.system('python upload.py -lang:15mpedia -family:15mpedia -keep -filename:"%s" -noverify "%s" "%s"' % (imagename.encode('utf-8'), imageurl.encode('utf-8'), desc.encode('utf-8')))
                     newtext = re.sub(ur"(?im)\{\{Infobox Nodo", ur"{{Infobox Nodo\n|imagen=%s" % (imagename), newtext)
                     wikipedia.showDiff(wtext, newtext)
                     page.put(newtext, u"BOT - Añadiendo imagen")
