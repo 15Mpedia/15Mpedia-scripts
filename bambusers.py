@@ -21,6 +21,7 @@ import re
 import sys
 import time
 import urllib
+import wikipedia
 
 month2number = {'jan': '01', 'feb': '02', 'mar': '03', 'apr': '04', 'may': '05', 'jun': '06', 'jul': '07', 'aug': '08', 'sep': '09', 'oct': '10', 'nov': '11', 'dec': '12'}
 
@@ -35,6 +36,9 @@ def main():
     rss = 'http://feed.bambuser.com/channel/%s.rss' % (user)
 
     #load bambuser ids imported in the past (to exclude them)
+    print 'Loading ids of bambuser videos uploaded in the past, please wait'
+    pageimported = wikipedia.Page(wikipedia.Site("15mpedia", "15mpedia"), u"Usuario:Emijrp/bambuser")
+    pageimported.put(u"{{#ask:[[embebido::Bambuser]]|mainlabel=-|?embebido id=|limit=100000}}", u"BOT - Updating")
     f = urllib.urlopen('http://wiki.15m.cc/wiki/Usuario:Emijrp/bambuser')
     html = unicode(f.read(), 'utf-8')
     imported = html.split('<div id="mw-content-text" lang="es" dir="ltr" class="mw-content-ltr"><p>')[1].split('</p>')[0].strip().split(', ')
@@ -61,7 +65,7 @@ def main():
         raw3 = urllib.urlopen(pageurl2).read()
         videoids += re.findall(ur"(?im)<a class=\"preview-wrapper\" href=\"http://bambuser.com/v/(\d+)\">", raw3)
         c += 1
-        break
+        #break
 
     print 'Loaded ids for %d videos' % (len(videoids))
     
