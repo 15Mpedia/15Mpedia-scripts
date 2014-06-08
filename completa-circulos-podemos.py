@@ -71,7 +71,7 @@ def main():
                     if 'default_profile' in imageurl:
                         print 'Default twitter image, skiping'
                         continue
-                    desc = u"{{Infobox Archivo\n|embebido id=\n|embebido usuario=\n|embebido título=\n|descripción=Logotipo de {{t|%s}}\n|fuente={{twitter|%s}}\n}}" % (twitter, twitter)
+                    desc = u"{{Infobox Archivo\n|embebido id=\n|embebido usuario=\n|embebido título=\n|descripción=Logotipo de [[%s]].\n|fuente={{twitter|%s}}\n}}" % (wtitle, twitter)
                     if imageurl.endswith('jpeg') or imageurl.endswith('jpg'):
                         ext = 'jpg'
                     elif imageurl.endswith('pneg') or imageurl.endswith('png'):
