@@ -37,9 +37,9 @@ def main():
 
     #load bambuser ids imported in the past (to exclude them)
     print 'Loading ids of bambuser videos uploaded in the past, please wait'
-    pageimported = wikipedia.Page(wikipedia.Site("15mpedia", "15mpedia"), u"Usuario:Emijrp/bambuser")
+    pageimported = wikipedia.Page(wikipedia.Site("15mpedia", "15mpedia"), u"Usuario:Emijrp/bambuser ids")
     pageimported.put(u"{{#ask:[[embebido::Bambuser]]|mainlabel=-|?embebido id=|limit=100000}}", u"BOT - Updating")
-    f = urllib.urlopen('http://wiki.15m.cc/wiki/Usuario:Emijrp/bambuser')
+    f = urllib.urlopen('http://wiki.15m.cc/wiki/Usuario:Emijrp/bambuser_ids')
     html = unicode(f.read(), 'utf-8')
     imported = html.split('<div id="mw-content-text" lang="es" dir="ltr" class="mw-content-ltr"><p>')[1].split('</p>')[0].strip().split(', ')
     print len(imported), 'bambuser streamings imported in the past'
