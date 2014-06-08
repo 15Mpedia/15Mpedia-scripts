@@ -123,10 +123,11 @@ def main():
             likes = '0'
         tags = re.findall(ur"(?im)<span class=\"tag\" style=\"display:none;\" title=\"([^>]*?)\"></span>", raw4)
         
+        ignoredupes = 'default-preview' in thumburl and True or False
         #[videoid, coord, date, hour, likes, views, lives, title, ', '.join(tags), user]
         infobox = u"{{Infobox Archivo\n|embebido=Bambuser\n|embebido id=%s\n|embebido usuario=%s\n|embebido título=%s\n|fecha de creación=%s\n|fecha de publicación=%s\n|autor={{bambuser channel|%s}}\n|coordenadas=%s\n}}" % (videoid, user, title, date, date, user, coord)
         #https://www.mediawiki.org/wiki/Manual:Pywikibot/upload.py
-        os.system('python upload.py -lang:15mpedia -family:15mpedia -keep -filename:"%s" -noverify "%s" "%s"' % (imagename.encode('utf-8'), thumburl.encode('utf-8'), infobox.encode('utf-8')))
+        os.system('python upload.py -lang:15mpedia -family:15mpedia -keep %s -filename:"%s" -noverify "%s" "%s"' % (ignoredupes and '-ignoredupes' or '', imagename.encode('utf-8'), thumburl.encode('utf-8'), infobox.encode('utf-8')))
 
         c += 1
 
