@@ -130,7 +130,7 @@ def main():
             
         print photoid
         print photosmetadata[photoid]
-        break
+        #break
     
     #choose a mode to upload
     if mode == 'url':
@@ -142,13 +142,10 @@ def main():
             cats = u''
             if categories:
                 cats = u'\n\n%s' % ('\n'.join([u'[[Categoría:%s]]' % (category) for category in categories]))
-            for photoid, photometadata in photosmetadata.items():
-                output = generateInfobox(photoid, photometadata, cats, flickrseturl, flickrsetname, flickruser)
-                wikipedia.output(output)
-                #https://www.mediawiki.org/wiki/Manual:Pywikibot/upload.py
-                os.system('python upload.py -lang:15mpedia -family:15mpedia -keep -filename:"%s" -noverify "%s" "%s"' % (photometadata['localfilename'].encode('utf-8'), photourl2.encode('utf-8'), output.encode('utf-8')))
-                p = wikipedia.Page(wikipedia.Site('15mpedia', '15mpedia'), u'File:%s' % (photometadata['localfilename']))
-                p.put(output, u"BOT - Importing file")
+            output = generateInfobox(photoid, photometadata, cats, flickrseturl, flickrsetname, flickruser)
+            #wikipedia.output(output)
+            #https://www.mediawiki.org/wiki/Manual:Pywikibot/upload.py
+            os.system('python upload.py -lang:15mpedia -family:15mpedia -keep -filename:"%s" -noverify "%s" "%s"' % (photometadata['localfilename'].encode('utf-8'), photourl2.encode('utf-8'), output.encode('utf-8')))
     
     elif mode == 'import':
         #download flickr images
