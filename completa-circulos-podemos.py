@@ -16,8 +16,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import catlib
+import os
 import pagegenerators
 import re
+import urllib
 import wikipedia
 
 def main():
@@ -55,6 +57,34 @@ def main():
         if wtext != newtext:
             wikipedia.showDiff(wtext, newtext)
             page.put(newtext, u"BOT - Unificando círculos")
+        
+        #imagen
+        if not re.search(ur"(?im)\|\s*imagen\s*=", newtext):
+            twitter = re.findall(ur"(?im)\|\s*twitter\s*=([^\r\n]+)\r\n", newtext)
+            if twitter:
+                twitter = twitter[0].strip()
+                f = urllib.urlopen("https://twitter.com/%s" % twitter)
+                html = unicode(f.read(), 'utf-8')
+                imageurl = re.findall(ur"data-resolved-url-large=\"(https://pbs.twimg.com/profile_images/[^\"]+)\"", html)
+                if imageurl:
+                    imageurl = imageurl[0]
+                    if 'default_profile' in imageurl:
+                        print 'Default twitter image, skiping'
+                        continue
+                    desc = u"{{Infobox Archivo\n|embebido id=\n|embebido usuario=\n|embebido título=\n|descripción=Logotipo de {{t|%s}}\n|fuente={{twitter|%s}}\n}}" % (twitter, twitter)
+                    if imageurl.endswith('jpeg') or imageurl.endswith('jpg'):
+                        ext = 'jpg'
+                    elif imageurl.endswith('pneg') or imageurl.endswith('png'):
+                        ext = 'png'
+                    else:
+                        print 'Twitter image extension is %s, skiping' % (imageurl.split('.')[-1])
+                        continue
+                    imagename = u"%s.%s" % (wtitle, ext)
+                    #https://www.mediawiki.org/wiki/Manual:Pywikibot/upload.py
+                    os.system('python upload.py -lang:15mpedia -family:15mpedia -filename:"%s" -noverify "%s" "%s"' % (imagename.encode('utf-8'), imageurl.encode('utf-8'), desc.encode('utf-8')))
+                    newtext = re.sub(ur"(?im)\{\{Infobox Nodo", ur"{{Infobox Nodo\n|imagen=%s" % (imagename), newtext)
+                    wikipedia.showDiff(wtext, newtext)
+                    page.put(newtext, u"BOT - Añadiendo imagen")
         
 if __name__ == '__main__':
     main()
