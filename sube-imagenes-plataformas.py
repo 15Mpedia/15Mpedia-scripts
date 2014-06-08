@@ -59,7 +59,7 @@ def main():
                     else:
                         print 'Twitter image extension is %s, skiping' % (imageurl.split('.')[-1])
                         continue
-                    imagename = u"%s.%s" % (re.sub(u'"', u'', wtitle), ext)
+                    imagename = u"%s.%s" % (re.sub(u'[":/]', u'', wtitle), ext)
                     #https://www.mediawiki.org/wiki/Manual:Pywikibot/upload.py
                     os.system('python upload.py -lang:15mpedia -family:15mpedia -keep -filename:"%s" -noverify "%s" "%s"' % (imagename.encode('utf-8'), imageurl.encode('utf-8'), desc.encode('utf-8')))
                     newtext = re.sub(ur"(?im)\{\{Infobox Plataforma", ur"{{Infobox Plataforma\n|imagen=%s" % (imagename), newtext)
