@@ -37,17 +37,32 @@ def main():
         
     print 'Downloading Bambuser metadata for %d users:\n%s' % (len(users), users)
     
+    skip = ''
     for user in users:
+        if skip:
+            if skip == user:
+                skip = ''
+            else:
+                print 'Skipping', user
+                continue
+        
         channel = 'http://bambuser.com/channel/%s' % (user)
         rss = 'http://feed.bambuser.com/channel/%s.rss' % (user)
 
         #load bambuser ids imported in the past (to exclude them)
         print 'Loading ids of bambuser videos uploaded in the past, please wait'
+        
+        """
         pageimported = wikipedia.Page(wikipedia.Site("15mpedia", "15mpedia"), u"Usuario:Emijrp/bambuser ids")
         pageimported.put(u"{{#ask:[[embebido::Bambuser]]|mainlabel=-|?embebido id=|limit=100000}}", u"BOT - Updating")
         f = urllib.urlopen('http://wiki.15m.cc/wiki/Usuario:Emijrp/bambuser_ids')
         html = unicode(f.read(), 'utf-8')
         imported = html.split('<div id="mw-content-text" lang="es" dir="ltr" class="mw-content-ltr"><p>')[1].split('</p>')[0].strip().split(', ')
+        """
+        queryurl = "http://wiki.15m.cc/w/index.php?title=Especial:Ask&offset=0&limit=5000&q=[[embebido%%3A%%3ABambuser]][[embebido%%20usuario%%3A%%3A%s]]&p=mainlabel%%3D-2D%%2Fformat%%3Dbroadtable&po=%%3FEmbebido+id%%3D%%0A" % (re.sub(ur"[ \+]", "%20", user))
+        f = urllib.urlopen(queryurl)
+        html = unicode(f.read(), 'utf-8')
+        imported = re.findall(ur"(?im)<td data-sort-value=\"(\d+)\">", html)
         print len(imported), 'bambuser streamings imported in the past'
         
         raw = urllib.urlopen(channel).read()
