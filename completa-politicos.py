@@ -77,19 +77,19 @@ def main():
         #leyendo redirects de wikipedia y creandolas en local
         eswikireds = eswikipage.getReferences(redirectsOnly=True)
         for eswikired in eswikireds:
-            print "   ", eswikired.title()
-            if len(eswikititle) == eswikired.title(): #saltar redirecciones sin cambio de longitud (probablemente sea una con acentos intercambiados)
+            if '(' in eswikired.title() or len(eswikititle) == eswikired.title(): #saltar redirecciones sin cambio de longitud (probablemente sea una con acentos intercambiados)
                 continue
+            print "   ", eswikired.title()
             red = wikipedia.Page(site, eswikired.title())
             if not red.exists():
-                red.put(u"#REDIRECT [[%s]]" % (wtitle), u"BOT - Creando redirección hacia [[%s]]" % (wtitle), botflag=False)
+                red.put(u"#REDIRECT [[%s]]" % (wtitle), u"BOT - Creando redirección hacia [[%s]]" % (wtitle), botflag=True)
         eswikipage = ''
         
         resumen = []
         parametros = []
         #capturar fecha nacimiento
         if not re.search(ur"(?im)\|\s*fecha de nacimiento", wtext):
-            fechanacimiento = re.findall(ur"(?im)\|\s*fechanac\s*=[^\{\n]*?\{\{\s*(?:edad|fecha)\s*\|\s*([0-9]+)\s*\|\s*([0-9]+)\s*\|\s*([0-9]+)\s*\}\}", eswikitext)
+            fechanacimiento = re.findall(ur"(?im)\|\s*fechanac\s*=[^\{\n]*?\{\{\s*(?:edad|fecha|fecha de inicio)\s*\|\s*([0-9]+)\s*\|\s*([0-9]+)\s*\|\s*([0-9]+)\s*(?:\|\s*edad\s*)?\s*\}\}", eswikitext)
             if fechanacimiento:
                 fechanacimiento = fechanacimiento[0]
                 parametros.append(u"|fecha de nacimiento=%d/%02d/%02d" % (int(fechanacimiento[2]), int(fechanacimiento[1]), int(fechanacimiento[0])))
