@@ -33,7 +33,7 @@ def main():
         if not wtitle.startswith('Archivo:Bambuser'):
             continue
         bid = wtitle.split('Bambuser ')[1].split(' ')[0]
-        buser = ' '.join(wtitle.split('.jpg')[0].split(' ')[2:])
+        buser = re.sub(r"\+", " ", ' '.join(wtitle.split('.jpg')[0].split(' ')[2:]))
         print bid, buser
         page2 = wikipedia.Page(site, u"Archivo:Bambuser - %s - %s.jpg" % (buser, bid))
         if page2.exists():
