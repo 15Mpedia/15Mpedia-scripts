@@ -28,7 +28,7 @@ month2number = {'jan': '01', 'feb': '02', 'mar': '03', 'apr': '04', 'may': '05',
 def main():
     users = []
     if len(sys.argv) > 1:
-        users.appen(re.sub(u'\+', u' ', sys.argv[1]))
+        users.append(re.sub(u'\+', u' ', sys.argv[1]))
     else:
         f = urllib.urlopen('http://wiki.15m.cc/wiki/Lista_de_streamings_en_Bambuser')
         html = unicode(f.read(), 'utf-8')
