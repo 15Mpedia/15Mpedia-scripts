@@ -37,7 +37,7 @@ def main():
         
     print 'Downloading Bambuser metadata for %d users:\n%s' % (len(users), users)
     
-    skip = ''
+    skip = u''
     for user in users:
         if skip:
             if skip == user:
@@ -46,6 +46,7 @@ def main():
                 print 'Skipping', user
                 continue
         
+        print '=== ', user, ' ==='
         channel = 'http://bambuser.com/channel/%s' % (user)
         rss = 'http://feed.bambuser.com/channel/%s.rss' % (user)
 
