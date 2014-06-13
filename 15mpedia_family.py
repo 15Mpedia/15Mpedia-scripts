@@ -11,6 +11,27 @@ class Family(family.Family):
         self.langs = {
             '15mpedia': 'wiki.15m.cc',
         }
+        
+        self.namespaces[4] = {
+            '_default': u'15Mpedia',
+        }
+        
+        self.namespaces[5] = {
+            '_default': u'15Mpedia discusión',
+        }
+        
+        self.namespaces[6] = {
+            '_default': u'Archivo',
+        }
+        
+        self.namespaces[7] = {
+            '_default': u'Archivo discusión',
+        }
+        
+        self.namespaces[106] = {
+            '_default': u'Formulario',
+        }
+        
         # Wikimedia wikis all use "bodyContent" as the id of the <div>
         # element that contains the actual page content; change this for
         # wikis that use something else (e.g., mozilla family)
@@ -33,7 +54,7 @@ class Family(family.Family):
     # Which version of MediaWiki is used? REQUIRED
     def version(self, code):
         # Replace with the actual version being run on your wiki
-        return '1.19.0'
+        return '1.20alpha'
 
     def code2encoding(self, code):
         """Return the encoding for a specific language wiki"""
