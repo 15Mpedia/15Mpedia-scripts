@@ -49,34 +49,55 @@ def main():
             
             print '\n===', wtitle, '==='
             newtext = wtext
-                    
-            #imagen del perfil de twitter
+            imageurl = u''
+            desc = u''
             if not re.search(ur"(?im)\|\s*imagen\s*=", newtext):
+                #imagen del perfil de twitter
                 twitter = re.findall(ur"(?im)\|\s*twitter\s*=([^\r\n]+)\r\n", newtext)
                 if twitter:
                     twitter = twitter[0].split(',')[0].strip()
-                    f = urllib.urlopen("https://twitter.com/%s" % twitter)
+                    twitterurl = "https://twitter.com/%s" % (twitter)
+                    f = urllib.urlopen(twitterurl.encode('utf-8'))
                     html = unicode(f.read(), 'utf-8')
                     imageurl = re.findall(ur"data-resolved-url-large=\"(https://pbs.twimg.com/profile_images/[^\"]+)\"", html)
                     if imageurl:
                         imageurl = imageurl[0]
                         if 'default_profile' in imageurl:
+                            imageurl = ''
                             print 'Default twitter image, skiping'
                             continue
                         desc = u"{{Infobox Archivo\n|embebido id=\n|embebido usuario=\n|embebido título=\n|descripción=Logotipo de [[%s]].\n|fuente={{twitter|%s}}\n}}" % (wtitle, twitter)
-                        if imageurl.endswith('jpeg') or imageurl.endswith('jpg'):
-                            ext = 'jpg'
-                        elif imageurl.endswith('pneg') or imageurl.endswith('png'):
-                            ext = 'png'
-                        else:
-                            print 'Twitter image extension is %s, skipping' % (imageurl.split('.')[-1])
-                            continue
-                        imagename = u"%s.%s" % (re.sub(u'[":/]', u'', wtitle), ext)
-                        #https://www.mediawiki.org/wiki/Manual:Pywikibot/upload.py
-                        os.system('python upload.py -lang:15mpedia -family:15mpedia -keep -filename:"%s" -noverify "%s" "%s"' % (imagename.encode('utf-8'), imageurl.encode('utf-8'), desc.encode('utf-8')))
-                        newtext = re.sub(ur"(?im)\{\{%s" % (props['infobox']), ur"{{%s\n|imagen=%s" % (props['infobox'], imagename), newtext)
-                        wikipedia.showDiff(wtext, newtext)
-                        page.put(newtext, u"BOT - Añadiendo imagen")
-        
+                else:
+                    #imagen del perfil de facebook
+                    facebook = re.findall(ur"(?im)\|\s*facebook\s*=([^\r\n]+)\r\n", newtext)
+                    if facebook:
+                        facebook = facebook[0].split(',')[0].strip()
+                        f = urllib.urlopen(facebook.encode('utf-8'))
+                        html = unicode(f.read(), 'utf-8')
+                        imageurl = re.findall(ur'<a class="profilePicThumb" href="([^"]+?)" rel="theater">', html)
+                        if imageurl:
+                            imageurl = re.sub(ur"&amp;", ur"&", imageurl[0])
+                            f = urllib.urlopen(imageurl)
+                            html = unicode(f.read(), 'utf-8')
+                            imageurl = re.findall(ur'<img class="fbPhotoImage img" id="fbPhotoImage" src="([^"]+?)" alt="" />', html)
+                            if imageurl:
+                                imageurl = imageurl[0]
+                            desc = u"{{Infobox Archivo\n|embebido id=\n|embebido usuario=\n|embebido título=\n|descripción=Logotipo de [[%s]].\n|fuente=[%s %s] en Facebook\n}}" % (wtitle, facebook, wtitle)
+                
+                if imageurl:
+                    if imageurl.endswith('jpeg') or imageurl.endswith('jpg'):
+                        ext = 'jpg'
+                    elif imageurl.endswith('pneg') or imageurl.endswith('png'):
+                        ext = 'png'
+                    else:
+                        print 'Image extension is %s, skipping' % (imageurl.split('.')[-1])
+                        continue
+                    imagename = u"%s.%s" % (re.sub(u'[":/]', u'', wtitle), ext)
+                    #https://www.mediawiki.org/wiki/Manual:Pywikibot/upload.py
+                    os.system('python upload.py -lang:15mpedia -family:15mpedia -keep -filename:"%s" -noverify "%s" "%s"' % (imagename.encode('utf-8'), imageurl.encode('utf-8'), desc.encode('utf-8')))
+                    newtext = re.sub(ur"(?im)\{\{%s" % (props['infobox']), ur"{{%s\n|imagen=%s" % (props['infobox'], imagename), newtext)
+                    wikipedia.showDiff(wtext, newtext)
+                    page.put(newtext, u"BOT - Añadiendo imagen")
+                        
 if __name__ == '__main__':
     main()
