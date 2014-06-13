@@ -24,16 +24,23 @@ import wikipedia
 
 def main():
     entities = {
-        u'Nodos': {'category': u'Category:Nodos', 'infobox': u'Infobox Nodo', }
-        #u'Plataformas': {'category': u'Category:Plataformas', 'infobox': u'Infobox Plataforma', }
+        u'Acampadas': {'category': u'Category:Acampadas', 'infobox': u'Infobox Acampada', }, 
+        u'Asambleas': {'category': u'Category:Asambleas', 'infobox': u'Infobox Asamblea', }, 
+        u'Centros sociales': {'category': u'Category:Centros sociales', 'infobox': u'Infobox Centro social', }, 
+        u'Comisiones': {'category': u'Category:Comisiones', 'infobox': u'Infobox Comisión', }, 
+        u'Nodos': {'category': u'Category:Nodos', 'infobox': u'Infobox Nodo', }, 
+        u'Plataformas': {'category': u'Category:Plataformas', 'infobox': u'Infobox Plataforma', }, 
     }
     for entity, props in entities.items():
         site = wikipedia.Site('15mpedia', '15mpedia')
-        cat = catlib.Category(site, props['category'])
-        gen = pagegenerators.CategorizedPageGenerator(cat)
+        #cat = catlib.Category(site, props['category'])
+        #gen = pagegenerators.CategorizedPageGenerator(cat)
+        gen = pagegenerators.ReferringPageGenerator(wikipedia.Page(site, u"Template:%s" % (props['infobox'])), onlyTemplateInclusion=True)
         pre = pagegenerators.PreloadingGenerator(gen, pageNumber=60)
         
         for page in pre:
+            if page.isRedirectPage():
+                continue
             wtitle = page.title()
             wtext = page.get()
             
