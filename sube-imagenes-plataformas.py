@@ -23,48 +23,53 @@ import urllib
 import wikipedia
 
 def main():
-    site = wikipedia.Site('15mpedia', '15mpedia')
-    cat = catlib.Category(site, u"Category:Plataformas")
-    gen = pagegenerators.CategorizedPageGenerator(cat)
-    pre = pagegenerators.PreloadingGenerator(gen, pageNumber=60)
-    
-    for page in pre:
-        wtitle = page.title()
-        wtext = page.get()
+    entities = {
+        u'Nodos': {'category': u'Category:Nodos', 'infobox': u'Infobox Nodo', }
+        #u'Plataformas': {'category': u'Category:Plataformas', 'infobox': u'Infobox Plataforma', }
+    }
+    for entity, props in entities.items():
+        site = wikipedia.Site('15mpedia', '15mpedia')
+        cat = catlib.Category(site, props['category'])
+        gen = pagegenerators.CategorizedPageGenerator(cat)
+        pre = pagegenerators.PreloadingGenerator(gen, pageNumber=60)
         
-        if not re.search(ur"(?im)\{\{\s*Infobox Plataforma", wtext):
-            continue
-        
-        print '\n===', wtitle, '==='
-        newtext = wtext
-                
-        #imagen
-        if not re.search(ur"(?im)\|\s*imagen\s*=", newtext):
-            twitter = re.findall(ur"(?im)\|\s*twitter\s*=([^\r\n]+)\r\n", newtext)
-            if twitter:
-                twitter = twitter[0].split(',')[0].strip()
-                f = urllib.urlopen("https://twitter.com/%s" % twitter)
-                html = unicode(f.read(), 'utf-8')
-                imageurl = re.findall(ur"data-resolved-url-large=\"(https://pbs.twimg.com/profile_images/[^\"]+)\"", html)
-                if imageurl:
-                    imageurl = imageurl[0]
-                    if 'default_profile' in imageurl:
-                        print 'Default twitter image, skiping'
-                        continue
-                    desc = u"{{Infobox Archivo\n|embebido id=\n|embebido usuario=\n|embebido título=\n|descripción=Logotipo de [[%s]].\n|fuente={{twitter|%s}}\n}}" % (wtitle, twitter)
-                    if imageurl.endswith('jpeg') or imageurl.endswith('jpg'):
-                        ext = 'jpg'
-                    elif imageurl.endswith('pneg') or imageurl.endswith('png'):
-                        ext = 'png'
-                    else:
-                        print 'Twitter image extension is %s, skiping' % (imageurl.split('.')[-1])
-                        continue
-                    imagename = u"%s.%s" % (re.sub(u'[":/]', u'', wtitle), ext)
-                    #https://www.mediawiki.org/wiki/Manual:Pywikibot/upload.py
-                    os.system('python upload.py -lang:15mpedia -family:15mpedia -keep -filename:"%s" -noverify "%s" "%s"' % (imagename.encode('utf-8'), imageurl.encode('utf-8'), desc.encode('utf-8')))
-                    newtext = re.sub(ur"(?im)\{\{Infobox Plataforma", ur"{{Infobox Plataforma\n|imagen=%s" % (imagename), newtext)
-                    wikipedia.showDiff(wtext, newtext)
-                    page.put(newtext, u"BOT - Añadiendo imagen")
+        for page in pre:
+            wtitle = page.title()
+            wtext = page.get()
+            
+            if not re.search(ur"(?im)\{\{\s*%s" % (props['infobox']), wtext):
+                continue
+            
+            print '\n===', wtitle, '==='
+            newtext = wtext
+                    
+            #imagen del perfil de twitter
+            if not re.search(ur"(?im)\|\s*imagen\s*=", newtext):
+                twitter = re.findall(ur"(?im)\|\s*twitter\s*=([^\r\n]+)\r\n", newtext)
+                if twitter:
+                    twitter = twitter[0].split(',')[0].strip()
+                    f = urllib.urlopen("https://twitter.com/%s" % twitter)
+                    html = unicode(f.read(), 'utf-8')
+                    imageurl = re.findall(ur"data-resolved-url-large=\"(https://pbs.twimg.com/profile_images/[^\"]+)\"", html)
+                    if imageurl:
+                        imageurl = imageurl[0]
+                        if 'default_profile' in imageurl:
+                            print 'Default twitter image, skiping'
+                            continue
+                        desc = u"{{Infobox Archivo\n|embebido id=\n|embebido usuario=\n|embebido título=\n|descripción=Logotipo de [[%s]].\n|fuente={{twitter|%s}}\n}}" % (wtitle, twitter)
+                        if imageurl.endswith('jpeg') or imageurl.endswith('jpg'):
+                            ext = 'jpg'
+                        elif imageurl.endswith('pneg') or imageurl.endswith('png'):
+                            ext = 'png'
+                        else:
+                            print 'Twitter image extension is %s, skipping' % (imageurl.split('.')[-1])
+                            continue
+                        imagename = u"%s.%s" % (re.sub(u'[":/]', u'', wtitle), ext)
+                        #https://www.mediawiki.org/wiki/Manual:Pywikibot/upload.py
+                        os.system('python upload.py -lang:15mpedia -family:15mpedia -keep -filename:"%s" -noverify "%s" "%s"' % (imagename.encode('utf-8'), imageurl.encode('utf-8'), desc.encode('utf-8')))
+                        newtext = re.sub(ur"(?im)\{\{%s" % (props['infobox']), ur"{{%s\n|imagen=%s" % (props['infobox'], imagename), newtext)
+                        wikipedia.showDiff(wtext, newtext)
+                        page.put(newtext, u"BOT - Añadiendo imagen")
         
 if __name__ == '__main__':
     main()
