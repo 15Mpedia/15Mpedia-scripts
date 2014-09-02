@@ -81,16 +81,17 @@ def main():
                             html = unicode(f.read(), 'utf-8')
                             imageurl = re.findall(ur'<img class="fbPhotoImage img" id="fbPhotoImage" src="([^"]+?)" alt="" />', html)
                             if imageurl:
-                                imageurl = imageurl[0]
+                                imageurl = re.sub(ur"&amp;", ur"&", imageurl[0])
                             desc = u"{{Infobox Archivo\n|embebido id=\n|embebido usuario=\n|embebido título=\n|descripción=Logotipo de [[%s]].\n|fuente=[%s %s] en Facebook\n}}" % (wtitle, facebook, wtitle)
                 
                 if imageurl:
-                    if imageurl.endswith('jpeg') or imageurl.endswith('jpg'):
+                    imageurl2 = imageurl.split('?')[0]
+                    if imageurl2.endswith('jpeg') or imageurl2.endswith('jpg'):
                         ext = 'jpg'
-                    elif imageurl.endswith('pneg') or imageurl.endswith('png'):
+                    elif imageurl2.endswith('pneg') or imageurl2.endswith('png'):
                         ext = 'png'
                     else:
-                        print 'Image extension is %s, skipping' % (imageurl.split('.')[-1])
+                        print 'Image extension is %s, skipping' % (imageurl2.split('.')[-1])
                         continue
                     imagename = u"%s.%s" % (re.sub(u'[":/]', u'', wtitle), ext)
                     #https://www.mediawiki.org/wiki/Manual:Pywikibot/upload.py
