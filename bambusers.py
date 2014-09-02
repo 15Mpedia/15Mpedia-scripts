@@ -30,12 +30,12 @@ def main():
     if len(sys.argv) > 1:
         users.append(re.sub(u'\+', u' ', sys.argv[1]))
     else:
-        f = urllib.urlopen('http://wiki.15m.cc/wiki/Lista_de_streamings_en_Bambuser')
+        f = urllib.urlopen(u'http://wiki.15m.cc/wiki/Lista_de_streamings_en_Bambuser')
         html = unicode(f.read(), 'utf-8')
-        html = html.split('id="Nube_de_usuarios"')[1].split('<h2>')[0]
+        html = html.split(u'id="Nube_de_usuarios"')[1].split(u'<h2>')[0]
         users = re.findall(ur">([^<>]+?)</a>", html)
         
-    print 'Downloading Bambuser metadata for %d users:\n%s' % (len(users), users)
+    print u'Downloading Bambuser metadata for %d users:\n%s' % (len(users), users)
     
     skip = u''
     for user in users:
@@ -46,12 +46,12 @@ def main():
                 print 'Skipping', user
                 continue
         
-        print '=== ', user, ' ==='
-        channel = 'http://bambuser.com/channel/%s' % (user)
-        rss = 'http://feed.bambuser.com/channel/%s.rss' % (user)
+        print u'=== %s ===' % user
+        channel = u'http://bambuser.com/channel/%s' % (user)
+        rss = u'http://feed.bambuser.com/channel/%s.rss' % (user)
 
         #load bambuser ids imported in the past (to exclude them)
-        print 'Loading ids of bambuser videos uploaded in the past, please wait'
+        print u'Loading ids of bambuser videos uploaded in the past, please wait'
         
         """
         pageimported = wikipedia.Page(wikipedia.Site("15mpedia", "15mpedia"), u"Usuario:Emijrp/bambuser ids")
@@ -60,48 +60,49 @@ def main():
         html = unicode(f.read(), 'utf-8')
         imported = html.split('<div id="mw-content-text" lang="es" dir="ltr" class="mw-content-ltr"><p>')[1].split('</p>')[0].strip().split(', ')
         """
-        queryurl = "http://wiki.15m.cc/w/index.php?title=Especial:Ask&offset=0&limit=5000&q=[[embebido%%3A%%3ABambuser]][[embebido%%20usuario%%3A%%3A%s]]&p=mainlabel%%3D-2D%%2Fformat%%3Dbroadtable&po=%%3FEmbebido+id%%3D%%0A" % (re.sub(ur"[ \+]", "%20", user))
+        queryurl = "http://wiki.15m.cc/w/index.php?title=Especial:Ask&offset=0&limit=5000&q=[[embebido%%3A%%3ABambuser]][[embebido%%20usuario%%3A%%3A%s]]&p=mainlabel%%3D-2D%%2Fformat%%3Dbroadtable&po=%%3FEmbebido+id%%3D%%0A" % (re.sub(ur"[ \+]", u"%20", user).encode('utf-8'))
         f = urllib.urlopen(queryurl)
         html = unicode(f.read(), 'utf-8')
         imported = re.findall(ur"(?im)<td data-sort-value=\"(\d+)\">", html)
-        print len(imported), 'bambuser streamings imported in the past'
+        print '%d bambuser streamings imported in the past' % len(imported)
         
-        raw = urllib.urlopen(channel).read()
+        raw = unicode(urllib.urlopen(channel.encode('utf-8')).read(), 'utf-8')
         user = re.findall(ur"(?im)<span class=\"username\" title=\"([^<>]+?)\"></span>", raw)[0]
-        raw = urllib.urlopen(rss).read()
+        raw =  unicode(urllib.urlopen(rss.encode('utf-8')).read(), 'utf-8')
         lastvideoid = re.findall(ur"(?im)<link>http://bambuser\.com/v/(\d+)</link>", raw)[0]
 
         videoids = []
         thumbs = []
         c = 0
-        pageurl = "http://bambuser.com/v/%s?page_profile_more_user=" % (lastvideoid)
+        pageurl = u"http://bambuser.com/v/%s?page_profile_more_user=" % (lastvideoid)
         raw2 = unicode(urllib.urlopen(pageurl).read(), 'utf-8')
         limit = 1
         try:
             limit = int(re.findall(ur"(?im)page_profile_more_user=\d+\">(\d+)</a></li></ul>", raw2)[0])
         except:
             pass
-        print 'Scraping videos from %d pages' % (limit)
+        print u'Scraping videos from %d pages' % (limit)
         while c < limit:
             pageurl2 = pageurl + str(c)
             raw3 = urllib.urlopen(pageurl2).read()
             videoids += re.findall(ur"(?im)<a class=\"preview-wrapper\" href=\"http://bambuser.com/v/(\d+)\">", raw3)
             c += 1
+            sys.stderr.write('.') # progress
             time.sleep(1)
             #break
 
-        print 'Loaded ids for %d videos' % (len(videoids))
+        print u'Loaded ids for %d videos' % (len(videoids))
         
         videos = {}
         c = 0
         for videoid in videoids:
             if videoid in imported:
-                print 'Video %s was imported in the past, skipping' % (videoid)
+                print u'Video %s was imported in the past, skipping' % (videoid)
                 continue
             else:
-                print 'Downloading metadata and screenshot for video %s' % (videoid)
+                print u'Downloading metadata and screenshot for video %s' % (videoid)
             
-            videourl = "http://bambuser.com/v/%s" % (videoid)
+            videourl = u"http://bambuser.com/v/%s" % (videoid)
             raw4 = unicode(urllib.urlopen(videourl).read(), 'utf-8')
             title = re.findall(ur"<span class=\"title\" title=\"([^>]*?)\"></span>", raw4)[0]
             title = re.sub(ur"[\"\[\]]", u"", title)
@@ -116,33 +117,34 @@ def main():
             try:
                 coord = re.findall(ur"(?im)<meta property=\"bambuser_com:position:latitude\" content=\"([^\"]+?)\" /><meta property=\"bambuser_com:position:longitude\" content=\"([^\"]+?)\" />", raw4)[0]
                 if coord:
-                    coord = '%s, %s' % (coord[0], coord[1])
+                    coord = u'%s, %s' % (coord[0], coord[1])
             except:
-                coord = ''
-            date = ''
-            date2 = ''
-            hour = ''
+                coord = u''
+            date = u''
+            date2 = u''
+            hour = u''
             try:
                 date2 = re.findall(ur"(?im)<div id=\"broadcast-date\">\s*<p>([^<]*?)</p>", raw4)[0]
             except:
                 date2 = re.findall(ur"(?im)<div id=\"broadcast-date\">\s*<p id=\"upload-recorded-date\"><span class=\"date-label\">Recorded </span>([^<]*?)<br>", raw4)[0]
             #9 Nov 2009 18:39 CET
             if not ':' in date2.split(' ')[2] and int(date2.split(' ')[2]) > 2000 and int(date2.split(' ')[2]) < 2020:
-                date = '%s/%s/%02d' % (date2.split(' ')[2], month2number[date2.split(' ')[1].lower()], int(date2.split(' ')[0]))
+                date = u'%s/%s/%02d' % (date2.split(' ')[2], month2number[date2.split(' ')[1].lower()], int(date2.split(' ')[0]))
                 hour = date2.split(' ')[3]
             else:
-                date = '%s/%s/%02d' % (datetime.datetime.now().year, month2number[date2.split(' ')[1].lower()], int(date2.split(' ')[0]))
+                date = u'%s/%s/%02d' % (datetime.datetime.now().year, month2number[date2.split(' ')[1].lower()], int(date2.split(' ')[0]))
                 hour = date2.split(' ')[2]
             
             if not likes:
-                likes = '0'
+                likes = u'0'
             tags = re.findall(ur"(?im)<span class=\"tag\" style=\"display:none;\" title=\"([^>]*?)\"></span>", raw4)
             
-            ignoredupes = 'default-preview' in thumburl and True or False
+            ignoredupes = u'default-preview' in thumburl and True or False
             #[videoid, coord, date, hour, likes, views, lives, title, ', '.join(tags), user]
             infobox = u"{{Infobox Archivo\n|embebido=Bambuser\n|embebido id=%s\n|embebido usuario=%s\n|embebido título=%s\n|fecha de creación=%s\n|fecha de publicación=%s\n|autor={{bambuser channel|%s}}\n|coordenadas=%s\n}}" % (videoid, user, title, date, date, user, coord)
             #https://www.mediawiki.org/wiki/Manual:Pywikibot/upload.py
-            os.system('python upload.py -lang:15mpedia -family:15mpedia -keep %s -filename:"%s" -noverify "%s" "%s"' % (ignoredupes and '-ignoredupes' or '', imagename.encode('utf-8'), thumburl.encode('utf-8'), infobox.encode('utf-8')))
+            execmd = u'python upload.py -lang:15mpedia -family:15mpedia -keep %s -filename:"%s" -noverify "%s" "%s"' % (ignoredupes and u'-ignoredupes' or u'', imagename, thumburl, infobox)
+            os.system(execmd.encode('utf-8'))
 
             c += 1
             time.sleep(1)
