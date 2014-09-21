@@ -3,6 +3,11 @@ __version__ = '$Id: 15mpedia_family.py 9015 2011-02-28 17:57:55Z lcawte $'
 
 import family
 
+"""
+Este fichero es necesario para correr los bots sobre 15Mpedia 
+Hay que guardarlo en el directorio "families" de pywikipediabot
+"""
+
 class Family(family.Family):
     def __init__(self):
         family.Family.__init__(self)
