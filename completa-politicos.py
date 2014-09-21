@@ -20,6 +20,10 @@ import re
 import pagegenerators
 import wikipedia
 
+"""
+Bot para copiar algunos datos de políticos de Wikipedia
+"""
+
 def main():
     eswiki = wikipedia.Site('es', 'wikipedia')
     site = wikipedia.Site('15mpedia', '15mpedia')

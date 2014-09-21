@@ -20,6 +20,11 @@ import re
 import pagegenerators
 import wikipedia
 
+"""
+Bot para importar datos de Wikipedia para los municipios.
+De momento solo la comarca y poco más.
+"""
+
 def main():
     eswiki = wikipedia.Site('es', 'wikipedia')
     site = wikipedia.Site('15mpedia', '15mpedia')
