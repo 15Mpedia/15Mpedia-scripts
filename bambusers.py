@@ -23,6 +23,14 @@ import time
 import urllib
 import wikipedia
 
+"""
+Este bot lee los nicks de usuarios de bambusers de
+http://wiki.15m.cc/wiki/Lista_de_streamings_en_Bambuser
+Y mira en la web de Bambuser a ver si hay nuevos streamings para esos
+usuarios. En caso afirmativo, sube una captura y los metadatos de 
+cada nuevo streaming.
+"""
+
 month2number = {'jan': '01', 'feb': '02', 'mar': '03', 'apr': '04', 'may': '05', 'jun': '06', 'jul': '07', 'aug': '08', 'sep': '09', 'oct': '10', 'nov': '11', 'dec': '12'}
 
 def main():
