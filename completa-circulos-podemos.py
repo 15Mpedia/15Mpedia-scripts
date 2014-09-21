@@ -22,6 +22,11 @@ import re
 import urllib
 import wikipedia
 
+"""
+Hace algunos reemplazos básicos en páginas de círculos de Podemos
+y sube la imagen del círculo, si está en Twitter.
+"""
+
 def main():
     site = wikipedia.Site('15mpedia', '15mpedia')
     cat = catlib.Category(site, u"Category:Círculos de Podemos")
