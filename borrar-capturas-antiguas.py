@@ -21,6 +21,12 @@ import re
 import urllib
 import wikipedia
 
+"""
+Bot de un solo uso, hecho para borrar capturas de Bambuser que fueron
+subidas hace mucho siguiendo un sistema antiguo. Ahora se suben de otra forma, con bambusers.py.
+No debería hacer falta volver a correr este bot.
+"""
+
 def main():
     site = wikipedia.Site('15mpedia', '15mpedia')
     cat = catlib.Category(site, u"Category:Capturas")
