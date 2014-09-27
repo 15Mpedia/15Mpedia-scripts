@@ -147,9 +147,23 @@ def main():
                 likes = u'0'
             tags = re.findall(ur"(?im)<span class=\"tag\" style=\"display:none;\" title=\"([^>]*?)\"></span>", raw4)
             
+            device = ''
+            m = re.findall(ur"(?im)<h4 class=\"n-semibold\">Phone model</h4>\s*?<p class=\"less-margin\">(.*?)</p>", raw4)
+            if m:
+                device = m[0]
+            else:
+                m = re.findall(ur"(?im)<h4 class=\"n-semibold\">Broadcast client</h4>\s*?<p class=\"less-margin\">(.*?)</p>", raw4)
+                if m:
+                    device = m[0]
+            print device
+            
+            duration = ''
+            duration = subprocess.Popen(["python", "youtube-dl", videorurl, "--get-duration"], stdout=subprocess.PIPE).communicate()[0].strip()
+            print duration
+            
             ignoredupes = u'default-preview' in thumburl and True or False
             #[videoid, coord, date, hour, likes, views, lives, title, ', '.join(tags), user]
-            infobox = u"{{Infobox Archivo\n|embebido=Bambuser\n|embebido id=%s\n|embebido usuario=%s\n|embebido título=%s\n|fecha de creación=%s %s\n|fecha de publicación=%s %s\n|autor={{bambuser channel|%s}}\n|coordenadas=%s\n}}" % (videoid, user, title, date, hour, date, hour, user, coord)
+            infobox = u"{{Infobox Archivo\n|embebido=Bambuser\n|embebido id=%s\n|embebido usuario=%s\n|embebido título=%s\n|fecha de creación=%s %s\n|fecha de publicación=%s %s\n|duración=%s\n|dispositivo=%s\n|autor={{bambuser channel|%s}}\n|coordenadas=%s\n}}" % (videoid, user, title, date, hour, date, hour, duration, device, user, coord)
             #https://www.mediawiki.org/wiki/Manual:Pywikibot/upload.py
             execmd = u'python upload.py -lang:15mpedia -family:15mpedia -keep %s -filename:"%s" -noverify "%s" "%s"' % (ignoredupes and u'-ignoredupes' or u'', imagename, thumburl, infobox)
             os.system(execmd.encode('utf-8'))
