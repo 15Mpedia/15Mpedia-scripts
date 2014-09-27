@@ -149,7 +149,7 @@ def main():
             
             ignoredupes = u'default-preview' in thumburl and True or False
             #[videoid, coord, date, hour, likes, views, lives, title, ', '.join(tags), user]
-            infobox = u"{{Infobox Archivo\n|embebido=Bambuser\n|embebido id=%s\n|embebido usuario=%s\n|embebido título=%s\n|fecha de creación=%s\n|fecha de publicación=%s\n|autor={{bambuser channel|%s}}\n|coordenadas=%s\n}}" % (videoid, user, title, date, date, user, coord)
+            infobox = u"{{Infobox Archivo\n|embebido=Bambuser\n|embebido id=%s\n|embebido usuario=%s\n|embebido título=%s\n|fecha de creación=%s %s\n|fecha de publicación=%s %s\n|autor={{bambuser channel|%s}}\n|coordenadas=%s\n}}" % (videoid, user, title, date, hour, date, hour, user, coord)
             #https://www.mediawiki.org/wiki/Manual:Pywikibot/upload.py
             execmd = u'python upload.py -lang:15mpedia -family:15mpedia -keep %s -filename:"%s" -noverify "%s" "%s"' % (ignoredupes and u'-ignoredupes' or u'', imagename, thumburl, infobox)
             os.system(execmd.encode('utf-8'))
