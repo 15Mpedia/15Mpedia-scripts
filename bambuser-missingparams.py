@@ -20,6 +20,7 @@ import datetime
 import re
 import os
 import subprocess
+import time
 import pagegenerators
 import urllib2
 import wikipedia
@@ -58,7 +59,11 @@ def main():
         try:
             date2 = re.findall(ur"(?im)<div id=\"broadcast-date\">\s*<p>([^<]*?)</p>", raw)[0]
         except:
-            date2 = re.findall(ur"(?im)<div id=\"broadcast-date\">\s*<p id=\"upload-recorded-date\"><span class=\"date-label\">Recorded </span>([^<]*?)<br>", raw)[0]
+            try:
+                date2 = re.findall(ur"(?im)<div id=\"broadcast-date\">\s*<p id=\"upload-recorded-date\"><span class=\"date-label\">Recorded </span>([^<]*?)<br>", raw)[0]
+            except:
+                print u"El vídeo parece no disponible"
+                continue
         #9 Nov 2009 18:39 CET
         if not ':' in date2.split(' ')[2] and int(date2.split(' ')[2]) > 2000 and int(date2.split(' ')[2]) < 2020:
             date = u'%s/%s/%02d' % (date2.split(' ')[2], month2number[date2.split(' ')[1].lower()], int(date2.split(' ')[0]))
@@ -74,6 +79,10 @@ def main():
         m = re.findall(ur"(?im)<h4 class=\"n-semibold\">Phone model</h4>\s*?<p class=\"less-margin\">(.*?)</p>", raw)
         if m:
             bambuserdevice = m[0]
+        else:
+            m = re.findall(ur"(?im)<h4 class=\"n-semibold\">Broadcast client</h4>\s*?<p class=\"less-margin\">(.*?)</p>", raw)
+            if m:
+                bambuserdevice = m[0]
                                                 
         bambuserduration = ''
         bambuserduration = subprocess.Popen(["python", "youtube-dl", bambuserurl, "--get-duration"], stdout=subprocess.PIPE).communicate()[0].strip()
@@ -81,7 +90,7 @@ def main():
         
         newtext = wtext
         summary = []
-        if bambuserdatetime:
+        if bambuserdatetime and not re.search(ur"(?im)\d\d\d\d/\d\d/\d\d \d\d:\d\d", newtext):
             bambuserdatetime2 = u"(%s|%s)" % (bambuserdatetime.split(' ')[0], re.sub('/', '-', bambuserdatetime.split(' ')[0]))
             newtext = re.sub(ur"(?im)(?P<ini>\| *?fecha de creación *?= *?)%s(?P<end> *?\r\n)" % (bambuserdatetime2), ur"\g<ini>%s\g<end>" % (bambuserdatetime), newtext)
             newtext = re.sub(ur"(?im)(?P<ini>\| *?fecha de publicación *?= *?)%s(?P<end> *?\r\n)" % (bambuserdatetime2), ur"\g<ini>%s\g<end>" % (bambuserdatetime), newtext)
@@ -99,6 +108,7 @@ def main():
             summary = u', '.join(summary)
             print summary
             page.put(newtext, u"BOT - Añadiendo: %s" % summary)
+            time.sleep(2)
         
 if __name__ == '__main__':
     main()
