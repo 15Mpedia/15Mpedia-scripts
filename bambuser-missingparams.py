@@ -33,8 +33,8 @@ month2number = {'jan': '01', 'feb': '02', 'mar': '03', 'apr': '04', 'may': '05',
 
 def main():
     site = wikipedia.Site('15mpedia', '15mpedia')
-    cat = catlib.Category(site, u"Category:Streamings embebidos")
-    gen = pagegenerators.CategorizedPageGenerator(cat)
+    cat = catlib.Category(site, u"Category:Archivos en Bambuser")
+    gen = pagegenerators.CategorizedPageGenerator(cat) #, start=u'Archivo:Bambuser - suysulucha - 2956009.jpg')
     pre = pagegenerators.PreloadingGenerator(gen, pageNumber=60)
     
     for page in pre:
