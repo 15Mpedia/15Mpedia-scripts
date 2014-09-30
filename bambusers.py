@@ -18,6 +18,7 @@
 import datetime
 import os
 import re
+import subprocess
 import sys
 import time
 import urllib
@@ -158,7 +159,7 @@ def main():
             print device
             
             duration = ''
-            duration = subprocess.Popen(["python", "youtube-dl", videorurl, "--get-duration"], stdout=subprocess.PIPE).communicate()[0].strip()
+            duration = subprocess.Popen(["python", "youtube-dl", videourl, "--get-duration"], stdout=subprocess.PIPE).communicate()[0].strip()
             print duration
             
             ignoredupes = u'default-preview' in thumburl and True or False
