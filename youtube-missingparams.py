@@ -33,7 +33,7 @@ Bot para copiar la duración y tags de YouTube
 def main():
     site = wikipedia.Site('15mpedia', '15mpedia')
     cat = catlib.Category(site, u"Category:Archivos en YouTube")
-    gen = pagegenerators.CategorizedPageGenerator(cat) #, start=u'Archivo:YouTube - 1170Black - byy2NT260tk.jpg')
+    gen = pagegenerators.CategorizedPageGenerator(cat, start=u'Archivo:YouTube - raffaellopinta - mnQdKhVzRek.jpg')
     pre = pagegenerators.PreloadingGenerator(gen, pageNumber=60)
     
     for page in pre:
@@ -54,10 +54,16 @@ def main():
         
         if not re.search(ur"'IS_UNAVAILABLE_PAGE': false,", raw) and re.search(ur"<h1 id=\"unavailable-message\"", raw): 
             disponibilidad = u""
-            if re.search(ur"<h1 id=\"unavailable-message\" class=\"message\">\s*(This video is unavailable.|Este vídeo no está disponible.)\s*</h1>", raw):
+            if re.search(ur"<h1 id=\"unavailable-message\" class=\"message\">[^<]*?(This video is unavailable|Este vídeo no está disponible)[^<]*?</h1>", raw):
                 disponibilidad = u"unavailable"
-            elif re.search(ur"<h1 id=\"unavailable-message\" class=\"message\">\s*(This video is private.|Este vídeo es privado.)\s*</h1>", raw):
+            elif re.search(ur"<h1 id=\"unavailable-message\" class=\"message\">[^<]*?(This video is private|Este vídeo es privado)[^<]*?</h1>", raw):
                 disponibilidad = u"private"
+            elif re.search(ur"<h1 id=\"unavailable-message\" class=\"message\">[^<]*?(cancelado la cuenta)[^<]*?</h1>", raw):
+                disponibilidad = u"canceled-account"
+            elif re.search(ur"<h1 id=\"unavailable-message\" class=\"message\">[^<]*?(El usuario ha suprimido este vídeo)[^<]*?</h1>", raw):
+                disponibilidad = u"deleted-by-user"
+            elif re.search(ur"<h1 id=\"unavailable-message\" class=\"message\">[^<]*?(el usuario que lo ha subido ha cerrado su cuenta)[^<]*?</h1>", raw):
+                disponibilidad = u"account-closed-by-user"
             else:
                 print u"New error message for video"
                 print youtubeid
