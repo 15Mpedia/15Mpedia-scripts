@@ -24,10 +24,10 @@ import wikipedia
 
 def main():
     entities = {
-        u'Acampadas': {'category': u'Category:Acampadas', 'infobox': u'Infobox Acampada', }, 
-        u'Asambleas': {'category': u'Category:Asambleas', 'infobox': u'Infobox Asamblea', }, 
-        u'Centros sociales': {'category': u'Category:Centros sociales', 'infobox': u'Infobox Centro social', }, 
-        u'Comisiones': {'category': u'Category:Comisiones', 'infobox': u'Infobox Comisión', }, 
+        #u'Acampadas': {'category': u'Category:Acampadas', 'infobox': u'Infobox Acampada', }, 
+        #u'Asambleas': {'category': u'Category:Asambleas', 'infobox': u'Infobox Asamblea', }, 
+        #u'Centros sociales': {'category': u'Category:Centros sociales', 'infobox': u'Infobox Centro social', }, 
+        #u'Comisiones': {'category': u'Category:Comisiones', 'infobox': u'Infobox Comisión', }, 
         u'Nodos': {'category': u'Category:Nodos', 'infobox': u'Infobox Nodo', }, 
         u'Plataformas': {'category': u'Category:Plataformas', 'infobox': u'Infobox Plataforma', }, 
     }
@@ -77,6 +77,8 @@ def main():
                         imageurl = re.findall(ur'<a class="profilePicThumb" href="([^"]+?)" rel="theater">', html)
                         if imageurl:
                             imageurl = re.sub(ur"&amp;", ur"&", imageurl[0])
+                            if not imageurl.startswith('http'):
+                                imageurl = 'https://www.facebook.com' + imageurl
                             f = urllib.urlopen(imageurl)
                             html = unicode(f.read(), 'utf-8')
                             imageurl = re.findall(ur'<img class="fbPhotoImage img" id="fbPhotoImage" src="([^"]+?)" alt="" />', html)
