@@ -19,6 +19,7 @@ import os
 import re
 import string
 import sys
+import time
 import wikipedia
 import zipfile
 
@@ -110,6 +111,7 @@ $votos{{votación votos fin}}
     
     p = wikipedia.Page(wikipedia.Site('15mpedia', '15mpedia'), u'Lista de votaciones del Congreso de los Diputados/%s/Sesión %s/Votación %s' % (legislatura, sesion, numerovotacion))
     p.put(output, u'BOT - Creando página de votación del Congreso de los Diputados')
+    time.sleep(5)
     
 votaciones = u''
 votacionesids.sort()
@@ -132,4 +134,4 @@ $votaciones
 output = output.safe_substitute({'parlamento':parlamento, 'l':l, 'legislatura':legislatura, 'sesion':sesion, 'votaciones':votaciones, })
 p = wikipedia.Page(wikipedia.Site('15mpedia', '15mpedia'), u'Lista de votaciones del Congreso de los Diputados/%s/Sesión %s' % (legislatura, sesion))
 p.put(output, u'BOT - Creando página de votación del Congreso de los Diputados')
-#p.protect(editcreate='sysop', move='sysop', unprotect=False, reason=u"Protegiendo en cascada página de votaciones", editcreate_duration='infinite', move_duration='infinite', cascading=True, prompt=False, throttle=True)
+p.protect(editcreate='sysop', move='sysop', unprotect=False, reason=u"Protegiendo en cascada página de votaciones", editcreate_duration='infinite', move_duration='infinite', cascading=True, prompt=False, throttle=True)
