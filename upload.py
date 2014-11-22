@@ -469,6 +469,10 @@ def main(*args):
                 verifyDescription = False
             elif arg.startswith('-ignoredupes'):
                 ignoreDupes = True
+            elif arg.startswith('-description-file:'):
+                descriptionfile = arg[18:]
+                with open(descriptionfile, 'r') as f:
+                    description.append(unicode(f.read(), 'utf-8'))
             elif url == u'':
                 url = arg
             else:
