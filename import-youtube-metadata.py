@@ -97,10 +97,14 @@ def main():
             
         infobox = u"""{{Infobox Archivo\n|embebido=YouTube\n|embebido id=%s\n|embebido usuario=%s\n|embebido título=%s\n|descripción=%s\n|fecha de publicación=%s\n|autor={{youtube channel|%s}}\n|palabras clave=%s\n|duración=%s\n|licencia=%s\n}}""" % (id, uploader, title, desc and u'{{descripción de youtube|1=%s}}' % (desc) or u'', date, uploader, tags, duration, license)
         
-        time.sleep(5)
         imagename = 'YouTube - %s - %s.jpg' % (uploader, id)
-        execmd = u'python upload.py -lang:15mpedia -family:15mpedia -keep -ignoredupes -filename:"%s" -noverify "%s" "%s"' % (imagename, thumburl, infobox)
+        descfilename = 'desc.txt'
+        with open(descfilename, 'w') as d:
+            d.write(infobox.encode('utf-8'))
+        execmd = u'python upload.py -lang:15mpedia -family:15mpedia -keep -ignoredupes -filename:"%s" -noverify -description-file:%s "%s"' % (imagename, descfilename, thumburl)
         os.system(execmd.encode('utf-8'))
+        os.remove(descfilename)
+        time.sleep(5)
         
 if __name__ == '__main__':
     main()
