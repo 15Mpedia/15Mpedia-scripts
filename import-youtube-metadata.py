@@ -70,13 +70,22 @@ def main():
             title = re.findall(ur'<meta property="og:title" content="([^>]+?)">', raw)[0]
             title = unquote(title)
             thumburl = re.findall(ur'<meta property="og:image" content="([^>]+?)">', raw)[0]
-            os.system('python youtube-dl http://www.youtube.com/watch?v=%s --get-description > videodesc.txt' % (id))
-            desc = unquote(unicode(open('videodesc.txt', 'r').read(), 'utf-8').strip())
+            desc = unquote(unicode(subprocess.Popen(["python", "youtube-dl", url, "--get-description"], stdout=subprocess.PIPE).communicate()[0], 'utf-8')).strip()
             if desc == u'No description available.':
                 desc = u''
-            date = re.findall(ur'<strong class="watch-time-text">Actualizado el (\d+) de ([^<>\.]+)\.? de (\d\d\d\d)</strong>', raw)[0]
+            date = re.findall(ur'<strong class="watch-time-text">(?:Actualizado|Publicado) el (\d+) de ([^<>\.]+)\.? de (\d\d\d\d)</strong>', raw)[0]
             date = u'%s-%s-%02d' % (date[2], month2month[date[1]], int(date[0]))
-            uploader = re.findall(ur'<link itemprop="url" href="http://www.youtube.com/user/([^>]+?)">', raw)[0]
+            embebeduser = ''
+            uploaderuser = ''
+            uploaderchannel = ''
+            uploadernick = ''
+            if re.search(ur'<link itemprop="url" href="http://www.youtube.com/user/([^>]+?)">', raw):
+                uploaderuser = re.findall(ur'<link itemprop="url" href="http://www.youtube.com/user/([^>]+?)">', raw)[0]
+                embebeduser = uploaderuser
+            else:
+                uploadernick = re.findall(ur'"author": "([^>,"]+?)",', raw)[0]
+                uploaderchannel = re.findall(ur'<link itemprop="url" href="http://www.youtube.com/channel/([^>]+?)">', raw)[0]
+                embebeduser = uploaderchannel
             license = u'{{cc-by-3.0}}'
             if not re.search(ur"(?i)/t/creative_commons", raw):
                 license = u'{{lye}}'
@@ -94,16 +103,22 @@ def main():
             g.close()
             time.sleep(5)
             continue
-            
-        infobox = u"""{{Infobox Archivo\n|embebido=YouTube\n|embebido id=%s\n|embebido usuario=%s\n|embebido título=%s\n|descripción=%s\n|fecha de publicación=%s\n|autor={{youtube channel|%s}}\n|palabras clave=%s\n|duración=%s\n|licencia=%s\n}}""" % (id, uploader, title, desc and u'{{descripción de youtube|1=%s}}' % (desc) or u'', date, uploader, tags, duration, license)
         
-        imagename = 'YouTube - %s - %s.jpg' % (uploader, id)
-        descfilename = 'desc.txt'
-        with open(descfilename, 'w') as d:
+        infobox = ''
+        if uploaderuser:
+            infobox = u"""{{Infobox Archivo\n|embebido=YouTube\n|embebido id=%s\n|embebido usuario=%s\n|embebido título=%s\n|descripción=%s\n|fecha de publicación=%s\n|autor={{youtube channel|%s}}\n|palabras clave=%s\n|duración=%s\n|licencia=%s\n}}""" % (id, embebeduser, title, desc and u'{{descripción de youtube|1=%s}}' % (desc) or u'', date, uploaderuser, tags, duration, license)
+        else:
+            infobox = u"""{{Infobox Archivo\n|embebido=YouTube\n|embebido id=%s\n|embebido usuario=%s\n|embebido título=%s\n|descripción=%s\n|fecha de publicación=%s\n|autor={{youtube channel|%s|%s}}\n|palabras clave=%s\n|duración=%s\n|licencia=%s\n}}""" % (id, embebeduser, title, desc and u'{{descripción de youtube|1=%s}}' % (desc) or u'', date, uploaderchannel, uploadernick, tags, duration, license)
+        
+        imagename = 'YouTube - %s - %s.jpg' % (embebeduser, id)
+        print 'http://wiki.15m.cc/wiki/Archivo:%s' % (re.sub(' ', '_', imagename))
+        #print infobox
+        infoboxfilename = 'infobox.txt'
+        with open(infoboxfilename, 'w') as d:
             d.write(infobox.encode('utf-8'))
-        execmd = u'python upload.py -lang:15mpedia -family:15mpedia -keep -ignoredupes -filename:"%s" -noverify -description-file:%s "%s"' % (imagename, descfilename, thumburl)
+        execmd = u'python upload.py -lang:15mpedia -family:15mpedia -keep -ignoredupes -filename:"%s" -noverify -description-file:%s "%s"' % (imagename, infoboxfilename, thumburl)
         os.system(execmd.encode('utf-8'))
-        os.remove(descfilename)
+        os.remove(infoboxfilename)
         time.sleep(5)
         
 if __name__ == '__main__':
