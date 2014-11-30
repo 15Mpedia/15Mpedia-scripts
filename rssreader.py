@@ -167,7 +167,7 @@ def getYouTube():
     queryurl = "http://wiki.15m.cc/w/index.php?title=Especial:Ask&limit=5000&q=[[Page+has+default+form%3A%3AAcampada||Asamblea||Banco_de_tiempo||Centro_social||Comisión||Grupo_de_trabajo||Realojo]]+[[nombre%3A%3A%2B]]+[[youtube%3A%3A%2B]]&p=format%3Dbroadtable%2Flink%3Dall%2Fheaders%3Dshow%2Fmainlabel%3D-2D%2Fsearchlabel%3D-26hellip%3B-20siguientes-20resultados%2Fclass%3Dsortable-20wikitable-20smwtable&po=%3FYoutube%0A&eq=no"
     f = urllib.urlopen(queryurl)
     html = unicode(f.read(), 'utf-8')
-    t = list(set(re.findall(ur'(?im)<td class="Youtube"><a class="external" href="https?://www.youtube.com/(?:channel|user)/([^<>]+)/?">', html)))
+    t = list(set(re.findall(ur'(?im)<td class="Youtube"><a class="external" href="https?://www.youtube.com/(?:channel|user)/([^<>]+?)/?">', html)))
     t.sort()
     rss = []
     for i in t:
@@ -181,17 +181,17 @@ def getYouTube():
             xml = uncode(urllib2.urlopen(req).read())
         except:
             continue
-
-        sitetitle = u''
-        if re.search(ur"(?im)>([^<>]*?)</name>", xml):
-            sitetitle = re.findall(ur"(?im)>([^<>]*?)</name>", xml)[1] #el 0 es YouTube, el 1 el nombre del canal
-        else:
-            sitetitle = url
-        
-        print sitetitle
-        chunks = '</entry>'.join('<entry>'.join(xml.split('<entry>')[1:]).split('</entry>')[:-1]).split('</entry><entry>') #</entry><entry>
         
         try:
+            sitetitle = u''
+            if re.search(ur"(?im)>([^<>]*?)</name>", xml):
+                sitetitle = re.findall(ur"(?im)>([^<>]*?)</name>", xml)[1] #el 0 es YouTube, el 1 el nombre del canal
+            else:
+                sitetitle = url
+            
+            print sitetitle
+            chunks = '</entry>'.join('<entry>'.join(xml.split('<entry>')[1:]).split('</entry>')[:-1]).split('</entry><entry>') #</entry><entry>
+            
             for chunk in chunks:
                 if not re.search(ur"(?im)</title>", chunk) or not re.search(ur"(?im)</published>", chunk):
                     continue
