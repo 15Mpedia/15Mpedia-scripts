@@ -17,10 +17,15 @@
 
 from lxml import etree
 import datetime
+import time
 import re
+import sys
 import urllib
+import urllib2
 import wikipedia
 from xml.sax.saxutils import unescape
+
+month2month = { 'jan': '01', 'feb': '02', 'mar': '03', 'apr': '04', 'may': '05', 'jun': '06', 'jul': '07', 'aug': '08', 'sep': '09', 'oct': '10', 'nov': '11', 'dec': '12'}
 
 def uncode(s):
     try:
@@ -49,57 +54,80 @@ def sortLines(page):
     p.put(ur"%s" % (u'\n'.join(raw)), u"BOT - Ordenando enlaces")
 
 def getBlogs():
-    rss = sortLines(u'Actualizaciones en las redes/Blogosfera (RSS)')
-    rss = getLines(u'Actualizaciones en las redes/Blogosfera (RSS)')
-    print 'Loaded %d RSS for blogs' % (len(rss))
+    print u'Loading RSS for blogs'
+    queryurl = "http://wiki.15m.cc/w/index.php?title=Especial:Ask&limit=5000&q=[[Page+has+default+form%3A%3AAcampada||Asamblea||Banco_de_tiempo||Centro_social||Comisión||Grupo_de_trabajo||Realojo]]+[[nombre%3A%3A%2B]]+[[rss%3A%3A%2B]]&p=format%3Dbroadtable%2Flink%3Dall%2Fheaders%3Dshow%2Fmainlabel%3D-2D%2Fsearchlabel%3D-26hellip%3B-20siguientes-20resultados%2Fclass%3Dsortable-20wikitable-20smwtable&po=%3FRss%0A&eq=no"
+    f = urllib.urlopen(queryurl)
+    html = unicode(f.read(), 'utf-8')
+    rss = list(set(re.findall(ur'(?im)<td class="Rss"><a class="external" href="([^<>]+)">', html)))
+    rss.sort()
+    print '%d RSS loaded' % (len(rss))
     
     content = []
     for url in rss:
         try:
-            xml = uncode(urllib.urlopen(url).read())
-            #print xml[:100]
-
-            chunks = '</entry>'.join('<entry>'.join(xml.split('<entry>')[1:]).split('</entry>')[:-1]).split('</entry><entry>') #</entry><entry>
-            
-            sitetitle = u''
-            if re.search(ur"(?im)>([^<>]*?)</title>", xml):
-                sitetitle = re.findall(ur"(?im)>([^<>]*?)</title>", xml)[0]
-            else:
-                sitetitle = url
-            sitesubtitle = u''
-            if re.search(ur"(?im)>([^<>]*?)</subtitle>", xml):
-                sitesubtitle = re.findall(ur"(?im)>([^<>]*?)</subtitle>", xml)[0]
-            
-            print sitetitle
-            #print sitesubtitle
+            req = urllib2.Request(url, headers={ 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20100101 Firefox/10.0 (Chrome)' })
+            xml = uncode(urllib2.urlopen(req).read())
+        except:
+            continue
+        #print xml[:100]
         
+        if not re.search(ur'(<entry>|<item>)', xml):
+            print u'Wrong RSS %s' % (url)
+            continue
+        
+        sitetitle = u''
+        if re.search(ur"(?im)>([^<>]*?)</title>", xml):
+            sitetitle = re.findall(ur"(?im)>([^<>]*?)</title>", xml)[0]
+        else:
+            sitetitle = url
+        print sitetitle
+        
+        try:
+            chunks = []
+            if re.search(ur'<entry>', xml):
+                chunks = '</entry>'.join('<entry>'.join(xml.split('<entry>')[1:]).split('</entry>')[:-1]).split('</entry><entry>') #</entry><entry>
+            elif re.search(ur'<item>', xml):
+                chunks = ('<item>'.join('</item>'.join(xml.split('</item>')[:-1]).split('<item>')[1:])).split('</item>')
+            
             for chunk in chunks:
-                if not re.search(ur"(?im)</title>", chunk) or not re.search(ur"(?im)</updated>", chunk):
+                if not re.search(ur"(?im)</title>", chunk) or not re.search(ur"(?im)</(updated|pubdate)>", chunk):
                     continue
                 
                 title = u'Sin título'
                 title = re.findall(ur"(?im)>([^<>]*?)</title>", chunk)[0].strip()
-                updated = re.findall(ur"(?im)>([^<>]*?)</updated>", chunk)[0].strip()
-                updated = updated.split('T')[0]
-                url = re.findall(ur"(?im)<link rel='alternate' type='text/html' href='([^>]*?)' title='", chunk)[0].strip()
-                
+                updated = ''
+                if re.search(ur'(?im)</updated>', chunk): #blogspot
+                    updated = re.findall(ur"(?im)>([^<>]*?)</updated>", chunk)[0].strip()
+                    updated = updated.split('T')[0]
+                elif re.search(ur'(?im)</pubdate>', chunk): #wordpress, others
+                    #<pubDate>Thu, 18 Sep 2014 11:30:44 +0000</pubDate>
+                    t = re.findall(ur"(?im)<pubdate>[a-z]+, (\d\d) ([a-z]+) (\d\d\d\d) \d\d:\d\d:\d\d[\d \+]*?</pubdate>", chunk)[0]
+                    updated = u'%s-%02d-%02d' % (t[2], int(month2month[t[1].lower()]), int(t[0]))
+                url = ''
+                if re.search(ur'<link rel=', chunk):
+                    url = re.findall(ur"(?im)<link rel='alternate' type='text/html' href='([^<>]*?)' title='", chunk)[0].strip()
+                elif re.search(ur'</link>', chunk):
+                    url = re.findall(ur"(?im)<link>([^<>]*?)</link>", chunk)[0].strip()
                 #print updated, title, url
                 content.append([updated, sitetitle, title, url])
+            #time.sleep(1)
         except:
-            print 'Error'
-            continue
-    
+            print u'Error'
+        
     content.sort(reverse=True)
     return content
 
 def getFacebook():
+    # https://www.facebook.com/feeds/page.php?format=atom10&id=132849786851571
+    
     rss = getLines(u'Actualizaciones en las redes/Facebook (RSS)')
     print 'Loaded %d RSS for Facebook' % (len(rss))
     
     content = []
     for url in rss:
         try:
-            xml = uncode(urllib.urlopen(url).read())
+            req = urllib2.Request(url, headers={ 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20100101 Firefox/10.0 (Chrome)' })
+            xml = uncode(urllib2.urlopen(req).read())
         except:
             continue
         chunks = [u'%s</entry>' % (s) for s in '</entry>'.join('<entry>'.join(xml.split('<entry>')[1:]).split('</entry>')[:-1]).split("""</entry>""")]
@@ -122,7 +150,7 @@ def getFacebook():
             
             #print published, title, url
             content.append([published, sitetitle, title, url])
-
+        time.sleep(1)
     content.sort(reverse=True)
     return content 
 
@@ -135,25 +163,35 @@ def getN1():
     return []
 
 def getYouTube():
-    rss = sortLines(u'Actualizaciones en las redes/YouTube (RSS)')
-    rss = getLines(u'Actualizaciones en las redes/YouTube (RSS)')
-    print 'Loaded %d RSS for YouTube' % (len(rss))
+    print u'Loading RSS for YouTube'
+    queryurl = "http://wiki.15m.cc/w/index.php?title=Especial:Ask&limit=5000&q=[[Page+has+default+form%3A%3AAcampada||Asamblea||Banco_de_tiempo||Centro_social||Comisión||Grupo_de_trabajo||Realojo]]+[[nombre%3A%3A%2B]]+[[youtube%3A%3A%2B]]&p=format%3Dbroadtable%2Flink%3Dall%2Fheaders%3Dshow%2Fmainlabel%3D-2D%2Fsearchlabel%3D-26hellip%3B-20siguientes-20resultados%2Fclass%3Dsortable-20wikitable-20smwtable&po=%3FYoutube%0A&eq=no"
+    f = urllib.urlopen(queryurl)
+    html = unicode(f.read(), 'utf-8')
+    t = list(set(re.findall(ur'(?im)<td class="Youtube"><a class="external" href="https?://www.youtube.com/(?:channel|user)/([^<>]+)/?">', html)))
+    t.sort()
+    rss = []
+    for i in t:
+        rss.append('http://gdata.youtube.com/feeds/base/videos?orderby=published&author=%s' % (i))
+    print '%d RSS for YouTube loaded' % (len(rss))
     
     content = []
     for url in rss:
         try:
-            xml = uncode(urllib.urlopen(url).read())
+            req = urllib2.Request(url, headers={ 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20100101 Firefox/10.0 (Chrome)' })
+            xml = uncode(urllib2.urlopen(req).read())
+        except:
+            continue
 
-            chunks = '</entry>'.join('<entry>'.join(xml.split('<entry>')[1:]).split('</entry>')[:-1]).split('</entry><entry>') #</entry><entry>
-            
-            sitetitle = u''
-            if re.search(ur"(?im)>([^<>]*?)</name>", xml):
-                sitetitle = re.findall(ur"(?im)>([^<>]*?)</name>", xml)[1] #el 0 es YouTube, el 1 el nombre del canal
-            else:
-                sitetitle = url
-            
-            print sitetitle
+        sitetitle = u''
+        if re.search(ur"(?im)>([^<>]*?)</name>", xml):
+            sitetitle = re.findall(ur"(?im)>([^<>]*?)</name>", xml)[1] #el 0 es YouTube, el 1 el nombre del canal
+        else:
+            sitetitle = url
         
+        print sitetitle
+        chunks = '</entry>'.join('<entry>'.join(xml.split('<entry>')[1:]).split('</entry>')[:-1]).split('</entry><entry>') #</entry><entry>
+        
+        try:
             for chunk in chunks:
                 if not re.search(ur"(?im)</title>", chunk) or not re.search(ur"(?im)</published>", chunk):
                     continue
@@ -166,9 +204,9 @@ def getYouTube():
                 
                 #print published, title, url
                 content.append([published, sitetitle, title, url])
+            time.sleep(1)
         except:
-            print 'Error'
-            continue
+            print u'Error'
 
     content.sort(reverse=True)
     return content
@@ -229,7 +267,8 @@ def printContent(l, source=''):
     for k, v in [[day0, day0_stuff], [day1, day1_stuff], [day2, day2_stuff], [day3, day3_stuff], ]:
         if v:
             page = wikipedia.Page(wikipedia.Site('15mpedia', '15mpedia'), u'Plantilla:Actualizaciones en las redes/%s/%s' % (source, k))
-            page.put(v, u"BOT - Añadiendo actualizaciones: %s [%d], %s [%d], %s [%d], %s [%d]" % (day0, len(re.findall(ur'\n', day0_stuff))-1, day1, len(re.findall(ur'\n', day1_stuff))-1, day2, len(re.findall(ur'\n', day2_stuff))-1, day3, len(re.findall(ur'\n', day3_stuff))-1, ))
+            if not page.exists() or (page.exists and len(v) > len(page.get())):
+                page.put(v, u"BOT - Añadiendo actualizaciones: %s [%d], %s [%d], %s [%d], %s [%d]" % (day0, len(re.findall(ur'\n', day0_stuff))-1, day1, len(re.findall(ur'\n', day1_stuff))-1, day2, len(re.findall(ur'\n', day2_stuff))-1, day3, len(re.findall(ur'\n', day3_stuff))-1, ))
     
 def main():
     b = getBlogs()
