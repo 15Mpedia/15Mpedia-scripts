@@ -18,48 +18,75 @@
 import catlib
 import re
 import pagegenerators
+import urllib
 import wikipedia
 
 def main():
     site = wikipedia.Site('15mpedia', '15mpedia')
-    cat = catlib.Category(site, u"Category:Centros sociales")
-    gen = pagegenerators.CategorizedPageGenerator(cat)
-    pre = pagegenerators.PreloadingGenerator(gen, pageNumber=250)
-    
-    for page in pre:
-        wtitle = page.title()
-        wtext = page.get()
+    catsinfobox = [
+        [u"Category:Acampadas", u"Acampada"],
+        [u"Category:Asambleas", u"Asamblea"],
+        [u"Category:Asociaciones", u"Asociación"],
+        [u"Category:Bancos de tiempo", u"Banco de tiempo"],
+        [u"Category:Centros sociales", u"Centro social"],
+        [u"Category:Comisiones", u"Comisión"],
+        [u"Category:Cooperativas", u"Cooperativa"],
+        [u"Category:Grupos de trabajo", u"Grupo de trabajo"],
+        [u"Category:Nodos", u"Nodo"],
+        [u"Category:Partidos políticos", u"Partido político"],
+        [u"Category:Plataformas", u"Plataforma"],
+        [u"Category:Realojos", u"Realojo"],
+    ]
+    for catname, infoboxname in catsinfobox:
+        cat = catlib.Category(site, catname)
+        gen = pagegenerators.CategorizedPageGenerator(cat)
+        pre = pagegenerators.PreloadingGenerator(gen, pageNumber=250)
         
-        print '\n===', wtitle, '==='
-        if not re.search(ur"(?im)\{\{\s*Infobox", wtext):
-            print u"Le falta la infobox"
-            continue
-        
-        if not re.search(ur"(?im)\|\s*rss\s*=", wtext):
-            if re.search(ur"(?im)\|\s*sitio web\s*=", wtext):
-                m = re.findall(ur"(?im)\|\s*sitio web\s*=\s*(https?://[^\r\n ]+\.(blogspot|wordpress)\.[^\r\n ]+)\r\n", wtext)
-                newtext = wtext
-                rss = ''
-                if m:
-                    sitioweb = m[0][0].strip().rstrip('/')
-                    if m[0][1] == 'blogspot':
-                        rss = '%s/feeds/posts/default' % (re.sub(ur'\.blogspot\.com\...', '.blogspot.com', sitioweb))
-                    elif m[0][1] == 'wordpress':
-                        rss = '%s/feed/' % (re.sub('.wordpress.com', '.wordpress.com', sitioweb))
+        for page in pre:
+            if page.isRedirectPage():
+                continue
+            
+            wtitle = page.title()
+            wtext = page.get()
+            
+            print '\n===', wtitle, '==='
+            if not re.search(ur"(?im)\{\{\s*Infobox %s" % (infoboxname), wtext):
+                print u"Le falta la infobox"
+                continue
+            
+            if not re.search(ur"(?im)\|\s*rss\s*=", wtext):
+                if re.search(ur"(?im)\|\s*sitio web\s*=", wtext):
+                    m = re.findall(ur"(?im)\|\s*sitio web\s*=\s*(https?://[^\r\n ]+)\r\n", wtext)
+                    newtext = wtext
+                    rss = ''
+                    if m:
+                        sitioweb = m[0].strip().rstrip('/')
+                        if 'blogspot' in sitioweb:
+                            rss = '%s/feeds/posts/default' % (re.sub(ur'\.blogspot\.com\...', '.blogspot.com', sitioweb))
+                        elif 'wordpress' in sitioweb:
+                            rss = '%s/feed/' % (re.sub('.wordpress.com', '.wordpress.com', sitioweb))
+                        else:
+                            #try generic extractor
+                            try:
+                                raw = urllib.urlopen(sitioweb).read()
+                            except:
+                                continue
+                            n = re.findall(ur'(?im)<link rel="alternate" type="application\/rss\+xml" title="[^<>\n\r]+?Feed" href="(https?://[^<>\n\r]+?)" />', raw)
+                            if n:
+                                rss = n[0]
+                                print rss
                     else:
-                        continue
+                        print u"No se pudo autodetectar el RSS"
+                    
+                    if rss:
+                        newtext = re.sub(ur'(?im)(\|\s*sitio web\s*=)', ur'|rss=%s\n\1' % (rss), newtext)
+                        if wtext != newtext:
+                            wikipedia.showDiff(wtext, newtext)
+                            page.put(newtext, u'BOT - Añadiendo RSS %s usando el sitio web %s' % (rss, sitioweb))
                 else:
-                    print u"No se pudo autodetectar el RSS"
-                
-                if rss:
-                    newtext = re.sub(ur'(?im)(\|\s*sitio web\s*=)', ur'|rss=%s\n\1' % (rss), newtext)
-                    if wtext != newtext:
-                        wikipedia.showDiff(wtext, newtext)
-                        page.put(newtext, u'BOT - Añadiendo RSS %s usando el sitio web %s' % (rss, sitioweb))
+                    print u"No tiene sitio web"
             else:
-                print u"No tiene sitio web"
-        else:
-            print u"Ya tiene RSS"
+                print u"Ya tiene RSS"
                 
 if __name__ == '__main__':
     main()
