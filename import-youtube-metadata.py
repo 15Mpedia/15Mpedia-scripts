@@ -26,7 +26,7 @@ import wikipedia
 
 """ Bot que importa metadatos y capturas de vídeos de YouTube """
 
-month2month = { 'ene': '01', 'feb': '02', 'mar': '03', 'abr': '04', 'may': '05', 'jun': '06', 'jul': '07', 'ago': '08', 'sep': '09', 'oct': '10', 'nov': '11', 'dic': '12'}
+month2month = { 'ene': '01', 'feb': '02', 'mar': '03', 'abr': '04', 'may': '05', 'jun': '06', 'jul': '07', 'ago': '08', 'sep': '09', 'sept': '09', 'oct': '10', 'nov': '11', 'dic': '12'}
 
 def unquote(s):
     s = re.sub(ur"&quot;", u'"', s)
@@ -39,26 +39,16 @@ def unquote(s):
 def main():
     ids = open('videoids.txt', 'r').read().splitlines()
     
-    #load video ids imported in the past (to exclude them)
-    print u'Loading ids of videos uploaded in the past, please wait'
-    imported = []
-    offset = 0
-    while offset <= 100000:
-        queryurl = "http://wiki.15m.cc/w/index.php?title=Especial:Ask&offset=%d&limit=5000&q=[[embebido%%3A%%3AYouTube]]&p=mainlabel%%3D-2D%%2Fformat%%3Dbroadtable&po=%%3FEmbebido+id%%3D%%0A" % (offset)
-        f = urllib.urlopen(queryurl)
-        html = unicode(f.read(), 'utf-8')
-        imported += re.findall(ur'(?im)<tr class="row-(?:odd|even)">\s*?<td>([^<]+?)</td>', html)
-        if re.search(ur'rel="nofollow">Siguiente', html):
-            offset += 5000
-        else:
-            break
-    print '%d videos imported in the past' % len(imported)
-    
     for id in ids:
         url = 'http://www.youtube.com/watch?v=%s' % (id)
         print '\n#########################################\n', url
-        if id in imported:
-            print u'Video %s was imported in the past, skipping' % (id)
+        
+        queryurl = 'http://wiki.15m.cc/w/index.php?title=Especial:Ask&q=[[embebido%3A%3AYouTube]][[embebido+id%3A%3A'+id+']]&p=format%3Dbroadtable%2Flink%3Dall%2Fheaders%3Dshow%2Fsearchlabel%3D-26hellip%3B-20siguientes-20resultados%2Fclass%3Dsortable-20wikitable-20smwtable&eq=no'
+        f = urllib.urlopen(queryurl)
+        html = unicode(f.read(), 'utf-8')
+        m = re.findall(ur'(?im)<td><a href=[^<>]+?>(YouTube - [^<>]+?)</a></td>', html)
+        if m:
+            print u'Video %s was imported in the past, skipping http://wiki.15m.cc/wiki/File:%s' % (id, re.sub(' ', '_', m[0]))
             continue
         else:
             print u'Downloading metadata and screenshot for video %s' % (id)
@@ -111,7 +101,7 @@ def main():
             infobox = u"""{{Infobox Archivo\n|embebido=YouTube\n|embebido id=%s\n|embebido usuario=%s\n|embebido título=%s\n|descripción=%s\n|fecha de publicación=%s\n|autor={{youtube channel|%s|%s}}\n|palabras clave=%s\n|duración=%s\n|licencia=%s\n}}""" % (id, embebeduser, title, desc and u'{{descripción de youtube|1=%s}}' % (desc) or u'', date, uploaderchannel, uploadernick, tags, duration, license)
         
         imagename = 'YouTube - %s - %s.jpg' % (embebeduser, id)
-        print 'http://wiki.15m.cc/wiki/Archivo:%s' % (re.sub(' ', '_', imagename))
+        print 'Importing here http://wiki.15m.cc/wiki/Archivo:%s' % (re.sub(' ', '_', imagename))
         #print infobox
         infoboxfilename = 'infobox.txt'
         with open(infoboxfilename, 'w') as d:
