@@ -21,8 +21,10 @@ import sys
 import time
 import urllib
 
+""" arreglar para que cargue mas de 10 audios por usuario """
+
 def main():
-    users = ['acampadamataro', 'acampada-terres-de-lebre', '15mpuentevk', 'moviment-15m-sabadell']
+    users = ['drytenerife', 'sonsacampadabcn']
     
     #load track ids imported in the past (to exclude them)
     print u'Loading ids of tracks uploaded in the past, please wait'
@@ -76,7 +78,7 @@ def main():
             for tag in taglist:
                 if len(tag) > 1:
                     tags.add(tag)
-            print tags
+            print 'Tags', tags
             
             try:
                 thumburl = re.findall(ur'<meta property="og:image" content="([^>]+)">', html2)[0]
