@@ -44,10 +44,10 @@ def main():
         else:
             print u'Downloading metadata and screenshot for video %s' % (id)
         
-        req = urllib2.Request(url, headers={'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20100101 Firefox/10.0 (Chrome)'})
-        raw = unicode(urllib2.urlopen(req).read(), 'utf-8')
-                
         try:
+            req = urllib2.Request(url, headers={'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20100101 Firefox/10.0 (Chrome)'})
+            raw = unicode(urllib2.urlopen(req).read(), 'utf-8')
+        
             l = unicode(subprocess.Popen(["python", "youtube-dl", url, "--get-title", "--get-duration", "--get-description", "--get-thumbnail"], stdout=subprocess.PIPE).communicate()[0], 'utf-8').splitlines()
             title = l[0]
             thumburl = l[1]
@@ -58,14 +58,18 @@ def main():
             date = re.findall(ur'<meta itemprop="uploadDate" content="(\d\d\d\d-\d\d-\d\d)T[^<>]+?">', raw)[0]
             
             embebeduser, uploadernick = re.findall(ur'<a rel="author" href="/([^<>]+?)">([^<>]+?)</a>', raw)[0]
-            uploadernick = urllib.unquote(uploadernick)
+            uploadernick = HTMLParser.HTMLParser().unescape(uploadernick)
             
             license = u''
             if not re.search(ur'(?i)rel="license">', raw):
                 license = u'' #licencia desconocida, seguramente All Rights Reserved, pero lo dejamos en blanco
             elif re.search(ur'(?i)<a href="http://creativecommons.org/licenses/([a-z-]+?)/(\d\.\d)/" title="[^<>]+" target="_blank" rel="license">', raw):
                 cc, vers = re.findall(ur'(?i)<a href="http://creativecommons.org/licenses/([a-z-]+?)/(\d\.\d)/" title="[^<>]+" target="_blank" rel="license">', raw)[0]
-                license = u'{{%s-%s}}' % (cc, vers)
+                license = u'{{cc-%s-%s}}' % (cc, vers)
+            else:
+                print 'Licencia desconocida'
+                sys.exit()
+            
             tags = []
             m = re.findall(ur"(?im)<meta property=\"video:tag\" content=\"([^<>]*?)\">", raw)
             if m:
@@ -86,12 +90,12 @@ def main():
         
         imagename = 'Vimeo - %s - %s.jpg' % (embebeduser, id)
         print 'Importing here http://wiki.15m.cc/wiki/Archivo:%s' % (re.sub(' ', '_', imagename))
-        print infobox
+        #print infobox
         infoboxfilename = 'vimeo-infobox.txt'
         with open(infoboxfilename, 'w') as d:
             d.write(infobox.encode('utf-8'))
         execmd = u'python upload.py -lang:15mpedia -family:15mpedia -keep -ignoredupes -filename:"%s" -noverify -description-file:%s "%s"' % (imagename, infoboxfilename, thumburl)
-        #os.system(execmd.encode('utf-8'))
+        os.system(execmd.encode('utf-8'))
         os.remove(infoboxfilename)
         time.sleep(5)
         
