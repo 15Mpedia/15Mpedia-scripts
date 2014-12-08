@@ -37,7 +37,7 @@ def unquote(s):
     return s
 
 def main():
-    ids = open('videoids.txt', 'r').read().splitlines()
+    ids = open('youtube-videoids.txt', 'r').read().splitlines()
     
     for id in ids:
         url = 'http://www.youtube.com/watch?v=%s' % (id)
@@ -83,12 +83,13 @@ def main():
             m = re.findall(ur"(?im)<meta property=\"og:video:tag\" content=\"([^>]*?)\">", raw)
             if m:
                 for tag in m:
+                    tag = re.sub('&39;', "'", tag)
                     tags.append(tag)
             tags = ', '.join(tags)
             duration = subprocess.Popen(["python", "youtube-dl", url, "--get-duration"], stdout=subprocess.PIPE).communicate()[0].strip()
         except:
             print u'Error accediendo a los parámetros del vídeo', id
-            g = open('videoerrors.ids', 'a')
+            g = open('youtube-errors.ids', 'a')
             g.write(u'%s\n' % (id))
             g.close()
             time.sleep(5)
@@ -103,7 +104,7 @@ def main():
         imagename = 'YouTube - %s - %s.jpg' % (embebeduser, id)
         print 'Importing here http://wiki.15m.cc/wiki/Archivo:%s' % (re.sub(' ', '_', imagename))
         #print infobox
-        infoboxfilename = 'infobox.txt'
+        infoboxfilename = 'youtube-infobox.txt'
         with open(infoboxfilename, 'w') as d:
             d.write(infobox.encode('utf-8'))
         execmd = u'python upload.py -lang:15mpedia -family:15mpedia -keep -ignoredupes -filename:"%s" -noverify -description-file:%s "%s"' % (imagename, infoboxfilename, thumburl)
