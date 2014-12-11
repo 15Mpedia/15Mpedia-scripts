@@ -40,11 +40,11 @@ def main():
         p = wikipedia.Page(wikipedia.Site('15mpedia', '15mpedia'), u'Lista de streamings de %s en Bambuser' % (user))
         if p.exists():
             print 'La lista ya existe'
-            #continue
+            continue
         
         output = u'{{Streamings de usuario en Bambuser|%s}}' % (user)
 
-        if True or not p.exists():
+        if not p.exists():
             p.put(output, u"BOT - Creando lista de streamings de Bambuser", botflag=True)
             time.sleep(5)
 
