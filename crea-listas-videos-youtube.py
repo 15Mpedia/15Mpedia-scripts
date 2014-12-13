@@ -50,28 +50,31 @@ def main():
             raw = unicode(urllib2.urlopen(req).read(), 'utf-8')
         except:
             print 'Error al leer'
-            continue
-        if re.search(ur'<div class="channel-empty-message banner-message">', raw):
-            url2 = 'https://www.youtube.com/channel/%s/about' % (user)
-            print 'Leyendo', url2
-            req2 = urllib2.Request(url2, headers={'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20100101 Firefox/10.0 (Chrome)'})
-            raw2 = unicode(urllib2.urlopen(req2).read(), 'utf-8')
-            if re.search(ur'<div class="channel-empty-message banner-message">', raw2):
-                print 'Error, canal no existe'
-                continue
-            else:
-                nick = re.findall('(?im)<meta itemprop="name" content="([^<>\n\r]+?)">', raw2)[0]
-                if not nick:
-                    print 'Error, no pude parsear el nick'
+            
+            try:
+                url2 = 'https://www.youtube.com/channel/%s/about' % (user)
+                print 'Leyendo', url2
+                req2 = urllib2.Request(url2, headers={'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20100101 Firefox/10.0 (Chrome)'})
+                raw2 = unicode(urllib2.urlopen(req2).read(), 'utf-8')
+                if re.search(ur'<div class="channel-empty-message banner-message">', raw2):
+                    print 'Error, canal no existe'
                     continue
+                else:
+                    nick = re.findall('(?im)<meta itemprop="name" content="([^<>\n\r]+?)">', raw2)[0]
+                    if not nick:
+                        print 'Error, no pude parsear el nick'
+                        continue
+            except:
+                print 'Error al leer'
+                continue
         
         print user, nick
         
         output = u''
         if nick:
-            output = u'{{vídeos de usuario en youtube|%s|%s}}' % (user, nick)
+            output = u'{{Vídeos de usuario en YouTube|%s|%s}}' % (user, nick)
         else:
-            output = u'{{vídeos de usuario en youtube|%s}}' % (user)
+            output = u'{{Vídeos de usuario en YouTube|%s}}' % (user)
 
         if not p.exists():
             p.put(output, u"BOT - Creando lista de vídeos de YouTube", botflag=True)
