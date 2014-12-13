@@ -54,13 +54,14 @@ def sortLines(page):
     p.put(ur"%s" % (u'\n'.join(raw)), u"BOT - Ordenando enlaces")
 
 def getBlogs():
-    print u'Loading RSS for blogs'
+    print u'Loading RSS for blogs'.encode('utf-8')
     queryurl = "http://wiki.15m.cc/w/index.php?title=Especial:Ask&limit=5000&q=[[Page+has+default+form%3A%3AAcampada||Asamblea||Banco_de_tiempo||Centro_social||Comisión||Grupo_de_trabajo||Realojo]]+[[nombre%3A%3A%2B]]+[[rss%3A%3A%2B]]&p=format%3Dbroadtable%2Flink%3Dall%2Fheaders%3Dshow%2Fmainlabel%3D-2D%2Fsearchlabel%3D-26hellip%3B-20siguientes-20resultados%2Fclass%3Dsortable-20wikitable-20smwtable&po=%3FRss%0A&eq=no"
     f = urllib.urlopen(queryurl)
     html = unicode(f.read(), 'utf-8')
     rss = list(set(re.findall(ur'(?im)<td class="Rss"><a class="external" href="([^<>]+)">', html)))
     rss.sort()
-    print '%d RSS loaded' % (len(rss))
+    log = u'%d RSS loaded' % (len(rss))
+    print log.encode('utf-8')
     
     content = []
     for url in rss:
@@ -72,7 +73,8 @@ def getBlogs():
         #print xml[:100]
         
         if not re.search(ur'(<entry>|<item>)', xml):
-            print u'Wrong RSS %s' % (url)
+            log = u'Wrong RSS %s' % (url)
+            print log.encode('utf-8')
             continue
         
         sitetitle = u''
@@ -80,7 +82,8 @@ def getBlogs():
             sitetitle = re.findall(ur"(?im)>([^<>]*?)</title>", xml)[0]
         else:
             sitetitle = url
-        print sitetitle
+        log = u'%s' % (sitetitle)
+        print log.encode('utf-8')
         
         try:
             chunks = []
@@ -108,11 +111,12 @@ def getBlogs():
                     url = re.findall(ur"(?im)<link rel='alternate' type='text/html' href='([^<>]*?)' title='", chunk)[0].strip()
                 elif re.search(ur'</link>', chunk):
                     url = re.findall(ur"(?im)<link>([^<>]*?)</link>", chunk)[0].strip()
-                #print updated, title, url
+                #log = u'%s %s %s' % (updated, title, url)
+                #print log.encode('utf-8')
                 content.append([updated, sitetitle, title, url])
             #time.sleep(1)
         except:
-            print u'Error'
+            print u'Error'.encode('utf-8')
         
     content.sort(reverse=True)
     return content
@@ -121,7 +125,7 @@ def getFacebook():
     # https://www.facebook.com/feeds/page.php?format=atom10&id=132849786851571
     
     rss = getLines(u'Actualizaciones en las redes/Facebook (RSS)')
-    print 'Loaded %d RSS for Facebook' % (len(rss))
+    print u'Loaded %d RSS for Facebook' % (len(rss))
     
     content = []
     for url in rss:
@@ -148,7 +152,8 @@ def getFacebook():
             published = published.split('T')[0]
             url = re.findall(ur'(?im)<link rel="alternate" type="text/html" href="([^>]*?)" />', chunk)[0]
             
-            #print published, title, url
+            #log = u'%s %s %s' % (published, title, url)
+            #print log.encode('utf-8')
             content.append([published, sitetitle, title, url])
         time.sleep(1)
     content.sort(reverse=True)
@@ -163,7 +168,7 @@ def getN1():
     return []
 
 def getYouTube():
-    print u'Loading RSS for YouTube'
+    print u'Loading RSS for YouTube'.encode('utf-8')
     queryurl = "http://wiki.15m.cc/w/index.php?title=Especial:Ask&limit=5000&q=[[Page+has+default+form%3A%3AAcampada||Asamblea||Banco_de_tiempo||Centro_social||Comisión||Grupo_de_trabajo||Realojo]]+[[nombre%3A%3A%2B]]+[[youtube%3A%3A%2B]]&p=format%3Dbroadtable%2Flink%3Dall%2Fheaders%3Dshow%2Fmainlabel%3D-2D%2Fsearchlabel%3D-26hellip%3B-20siguientes-20resultados%2Fclass%3Dsortable-20wikitable-20smwtable&po=%3FYoutube%0A&eq=no"
     f = urllib.urlopen(queryurl)
     html = unicode(f.read(), 'utf-8')
@@ -172,7 +177,8 @@ def getYouTube():
     rss = []
     for i in t:
         rss.append('http://gdata.youtube.com/feeds/base/videos?orderby=published&author=%s' % (i))
-    print '%d RSS for YouTube loaded' % (len(rss))
+    log = u'%d RSS for YouTube loaded' % (len(rss))
+    print log.encode('utf-8')
     
     content = []
     for url in rss:
@@ -188,8 +194,8 @@ def getYouTube():
                 sitetitle = re.findall(ur"(?im)>([^<>]*?)</name>", xml)[1] #el 0 es YouTube, el 1 el nombre del canal
             else:
                 sitetitle = url
-            
-            print sitetitle
+            log = u'%s' % (sitetitle)
+            print log.encode('utf-8')
             chunks = '</entry>'.join('<entry>'.join(xml.split('<entry>')[1:]).split('</entry>')[:-1]).split('</entry><entry>') #</entry><entry>
             
             for chunk in chunks:
@@ -202,11 +208,12 @@ def getYouTube():
                 published = published.split('T')[0]
                 url = re.findall(ur"(?im)<link rel='alternate' type='text/html' href='([^>&]*?)&", chunk)[0]
                 
-                #print published, title, url
+                #log = u'%s %s %s' % (published, title, url)
+                #print log.encode('utf-8')
                 content.append([published, sitetitle, title, url])
             time.sleep(1)
         except:
-            print u'Error'
+            print u'Error'.encode('utf-8')
 
     content.sort(reverse=True)
     return content
@@ -239,7 +246,7 @@ def getMonthName(m):
     else:
         return ''
     
-def printContent(l, source=''):
+def saveContent(l, source=''):
     day0 = datetime.datetime.now().strftime('%Y-%m-%d')
     day1 = (datetime.datetime.now() - datetime.timedelta(days=1)).strftime('%Y-%m-%d')
     day2 = (datetime.datetime.now() - datetime.timedelta(days=2)).strftime('%Y-%m-%d')
@@ -266,18 +273,23 @@ def printContent(l, source=''):
     
     for k, v in [[day0, day0_stuff], [day1, day1_stuff], [day2, day2_stuff], [day3, day3_stuff], ]:
         if v:
+            v = re.sub('&#039;', "'", v)
+            v = re.sub('&#8217;', "'", v)
+            v = re.sub('&quot;', '"', v)
+            v = re.sub('&#124;', '-', v) #es | pero para no romper parámetros de plantilla ponemos -
+            v = re.sub('&#038;', '&', v)
             page = wikipedia.Page(wikipedia.Site('15mpedia', '15mpedia'), u'Plantilla:Actualizaciones en las redes/%s/%s' % (source, k))
             if not page.exists() or (page.exists and len(v) > len(page.get())):
                 page.put(v, u"BOT - Añadiendo actualizaciones: %s [%d], %s [%d], %s [%d], %s [%d]" % (day0, len(re.findall(ur'\n', day0_stuff))-1, day1, len(re.findall(ur'\n', day1_stuff))-1, day2, len(re.findall(ur'\n', day2_stuff))-1, day3, len(re.findall(ur'\n', day3_stuff))-1, ))
     
 def main():
     b = getBlogs()
-    printContent(b, source='Blogs')
+    saveContent(b, source='Blogs')
     #f = getFacebook()
     #fl = getFlickr()
     #n = getN1()
     y = getYouTube()
-    printContent(y, source='YouTube')
+    saveContent(y, source='YouTube')
     
 if __name__ == '__main__':
     main()
