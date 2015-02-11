@@ -82,7 +82,7 @@ def main():
             thumburl = re.findall(ur'<meta property="og:image" content="([^>]+)" />', html2)[0]
 
             desc = html2.split('<p itemprop="description" style="margin:0;">')[1].split('<span id="masinfo_audio">')[0].strip()
-            desc = re.sub(ur'(?im)<span id="puntos">\.\.\.</span>\s*?<span id="descripcion_audio">\s*', ur'', desc)
+            desc = re.sub(ur'(?im)(<span id="puntos">\.\.\.</span>)?\s*?<span id="descripcion_audio">\s*', ur'', desc)
             desc = re.sub(ur'<br\s*/>\s*', ur'\n\n', desc)
             desc = re.sub(ur'(?im)\n\n\n+', ur'\n\n', desc)
             desc = desc.strip()
