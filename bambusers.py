@@ -41,8 +41,9 @@ def main():
     else:
         f = urllib.urlopen(u'http://wiki.15m.cc/wiki/Lista_de_streamings_en_Bambuser')
         html = unicode(f.read(), 'utf-8')
-        html = html.split(u'id="Nube_de_usuarios"')[1].split(u'<h2>')[0]
+        html = html.split(u'id="Streamings_en_Bambuser"')[1].split(u'<h2>')[0]
         users = re.findall(ur">([^<>]+?)</a>", html)
+        users.reverse()
         
     print u'Downloading Bambuser metadata for %d users:\n%s' % (len(users), users)
     
@@ -146,7 +147,13 @@ def main():
             
             if not likes:
                 likes = u'0'
-            tags = re.findall(ur"(?im)<span class=\"tag\" style=\"display:none;\" title=\"([^>]*?)\"></span>", raw4)
+            
+            m = re.findall(ur"(?im)<a class=\"tag-title\" href=\"/tag/[^>]*?\" title=\"[^>]*?\">([^>]+?)</a>", raw4)
+            tags = []
+            for tag in m:
+                tags.append(tag)
+            tags_ = ', '.join(tags)
+            print tags_
             
             device = ''
             m = re.findall(ur"(?im)<h4 class=\"n-semibold\">Phone model</h4>\s*?<p class=\"less-margin\">(.*?)</p>", raw4)
@@ -164,7 +171,7 @@ def main():
             
             ignoredupes = u'default-preview' in thumburl and True or False
             #[videoid, coord, date, hour, likes, views, lives, title, ', '.join(tags), user]
-            infobox = u"{{Infobox Archivo\n|embebido=Bambuser\n|embebido id=%s\n|embebido usuario=%s\n|embebido título=%s\n|fecha de creación=%s %s\n|fecha de publicación=%s %s\n|duración=%s\n|dispositivo=%s\n|autor={{bambuser channel|%s}}\n|coordenadas=%s\n}}" % (videoid, user, title, date, hour, date, hour, duration, device, user, coord)
+            infobox = u"{{Infobox Archivo\n|embebido=Bambuser\n|embebido id=%s\n|embebido usuario=%s\n|embebido título=%s\n|fecha de creación=%s %s\n|fecha de publicación=%s %s\n|duración=%s\n|dispositivo=%s\n|autor={{bambuser channel|%s}}\n|coordenadas=%s\n|palabras clave=%s\n}}" % (videoid, user, title, date, hour, date, hour, duration, device, user, coord, tags_)
             #https://www.mediawiki.org/wiki/Manual:Pywikibot/upload.py
             execmd = u'python upload.py -lang:15mpedia -family:15mpedia -keep %s -filename:"%s" -noverify "%s" "%s"' % (ignoredupes and u'-ignoredupes' or u'', imagename, thumburl, infobox)
             os.system(execmd.encode('utf-8'))
