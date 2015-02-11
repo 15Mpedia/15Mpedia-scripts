@@ -43,8 +43,6 @@ def main():
             for n in m:
                 tracks.append('http://www.ivoox.com/%s' % (n))
             
-            break
-            
             if re.findall(ur'(?im)<a rel="nofollow" href="http://www.ivoox.com/[^>]+=all">&raquo;</a>', html):
                 print u'Leyendo más resultados'
                 url = re.findall(ur'(?im)<a rel="nofollow" href="(http://www.ivoox.com/[^>]+=all)">&raquo;</a>', html)[0]
