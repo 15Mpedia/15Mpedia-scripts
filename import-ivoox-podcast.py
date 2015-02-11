@@ -59,7 +59,6 @@ def main():
         f.close()
         
         for trackurl in tracks:
-            time.sleep(3)
             print '\n##################################\n', trackurl
             if trackurl in imported:
                 print u'Audio was imported in the past, skipping'
@@ -67,6 +66,7 @@ def main():
             else:
                 print u'Downloading metadata and screenshot for audio'
             
+            time.sleep(3)
             try:
                 html2 = unicode(urllib.urlopen(trackurl).read(), 'utf-8')
             except:
@@ -90,7 +90,11 @@ def main():
             infourl = 'http://www.ivoox.com/%s' % (re.findall(ur"(?im)load\('(info_[^>]+?\.html)'\);\s*\">Mostrar más</a>", html2)[0])
             html3 = unicode(urllib.urlopen(infourl).read(), 'utf-8')
             user = re.findall(ur"(?im)<a rel='nofollow' href='escuchar[^>]+?'>([^<>]+?)</a>", html3)[0]
-            tags = re.findall(ur"(?im)<a rel='nofollow' href='audios-[^>]+?\.html'>([^<>]+?)</a>", html3.split("title='Tags'/>")[1].split('</p>')[0])
+            tags = []
+            try:
+                tags = re.findall(ur"(?im)<a rel='nofollow' href='audios-[^>]+?\.html'>([^<>]+?)</a>", html3.split("title='Tags'/>")[1].split('</p>')[0])
+            except:
+                pass
             
             date = ''
             try:
