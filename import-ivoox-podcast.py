@@ -24,7 +24,7 @@ import urllib
 """ Importa los audios de un podcast de Ivoox """
 
 def main():
-    podcasts = ['http://www.ivoox.com/podcast-podcast-iskra-radio_sq_f168737_1.html']
+    podcasts = ['http://www.ivoox.com/podcast-especial-acampadas-15m_sq_f118672_1.html']
     
     #load track ids imported in the past (to exclude them)
     print u'Loading ids of tracks uploaded in the past, please wait'
@@ -108,16 +108,26 @@ def main():
             date = u'%s %s' % (date, hour)
             
             license = u''
-            if u"<a rel='nofollow' class='license' href='http://creativecommons.org" in html3:
+            if re.search(ur"(?im)<a rel='nofollow' class='license' href='http://creativecommons.org/licenses/([^/]+?)/([\d\.]+?)/'>", html3):
                 [cc, ccversion] = re.findall(ur"(?im)<a rel='nofollow' class='license' href='http://creativecommons.org/licenses/([^/]+?)/([\d\.]+?)/'>", html3)[0]
                 if cc and ccversion:
                     license = '{{cc-%s-%s}}' % (cc, ccversion)
+            elif re.search(ur"(?im)<a rel='nofollow' class='license' href='http://creativecommons.org/licenses/([^/]+?)/([\d\.]+?)/([^/]+?)/'>", html3):
+                [cc, ccversion, cclang] = re.findall(ur"(?im)<a rel='nofollow' class='license' href='http://creativecommons.org/licenses/([^/]+?)/([\d\.]+?)/([^/]+?)/'>", html3)[0]
+                if cc and ccversion and cclang:
+                    license = '{{cc-%s-%s-%s}}' % (cc, ccversion, cclang)
             
             imagename = 'Ivoox - %s - %s.jpg' % (user, trackid)
             infobox = u"""{{Infobox Archivo\n|embebido=Ivoox\n|embebido id=%s\n|embebido usuario=%s\n|embebido título=%s\n|embebido url=%s\n|descripción=%s\n|fecha de publicación=%s\n|duración=%s\n|palabras clave=%s\n|autor={{ivoox user|%s}}\n|licencia=%s\n}}""" % (trackid, user, title, trackurl, desc and u'{{descripción de ivoox|1=%s}}' % (desc) or u'', date, duration, ', '.join(tags), user, license)
             
+            infoboxfilename = 'ivoox-infobox.txt'
+            with open(infoboxfilename, 'w') as d:
+                d.write(infobox.encode('utf-8'))
+            
             ignoredupes = True
-            execmd = u'python upload.py -lang:15mpedia -family:15mpedia -keep %s -filename:"%s" -noverify "%s" "%s"' % (ignoredupes and u'-ignoredupes' or u'', imagename, thumburl, infobox)
+            execmd = u'python upload.py -lang:15mpedia -family:15mpedia -keep %s -filename:"%s" -noverify -description-file:%s "%s"' % (ignoredupes and u'-ignoredupes' or u'', imagename, infoboxfilename, thumburl)
+            print u'Uploading to http://wiki.15m.cc/wiki/Archivo:%s' % (re.sub(' ', '_', imagename))
+            #print infobox
             os.system(execmd.encode('utf-8'))
             
 if __name__ == '__main__':
