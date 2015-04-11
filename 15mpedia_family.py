@@ -7,8 +7,8 @@ __version__ = '$Id: 8c9856dd7c0af8d400d0d95b00bf406002729008 $'
 from pywikibot import family
 
 """
-Este fichero es necesario para correr los bots sobre 15Mpedia 
-Hay que guardarlo en el directorio "families" de pywikibot
+Este fichero es necesario para correr los bots sobre 15Mpedia
+Hay que guardarlo en el directorio "pywikibot/families"
 """
 
 # The MediaWiki family
