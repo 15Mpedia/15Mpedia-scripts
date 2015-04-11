@@ -110,10 +110,11 @@ def main():
                         if word.startswith('#') and len(word) >= 3:
                             tags.add(word[1:])
                 
-                subject = 'spanishrevolution; bambuser; streaming; %s' % (';'.join(list(tags))) #yes, it is ;
+                subject = 'spanishrevolution; bambuser; streaming; %s; %s; %s' % (v, k, ';'.join(list(tags))) #yes, it is ;
                 item = internetarchive.get_item(itemname)
                 metadata = dict(mediatype='movies', creator=user, collection='spanishrevolution', description=description, date=k, subject=subject, language='Spanish', originalurl='http://bambuser.com/channel/%s' % (user), year=k, )
                 item.upload(v, metadata=metadata, access_key=keys[0], secret_key=keys[1])
+                print u'Subido el fichero %s' % (v)
             
             years = list(years)
             years.sort()
