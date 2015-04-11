@@ -32,10 +32,10 @@ python script.py files # Sube el dump de ficheros de hoy
 """
 
 def main():
-    keyspath = './ia-keys.txt' # securize this file, get your keys from https://archive.org/account/s3.php
-    dumpxmlpath = './dumps/xml' #15mpedia.org-20150408_043001.xml.7z
-    dumpfilespath = './dumps/files' #15mpedia.org-files-20150408.tar
-    itemname = 'wiki-15mpedia.org' # donde se subirán los ficheros
+    keyspath = './ia-keys.txt' # ruta al fichero de claves S3 https://archive.org/account/s3.php
+    dumpxmlpath = './dumps/xml' # ruta al directorio de los xml
+    dumpfilespath = './dumps/files' # ruta al directorio de los dumps de imágenes
+    itemname = 'wiki-15mpedia.org' # item de IA donde se subirán los ficheros
     
     if len(sys.argv) < 2:
         print u'ERROR: Falta un parámetro: xml o files'
