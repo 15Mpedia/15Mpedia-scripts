@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2013-2014 emijrp <emijrp@gmail.com>
+# Copyright (C) 2013-2015 emijrp <emijrp@gmail.com>
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -20,7 +20,7 @@ import re
 import string
 import sys
 import time
-import wikipedia
+import pywikibot
 import zipfile
 
 if len(sys.argv)<3:
@@ -109,8 +109,9 @@ $votos{{votación votos fin}}
 {{votaciones congreso}}</noinclude>""")
     output = output.safe_substitute({'parlamento':parlamento, 'l':l, 'legislatura':legislatura, 'sesion':sesion, 'numerovotacion':numerovotacion, 'fecha':fecha, 'titulo':titulo, 'textoexp':textoexp, 'titulosub':titulosub, 'textosub':textosub, 'asentimiento':asentimiento, 'presentes':presentes, 'afavor':afavor, 'encontra':encontra, 'abstenciones':abstenciones, 'novotan':novotan, 'votos':votos, })
     
-    p = wikipedia.Page(wikipedia.Site('15mpedia', '15mpedia'), u'Lista de votaciones del Congreso de los Diputados/%s/Sesión %s/Votación %s' % (legislatura, sesion, numerovotacion))
-    p.put(output, u'BOT - Creando página de votación del Congreso de los Diputados')
+    p = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'Lista de votaciones del Congreso de los Diputados/%s/Sesión %s/Votación %s' % (legislatura, sesion, numerovotacion))
+    p.text= output
+    p.save(u'BOT - Creando página de votación del Congreso de los Diputados')
     time.sleep(5)
     
 votaciones = u''
@@ -132,6 +133,7 @@ $votaciones
 
 {{votaciones congreso}}""")
 output = output.safe_substitute({'parlamento':parlamento, 'l':l, 'legislatura':legislatura, 'sesion':sesion, 'votaciones':votaciones, })
-p = wikipedia.Page(wikipedia.Site('15mpedia', '15mpedia'), u'Lista de votaciones del Congreso de los Diputados/%s/Sesión %s' % (legislatura, sesion))
-p.put(output, u'BOT - Creando página de votación del Congreso de los Diputados')
+p = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'Lista de votaciones del Congreso de los Diputados/%s/Sesión %s' % (legislatura, sesion))
+p.text = output
+p.save(u'BOT - Creando página de votación del Congreso de los Diputados')
 #p.protect(editcreate='sysop', move='sysop', unprotect=False, reason=u"Protegiendo en cascada página de votaciones", editcreate_duration='infinite', move_duration='infinite', cascading=True, prompt=False, throttle=True)
