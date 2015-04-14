@@ -101,6 +101,10 @@ def main():
             print u'Subiendo streamings del usuario %s del año %s' % (user, argyear)
             
             for year, files in filestoupload.items():
+                if int(year) >= 2015:
+                    print u'Ignorando ficheros del anyo %s' % (year)
+                    continue
+                
                 itemname = 'bambuser-%s-%s' % (user, year)
                 description = 'Bambuser streamings by <a href="http://bambuser.com/channel/%s">%s</a> (%s)' % (user, user, year)
                 
@@ -111,6 +115,8 @@ def main():
                     for word in f.split(' '):
                         if word.startswith('#') and len(word) >= 3:
                             tags.add(word[1:])
+                tags = list(tags)
+                tags.sort()
                 
                 #descartar ficheros que no existan
                 #quizas algun thumb .jpg no pudo bajarse de bambuser al ser el vídeo demasiado corto
@@ -126,7 +132,7 @@ def main():
                         errorlog.close()
                 files = files2
                 
-                subject = 'spanishrevolution; bambuser; streaming; %s; %s; %s' % (user, year, ';'.join(list(tags))) #yes, it is ;
+                subject = 'spanishrevolution; bambuser; streaming; %s; %s; %s' % (user, year, ';'.join(tags)) #yes, it is ;
                 item = internetarchive.get_item(itemname)
                 metadata = dict(mediatype='movies', creator=user, collection='spanishrevolution', description=description, date=year, subject=subject, language='Spanish', originalurl='http://bambuser.com/channel/%s' % (user), year=year, )
                 item.upload(files, metadata=metadata, access_key=keys[0], secret_key=keys[1])
