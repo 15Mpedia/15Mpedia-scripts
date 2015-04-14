@@ -100,25 +100,36 @@ def main():
             print u'Hay %d streamings en total de los anyos: %s' % (c, u', '.join(filestoupload.keys()))
             print u'Subiendo streamings del usuario %s del año %s' % (user, argyear)
             
-            for k, v in filestoupload.items():
-                itemname = 'bambuser-%s-%s' % (user, k)
-                description = 'Bambuser streamings by <a href="http://bambuser.com/channel/%s">%s</a> (%s)' % (user, user, k)
+            for year, files in filestoupload.items():
+                itemname = 'bambuser-%s-%s' % (user, year)
+                description = 'Bambuser streamings by <a href="http://bambuser.com/channel/%s">%s</a> (%s)' % (user, user, year)
+                
+                #capturando hashtags que empiecen con #
                 tags = set()
-                for filename in v:
+                for filename in files:
                     f = re.sub(r'(?i)[\.\-\,\;]', r' ', filename.split('/')[-1])
                     for word in f.split(' '):
                         if word.startswith('#') and len(word) >= 3:
                             tags.add(word[1:])
                 
-                subject = 'spanishrevolution; bambuser; streaming; %s; %s; %s' % (v, k, ';'.join(list(tags))) #yes, it is ;
+                #descartar ficheros que no existan
+                #quizas algun thumb .jpg no pudo bajarse de bambuser al ser el vídeo demasiado corto
+                #ej: http://bambuser.com/v/5326177
+                files2 = []
+                for filename in files:
+                    if os.path.exists(filename):
+                        files2.append(filename)
+                    else:
+                        errorlog = open('errorlog.txt', 'a')
+                        error = u'No se encontro el fichero: %s\n' % (filename)
+                        errorlog.write(error.encode('utf-8'))
+                        errorlog.close()
+                files = files2
+                
+                subject = 'spanishrevolution; bambuser; streaming; %s; %s; %s' % (user, year, ';'.join(list(tags))) #yes, it is ;
                 item = internetarchive.get_item(itemname)
-                metadata = dict(mediatype='movies', creator=user, collection='spanishrevolution', description=description, date=k, subject=subject, language='Spanish', originalurl='http://bambuser.com/channel/%s' % (user), year=k, )
-                item.upload(v, metadata=metadata, access_key=keys[0], secret_key=keys[1])
-                print u'Subido el fichero %s' % (v)
-            
-            years = list(years)
-            years.sort()
-            for year in years:
+                metadata = dict(mediatype='movies', creator=user, collection='spanishrevolution', description=description, date=year, subject=subject, language='Spanish', originalurl='http://bambuser.com/channel/%s' % (user), year=year, )
+                item.upload(files, metadata=metadata, access_key=keys[0], secret_key=keys[1])
                 print u'Deberían aparecer en https://archive.org/details/bambuser-%s-%s' % (user, year)
             
 if __name__ == '__main__':
