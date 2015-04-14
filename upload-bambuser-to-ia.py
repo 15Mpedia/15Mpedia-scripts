@@ -121,8 +121,8 @@ def main():
                         files2.append(filename)
                     else:
                         errorlog = open('errorlog.txt', 'a')
-                        error = u'No se encontro el fichero: %s\n' % (filename)
-                        errorlog.write(error.encode('utf-8'))
+                        error = 'No se encontro el fichero: %s\n' % (filename)
+                        errorlog.write(error)
                         errorlog.close()
                 files = files2
                 
