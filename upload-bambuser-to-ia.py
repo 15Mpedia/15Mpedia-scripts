@@ -17,6 +17,7 @@
 
 import datetime
 import internetarchive #pip install internetarchive More info: https://pypi.python.org/pypi/internetarchive
+import json
 import os
 import re
 import sys
@@ -40,6 +41,11 @@ python script.py pepe 2014 # Sube todos los ficheros de 2014 de pepe
 def lastmodified(f):
     t = os.path.getmtime(f)
     return datetime.datetime.fromtimestamp(t)
+
+def errorlog(msg):
+    errorlog = open('errorlog.txt', 'a')
+    errorlog.write(msg.encode('utf-8'))
+    errorlog.close()
 
 def main():
     keyspath = './ia-keys.txt' # https://archive.org/account/s3.php
@@ -65,37 +71,54 @@ def main():
         users = []
         for user in [x[0] for x in os.walk(dumpbambuserpath)]:
             if user.startswith('%s/' % (dumpbambuserpath)):
-                users.append(user.split('/')[-1])
+                users.append(unicode(user.split('/')[-1], 'utf-8'))
         print u'Se han encontrado %d directorios' % (len(users))
+        users.sort()
+        
         for user in users:
             if arguser != 'all' and user != arguser:
                 continue
             
             print u'Recopilando archivos de %s' % (user)
             userdir = '%s/%s' % (dumpbambuserpath, user)
+            print userdir
             filestoupload = {}
             c = 0
-            years = set()
             for file in os.listdir(userdir):
                 if file.endswith('.flv'):
                     c += 1
-                    flv = '%s/%s' % (userdir, file)
-                    json = '%s/%s.info.json' % (userdir, file[:-4])
-                    jpg = '%s/%s.jpg' % (userdir, file[:-4])
-                    flvyear = str(lastmodified(flv).year)
-                    years.add(flvyear)
+                    flvfile = '%s/%s' % (userdir, file)
+                    jsonfile = '%s/%s.info.json' % (userdir, file[:-4])
+                    jpgfile = '%s/%s.jpg' % (userdir, file[:-4])
+                    lmdate = lastmodified(flvfile)
+                    flvyear = str(lmdate.year)
                     
+                    #add date to json if missing
+                    if os.path.exists(jsonfile):
+                        jsondata = {}
+                        with open(jsonfile, 'r') as g:
+                            try:
+                                jsondata = json.load(g)
+                            except:
+                                errorlog(u'JSON no valido %s\n' % (jsonfile))
+                                print u'ERROR: JSON no valido %s' % (jsonfile)
+                        if not jsondata.has_key('date'):
+                            jsondata['date'] = lmdate.strftime('%Y-%m-%d %H:%M:%S')
+                            print u'Adding date %s to JSON %s' % (jsondata['date'], jsonfile)
+                            with open(jsonfile, 'w') as g:
+                                json.dump(jsondata, g)
+                            
                     if argyear == 'all':
                         if filestoupload.has_key(flvyear):
-                            filestoupload[flvyear].extend([flv, json, jpg])
+                            filestoupload[flvyear].extend([flvfile, jsonfile, jpgfile])
                         else:
-                            filestoupload[flvyear] = [flv, json, jpg]
+                            filestoupload[flvyear] = [flvfile, jsonfile, jpgfile]
                     else:
                         if argyear == flvyear:
                             if filestoupload.has_key(flvyear):
-                                filestoupload[flvyear].extend([flv, json, jpg])
+                                filestoupload[flvyear].extend([flvfile, jsonfile, jpgfile])
                             else:
-                                filestoupload[flvyear] = [flv, json, jpg]
+                                filestoupload[flvyear] = [flvfile, jsonfile, jpgfile]
             
             print u'Hay %d streamings en total de los anyos: %s' % (c, u', '.join(filestoupload.keys()))
             print u'Subiendo streamings del usuario %s del año %s' % (user, argyear)
@@ -105,8 +128,8 @@ def main():
                     print u'Ignorando ficheros del anyo %s' % (year)
                     continue
                 
-                itemname = 'bambuser-%s-%s' % (user, year)
-                description = 'Bambuser streamings by <a href="http://bambuser.com/channel/%s">%s</a> (%s)' % (user, user, year)
+                itemname = u'bambuser-%s-%s' % (user, year)
+                description = u'Bambuser streamings by <a href="http://bambuser.com/channel/%s">%s</a> (%s)' % (user, user, year)
                 
                 #capturando hashtags que empiecen con #
                 tags = set()
@@ -126,14 +149,11 @@ def main():
                     if os.path.exists(filename):
                         files2.append(filename)
                     else:
-                        errorlog = open('errorlog.txt', 'a')
-                        error = 'No se encontro el fichero: %s\n' % (filename)
-                        errorlog.write(error)
-                        errorlog.close()
+                        errorlog(u'No se encontro el fichero: %s\n' % (filename))
                 files = files2
                 
                 subject = 'spanishrevolution; bambuser; streaming; %s; %s; %s' % (user, year, ';'.join(tags)) #yes, it is ;
-                item = internetarchive.get_item(itemname)
+                item = internetarchive.get_item(itemname.encode('utf-8'))
                 metadata = dict(mediatype='movies', creator=user, collection='spanishrevolution', description=description, date=year, subject=subject, language='Spanish', originalurl='http://bambuser.com/channel/%s' % (user), year=year, )
                 item.upload(files, metadata=metadata, access_key=keys[0], secret_key=keys[1])
                 print u'Deberían aparecer en https://archive.org/details/bambuser-%s-%s' % (user, year)
