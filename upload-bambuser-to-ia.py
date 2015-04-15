@@ -70,7 +70,7 @@ def main():
         print u'Leyendo directorio %s' % dumpbambuserpath
         users = []
         for user in [x[0] for x in os.walk(dumpbambuserpath)]:
-            if user.startswith('%s/' % (dumpbambuserpath)):
+            if user.startswith(u'%s/' % (dumpbambuserpath)):
                 users.append(unicode(user.split('/')[-1], 'utf-8'))
         print u'Se han encontrado %d directorios' % (len(users))
         users.sort()
@@ -80,7 +80,7 @@ def main():
                 continue
             
             print u'Recopilando archivos de %s' % (user)
-            userdir = '%s/%s' % (dumpbambuserpath, user)
+            userdir = u'%s/%s' % (dumpbambuserpath, user)
             print userdir
             filestoupload = {}
             c = 0
@@ -88,14 +88,14 @@ def main():
                 if file.endswith('.flv'):
                     c += 1
                     fileid = file[:-4].split('-')[-1]
-                    flvfile = '%s/%s' % (userdir, file)
-                    jsonfile = '%s/%s.info.json' % (userdir, file[:-4])
-                    jpgfile = '%s/%s.jpg' % (userdir, file[:-4])
-                    dumpfile = '%s/%s.dump.json' % (userdir, file[:-4])
+                    flvfile = u'%s/%s' % (userdir, file)
+                    jsonfile = u'%s/%s.info.json' % (userdir, file[:-4])
+                    jpgfile = u'%s/%s.jpg' % (userdir, file[:-4])
+                    dumpfile = u'%s/%s.dump.json' % (userdir, file[:-4])
                     if not os.path.exists(dumpfile):
                         for file2 in os.listdir(userdir):
-                            if file2.startswith('%s_' % fileid) and file2.endswith('=%s.dump' % fileid):
-                                os.rename('%s/%s' % (userdir, file2), dumpfile)
+                            if file2.startswith(u'%s_' % fileid) and file2.endswith(u'=%s.dump' % fileid):
+                                os.rename(u'%s/%s' % (userdir, file2), dumpfile)
                                 break
                     
                     lmdate = lastmodified(flvfile)
@@ -162,9 +162,10 @@ def main():
                         errorlog(u'No se encontro el fichero: %s\n' % (filename))
                 files = files2
                 
-                subject = 'spanishrevolution; bambuser; streaming; %s; %s; %s' % (user, year, ';'.join(tags)) #yes, it is ;
+                subject = u'spanishrevolution; bambuser; streaming; %s; %s; %s' % (user, year, ';'.join(tags)) #yes, it is ;
+                originalurl = u'http://bambuser.com/channel/%s' % (user)
                 item = internetarchive.get_item(itemname.encode('utf-8'))
-                metadata = dict(mediatype='movies', creator=user, collection='spanishrevolution', description=description, date=year, subject=subject, language='Spanish', originalurl='http://bambuser.com/channel/%s' % (user), year=year, )
+                metadata = dict(mediatype='movies', creator=user.encode('utf-8'), collection='spanishrevolution', description=description.encode('utf-8'), date=year, subject=subject.encode('utf-8'), language='Spanish', originalurl=originalurl.encode('utf-8'), year=year, )
                 item.upload(files, metadata=metadata, access_key=keys[0], secret_key=keys[1])
                 print u'Deberían aparecer en https://archive.org/details/bambuser-%s-%s' % (user, year)
             
