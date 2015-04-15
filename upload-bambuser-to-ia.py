@@ -70,7 +70,7 @@ def main():
         print u'Leyendo directorio %s' % dumpbambuserpath
         users = []
         for user in [x[0] for x in os.walk(dumpbambuserpath)]:
-            if user.startswith(u'%s/' % (dumpbambuserpath)):
+            if user.startswith('%s/' % (dumpbambuserpath)):
                 users.append(unicode(user.split('/')[-1], 'utf-8'))
         print u'Se han encontrado %d directorios' % (len(users))
         users.sort()
