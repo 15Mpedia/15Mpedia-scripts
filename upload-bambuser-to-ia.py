@@ -87,12 +87,21 @@ def main():
             for file in os.listdir(userdir):
                 if file.endswith('.flv'):
                     c += 1
+                    fileid = file[:-4].split('-')[-1]
                     flvfile = '%s/%s' % (userdir, file)
                     jsonfile = '%s/%s.info.json' % (userdir, file[:-4])
                     jpgfile = '%s/%s.jpg' % (userdir, file[:-4])
+                    dumpfile = '%s/%s.dump.json' % (userdir, file[:-4])
+                    if not os.path.exists(dumpfile):
+                        for file2 in os.listdir(userdir):
+                            if file2.startswith('%s_' % fileid) and file2.endswith('=%s.dump' % fileid):
+                                os.rename('%s/%s' % (userdir, file2), dumpfile)
+                                break
+                    
                     lmdate = lastmodified(flvfile)
                     flvyear = str(lmdate.year)
                     
+                    """No necesario, la fecha, coordenadas, etc, ya van en el json.dump
                     #add date to json if missing
                     if os.path.exists(jsonfile):
                         jsondata = {}
@@ -107,18 +116,19 @@ def main():
                             print u'Adding date %s to JSON %s' % (jsondata['date'], jsonfile)
                             with open(jsonfile, 'w') as g:
                                 json.dump(jsondata, g)
-                            
+                    """
+                    
                     if argyear == 'all':
                         if filestoupload.has_key(flvyear):
-                            filestoupload[flvyear].extend([flvfile, jsonfile, jpgfile])
+                            filestoupload[flvyear].extend([flvfile, jsonfile, jpgfile, dumpfile])
                         else:
-                            filestoupload[flvyear] = [flvfile, jsonfile, jpgfile]
+                            filestoupload[flvyear] = [flvfile, jsonfile, jpgfile, dumpfile]
                     else:
                         if argyear == flvyear:
                             if filestoupload.has_key(flvyear):
-                                filestoupload[flvyear].extend([flvfile, jsonfile, jpgfile])
+                                filestoupload[flvyear].extend([flvfile, jsonfile, jpgfile, dumpfile])
                             else:
-                                filestoupload[flvyear] = [flvfile, jsonfile, jpgfile]
+                                filestoupload[flvyear] = [flvfile, jsonfile, jpgfile, dumpfile]
             
             print u'Hay %d streamings en total de los anyos: %s' % (c, u', '.join(filestoupload.keys()))
             print u'Subiendo streamings del usuario %s del año %s' % (user, argyear)
