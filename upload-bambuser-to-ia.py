@@ -85,6 +85,7 @@ def main():
             filestoupload = {}
             c = 0
             for file in os.listdir(userdir):
+                file = unicode(file, 'utf-8')
                 if file.endswith('.flv'):
                     c += 1
                     fileid = file[:-4].split('-')[-1]
@@ -99,24 +100,7 @@ def main():
                                 break
                     
                     lmdate = lastmodified(flvfile)
-                    flvyear = str(lmdate.year)
-                    
-                    """No necesario, la fecha, coordenadas, etc, ya van en el json.dump
-                    #add date to json if missing
-                    if os.path.exists(jsonfile):
-                        jsondata = {}
-                        with open(jsonfile, 'r') as g:
-                            try:
-                                jsondata = json.load(g)
-                            except:
-                                errorlog(u'JSON no valido %s\n' % (jsonfile))
-                                print u'ERROR: JSON no valido %s' % (jsonfile)
-                        if not jsondata.has_key('date'):
-                            jsondata['date'] = lmdate.strftime('%Y-%m-%d %H:%M:%S')
-                            print u'Adding date %s to JSON %s' % (jsondata['date'], jsonfile)
-                            with open(jsonfile, 'w') as g:
-                                json.dump(jsondata, g)
-                    """
+                    flvyear = u'%s' % str(lmdate.year)
                     
                     if argyear == 'all':
                         if filestoupload.has_key(flvyear):
@@ -144,7 +128,7 @@ def main():
                 #capturando hashtags que empiecen con #
                 tags = set()
                 for filename in files:
-                    f = re.sub(r'(?i)[\.\-\,\;]', r' ', filename.split('/')[-1])
+                    f = re.sub(ur'(?i)[\.\-\,\;]', ur' ', filename.split('/')[-1])
                     for word in f.split(' '):
                         if word.startswith('#') and len(word) >= 3:
                             tags.add(word[1:])
@@ -165,7 +149,7 @@ def main():
                 subject = u'spanishrevolution; bambuser; streaming; %s; %s; %s' % (user, year, ';'.join(tags)) #yes, it is ;
                 originalurl = u'http://bambuser.com/channel/%s' % (user)
                 item = internetarchive.get_item(itemname.encode('utf-8'))
-                metadata = dict(mediatype='movies', creator=user.encode('utf-8'), collection='spanishrevolution', description=description.encode('utf-8'), date=year, subject=subject.encode('utf-8'), language='Spanish', originalurl=originalurl.encode('utf-8'), year=year, )
+                metadata = dict(mediatype=u'movies'.encode('utf-8'), creator=user.encode('utf-8'), collection='spanishrevolution'.encode('utf-8'), description=description.encode('utf-8'), date=year.encode('utf-8'), subject=subject.encode('utf-8'), language=u'Spanish'.encode('utf-8'), originalurl=originalurl.encode('utf-8'), year=year.encode('utf-8'), )
                 item.upload(files, metadata=metadata, access_key=keys[0], secret_key=keys[1])
                 print u'Deberían aparecer en https://archive.org/details/bambuser-%s-%s' % (user, year)
             
