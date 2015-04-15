@@ -85,7 +85,6 @@ def main():
             filestoupload = {}
             c = 0
             for file in os.listdir(userdir):
-                file = unicode(file, 'utf-8')
                 if file.endswith('.flv'):
                     c += 1
                     fileid = file[:-4].split('-')[-1]
