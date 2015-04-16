@@ -148,7 +148,7 @@ def main():
                 subject = u'spanishrevolution; bambuser; streaming; %s; %s; %s' % (user, year, ';'.join(tags)) #yes, it is ;
                 originalurl = u'http://bambuser.com/channel/%s' % (user)
                 item = internetarchive.get_item(itemname.encode('utf-8'))
-                metadata = dict(mediatype=u'movies'.encode('utf-8'), creator=user.encode('utf-8'), collection='spanishrevolution'.encode('utf-8'), description=description.encode('utf-8'), date=year.encode('utf-8'), subject=subject.encode('utf-8'), language=u'Spanish'.encode('utf-8'), originalurl=originalurl.encode('utf-8'), year=year.encode('utf-8'), )
+                metadata = dict(mediatype=u'movies'.encode('utf-8'), creator=user.encode('utf-8'), collection=u'spanishrevolution'.encode('utf-8'), description=description.encode('utf-8'), date=year.encode('utf-8'), subject=subject.encode('utf-8'), language=u'Spanish'.encode('utf-8'), originalurl=originalurl.encode('utf-8'), year=year.encode('utf-8'), )
                 item.upload(files, metadata=metadata, access_key=keys[0], secret_key=keys[1])
                 print u'Deberían aparecer en https://archive.org/details/bambuser-%s-%s' % (user, year)
             
