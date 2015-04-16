@@ -140,7 +140,7 @@ def main():
                 files2 = []
                 for filename in files:
                     if os.path.exists(filename):
-                        files2.append(filename)
+                        files2.append(filename.encode('utf-8'))
                     else:
                         errorlog(u'No se encontro el fichero: %s\n' % (filename))
                 files = files2
