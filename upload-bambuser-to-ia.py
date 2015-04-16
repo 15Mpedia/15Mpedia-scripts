@@ -44,7 +44,7 @@ def lastmodified(f):
 
 def errorlog(msg):
     errorlog = open('errorlog.txt', 'a')
-    errorlog.write(msg.encode('utf-8'))
+    errorlog.write(msg)
     errorlog.close()
 
 def main():
@@ -52,35 +52,35 @@ def main():
     dumpbambuserpath = './bambuser' # ruta al directorio de bambusers
     
     if len(sys.argv) < 3:
-        print u'ERROR: Falta el parámetro usuario y el año'
+        print 'ERROR: Falta el parámetro usuario y el año'
         sys.exit()
     elif not os.path.exists(keyspath):
-        print u'ERROR: No encontrado fichero de claves S3 en la ruta %s' % keyspath    
+        print 'ERROR: No encontrado fichero de claves S3 en la ruta %s' % (keyspath) 
         sys.exit()
     else:
         #leer claves
         f = open(keyspath, 'r')
         keys = f.read().strip().splitlines()
         f.close()
-        print u'Claves S3 cargadas'
+        print 'Claves S3 cargadas'
         
         arguser = sys.argv[1]
         argyear = sys.argv[2]
         
-        print u'Leyendo directorio %s' % dumpbambuserpath
+        print 'Leyendo directorio %s' % (dumpbambuserpath)
         users = []
         for user in [x[0] for x in os.walk(dumpbambuserpath)]:
             if user.startswith('%s/' % (dumpbambuserpath)):
-                users.append(unicode(user.split('/')[-1], 'utf-8'))
-        print u'Se han encontrado %d directorios' % (len(users))
+                users.append(user.split('/')[-1])
+        print 'Se han encontrado %d directorios' % (len(users))
         users.sort()
         
         for user in users:
             if arguser != 'all' and user != arguser:
                 continue
             
-            print u'Recopilando archivos de %s' % (user)
-            userdir = u'%s/%s' % (dumpbambuserpath, user)
+            print 'Recopilando archivos de %s' % (user)
+            userdir = '%s/%s' % (dumpbambuserpath, user)
             print userdir
             filestoupload = {}
             c = 0
@@ -88,18 +88,18 @@ def main():
                 if file.endswith('.flv'):
                     c += 1
                     fileid = file[:-4].split('-')[-1]
-                    flvfile = u'%s/%s' % (userdir, file)
-                    jsonfile = u'%s/%s.info.json' % (userdir, file[:-4])
-                    jpgfile = u'%s/%s.jpg' % (userdir, file[:-4])
-                    dumpfile = u'%s/%s.dump.json' % (userdir, file[:-4])
+                    flvfile = '%s/%s' % (userdir, file)
+                    jsonfile = '%s/%s.info.json' % (userdir, file[:-4])
+                    jpgfile = '%s/%s.jpg' % (userdir, file[:-4])
+                    dumpfile = '%s/%s.dump.json' % (userdir, file[:-4])
                     if not os.path.exists(dumpfile):
                         for file2 in os.listdir(userdir):
-                            if file2.startswith(u'%s_' % fileid) and file2.endswith(u'=%s.dump' % fileid):
-                                os.rename(u'%s/%s' % (userdir, file2), dumpfile)
+                            if file2.startswith('%s_' % fileid) and file2.endswith('=%s.dump' % fileid):
+                                os.rename('%s/%s' % (userdir, file2), dumpfile)
                                 break
                     
                     lmdate = lastmodified(flvfile)
-                    flvyear = u'%s' % str(lmdate.year)
+                    flvyear = '%s' % str(lmdate.year)
                     
                     if argyear == 'all':
                         if filestoupload.has_key(flvyear):
@@ -113,21 +113,21 @@ def main():
                             else:
                                 filestoupload[flvyear] = [flvfile, jsonfile, jpgfile, dumpfile]
             
-            print u'Hay %d streamings en total de los anyos: %s' % (c, u', '.join(filestoupload.keys()))
-            print u'Subiendo streamings del usuario %s del año %s' % (user, argyear)
+            print 'Hay %d streamings en total de los anyos: %s' % (c, ', '.join(filestoupload.keys()))
+            print 'Subiendo streamings del usuario %s del año %s' % (user, argyear)
             
             for year, files in filestoupload.items():
                 if int(year) >= 2015:
-                    print u'Ignorando ficheros del anyo %s' % (year)
+                    print 'Ignorando ficheros del anyo %s' % (year)
                     continue
                 
-                itemname = u'bambuser-%s-%s' % (user, year)
-                description = u'Bambuser streamings by <a href="http://bambuser.com/channel/%s">%s</a> (%s)' % (user, user, year)
+                itemname = 'bambuser-%s-%s' % (user, year)
+                description = 'Bambuser streamings by <a href="http://bambuser.com/channel/%s">%s</a> (%s)' % (user, user, year)
                 
                 #capturando hashtags que empiecen con #
                 tags = set()
                 for filename in files:
-                    f = re.sub(ur'(?i)[\.\-\,\;]', ur' ', filename.split('/')[-1])
+                    f = re.sub(r'(?i)[\.\-\,\;]', r' ', filename.split('/')[-1])
                     for word in f.split(' '):
                         if word.startswith('#') and len(word) >= 3:
                             tags.add(word[1:])
@@ -140,17 +140,17 @@ def main():
                 files2 = []
                 for filename in files:
                     if os.path.exists(filename):
-                        files2.append(filename.encode('utf-8'))
+                        files2.append(filename)
                     else:
-                        errorlog(u'No se encontro el fichero: %s\n' % (filename))
+                        errorlog('No se encontro el fichero: %s\n' % (filename))
                 files = files2
                 
-                subject = u'spanishrevolution; bambuser; streaming; %s; %s; %s' % (user, year, ';'.join(tags)) #yes, it is ;
-                originalurl = u'http://bambuser.com/channel/%s' % (user)
-                item = internetarchive.get_item(itemname.encode('utf-8'))
-                metadata = dict(mediatype=u'movies'.encode('utf-8'), creator=user.encode('utf-8'), collection=u'spanishrevolution'.encode('utf-8'), description=description.encode('utf-8'), date=year.encode('utf-8'), subject=subject.encode('utf-8'), language=u'Spanish'.encode('utf-8'), originalurl=originalurl.encode('utf-8'), year=year.encode('utf-8'), )
+                subject = 'spanishrevolution; bambuser; streaming; %s; %s; %s' % (user, year, ';'.join(tags)) #yes, it is ;
+                originalurl = 'http://bambuser.com/channel/%s' % (user)
+                item = internetarchive.get_item(itemname)
+                metadata = dict(mediatype='movies', creator=user, collection='spanishrevolution', description=description, date=year, subject=subject, language='Spanish', originalurl=originalurl, year=year)
                 item.upload(files, metadata=metadata, access_key=keys[0], secret_key=keys[1])
-                print u'Deberían aparecer en https://archive.org/details/bambuser-%s-%s' % (user, year)
+                print 'Deberían aparecer en https://archive.org/details/bambuser-%s-%s' % (user, year)
             
 if __name__ == '__main__':
     main()
