@@ -121,8 +121,9 @@ def main():
                     print 'Ignorando ficheros del anyo %s' % (year)
                     continue
                 
-                itemname = 'bambuser-%s-%s' % (user, year)
-                description = 'Bambuser streamings by <a href="http://bambuser.com/channel/%s">%s</a> (%s)' % (user, user, year)
+                user_ = re.sub('+', ' ', user)
+                itemname = 'bambuser-%s-%s' % (user_, year)
+                description = 'Bambuser streamings by <a href="http://bambuser.com/channel/%s">%s</a> (%s)' % (user, user_, year)
                 
                 #capturando hashtags que empiecen con #
                 tags = set()
@@ -145,12 +146,12 @@ def main():
                         errorlog('No se encontro el fichero: %s\n' % (filename))
                 files = files2
                 
-                subject = 'spanishrevolution; bambuser; streaming; %s; %s; %s' % (user, year, ';'.join(tags)) #yes, it is ;
+                subject = 'spanishrevolution; bambuser; streaming; %s; %s; %s' % (user_, year, ';'.join(tags)) #yes, it is ;
                 originalurl = 'http://bambuser.com/channel/%s' % (user)
                 item = internetarchive.get_item(itemname)
-                metadata = dict(mediatype='movies', creator=user, collection='spanishrevolution', description=description, date=year, subject=subject, language='Spanish', originalurl=originalurl, year=year)
+                metadata = dict(mediatype='movies', creator=user_, collection='spanishrevolution', description=description, date=year, subject=subject, language='Spanish', originalurl=originalurl, year=year)
                 item.upload(files, metadata=metadata, access_key=keys[0], secret_key=keys[1])
-                print 'Deberían aparecer en https://archive.org/details/bambuser-%s-%s' % (user, year)
+                print 'Deberían aparecer en https://archive.org/details/bambuser-%s-%s' % (user_, year)
             
 if __name__ == '__main__':
     main()
