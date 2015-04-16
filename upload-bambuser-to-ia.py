@@ -121,7 +121,7 @@ def main():
                     print 'Ignorando ficheros del anyo %s' % (year)
                     continue
                 
-                user_ = re.sub('+', ' ', user)
+                user_ = re.sub('\+', ' ', user)
                 itemname = 'bambuser-%s-%s' % (user_, year)
                 description = 'Bambuser streamings by <a href="http://bambuser.com/channel/%s">%s</a> (%s)' % (user, user_, year)
                 
