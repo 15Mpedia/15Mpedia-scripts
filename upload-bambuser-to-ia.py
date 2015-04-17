@@ -16,11 +16,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import datetime
-import hashlib
 import internetarchive #pip install internetarchive More info: https://pypi.python.org/pypi/internetarchive
 import json
 import os
 import re
+import subprocess
 import sys
 import time
 
@@ -47,6 +47,11 @@ def errorlog(msg):
     errorlog = open('errorlog.txt', 'a')
     errorlog.write(msg)
     errorlog.close()
+
+def md5calculate(f):
+    md5sum = subprocess.Popen(['md5sum', f], stdout=subprocess.PIPE).communicate()[0].split()[0]
+    md5sum = unicode(md5sum, 'utf-8')
+    return md5sum
 
 def main():
     keyspath = './ia-keys.txt' # https://archive.org/account/s3.php
@@ -163,7 +168,7 @@ def main():
                 for f in files:
                     f_ = f.split('/')[-1]
                     if ficheros_subidos.has_key(f_):
-                        md5local = hashlib.md5(f).hexdigest()
+                        md5local = md5calculate(f)
                         md5subido = ficheros_subidos[f_]
                         if md5local == md5subido:
                             print 'Excluyendo fichero %s subido anteriormente [md5=%s] Coincide' % (f, md5local)
