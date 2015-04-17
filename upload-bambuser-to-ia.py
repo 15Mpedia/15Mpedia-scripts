@@ -148,9 +148,13 @@ def main():
                 
                 subject = 'spanishrevolution; bambuser; streaming; %s; %s; %s' % (user_, year, ';'.join(tags)) #yes, it is ;
                 originalurl = 'http://bambuser.com/channel/%s' % (user)
+                
                 item = internetarchive.get_item(itemname)
-                metadata = dict(mediatype='movies', creator=user_, collection='spanishrevolution', description=description, date=year, subject=subject, language='Spanish', originalurl=originalurl, year=year)
-                item.upload(files, metadata=metadata, access_key=keys[0], secret_key=keys[1])
+                md = dict(mediatype='movies', creator=user_, collection='spanishrevolution', description=description, date=year, subject=subject, language='Spanish', originalurl=originalurl, year=year)
+                for f in files:
+                    item.upload(f, metadata=md, access_key=keys[0], secret_key=keys[1]) #1 to 1, avoiding limits
+                item.modify_metadata(md, access_key=keys[0], secret_key=keys[1]) #overwriting
+                
                 print 'Deberían aparecer en https://archive.org/details/bambuser-%s-%s' % (user_, year)
             
 if __name__ == '__main__':
