@@ -162,7 +162,7 @@ def main():
                 
                 #excluyendo ficheros subidos con anterioridad con mismo md5
                 ficheros_subidos = {}
-                for f.name, f.md5 in item.iter_files():
+                for f in item.iter_files():
                     ficheros_subidos[f.name] = f.md5
                 files2 = []
                 for f in files:
