@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import datetime
+import hashlib
 import internetarchive #pip install internetarchive More info: https://pypi.python.org/pypi/internetarchive
 import json
 import os
@@ -146,12 +147,37 @@ def main():
                         errorlog('No se encontro el fichero: %s\n' % (filename))
                 files = files2
                 
+                #preparar metadatos
                 subject = 'spanishrevolution; bambuser; streaming; %s; %s; %s' % (user_, year, ';'.join(tags)) #yes, it is ;
                 originalurl = 'http://bambuser.com/channel/%s' % (user)
-                
-                item = internetarchive.get_item(itemname)
                 md = dict(mediatype='movies', creator=user_, collection='spanishrevolution', description=description, date=year, subject=subject, language='Spanish', originalurl=originalurl, year=year)
+
+                #abrir item, tanto si existe como si no
+                item = internetarchive.get_item(itemname)
+                
+                #excluyendo ficheros subidos con anterioridad con mismo md5
+                ficheros_subidos = {}
+                for f.name, f.md5 in item.iter_files():
+                    ficheros_subidos[f.name] = f.md5
+                files2 = []
                 for f in files:
+                    f_ = f.split('/')[-1]
+                    if ficheros_subidos.has_key(f_):
+                        md5local = hashlib.md5(f).hexdigest()
+                        md5subido = ficheros_subidos[f_]
+                        if md5local == md5subido:
+                            print 'Excluyendo fichero %s subido anteriormente [md5=%s] Coincide' % (f, md5local)
+                        else:
+                            print 'Se resubira el fichero %s porque el md5 no coincide con el de IA' % (f)
+                            files2.append(f)
+                    else:
+                        files2.append(f)
+                files = files2
+                print 'En total se subiran %d ficheros de %s %s' % (len(files), user, year)
+                
+                #subir lo que falte
+                for f in files:
+                    print 'Subiendo %s' % (f)
                     item.upload(f, metadata=md, access_key=keys[0], secret_key=keys[1]) #1 to 1, avoiding limits
                 item.modify_metadata(md, access_key=keys[0], secret_key=keys[1]) #overwriting
                 
