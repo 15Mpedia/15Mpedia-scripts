@@ -23,7 +23,7 @@ class Family(family.WikimediaFamily):
         self.name = '15mpedia'
 
         self.langs = {
-            '15mpedia': 'wiki.15m.cc',
+            '15mpedia': '15mpedia.org',
         }
         """
         self.namespaces[4] = {
