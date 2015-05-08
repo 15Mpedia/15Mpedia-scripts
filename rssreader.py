@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2013-2014 emijrp <emijrp@gmail.com>
+# Copyright (C) 2013-2015 emijrp <emijrp@gmail.com>
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -15,14 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from lxml import etree
 import datetime
 import time
 import re
 import sys
 import urllib
 import urllib2
-import wikipedia
+import pywikibot
 from xml.sax.saxutils import unescape
 
 month2month = { 'jan': '01', 'feb': '02', 'mar': '03', 'apr': '04', 'may': '05', 'jun': '06', 'jul': '07', 'aug': '08', 'sep': '09', 'oct': '10', 'nov': '11', 'dec': '12'}
@@ -38,8 +37,8 @@ def uncode(s):
     return xml
 
 def getLines(page):
-    p = wikipedia.Page(wikipedia.Site('15mpedia', '15mpedia'), page)
-    raw = p.get()
+    p = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), page)
+    raw = p.text
     raw = re.sub(ur"(?im)^\*\s*", ur"", raw)
     rss = []
     for l in raw.splitlines():
@@ -48,10 +47,11 @@ def getLines(page):
     return rss
 
 def sortLines(page):
-    p = wikipedia.Page(wikipedia.Site('15mpedia', '15mpedia'), page)
-    raw = list(set(p.get().splitlines()))
+    p = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), page)
+    raw = list(set(p.text.splitlines()))
     raw.sort()
-    p.put(ur"%s" % (u'\n'.join(raw)), u"BOT - Ordenando enlaces")
+    p.text = ur"%s" % (u'\n'.join(raw))
+    p.save(u"BOT - Ordenando enlaces")
 
 def getBlogs():
     print u'Loading RSS for blogs'.encode('utf-8')
@@ -269,8 +269,9 @@ def saveContent(l, source=''):
             v = re.sub('&#124;', '-', v) #es | pero para no romper parámetros de plantilla ponemos -
             v = re.sub('&#038;', '&', v)
             page = wikipedia.Page(wikipedia.Site('15mpedia', '15mpedia'), u'Plantilla:Actualizaciones en las redes/%s/%s' % (source, k))
-            if not page.exists() or (page.exists and len(v) > len(page.get())):
-                page.put(v, u"BOT - Añadiendo actualizaciones: %s [%d], %s [%d]" % (day0, len(re.findall(ur'\n', day0_stuff))-1, day1, len(re.findall(ur'\n', day1_stuff))-1, ))
+            if not page.exists() or (page.exists() and len(v) > len(page.text)):
+                page.text = v
+                page.save(u"BOT - Añadiendo actualizaciones: %s [%d], %s [%d]" % (day0, len(re.findall(ur'\n', day0_stuff))-1, day1, len(re.findall(ur'\n', day1_stuff))-1, ))
     
 def main():
     b = getBlogs()
