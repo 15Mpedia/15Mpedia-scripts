@@ -268,7 +268,7 @@ def saveContent(l, source=''):
             v = re.sub('&quot;', '"', v)
             v = re.sub('&#124;', '-', v) #es | pero para no romper parámetros de plantilla ponemos -
             v = re.sub('&#038;', '&', v)
-            page = wikipedia.Page(wikipedia.Site('15mpedia', '15mpedia'), u'Plantilla:Actualizaciones en las redes/%s/%s' % (source, k))
+            page = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'Plantilla:Actualizaciones en las redes/%s/%s' % (source, k))
             if not page.exists() or (page.exists() and len(v) > len(page.text)):
                 page.text = v
                 page.save(u"BOT - Añadiendo actualizaciones: %s [%d], %s [%d]" % (day0, len(re.findall(ur'\n', day0_stuff))-1, day1, len(re.findall(ur'\n', day1_stuff))-1, ))
