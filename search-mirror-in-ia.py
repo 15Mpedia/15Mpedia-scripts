@@ -28,7 +28,7 @@ import pywikibot.pagegenerators as pagegenerators
 def main():
     skip = ''
     site = pywikibot.Site('15mpedia', '15mpedia')
-    cat = pywikibot.Category(site, u'Category:Vídeos embebidos')
+    cat = pywikibot.Category(site, u'Category:CC BY 3.0')
     files = cat.articles(namespaces=6)
     pre = pagegenerators.PreloadingGenerator(files, 250)
     
