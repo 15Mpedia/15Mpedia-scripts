@@ -30,9 +30,16 @@ def main():
     site = pywikibot.Site('15mpedia', '15mpedia')
     cat = pywikibot.Category(site, u'Category:CC BY 3.0')
     files = cat.articles(namespaces=6)
-    pre = pagegenerators.PreloadingGenerator(files, 250)
+    pre = pagegenerators.PreloadingGenerator(files, 100)
     
+    skip = 'Archivo:YouTube - BarrioCanino - LVMh92Y4vOk.jpg'
     for page in pre:
+        if skip:
+            if page.title() == skip:
+                skip = False
+            else:
+                continue
+        
         if not page.exists():
             continue
         if not page.title().startswith('Archivo:YouTube - '):
