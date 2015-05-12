@@ -67,9 +67,32 @@ def main():
     print 'Hay %d videos excluidos' % (len(videosexcluded))
     #print videosexcluded
     
+    # Retirar de la pagina de analisis aquellos que ya han sido analizados
+    page = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'15Mpedia:Importar YouTube')
+    text = page.text
+    m = re.findall(ur'(?im)(\{\{\s*Importar YouTube vídeo\s*\|\s*id=\s*[^\|]+\s*\|\s*título\s*=\s*[^\}]+\s*\}\})', text)
+    newtext = page.text
+    importarnum = 0
+    excluirnum = 0
+    for i in m:
+        #print i
+        videoid = re.findall(ur'\|\s*id\s*=\s*([^\s]+)\s*', i)[0]
+        if videoid in videostoupload:
+            print 'El video %s ha sido marcado para subir' % (videoid)
+            newtext = newtext.replace(i, '')
+            importarnum += 1
+        elif videoid in videosexcluded:
+            print 'El video %s ha sido marcado para excluir' % (videoid)
+            newtext = newtext.replace(i, '')
+            excluirnum += 1
+    if text != newtext:
+        print 'Retirando %d vídeos analizados: %d para importar, %d para excluir' % (importarnum + excluirnum, importarnum, excluirnum)
+        page.text = newtext
+        page.save(u'BOT - Retirando %d vídeos analizados: %d para importar, %d para excluir' % (importarnum + excluirnum, importarnum, excluirnum))
+        
     # Buscar nuevos candidatos
     videos = {}
-    keywords = ['acampadasol']
+    keywords = ['acampadasol', 'sevillapara', 'marchasdeladignidad']
     maxpages = 10
     for keyword in keywords:
         print '\n', '#'*40, '\n', ' Analizando keyword', keyword, '\n', '#'*40
@@ -87,6 +110,7 @@ def main():
                 break
             c = 0
             while c < len(lines)-1:
+                print lines[c+1], lines[c]
                 videos[lines[c+1]] = lines[c]
                 c += 2
     
