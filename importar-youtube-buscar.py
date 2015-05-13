@@ -130,7 +130,7 @@ def main():
             if videosinpage + len(videos.keys()) >= maxvideos:
                 print 'Alcanzado el limite de %d videos, no hace falta buscar mas candidatos' % (maxvideos)
                 break
-            print 'Pagina', page
+            print '\nPagina', page, '\n', '-'*40
             searchurl = 'https://www.youtube.com/results?search_query=%%22%s%%22&lclk=video&filters=video&page=%d' % (keyword, page)
             output = unicode(subprocess.Popen(["./youtube-dl", searchurl, "--get-id", "--get-title"], stdout=subprocess.PIPE).communicate()[0].strip(), 'utf-8')
             lines = output.splitlines()
@@ -147,7 +147,7 @@ def main():
                    not videoid in videosexcluded and \
                    not videoid in text and \
                    not videoid in videos.keys():
-                    print videoid, videotitle
+                    print len(videos.keys()), videoid, videotitle
                     videos[videoid] = videotitle
                 c += 2
     
