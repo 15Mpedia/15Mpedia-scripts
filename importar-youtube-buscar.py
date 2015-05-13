@@ -72,7 +72,6 @@ def main():
     page = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'15Mpedia:Importar YouTube')
     text = page.text
     m = re.findall(ur'(?im)(\{\{\s*Importar YouTube vídeo\s*\|\s*id=\s*[^\|]+\s*\|\s*título\s*=\s*[^\}]+\s*\}\})', text)
-    videosinpage = len(m)
     newtext = page.text
     importarnum = 0
     excluirnum = 0
@@ -96,6 +95,8 @@ def main():
     print 'Cargando opciones de configuracion'
     page = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'15Mpedia:Importar YouTube')
     text = page.text
+    m = re.findall(ur'(?im)(\{\{\s*Importar YouTube vídeo\s*\|\s*id=\s*[^\|]+\s*\|\s*título\s*=\s*[^\}]+\s*\}\})', text)
+    videosinpage = len(m)
     maxvideos = 100
     if re.findall(ur'(?im)\|\s*límite\s*=([\d]+)', text):
         maxvideos = int(re.findall(ur'(?im)\|\s*límite\s*=\s*([\d]+)', text)[0].strip())
@@ -111,17 +112,23 @@ def main():
     if orden == 'Aleatorio':
         random.shuffle(keywords)
     elif orden == 'Alfabético':
-        orden.sort()
+        keywords.sort()
+    
+    if videosinpage >= maxvideos:
+        print 'No hace falta agregar mas videos, ya hay %d' % (videosinpage)
+        sys.exit()
     
     # Buscar nuevos candidatos
     videos = {}
     maxpages = 10
     for keyword in keywords:
+        if videosinpage + len(videos.keys()) >= maxvideos:
+            break
         print '\n', '#'*40, '\n', ' Analizando keyword', keyword, '\n', '#'*40
         salir = False
         for page in range(1, maxpages):
             if videosinpage + len(videos.keys()) >= maxvideos:
-                print 'Alcanzando el limite de %d videos, no hace falta buscar mas candidatos' % (maxvideos)
+                print 'Alcanzado el limite de %d videos, no hace falta buscar mas candidatos' % (maxvideos)
                 break
             print 'Pagina', page
             searchurl = 'https://www.youtube.com/results?search_query=%%22%s%%22&lclk=video&filters=video&page=%d' % (keyword, page)
@@ -138,7 +145,8 @@ def main():
                 if not videoid in videosuploaded and \
                    not videoid in videostoupload and \
                    not videoid in videosexcluded and \
-                   not videoid in text:
+                   not videoid in text and \
+                   not videoid in videos.keys():
                     print videoid, videotitle
                     videos[videoid] = videotitle
                 c += 2
@@ -153,6 +161,8 @@ def main():
     videosplain = u''
     c = 0
     for videoid, videotitle in videos.items():
+        if videosinpage + c >= maxvideos:
+            break
         videotitle = re.sub(ur'[\[\]]', u'', videotitle)
         videosplain += u'{{Importar YouTube vídeo\n|id=%s\n|título=%s\n}}' % (videoid, videotitle)
         c += 1
