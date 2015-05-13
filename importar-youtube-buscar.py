@@ -103,8 +103,9 @@ def main():
     print 'Limite de videos es %d' % (maxvideos)
     keywords = ['acampadasol']
     if re.findall(ur'(?im)\|\s*palabras clave\s*=([^\n\|]+)', text):
-        keywords = re.findall(ur'(?im)\|\s*palabras clave\s*=([^\n\|]+)', text)[0].strip().split(', ')
-    print 'Encontradas %d palabras clave: %s' % (len(keywords), ', '.join(keywords[:10]))
+        keywords = [x.strip() for x in re.findall(ur'(?im)\|\s*palabras clave\s*=([^\n\|]+)', text)[0].strip().split(', ')]
+        '' in keywords and keywords.remove('')
+    print 'Encontradas %d palabras clave: %s' % (len(keywords), ', '.join(keywords))
     orden = 'Ninguno'
     if re.findall(ur'(?im)\|\s*órden\s*=([^\n\|]+)', text):
         orden = re.findall(ur'(?im)\|\s*órden\s*=([^\n\|]+)', text)[0].strip()
