@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import random
 import re
 import subprocess
 import sys
@@ -89,10 +90,30 @@ def main():
         print 'Retirando %d vídeos analizados: %d para importar, %d para excluir' % (importarnum + excluirnum, importarnum, excluirnum)
         page.text = newtext
         page.save(u'BOT - Retirando %d vídeos analizados: %d para importar, %d para excluir' % (importarnum + excluirnum, importarnum, excluirnum))
-        
+    
+    # Cargar las opciones de configuracion
+    print 'Cargando opciones de configuracion'
+    page = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'15Mpedia:Importar YouTube')
+    text = page.text
+    maxvideos = 100
+    if re.findall(ur'(?im)\|\s*límite\s*=([\d]+)', text):
+        maxvideos = int(re.findall(ur'(?im)\|\s*límite\s*=\s*([\d]+)', text)[0].strip())
+    print 'Limite de videos es %d' % (maxvideos)
+    keywords = ['acampadasol']
+    if re.findall(ur'(?im)\|\s*palabras clave\s*=([^\n\|]+)', text):
+        keywords = re.findall(ur'(?im)\|\s*palabras clave\s*=([^\n\|]+)', text)[0].strip().split(', ')
+    print 'Encontradas %d palabras clave: %s' % (len(keywords), ', '.join(keywords[:10]))
+    orden = 'Aleatorio'
+    if re.findall(ur'(?im)\|\s*órden\s*=([^\n\|]+)', text):
+        orden = re.findall(ur'(?im)\|\s*órden\s*=([^\n\|]+)', text)[0].strip()
+    print 'Orden es %s' % (orden)
+    if orden == 'Aleatorio':
+        random.shuffle(keywords)
+    elif orden == 'Alfabético':
+        orden.sort()
+    
     # Buscar nuevos candidatos
     videos = {}
-    keywords = ['acampadasol', 'sevillapara', 'marchasdeladignidad']
     maxpages = 10
     for keyword in keywords:
         print '\n', '#'*40, '\n', ' Analizando keyword', keyword, '\n', '#'*40
@@ -117,29 +138,29 @@ def main():
     #print videos.items()
     print 'La busqueda ha devuelto %d videos' % (len(videos.items()))
     
+    # Recargar pagina despues de haber retirado los analizados
     page = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'15Mpedia:Importar YouTube')
     text = page.text
-    text.split(u'|vídeos=')[1]
     
     videosplain = u''
     c = 0
-    d = 0
+    videosinpage = len(re.findall(ur'\{\{Importar YouTube vídeo', text))
     for videoid, videotitle in videos.items():
+        if videosinpage + c > maxvideos:
+            break
         if videoid in videosuploaded or \
            videoid in videostoupload or \
            videoid in videosexcluded:
-            d += 1
             continue
         
         if videoid in text:
-            d += 1
             continue
         else:
             videosplain += u'{{Importar YouTube vídeo\n|id=%s\n|título=%s\n}}' % (videoid, videotitle)
             print 'Parece util https://www.youtube.com/watch?v=%s' % (videoid)
             c += 1
     
-    print 'Se han encontrado %d videos utiles, y descartado %d' % (c, d)
+    print 'Se agregarano %d videos' % (c)
     
     newtext = u'%s|vídeos=%s%s' % (text.split(u'|vídeos=')[0], videosplain, text.split(u'|vídeos=')[1])
     if text != newtext:
