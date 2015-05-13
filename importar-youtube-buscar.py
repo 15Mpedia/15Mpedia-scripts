@@ -72,6 +72,7 @@ def main():
     page = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'15Mpedia:Importar YouTube')
     text = page.text
     m = re.findall(ur'(?im)(\{\{\s*Importar YouTube vídeo\s*\|\s*id=\s*[^\|]+\s*\|\s*título\s*=\s*[^\}]+\s*\}\})', text)
+    videosinpage = len(m)
     newtext = page.text
     importarnum = 0
     excluirnum = 0
@@ -103,7 +104,7 @@ def main():
     if re.findall(ur'(?im)\|\s*palabras clave\s*=([^\n\|]+)', text):
         keywords = re.findall(ur'(?im)\|\s*palabras clave\s*=([^\n\|]+)', text)[0].strip().split(', ')
     print 'Encontradas %d palabras clave: %s' % (len(keywords), ', '.join(keywords[:10]))
-    orden = 'Aleatorio'
+    orden = 'Ninguno'
     if re.findall(ur'(?im)\|\s*órden\s*=([^\n\|]+)', text):
         orden = re.findall(ur'(?im)\|\s*órden\s*=([^\n\|]+)', text)[0].strip()
     print 'Orden es %s' % (orden)
@@ -119,7 +120,8 @@ def main():
         print '\n', '#'*40, '\n', ' Analizando keyword', keyword, '\n', '#'*40
         salir = False
         for page in range(1, maxpages):
-            if salir:
+            if videosinpage + len(videos.keys()) >= maxvideos:
+                print 'Alcanzando el limite de %d videos, no hace falta buscar mas candidatos' % (maxvideos)
                 break
             print 'Pagina', page
             searchurl = 'https://www.youtube.com/results?search_query=%%22%s%%22&lclk=video&filters=video&page=%d' % (keyword, page)
@@ -131,41 +133,34 @@ def main():
                 break
             c = 0
             while c < len(lines)-1:
-                print lines[c+1], lines[c]
-                videos[lines[c+1]] = lines[c]
+                if not videoid in videosuploaded and \
+                   not videoid in videostoupload and \
+                   not videoid in videosexcluded and \
+                   not videoid in text:
+                    print lines[c+1], lines[c]
+                    videos[lines[c+1]] = lines[c]
                 c += 2
     
     #print videos.items()
     print 'La busqueda ha devuelto %d videos' % (len(videos.items()))
     
-    # Recargar pagina despues de haber retirado los analizados
+    # Agregar hasta llegar al maximo
     page = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'15Mpedia:Importar YouTube')
     text = page.text
     
     videosplain = u''
     c = 0
-    videosinpage = len(re.findall(ur'\{\{Importar YouTube vídeo', text))
     for videoid, videotitle in videos.items():
-        if videosinpage + c > maxvideos:
-            break
-        if videoid in videosuploaded or \
-           videoid in videostoupload or \
-           videoid in videosexcluded:
-            continue
-        
-        if videoid in text:
-            continue
-        else:
-            videosplain += u'{{Importar YouTube vídeo\n|id=%s\n|título=%s\n}}' % (videoid, videotitle)
-            print 'Parece util https://www.youtube.com/watch?v=%s' % (videoid)
-            c += 1
+        videotitle = re.sub(ur'[\[\]]', u'', videotitle)
+        videosplain += u'{{Importar YouTube vídeo\n|id=%s\n|título=%s\n}}' % (videoid, videotitle)
+        c += 1
     
-    print 'Se agregarano %d videos' % (c)
+    print 'Se agregaran %d videos' % (c)
     
     newtext = u'%s|vídeos=%s%s' % (text.split(u'|vídeos=')[0], videosplain, text.split(u'|vídeos=')[1])
     if text != newtext:
         page.text = newtext
-        page.save(u'BOT - Añadiendo algunos más')
+        page.save(u'BOT - Añadiendo %d vídeos para analizar' % (c))
 
 if __name__ == '__main__':
     main()
