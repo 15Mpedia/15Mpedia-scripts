@@ -133,12 +133,14 @@ def main():
                 break
             c = 0
             while c < len(lines)-1:
+                videotitle = lines[c]
+                videoid = lines[c+1]
                 if not videoid in videosuploaded and \
                    not videoid in videostoupload and \
                    not videoid in videosexcluded and \
                    not videoid in text:
-                    print lines[c+1], lines[c]
-                    videos[lines[c+1]] = lines[c]
+                    print videoid, videotitle
+                    videos[videoid] = videotitle
                 c += 2
     
     #print videos.items()
