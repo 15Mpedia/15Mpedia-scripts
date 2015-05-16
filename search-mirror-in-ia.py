@@ -26,26 +26,21 @@ import pywikibot
 import pywikibot.pagegenerators as pagegenerators
 
 def main():
-    skip = ''
-    site = pywikibot.Site('15mpedia', '15mpedia')
-    cat = pywikibot.Category(site, u'Category:CC BY 3.0')
-    files = cat.articles(namespaces=6)
-    pre = pagegenerators.PreloadingGenerator(files, 100)
+    print 'Leyendo videos que aun no tienen parametro mirror'
+    queryurl = 'http://15mpedia.org/w/index.php?title=Especial%3AAsk&q=[[Categor%C3%ADa%3AArchivos+en+YouTube]][[Categor%C3%ADa%3ACC+BY+3.0]][[Categor%C3%ADa%3AArchivos+sin+mirror]]&po=&eq=yes&p[format]=broadtable&sort_num=&order_num=ASC&p[limit]=5000&p[offset]=&p[link]=all&p[sort]=&p[headers]=show&p[mainlabel]=&p[intro]=&p[outro]=&p[searchlabel]=%26hellip%3B+siguientes+resultados&p[default]=&p[class]=sortable+wikitable+smwtable&eq=yes'
+    f = urllib.urlopen(queryurl)
+    html = unicode(f.read(), 'utf-8')
+    #print html
+    m = re.findall(ur'(?im)title="(Archivo:[^>]+?)">', html)
     
-    skip = 'Archivo:YouTube - BarrioCanino - LVMh92Y4vOk.jpg'
-    for page in pre:
-        if skip:
-            if page.title() == skip:
-                skip = False
-            else:
-                continue
-        
+    for archivo in m:
+        page = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), archivo)
         if not page.exists():
             continue
         if not page.title().startswith('Archivo:YouTube - '):
             continue
         
-        print page.title()
+        print '\n', '#'*40, '\n', page.title(), '\n', '#'*40, '\n'
         videoid = re.findall(ur'(?im)embebido id=([^\n]+)', page.text)[0]
         print videoid
         
@@ -53,7 +48,7 @@ def main():
             print 'Ya tiene mirror puesto'
             continue
         
-        f = urllib.urlopen('https://archive.org/search.php?query=%s%%20subject%%3A"spanishrevolution"' % (videoid))
+        f = urllib.urlopen('https://archive.org/search.php?query=originalurl%%3A%%22https%%3A%%2F%%2Fwww.youtube.com%%2Fwatch%%3Fv%%3D%s%%22' % (videoid))
         raw = f.read()
         if re.search(ur'Your search did not match any items in the Archive', raw):
             print u'No esta en Internet Archive'
