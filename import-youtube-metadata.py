@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2013-2014 emijrp
+# Copyright (C) 2013-2015 emijrp
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -22,7 +22,8 @@ import sys
 import time
 import urllib
 import urllib2
-import wikipedia
+import pywikibot
+import upload
 
 """ Bot que importa metadatos y capturas de vídeos de YouTube """
 
@@ -37,10 +38,18 @@ def unquote(s):
     return s
 
 def main():
-    ids = open('youtube-videoids.txt', 'r').read().splitlines()
+    site = pywikibot.Site('15mpedia', '15mpedia')
+    #ids = open('youtube-videoids.txt', 'r').read().splitlines()
+    videostoupload = []
+    page = pywikibot.Page(site, u'15Mpedia:Importar YouTube/Por importar')
+    videostoupload = re.findall(ur'\|\s*por importar\s*=\s*(.*)', page.text)[0].split(', ')
+    videostoupload = list(set(videostoupload))
+    '' in videostoupload and videostoupload.remove('')
+    print 'Hay %d videos por importar' % (len(videostoupload))
+    print videostoupload
     
-    for id in ids:
-        url = 'http://www.youtube.com/watch?v=%s' % (id)
+    for id in videostoupload:
+        url = 'https://www.youtube.com/watch?v=%s' % (id)
         print '\n#########################################\n', url
         
         queryurl = 'http://wiki.15m.cc/w/index.php?title=Especial:Ask&q=[[embebido%3A%3AYouTube]][[embebido+id%3A%3A'+id+']]&p=format%3Dbroadtable%2Flink%3Dall%2Fheaders%3Dshow%2Fsearchlabel%3D-26hellip%3B-20siguientes-20resultados%2Fclass%3Dsortable-20wikitable-20smwtable&eq=no'
@@ -48,7 +57,7 @@ def main():
         html = unicode(f.read(), 'utf-8')
         m = re.findall(ur'(?im)<td><a href=[^<>]+?>(YouTube - [^<>]+?)</a></td>', html)
         if m:
-            print u'Video %s was imported in the past, skipping http://wiki.15m.cc/wiki/File:%s' % (id, re.sub(' ', '_', m[0]))
+            print u'Video %s was imported in the past, skipping https://15mpedia.org/wiki/Archivo:%s' % (id, re.sub(' ', '_', m[0]))
             continue
         else:
             print u'Downloading metadata and screenshot for video %s' % (id)
@@ -63,22 +72,29 @@ def main():
             desc = unquote(unicode(subprocess.Popen(["python", "youtube-dl", url, "--get-description"], stdout=subprocess.PIPE).communicate()[0], 'utf-8')).strip()
             if desc == u'No description available.':
                 desc = u''
-            date = re.findall(ur'<strong class="watch-time-text">(?:Actualizado|Publicado) el (\d+) de ([^<>\.]+)\.? de (\d\d\d\d)</strong>', raw)[0]
-            date = u'%s-%s-%02d' % (date[2], month2month[date[1]], int(date[0]))
+            #print desc
+            #date = re.findall(ur'<strong class="watch-time-text">(?:Actualizado|Publicado) el (\d+) de ([^<>\.]+)\.? de (\d\d\d\d)</strong>', raw)[0]
+            #date = u'%s-%s-%02d' % (date[2], month2month[date[1]], int(date[0]))
+            date = re.findall(ur'<meta itemprop="datePublished" content="([^>]+?)">', raw)[0]
+            #print date
             embebeduser = ''
             uploaderuser = ''
             uploaderchannel = ''
             uploadernick = ''
-            if re.search(ur'<link itemprop="url" href="http://www.youtube.com/user/([^>]+?)">', raw):
-                uploaderuser = re.findall(ur'<link itemprop="url" href="http://www.youtube.com/user/([^>]+?)">', raw)[0]
+            if re.search(ur'<link itemprop="url" href="https?://www.youtube.com/user/([^>]+?)">', raw):
+                uploaderuser = re.findall(ur'<link itemprop="url" href="https?://www.youtube.com/user/([^>]+?)">', raw)[0]
                 embebeduser = uploaderuser
             else:
-                uploadernick = re.findall(ur'"author": "([^>,"]+?)",', raw)[0]
-                uploaderchannel = re.findall(ur'<link itemprop="url" href="http://www.youtube.com/channel/([^>]+?)">', raw)[0]
+                uploadernick = re.findall(ur'"author":\s*"([^>,"]+?)",', raw)[0]
+                #print uploadernick
+                uploaderchannel = re.findall(ur'<link itemprop="url" href="https?://www.youtube.com/channel/([^>]+?)">', raw)[0]
+                #print uploaderchannel
                 embebeduser = uploaderchannel
+            #print embebeduser
             license = u'{{cc-by-3.0}}'
             if not re.search(ur"(?i)/t/creative_commons", raw):
                 license = u'{{lye}}'
+            #print license
             tags = []
             m = re.findall(ur"(?im)<meta property=\"og:video:tag\" content=\"([^>]*?)\">", raw)
             if m:
@@ -86,7 +102,9 @@ def main():
                     tag = re.sub('&39;', "'", tag)
                     tags.append(tag)
             tags = ', '.join(tags)
+            #print tags
             duration = subprocess.Popen(["python", "youtube-dl", url, "--get-duration"], stdout=subprocess.PIPE).communicate()[0].strip()
+            #print duration
         except:
             print u'Error accediendo a los parámetros del vídeo', id
             g = open('youtube-errors.ids', 'a')
@@ -102,14 +120,20 @@ def main():
             infobox = u"""{{Infobox Archivo\n|embebido=YouTube\n|embebido id=%s\n|embebido usuario=%s\n|embebido título=%s\n|descripción=%s\n|fecha de publicación=%s\n|autor={{youtube channel|%s|%s}}\n|palabras clave=%s\n|duración=%s\n|licencia=%s\n}}""" % (id, embebeduser, title, desc and u'{{descripción de youtube|1=%s}}' % (desc) or u'', date, uploaderchannel, uploadernick, tags, duration, license)
         
         imagename = 'YouTube - %s - %s.jpg' % (embebeduser, id)
-        print 'Importing here http://wiki.15m.cc/wiki/Archivo:%s' % (re.sub(' ', '_', imagename))
-        #print infobox
+        print 'Importing here https://15mpedia.org/wiki/Archivo:%s' % (re.sub(' ', '_', imagename))
+        print infobox
+        
+        bot = upload.UploadRobot(thumburl, description=infobox, useFilename=imagename, keepFilename=True, verifyDescription=False, targetSite=site, uploadByUrl=True)
+        bot.run()
+        
+        """
         infoboxfilename = 'youtube-infobox.txt'
         with open(infoboxfilename, 'w') as d:
             d.write(infobox.encode('utf-8'))
         execmd = u'python upload.py -lang:15mpedia -family:15mpedia -keep -ignoredupes -filename:"%s" -noverify -description-file:%s "%s"' % (imagename, infoboxfilename, thumburl)
         os.system(execmd.encode('utf-8'))
-        os.remove(infoboxfilename)
+        os.remove(infoboxfilename)"""
+        
         time.sleep(5)
         
 if __name__ == '__main__':
