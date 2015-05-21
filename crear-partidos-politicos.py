@@ -69,12 +69,16 @@ def main():
 |ámbito territorial=%s
 }}""" % (nombre, siglas, tipo, fecha, ambito)
         
+        print '\n', '#'*40, '\n', nombre, '\n', '#'*40, '\n'
         print infobox
         
         page = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'%s' % (nombre))
-        page.text = infobox
-        page.save(u'BOT - Creando partido político', botflag=False)
-        
+        if page.exists():
+            print 'La pagina ya existe'
+            continue
+        else:
+            page.text = infobox
+            page.save(u'BOT - Creando partido político', botflag=False)
 
 if __name__ == '__main__':
     main()
