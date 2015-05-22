@@ -59,6 +59,16 @@ def main():
     print 'Hay %d videos por importar' % (len(videostoupload))
     #print videostoupload
     
+    # Retirar los que ya han sido subidos
+    videostoupload2 = videostoupload
+    for videotoupload in videostoupload2:
+        if videotoupload in videosuploaded:
+            videostoupload.remove(videotoupload)
+    videostoupload.sort()
+    print 'Retirando %d videos que ya han sido importados' % (len(videostoupload2) - len(videostoupload))
+    page.text = re.sub(ur'(?im)(\|\s*por importar\s*=\s*[^\n]*)', ur'|por importar=%s' % (', '.join(videostoupload)), page.text)
+    page.save(u'BOT - Ordenando lista y retirando los que ya han sido subidos')
+    
     # Cargar los que han sido excluidos
     videosexcluded = []
     page = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'15Mpedia:Importar YouTube/Excluidos')
