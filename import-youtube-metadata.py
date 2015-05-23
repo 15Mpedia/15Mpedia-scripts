@@ -44,6 +44,7 @@ def main():
     page = pywikibot.Page(site, u'15Mpedia:Importar YouTube/Por importar')
     videostoupload = re.findall(ur'\|\s*por importar\s*=\s*(.*)', page.text)[0].split(', ')
     videostoupload = list(set(videostoupload))
+    videostoupload.sort()
     '' in videostoupload and videostoupload.remove('')
     print 'Hay %d videos por importar' % (len(videostoupload))
     print videostoupload
@@ -121,9 +122,14 @@ def main():
         
         imagename = 'YouTube - %s - %s.jpg' % (embebeduser, id)
         print 'Importing here https://15mpedia.org/wiki/Archivo:%s' % (re.sub(' ', '_', imagename))
-        print infobox
+        #print infobox
         
-        bot = upload.UploadRobot(thumburl, description=infobox, useFilename=imagename, keepFilename=True, verifyDescription=False, targetSite=site, uploadByUrl=True)
+        imagepage = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'File:%s' % imagename)
+        if imagepage.exists():
+            print 'La pagina de imagen File:%s ya existe. No subimos' % (imagename)
+            continue
+        
+        bot = upload.UploadRobot([thumburl], description=infobox, useFilename=imagename, keepFilename=True, verifyDescription=False, targetSite=site, uploadByUrl=True, ignoreWarning=['duplicate'])
         bot.run()
         
         """
