@@ -61,13 +61,16 @@ def main():
     
     # Retirar los que ya han sido subidos
     videostoupload2 = videostoupload
-    for videotoupload in videostoupload2:
-        if videotoupload in videosuploaded:
-            videostoupload.remove(videotoupload)
+    c = 0
+    for x in videostoupload2:
+        if x in videosuploaded:
+            videostoupload.remove(x)
+            c += 1
     videostoupload.sort()
-    print 'Retirando %d videos que ya han sido importados' % (len(videostoupload2) - len(videostoupload))
-    page.text = re.sub(ur'(?im)(\|\s*por importar\s*=\s*[^\n]*)', ur'|por importar=%s' % (', '.join(videostoupload)), page.text)
-    page.save(u'BOT - Ordenando lista y retirando los que ya han sido subidos')
+    print 'Retirando %d videos que ya han sido importados' % (c)
+    if c > 0:
+        page.text = re.sub(ur'(?im)(\|\s*por importar\s*=\s*[^\n]*)', ur'|por importar=%s' % (', '.join(videostoupload)), page.text)
+        page.save(u'BOT - Ordenando lista y retirando los que ya han sido subidos')
     
     # Cargar los que han sido excluidos
     videosexcluded = []
