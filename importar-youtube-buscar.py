@@ -31,7 +31,7 @@ def main():
     startid = '-'
     while startid:
         print 'Leyendo videos indexados desde %s' % (startid)
-        queryurl = 'http://15mpedia.org/w/index.php?title=Especial%%3AAsk&q=[[Page+has+default+form%%3A%%3AArchivo]][[Embebido%%3A%%3AYouTube]][[Embebido+id%%3A%%3A%%3E%s]]&po=%%3FEmbebido+id%%0D%%0A&eq=yes&p[format]=broadtable&sort_num=&order_num=ASC&p[limit]=5000&p[offset]=&p[link]=all&p[sort]=embebido+id&p[headers]=show&p[mainlabel]=-&p[intro]=&p[outro]=&p[searchlabel]=%%26hellip%%3B+siguientes+resultados&p[default]=&p[class]=sortable+wikitable+smwtable&eq=yes' % (startid)
+        queryurl = 'http://15mpedia.org/w/index.php?title=Especial%%3AAsk&q=[[Page+has+default+form%%3A%%3AArchivo]][[Embebido%%3A%%3AYouTube]][[Embebido+id%%3A%%3A%%3E%s]]&po=%%3FEmbebido+id%%0D%%0A&eq=yes&p[format]=broadtable&sort_num=&order_num=ASC&p[limit]=1000&p[offset]=&p[link]=all&p[sort]=embebido+id&p[headers]=show&p[mainlabel]=-&p[intro]=&p[outro]=&p[searchlabel]=%%26hellip%%3B+siguientes+resultados&p[default]=&p[class]=sortable+wikitable+smwtable&eq=yes' % (startid)
         f = urllib.urlopen(queryurl)
         html = unicode(f.read(), 'utf-8')
         #print html
@@ -41,20 +41,21 @@ def main():
             videosuploaded += m
         elif len(m) == 1:
             startid = ''
-            if m[0] in videosuploaded:
-                videosuploaded.append(m[0])
+            videosuploaded.append(m[0])
         else:
             print 'La regexp fallo'
             sys.exit()
     
     videosuploaded = list(set(videosuploaded))
+    videosuploaded.sort()
     print 'En el wiki hay %d videos indexados' % (len(videosuploaded))
     
     # Cargar los que han sido seleccionados para subir
     videostoupload = []
     page = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'15Mpedia:Importar YouTube/Por importar')
-    videostoupload = re.findall(ur'\|por importar=(.*)', page.text)[0].split(', ')
+    videostoupload = re.findall(ur'(?im)\|por importar=([^\n]+)\n', page.text)[0].split(', ')
     videostoupload = list(set(videostoupload))
+    videostoupload.sort()
     '' in videostoupload and videostoupload.remove('')
     print 'Hay %d videos por importar' % (len(videostoupload))
     #print videostoupload
@@ -69,7 +70,7 @@ def main():
     videostoupload.sort()
     print 'Retirando %d videos que ya han sido importados' % (c)
     if c > 0:
-        page.text = re.sub(ur'(?im)(\|\s*por importar\s*=\s*[^\n]*)', ur'|por importar=%s' % (', '.join(videostoupload)), page.text)
+        page.text = re.sub(ur'(?im)(\|\s*por importar\s*=\s*[^\n]+)\n', ur'|por importar=%s\n' % (', '.join(videostoupload)), page.text)
         page.save(u'BOT - Ordenando lista y retirando los que ya han sido subidos')
     
     # Cargar los que han sido excluidos
