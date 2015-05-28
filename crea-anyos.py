@@ -18,13 +18,43 @@
 import pywikibot
 
 def main():
-    for year in range(1870, 1996):
+    for year in range(1780, 1996):
+        #[[1950]]
         infobox = u"""{{Infobox Año
 |año=%s
 }}""" % (year)
         page = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'%s' % (year))
-        page.text = infobox
-        page.save(u'BOT - Creando año', botflag=True)
+        if not page.exists():
+            page.text = infobox
+            page.save(u'BOT - Creando año', botflag=True)
+        
+        #[[Categoría:1950]]
+        infobox = u'{{navegación por año categoría|año=%s}}' % (year)
+        page = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'Categoría:%s' % (year))
+        if not page.exists():
+            page.text = infobox
+            page.save(u'BOT - Creando categoría de año', botflag=True)
+        
+        #[[Categoría:Personas nacidas en 1950]]
+        infobox = u"""{{navegación por año y tema categoría|tema=Personas nacidas|año=%s}}
+{{main|%s#Nacimientos}}
+
+[[Categoría:Personas por año de nacimiento| %s]]""" % (year, year, year)
+        page = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'Categoría:Personas nacidas en %s' % (year))
+        if not page.exists():
+            page.text = infobox
+            page.save(u'BOT - Creando categoría de nacimientos por año', botflag=True)
+        
+        #[[Categoría:Personas fallecidas en 1950]]
+        infobox = u"""{{navegación por año y tema categoría|tema=Personas fallecidas|año=%s}}
+{{main|%s#Fallecimientos}}
+
+[[Categoría:Personas por año de fallecimiento| %s]]""" % (year, year, year)
+        page = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'Categoría:Personas fallecidas en %s' % (year))
+        if not page.exists():
+            page.text = infobox
+            page.save(u'BOT - Creando categoría de fallecimientos por año', botflag=True)
+        
 
 if __name__ == '__main__':
     main()
