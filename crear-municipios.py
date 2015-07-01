@@ -115,6 +115,8 @@ def main():
             print u'Municipio no encontrado en eswiki'
             continue
         
+        eswiki = ''
+        
         infobox = u"""{{Infobox Municipio
 |nombre=%s
 |país=%s
@@ -171,14 +173,16 @@ def main():
             
             if add:
                 newtext = newtext.replace(u'{{Infobox Municipio', u'{{Infobox Municipio\n%s' % ('\n'.join(add)))
-                pywikibot.showDiff(page.text, newtext)
-                page.save(u'BOT - Añadiendo datos de Wikipedia', botflag=False)
+                if page.text != newtext:
+                    pywikibot.showDiff(page.text, newtext)
+                    page.text = newtext
+                    page.save(u'BOT - Añadiendo datos de Wikipedia', botflag=True)
             else:
                 print u'Nada que añadir'
         else:
             print infobox
             page.text = infobox
-            page.save(u'BOT - Creando municipio usando Wikipedia', botflag=False)
+            page.save(u'BOT - Creando municipio usando Wikipedia', botflag=True)
         
         c += 1
 
