@@ -27,8 +27,28 @@ def logerror(errorline):
     error.close()
    
 def main():
-    codsccaa = {'01': u'Andalucía', }
-    codsprov = {'04': u'Provincia de Almería', }
+    codsccaa = {
+        '01': u'Andalucía', 
+        '02': u'Aragón', 
+        }
+    codsprov = {
+        #Andalucía
+        '04': u'Provincia de Almería', 
+        '11': u'Provincia de Cádiz', 
+        '14': u'Provincia de Córdoba', 
+        '18': u'Provincia de Granada', 
+        '21': u'Provincia de Huelva', 
+        '23': u'Provincia de Jaén', 
+        '29': u'Provincia de Málaga', 
+        '41': u'Provincia de Sevilla', 
+        #Aragón
+        '22': u'Provincia de Huesca', 
+        }
+    
+    skip = ''
+    if len(sys.argv) > 1:
+        skip = sys.argv[1]
+    
     csvfile = open('deuda-municipios.csv', 'r')
     deuda = csv.reader(csvfile, delimiter=',', quotechar='"')
     
@@ -38,6 +58,10 @@ def main():
         if c == 0:
             c += 1
             continue
+        
+        if skip:
+            if row[3] != skip:
+                continue
         
         ejercicio = int(row[0])
         codccaa = row[1]
@@ -93,13 +117,19 @@ def main():
         if eswiki.exists() and not eswiki.isRedirectPage() and not eswiki.isDisambig():
             if re.search(ur'(?im)\{\{\s*Ficha de localidad de España', eswiki.text):
                 escudo = u''
-                if re.search(ur'(?im)escudo\s*=', eswiki.text):
-                    escudo = re.findall(ur'escudo\s*=\s*([^\n\r\|\[\]\{\}]+)', eswiki.text)[0].strip()
+                if re.search(ur'(?im)escudo\s*=\s*.', eswiki.text):
+                    try:
+                        escudo = re.findall(ur'escudo\s*=\s*([^\n\r\|\[\]\{\}]+)', eswiki.text)[0].strip()
+                    except:
+                        pass
                     if escudo == 'no':
                         escudo = u''
                 bandera = u''
-                if re.search(ur'(?im)bandera\s*=', eswiki.text):
-                    bandera = re.findall(ur'bandera\s*=\s*([^\n\r\|\[\]\{\}]+)', eswiki.text)[0].strip()
+                if re.search(ur'(?im)bandera\s*=\s*.', eswiki.text):
+                    try:
+                        bandera = re.findall(ur'bandera\s*=\s*([^\n\r\|\[\]\{\}]+)', eswiki.text)[0].strip()
+                    except:
+                        pass
                     if bandera == 'no':
                         bandera = u''
                 comarca = u''
@@ -130,8 +160,7 @@ def main():
 |bandera=%s
 |deuda viva={{deuda viva|año=2010|euros=%s}}
 |sitio web=%s
-|enlaces externos={{enlaces externos}}
-* {{wikipedia|es|%s}}
+|enlaces externos=* {{wikipedia|es|%s}}
 }}""" % (nombre, pais, codsccaa[codccaa], codccaa, codsprov[codprov], codprov, comarca, codmuni, escudo, bandera, deuda2010, web, eswikititle)
         
         page = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'%s' % (nombre))
