@@ -34,6 +34,10 @@ def main():
         '01': u'Andalucía', 
         '02': u'Aragón', 
         '03': u'Principado de Asturias', 
+        '04': u'Islas Baleares', 
+        '05': u'Islas Canarias', 
+        '06': u'Cantabria', 
+        '07': u'Castilla y León', 
         }
     codsprov = {
         #Andalucía
@@ -51,6 +55,24 @@ def main():
         '50': u'Provincia de Zaragoza', 
         #Asturias
         '33': u'Provincia de Asturias', 
+        #Baleares
+        '07': u'Provincia de Baleares', 
+        #Canarias
+        '35': u'Provincia de Las Palmas', 
+        '38': u'Provincia de Santa Cruz de Tenerife', 
+        #Cantabria
+        '39': u'Provincia de Cantabria', 
+        #Castilla y León
+        '05': u'Provincia de Ávila', 
+        '09': u'Provincia de Burgos', 
+        '24': u'Provincia de León', 
+        '34': u'Provincia de Palencia', 
+        '37': u'Provincia de Salamanca', 
+        '40': u'Provincia de Segovia', 
+        '42': u'Provincia de Soria', 
+        '47': u'Provincia de Valladolid', 
+        '49': u'Provincia de Zamora', 
+        
         }
     
     skip = ''
@@ -68,7 +90,7 @@ def main():
             continue
         
         if skip:
-            if row[3] != skip:
+            if row[1] != skip:
                 continue
         
         ejercicio = int(row[0])
@@ -210,7 +232,7 @@ def main():
             if not re.search(ur'(?im)\|sitio web=', newtext):
                 add.append(u'|sitio web=%s' % (web))
             if not re.search(ur'(?im)\|enlaces externos=', newtext):
-                add.append(u'|enlaces externos={{enlaces externos}}\n* {{wikipedia|es|%s}}' % (eswikititle))
+                add.append(u'|enlaces externos=* {{wikipedia|es|%s}}' % (eswikititle))
             
             if add:
                 newtext = newtext.replace(u'{{Infobox Municipio', u'{{Infobox Municipio\n%s' % ('\n'.join(add)))
