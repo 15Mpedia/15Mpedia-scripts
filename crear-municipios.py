@@ -25,11 +25,15 @@ def logerror(errorline):
     error = open('crear-municipios.errores', 'a')
     error.write(errorline.encode('utf-8'))
     error.close()
-   
+
+def removeemptyparams(text):
+    return re.sub(ur'(?im)^\|([^=]+)=\n\|', u'|', text)
+
 def main():
     codsccaa = {
         '01': u'Andalucía', 
         '02': u'Aragón', 
+        '03': u'Principado de Asturias', 
         }
     codsprov = {
         #Andalucía
@@ -43,6 +47,10 @@ def main():
         '41': u'Provincia de Sevilla', 
         #Aragón
         '22': u'Provincia de Huesca', 
+        '44': u'Provincia de Teruel', 
+        '50': u'Provincia de Zaragoza', 
+        #Asturias
+        '33': u'Provincia de Asturias', 
         }
     
     skip = ''
@@ -84,7 +92,7 @@ def main():
         
         if not eswiki.exists() or \
             (eswiki.exists() and eswiki.isDisambig()) or \
-            (eswiki.exists() and not re.search(ur'(?im)\{\{\s*Ficha de localidad de España', eswiki.text)):
+            (eswiki.exists() and not re.search(ur'(?im)\{\{\s*(Ficha de localidad de España|Ficha de entidad subnacional)', eswiki.text)):
             print u'Municipio %s no encontrado en eswiki' % eswikititle
             eswikititle = u'%s (España)' % (eswikititle)
             print u'Probando con %s' % (eswikititle)
@@ -96,7 +104,7 @@ def main():
             
             if not eswiki.exists() or \
                 (eswiki.exists() and eswiki.isDisambig()) or \
-                (eswiki.exists() and not re.search(ur'(?im)\{\{\s*Ficha de localidad de España', eswiki.text)):
+                (eswiki.exists() and not re.search(ur'(?im)\{\{\s*(Ficha de localidad de España|Ficha de entidad subnacional)', eswiki.text)):
                 print u'Municipio %s no encontrado en eswiki' % eswikititle
                 
                 eswikititle = u'%s (%s)' % (eswikititle.split(' (')[0], codsprov[codprov].split('Provincia de ')[1])
@@ -109,13 +117,13 @@ def main():
                 
                 if not eswiki.exists() or \
                     (eswiki.exists() and eswiki.isDisambig()) or \
-                    (eswiki.exists() and not re.search(ur'(?im)\{\{\s*Ficha de localidad de España', eswiki.text)):
+                    (eswiki.exists() and not re.search(ur'(?im)\{\{\s*(Ficha de localidad de España|Ficha de entidad subnacional)', eswiki.text)):
                     print u'Municipio %s no encontrado en eswiki. Escribiendo al log de errores' % eswikititle
-                    logerror(u'%s no encontrado en eswiki\n' % (municipio))
+                    logerror(u'%s no encontrado en eswiki\n' % (eswikititle))
                     continue
 
         if eswiki.exists() and not eswiki.isRedirectPage() and not eswiki.isDisambig():
-            if re.search(ur'(?im)\{\{\s*Ficha de localidad de España', eswiki.text):
+            if re.search(ur'(?im)\{\{\s*(Ficha de localidad de España|Ficha de entidad subnacional)', eswiki.text):
                 escudo = u''
                 if re.search(ur'(?im)escudo\s*=\s*.', eswiki.text):
                     try:
@@ -136,8 +144,10 @@ def main():
                 if re.search(ur'(?im)comarca\s*=\s*\[\[', eswiki.text):
                     comarca = re.findall(ur'(?im)comarca\s*=\s*\[\[([^\n\r\|\[\]]+?)(?:\|[^\n\r\[\]]+?)?\]\]', eswiki.text)[0].strip()
                 web = u''
-                if re.search(ur'(?im)web\s*=\s*\[?http', eswiki.text):
-                    web = re.findall(ur'web\s*=\s*\[?(https?://[^\s]+)', eswiki.text)[0].strip()  
+                if re.search(ur'(?im)(?:página web|web)\s*=\s*\[?(?:https?://)?w', eswiki.text):
+                    web = re.findall(ur'(?:página web|web)\s*=\s*\[?((?:https?://)?w[^\s]+)', eswiki.text)[0].strip()
+                    if web.startswith('www'):
+                        web = 'http://' + web
             else:
                 print u'Municipio no encontrado en eswiki'
                 continue
@@ -162,6 +172,7 @@ def main():
 |sitio web=%s
 |enlaces externos=* {{wikipedia|es|%s}}
 }}""" % (nombre, pais, codsccaa[codccaa], codccaa, codsprov[codprov], codprov, comarca, codmuni, escudo, bandera, deuda2010, web, eswikititle)
+        infobox = removeemptyparams(infobox)
         
         page = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'%s' % (nombre))
         if page.exists():
@@ -172,6 +183,7 @@ def main():
             
             print 'La pagina ya existe, rellenando lo que falta'
             newtext = page.text
+            newtext = removeemptyparams(newtext)
             add = []
             if not re.search(ur'(?im)\|nombre=', newtext):
                 add.append(u'|nombre=%s' % (nombre))
@@ -202,6 +214,7 @@ def main():
             
             if add:
                 newtext = newtext.replace(u'{{Infobox Municipio', u'{{Infobox Municipio\n%s' % ('\n'.join(add)))
+                newtext = removeemptyparams(newtext)
                 if page.text != newtext:
                     pywikibot.showDiff(page.text, newtext)
                     page.text = newtext
