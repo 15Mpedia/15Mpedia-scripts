@@ -149,7 +149,7 @@ def main():
                 escudo = u''
                 if re.search(ur'(?im)escudo\s*=\s*.', eswiki.text):
                     try:
-                        escudo = re.findall(ur'escudo\s*=\s*([^\n\r\|\[\]\{\}]+)', eswiki.text)[0].strip()
+                        escudo = re.findall(ur'(?im)escudo\s*=\s*([^\n\r\|\[\]\{\}]+)', eswiki.text)[0].strip()
                     except:
                         pass
                     if escudo == 'no':
@@ -157,7 +157,7 @@ def main():
                 bandera = u''
                 if re.search(ur'(?im)bandera\s*=\s*.', eswiki.text):
                     try:
-                        bandera = re.findall(ur'bandera\s*=\s*([^\n\r\|\[\]\{\}]+)', eswiki.text)[0].strip()
+                        bandera = re.findall(ur'(?im)bandera\s*=\s*([^\n\r\|\[\]\{\}]+)', eswiki.text)[0].strip()
                     except:
                         pass
                     if bandera == 'no':
@@ -167,7 +167,7 @@ def main():
                     comarca = re.findall(ur'(?im)comarca\s*=\s*\[\[([^\n\r\|\[\]]+?)(?:\|[^\n\r\[\]]+?)?\]\]', eswiki.text)[0].strip()
                 web = u''
                 if re.search(ur'(?im)(?:página web|web)\s*=\s*\[?(?:https?://)?w', eswiki.text):
-                    web = re.findall(ur'(?:página web|web)\s*=\s*\[?((?:https?://)?w[^\s]+)', eswiki.text)[0].strip()
+                    web = re.findall(ur'(?im)(?:página web|web)\s*=\s*\[?((?:https?://)?w[^\s]+)', eswiki.text)[0].strip()
                     if web.startswith('www'):
                         web = 'http://' + web
             else:
@@ -207,31 +207,31 @@ def main():
             newtext = page.text
             newtext = removeemptyparams(newtext)
             add = []
-            if not re.search(ur'(?im)\|nombre=', newtext):
+            if not re.search(ur'(?im)\|nombre=', newtext) and nombre:
                 add.append(u'|nombre=%s' % (nombre))
-            if not re.search(ur'(?im)\|país=', newtext):
+            if not re.search(ur'(?im)\|país=', newtext) and pais:
                 add.append(u'|país=%s' % (pais))
-            if not re.search(ur'(?im)\|comunidad autónoma=', newtext):
+            if not re.search(ur'(?im)\|comunidad autónoma=', newtext) and codsccaa[codccaa]:
                 add.append(u'|comunidad autónoma=%s' % (codsccaa[codccaa]))
-            if not re.search(ur'(?im)\|comunidad autónoma código=', newtext):
+            if not re.search(ur'(?im)\|comunidad autónoma código=', newtext) and codccaa:
                 add.append(u'|comunidad autónoma código=%s' % (codccaa))
-            if not re.search(ur'(?im)\|provincia=', newtext):
+            if not re.search(ur'(?im)\|provincia=', newtext) and codsprov[codprov]:
                 add.append(u'|provincia=%s' % (codsprov[codprov]))
-            if not re.search(ur'(?im)\|provincia código=', newtext):
+            if not re.search(ur'(?im)\|provincia código=', newtext) and codprov:
                 add.append(u'|provincia código=%s' % (codprov))
-            if not re.search(ur'(?im)\|comarca=', newtext):
+            if not re.search(ur'(?im)\|comarca=', newtext) and comarca:
                 add.append(u'|comarca=%s' % (comarca))
-            if not re.search(ur'(?im)\|municipio código=', newtext):
+            if not re.search(ur'(?im)\|municipio código=', newtext) and codmuni:
                 add.append(u'|municipio código=%s' % (codmuni))
-            if not re.search(ur'(?im)\|escudo=', newtext):
+            if not re.search(ur'(?im)\|escudo=', newtext) and escudo:
                 add.append(u'|escudo=%s' % (escudo))
-            if not re.search(ur'(?im)\|bandera=', newtext):
+            if not re.search(ur'(?im)\|bandera=', newtext) and bandera:
                 add.append(u'|bandera=%s' % (bandera))
-            if not re.search(ur'(?im)\|deuda viva=', newtext):
+            if not re.search(ur'(?im)\|deuda viva=', newtext) and deuda2010:
                 add.append(u'|deuda viva={{deuda viva|año=2010|euros=%s}}' % (deuda2010))
-            if not re.search(ur'(?im)\|sitio web=', newtext):
+            if not re.search(ur'(?im)\|sitio web=', newtext) and web:
                 add.append(u'|sitio web=%s' % (web))
-            if not re.search(ur'(?im)\|enlaces externos=', newtext):
+            if not re.search(ur'(?im)\|enlaces externos=', newtext) and eswikititle:
                 add.append(u'|enlaces externos=* {{wikipedia|es|%s}}' % (eswikititle))
             
             if add:
