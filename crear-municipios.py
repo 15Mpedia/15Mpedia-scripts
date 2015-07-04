@@ -38,6 +38,13 @@ def main():
         '05': u'Islas Canarias', 
         '06': u'Cantabria', 
         '07': u'Castilla y León', 
+        '08': u'Castilla-La Mancha', 
+        '09': u'Cataluña', 
+        '10': u'Extremadura', 
+        '11': u'Galicia', 
+        '12': u'Comunidad de Madrid', 
+        '13': u'Región de Murcia', 
+        '14': u'Comunidad Foral de Navarra', 
         }
     codsprov = {
         #Andalucía
@@ -72,7 +79,31 @@ def main():
         '42': u'Provincia de Soria', 
         '47': u'Provincia de Valladolid', 
         '49': u'Provincia de Zamora', 
-        
+        #Castilla-La Mancha
+        '02': u'Provincia de Albacete', 
+        '13': u'Provincia de Ciudad Real', 
+        '16': u'Provincia de Cuenca', 
+        '19': u'Provincia de Guadalajara', 
+        '45': u'Provincia de Toledo', 
+        #Cataluña
+        '08': u'Provincia de Barcelona', 
+        '17': u'Provincia de Girona', 
+        '25': u'Provincia de Lleida', 
+        '43': u'Provincia de Tarragona', 
+        #Extremadura
+        '06': u'Provincia de Badajoz', 
+        '10': u'Provincia de Cáceres', 
+        #Galicia
+        '15': u'Provincia de A Coruña', 
+        '27': u'Provincia de Lugo', 
+        '32': u'Provincia de Ourense', 
+        '36': u'Provincia de Pontevedra', 
+        #Comunidad de Madrid
+        '28': u'Provincia de Madrid', 
+        #Región de Murcia
+        '30': u'Provincia de Murcia', 
+        #Comunidad Foral de Navarra
+        '31': u'Provincia de Navarra', 
         }
     
     skip = ''
