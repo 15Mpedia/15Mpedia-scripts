@@ -15,14 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import catlib
 import re
-import pagegenerators
 import urllib
-import wikipedia
+import pywikibot
+import pywikibot.pagegenerators
 
 def main():
-    site = wikipedia.Site('15mpedia', '15mpedia')
+    site = pywikibot.Site('15mpedia', '15mpedia')
     catsinfobox = [
         [u"Category:Acampadas", u"Acampada"],
         [u"Category:Asambleas", u"Asamblea"],
@@ -38,16 +37,16 @@ def main():
         [u"Category:Realojos", u"Realojo"],
     ]
     for catname, infoboxname in catsinfobox:
-        cat = catlib.Category(site, catname)
-        gen = pagegenerators.CategorizedPageGenerator(cat)
-        pre = pagegenerators.PreloadingGenerator(gen, pageNumber=250)
+        cat = pywikibot.Category(site, catname)
+        gen = pywikibot.pagegenerators.CategorizedPageGenerator(cat)
+        pre = pywikibot.pagegenerators.PreloadingGenerator(gen, pageNumber=250)
         
         for page in pre:
             if page.isRedirectPage():
                 continue
             
             wtitle = page.title()
-            wtext = page.get()
+            wtext = page.text
             
             print '\n===', wtitle, '==='
             if not re.search(ur"(?im)\{\{\s*Infobox %s" % (infoboxname), wtext):
@@ -81,8 +80,9 @@ def main():
                     if rss:
                         newtext = re.sub(ur'(?im)(\|\s*sitio web\s*=)', ur'|rss=%s\n\1' % (rss), newtext)
                         if wtext != newtext:
-                            wikipedia.showDiff(wtext, newtext)
-                            page.put(newtext, u'BOT - Añadiendo RSS %s usando el sitio web %s' % (rss, sitioweb))
+                            pywikibot.showDiff(wtext, newtext)
+                            page.text = newtext
+                            page.save(u'BOT - Añadiendo RSS %s usando el sitio web %s' % (rss, sitioweb))
                 else:
                     print u"No tiene sitio web"
             else:
