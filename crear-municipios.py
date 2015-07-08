@@ -21,6 +21,10 @@ import re
 import sys
 import pywikibot
 
+# cosas a meter en las proximas pasadas
+# deuda viva de todos los años (hay xls)
+# población (en wikidata o parseandolo en wikipedia o del INE)
+
 def logerror(errorline):
     error = open('crear-municipios.errores', 'a')
     error.write(errorline.encode('utf-8'))
@@ -45,6 +49,9 @@ def main():
         '12': u'Comunidad de Madrid', 
         '13': u'Región de Murcia', 
         '14': u'Comunidad Foral de Navarra', 
+        '15': u'Euskadi', 
+        '16': u'La Rioja', 
+        '17': u'Comunidad Valenciana', 
         }
     codsprov = {
         #Andalucía
@@ -104,6 +111,16 @@ def main():
         '30': u'Provincia de Murcia', 
         #Comunidad Foral de Navarra
         '31': u'Provincia de Navarra', 
+        #Euskadi
+        '01': u'Provincia de Araba', 
+        '20': u'Provincia de Gipuzkoa', 
+        '48': u'Provincia de Bizkaia', 
+        #La Rioja
+        '26': u'Provincia de La Rioja', 
+        #Comunidad Valenciana
+        '03': u'Provincia de Alicante', 
+        '12': u'Provincia de Castellón', 
+        '46': u'Provincia de Valencia', 
         }
     
     skip = ''
@@ -198,7 +215,7 @@ def main():
                     comarca = re.findall(ur'(?im)comarca\s*=\s*\[\[([^\n\r\|\[\]]+?)(?:\|[^\n\r\[\]]+?)?\]\]', eswiki.text)[0].strip()
                 web = u''
                 if re.search(ur'(?im)(?:página web|web)\s*=\s*\[?(?:https?://)?w', eswiki.text):
-                    web = re.findall(ur'(?im)(?:página web|web)\s*=\s*\[?((?:https?://)?w[^\s]+)', eswiki.text)[0].strip()
+                    web = re.findall(ur'(?im)(?:página web|web)\s*=\s*\[?((?:https?://)?w[^\s\]]+)', eswiki.text)[0].strip()
                     if web.startswith('www'):
                         web = 'http://' + web
             else:
@@ -208,7 +225,13 @@ def main():
             print u'Municipio no encontrado en eswiki'
             continue
         
-        eswiki = ''
+        wikidata = u''
+        try:
+            wikidata = pywikibot.ItemPage.fromPage(eswiki).title()
+        except:
+            pass
+        
+        eswiki = '' #reset 
         
         infobox = u"""{{Infobox Municipio
 |nombre=%s
@@ -262,12 +285,16 @@ def main():
                 add.append(u'|deuda viva={{deuda viva|año=2010|euros=%s}}' % (deuda2010))
             if not re.search(ur'(?im)\|sitio web=', newtext) and web:
                 add.append(u'|sitio web=%s' % (web))
-            if not re.search(ur'(?im)\|enlaces externos=', newtext) and eswikititle:
-                add.append(u'|enlaces externos=* {{wikipedia|es|%s}}' % (eswikititle))
+            if not re.search(ur'(?im)\|enlaces externos=', newtext):
+                if eswikititle:
+                    add.append(u'|enlaces externos=* {{wikipedia|es|%s|wikidata=%s}}' % (eswikititle, wikidata))
+            elif re.search(ur'(?im)\{\{wikipedia\|es\|%s\}\}' % (eswikititle), newtext):
+                newtext = re.sub(ur'(?im)\{\{wikipedia\|es\|%s\}\}' % (eswikititle), ur'{{wikipedia|es|%s|wikidata=%s}}' % (eswikititle, wikidata), newtext)
             
-            if add:
-                newtext = newtext.replace(u'{{Infobox Municipio', u'{{Infobox Municipio\n%s' % ('\n'.join(add)))
-                newtext = removeemptyparams(newtext)
+            if add or newtext != page.text:
+                if add:
+                    newtext = newtext.replace(u'{{Infobox Municipio', u'{{Infobox Municipio\n%s' % ('\n'.join(add)))
+                    newtext = removeemptyparams(newtext)
                 if page.text != newtext:
                     pywikibot.showDiff(page.text, newtext)
                     page.text = newtext
