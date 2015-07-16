@@ -72,6 +72,7 @@ def main():
 |descripción=
 |coordenadas=%s
 |fecha=%s
+|país=España
 |comunidad autónoma=%s
 |provincia=Provincia de %s
 |municipio=%s
