@@ -118,6 +118,22 @@ def main():
                         if re.search(ur"(?im)^Lista de (bancos de tiempo|centros sociales|CSOA|CSO|comedores sociales) (de|en) %s$" % (xccaa), wtitle):
                             redirects.add(re.sub(ur"(?im)^Lista de (bancos de tiempo|centros sociales|CSOA|CSO|comedores sociales) (de|en) %s$" % (xccaa), ur"Lista de \1 %s" % (xmas), wtitle))
                     
+                    #fosas comunes
+                    if wtitle.startswith(u'Lista de fosas en '):
+                        redirects.add(re.sub(ur"Lista de fosas en ", ur"Lista de fosas comunes en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de fosas en ", ur"Lista de fosas de ", wtitle))
+                        redirects.add(re.sub(ur"Lista de fosas en ", ur"Lista de fosas comunes de ", wtitle))
+                    
+                    #violencia de género
+                    if wtitle.startswith(u'Violencia de género en '):
+                        redirects.add(re.sub(ur"Violencia de género en ", ur"Violencia intrafamiliar en ", wtitle))
+                        redirects.add(re.sub(ur"Violencia de género en ", ur"Violencia contra la mujer en ", wtitle))
+                        redirects.add(re.sub(ur"Violencia de género en ", ur"Violencia contra las mujeres en ", wtitle))
+                        redirects.add(re.sub(ur"Violencia de género en ", ur"Violencia machista en ", wtitle))
+                        redirects.add(re.sub(ur"Violencia de género en ", ur"Violencia de sexo en ", wtitle))
+                        redirects.add(re.sub(ur"Violencia de género en ", ur"Violencia familiar en ", wtitle))
+                        redirects.add(re.sub(ur"Violencia de género en ", ur"Violencia doméstica en ", wtitle))
+                    
             print redirects
             for redirect in redirects:
                 redirect = redirect.strip()
