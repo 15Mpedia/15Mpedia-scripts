@@ -42,7 +42,7 @@ def main():
     site = pywikibot.Site('15mpedia', '15mpedia')
     
     users = ['spanishrevolutionsol']
-    skip = 'http://livestre.am/4IVFh'
+    skip = 'http://livestre.am/4sOQ4'
     
     for user in users:
         folderurl = 'http://original.livestream.com/%s/folder' % (user)
@@ -64,7 +64,12 @@ def main():
             print streamingurl, duration
             #print thumburl
             req2 = urllib2.Request(streamingurl, headers={'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20100101 Firefox/10.0 (Chrome)'})
-            raw2 = unicode(urllib2.urlopen(req2).read(), 'utf-8')
+            try:
+                raw2 = unicode(urllib2.urlopen(req2).read(), 'utf-8')
+            except:
+                time.sleep(10)
+                raw2 = unicode(urllib2.urlopen(req2).read(), 'utf-8')
+            
             clipid = re.findall(ur'(?im)<meta property="og:url" content="http://original.livestream.com/[^/]+/video/([^"]+?)"/>', raw2)[0]
             #print clipid
             
