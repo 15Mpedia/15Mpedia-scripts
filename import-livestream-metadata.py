@@ -110,7 +110,7 @@ def main():
                 print 'La pagina de imagen File:%s ya existe. No subimos' % (imagename)
                 continue
             
-            bot = upload.UploadRobot([thumburl], description=infobox, useFilename=imagename, keepFilename=True, verifyDescription=False, targetSite=site, uploadByUrl=True, ignoreWarning=['duplicate'])
+            bot = upload.UploadRobot([thumburl], description=infobox, useFilename=imagename, keepFilename=True, verifyDescription=False, targetSite=site, uploadByUrl=True, ignoreWarning=True) # ignoreWarning=['duplicate']
             bot.run()
             
             time.sleep(1)
