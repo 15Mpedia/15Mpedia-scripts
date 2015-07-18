@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import datetime
 import os
 import re
 import subprocess
@@ -41,6 +42,7 @@ def main():
     site = pywikibot.Site('15mpedia', '15mpedia')
     
     users = ['spanishrevolutionsol']
+    skip = 'http://livestre.am/4IVFh'
     
     for user in users:
         folderurl = 'http://original.livestream.com/%s/folder' % (user)
@@ -50,6 +52,13 @@ def main():
         streamings = re.findall(ur'(?im)<li class="video">\s*<a href="(http://livestre.am/[^"]+?)"\s*rel="nofollow"\s*title="([^>]+?)"\s*class="thumbnail">\s*<span class="mask"></span>\s*<span\s*class="time">([^<]+?)</span>\s*<img\s*class="img"\s*style="[^"]+?"\s*src="/images/blank.png"\s*original="([^"]+?)"\s*onerror="handlingBrokenThumbnail\(this\)"\s*/>\s*<span\s*class="isMobileCompatible"\s*style="display:none;">true</span>\s*</a>\s*<h3><a href="http://livestre.am/[^"]+"\s*rel="nofollow"\s*title="[^>]+?">[^<]+?</a></h3>\s*<ul class="meta">\s*</ul>\s*<div class="tooltip-content" style="display:none">\s*<div class="header">\s*<h4 class="title">[^<]+?</h4>\s*<p class="date">([^<]+?)</p>\s*</div>', raw)
         for streaming in streamings:
             streamingurl, title, duration, thumburl, recorddate = streaming
+            
+            if skip:
+                if skip == streamingurl:
+                    skip = ''
+                else:
+                    continue
+            
             title2 = re.sub(ur'[\[\]]', ur'', title)
             print '#'*50, '\n', title, '\n', '#'*50, '\n'
             print streamingurl, duration
@@ -58,8 +67,16 @@ def main():
             raw2 = unicode(urllib2.urlopen(req2).read(), 'utf-8')
             clipid = re.findall(ur'(?im)<meta property="og:url" content="http://original.livestream.com/[^/]+/video/([^"]+?)"/>', raw2)[0]
             #print clipid
-            date = thumburl.split('/')
-            date = u'%s-%s-%s' % (date[-4], date[-3], date[-2])
+            
+            date = u''
+            if thumburl == '/images/blank.png':
+                thumburl = 'https://upload.wikimedia.org/wikipedia/commons/e/e7/Empty_place.jpg'
+                days = int(re.findall(ur'(?im)class="time">Created (\d+) days ago', raw2)[0])
+                d = datetime.datetime.now() - datetime.timedelta(days=days)
+                date = d.strftime('%Y-%m-%d')
+            else:
+                date = thumburl.split('/')
+                date = u'%s-%s-%s' % (date[-4], date[-3], date[-2])
             #print date
             desc = re.findall(ur'(?im)<meta name="description" content="([^>]+?)" />', raw2)[0]
             if desc.startswith(title) and desc.endswith('Be There.'):
