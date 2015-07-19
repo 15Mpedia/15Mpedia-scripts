@@ -22,6 +22,11 @@ import sys
 import pywikibot
 
 def main():
+    if len(sys.argv) != 2:
+        print 'script.py [year]'
+        sys.exit()
+    year = sys.argv[1]
+    print 'Leyendo partidos de', year
     f = open('parties.json', 'r')
     partidos = json.loads(f.read())
     f.close()
@@ -58,12 +63,13 @@ def main():
             fecha = fecha.split('/')
             fecha = '%s/%s/%s' % (fecha[2], fecha[1], fecha[0])
         
-        if not fecha.startswith('2012'):
+        if not fecha.startswith(year):
             continue
         
         infobox = u"""{{Infobox Partido político
 |nombre=%s
 |siglas=%s
+|país=España
 |tipo de formación=%s
 |fecha de inscripción=%s
 |ámbito territorial=%s
