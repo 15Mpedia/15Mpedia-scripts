@@ -16,14 +16,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import re
-import wikipedia
+import pywikibot
 
 def main():
     monthnames = {1: "Enero", 2: "Febrero", 3: "Marzo", 4: "Abril", 5: "Mayo", 6: "Junio", 7: "Julio", 8: "Agosto", 9: "Septiembre", 10: "Octubre", 11: "Noviembre", 12: "Diciembre"}
     monthdays = {1: 31, 2: 28, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31}
-    site = wikipedia.Site('15mpedia', '15mpedia')
+    site = pywikibot.Site('15mpedia', '15mpedia')
     
-    for year in range(1999, 2015):
+    for year in range(1976, 1999):
         for month in range(1, 13):
             outputmonth = u"""La siguiente es una '''lista de noticias en %(monthname2)s de %(year)s'''. En este momento hay información sobre '''{{noticias por fecha|fecha inicio=%(year)s-%(month)02d-01|fecha fin=%(year)s-%(month)02d-%(monthdays)s|format=count}} noticias'''.
 
@@ -44,10 +44,12 @@ def main():
 
 """ % ({"monthname": monthnames[month], "monthname2": monthnames[month].lower(), "year": year, "month": month, "monthdays": monthdays[month]})
             print outputmonth
-            pagemonth = wikipedia.Page(site, u"Lista de noticias en %s de %s" % (monthnames[month].lower(), year))
-            pagemonth.put(outputmonth, u"BOT - Creando lista de noticias por mes")
-            redmonth = wikipedia.Page(site, u"Lista de noticias de %s de %s" % (monthnames[month].lower(), year))
-            redmonth.put(u"#REDIRECT [[Lista de noticias en %s de %s]]" % (monthnames[month].lower(), year), u"BOT - Creando redirección")
+            pagemonth = pywikibot.Page(site, u"Lista de noticias en %s de %s" % (monthnames[month].lower(), year))
+            pagemonth.text = outputmonth
+            pagemonth.save(u"BOT - Creando lista de noticias por mes")
+            redmonth = pywikibot.Page(site, u"Lista de noticias de %s de %s" % (monthnames[month].lower(), year))
+            redmonth.text = u"#REDIRECT [[Lista de noticias en %s de %s]]" % (monthnames[month].lower(), year)
+            redmonth.save(u"BOT - Creando redirección")
         
         outputyear = u"""La siguiente es una '''lista de noticias en %(year)s'''. En este momento hay información sobre '''{{noticias por fecha|fecha inicio=%(year)s-01-01|fecha fin=%(year)s-12-31|format=count}} noticias'''.
 
@@ -82,10 +84,12 @@ Según el '''mes''':
 [[Categoría:Noticias| %(year)s]]
 [[Categoría:%(year)s| Noticias en %(year)s]]""" % ({"year":year})
         print outputyear
-        pageyear = wikipedia.Page(site, u"Lista de noticias en %s" % (year))
-        pageyear.put(outputyear, u"BOT - Creando lista de noticias por año")
-        redyear = wikipedia.Page(site, u"Lista de noticias de %s" % (year))
-        redyear.put(u"#REDIRECT [[Lista de noticias en %s]]" % (year), u"BOT - Creando redirección")
+        pageyear = pywikibot.Page(site, u"Lista de noticias en %s" % (year))
+        pageyear.text = outputyear
+        pageyear.save(u"BOT - Creando lista de noticias por año")
+        redyear = pywikibot.Page(site, u"Lista de noticias de %s" % (year))
+        redyear.text = u"#REDIRECT [[Lista de noticias en %s]]" % (year)
+        redyear.save(u"BOT - Creando redirección")
 
 if __name__ == '__main__':
     main()

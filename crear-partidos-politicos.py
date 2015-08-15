@@ -84,7 +84,7 @@ def main():
             continue
         else:
             page.text = infobox
-            page.save(u'BOT - Creando partido político', botflag=False)
+            page.save(u'BOT - Creando partido político', botflag=True)
 
 if __name__ == '__main__':
     main()
