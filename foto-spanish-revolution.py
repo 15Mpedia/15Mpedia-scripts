@@ -31,6 +31,7 @@ def main():
     onlyfiles = [ f for f in os.listdir(mypath) if os.path.isfile(os.path.join(mypath,f)) ]
     onlyfiles2 = {}
     for f in onlyfiles:
+        f = unicode(f, 'utf-8')
         onlyfiles2[f.split('.jpg')[0].split('_')[-1]] = f
     onlyfiles = onlyfiles2
     
@@ -103,7 +104,7 @@ def main():
                 #print infobox
                 
                 if onlyfiles.has_key(photoid):
-                    imagename = 'FotoSpanishRevolution - %s - %s.jpg' % (authornick, photoid)
+                    imagename = u'FotoSpanishRevolution - %s - %s.jpg' % (authornick, photoid)
                     print 'Importing here https://15mpedia.org/wiki/Archivo:%s' % (re.sub(' ', '_', imagename))
                 
                     imagepage = pywikibot.Page(site, u'File:%s' % imagename)
@@ -111,7 +112,7 @@ def main():
                         print 'La pagina de imagen File:%s ya existe. No subimos' % (imagename)
                         continue
                     
-                    filepath = 'foto-spanish-revolution/%s' % onlyfiles[photoid]
+                    filepath = u'foto-spanish-revolution/%s' % onlyfiles[photoid]
                     bot = upload.UploadRobot([filepath], description=infobox, useFilename=imagename, keepFilename=True, verifyDescription=False, targetSite=site, uploadByUrl=False, ignoreWarning=['duplicate'])
                     bot.run()
             else:
