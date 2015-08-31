@@ -124,6 +124,14 @@ def main():
                         redirects.add(re.sub(ur"Lista de fosas en ", ur"Lista de fosas de ", wtitle))
                         redirects.add(re.sub(ur"Lista de fosas en ", ur"Lista de fosas comunes de ", wtitle))
                     
+                    #asesinatos machistas
+                    if wtitle.startswith(u'Lista de asesinatos machistas en '):
+                        redirects.add(re.sub(ur"Lista de asesinatos machistas en ", ur"Lista de mujeres asesinadas en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de asesinatos machistas en ", ur"Lista de muertes relacionadas con violencia machista en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de asesinatos machistas en ", ur"Lista de asesinatos relacionados con violencia machista en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de asesinatos machistas en ", ur"Lista de muertes por violencia machista en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de asesinatos machistas en ", ur"Lista de asesinatos por violencia machista en ", wtitle))
+                    
                     #violencia de género
                     if wtitle.startswith(u'Violencia de género en '):
                         redirects.add(re.sub(ur"Violencia de género en ", ur"Violencia intrafamiliar en ", wtitle))
