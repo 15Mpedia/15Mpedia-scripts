@@ -100,6 +100,7 @@ def main():
 |fecha de publicación=%s
 |autor=%s
 |licencia=%s
+|donación=FotoSpanishRevolution2015
 }}""" % (desc, photourl, title, dateshot, dateupload, authorline, licencia)
                 #print infobox
                 
@@ -116,10 +117,9 @@ def main():
                     bot = upload.UploadRobot([filepath], description=infobox, useFilename=imagename, keepFilename=True, verifyDescription=False, targetSite=site, uploadByUrl=False, ignoreWarning=['duplicate'])
                     bot.run()
             else:
-                pass
-                """print '-'*50
+                print '-'*50
                 print 'La imagen NO es CC, saltando'
-                print photourl"""
+                print photourl
 
 if __name__ == '__main__':
     main()
