@@ -78,6 +78,9 @@ def main():
         print '\n', '#'*40, '\n', nombre, '\n', '#'*40, '\n'
         print infobox
         
+        if nombre.startswith('#'):
+            nombre = nombre[1:]
+        
         page = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'%s' % (nombre))
         if page.exists():
             print 'La pagina ya existe'
