@@ -20,10 +20,6 @@ import os
 import re
 
 def main():
-    """<meta property="og:title" content="Fidel: Inhabilitación de Córdoba y asesinato de &#039;Mono Jojoy&#039; alejan a Colombia de la paz" />
-<meta property="og:url" content="http://www.librered.net/?p=6" />
-<meta property="og:description" content="El líder de la revolución cubana, Fidel Castro, aseguró que la noticia de la inhabilitación de la senadora colombiana Piedad Córdoba, ordenada por la Procuraduría General de la República (PGR), y e..." />"""
-    
     l = []
     h = HTMLParser.HTMLParser()
     for root, dirs, files in os.walk("."):
@@ -31,31 +27,31 @@ def main():
             filepath = os.path.join(root, filename)
             #print filepath
             f = open(filepath, 'r')
-            raw = unicode(f.read(), 'utf-8')
+            raw = unicode(f.read(), 'iso-8859-1')
+            #raw = f.read()
             f.close()
             
-            m = re.findall(ur'(?im)<meta property="og:title" content="([^<>]+?)" />', raw)
+            m = re.findall(ur'(?im)<span class="titulo">([^<>]+?)</span>', raw)
             title = m and m[0] or ''
             title = h.unescape(title)
-            m = re.findall(ur'(?im)<meta property="og:url" content="([^<>]+?)" />', raw)
+            m = re.findall(ur'(?im)<a href=\'(http://www\.mundoobrero\.es/pl\.php\?id=\d+)\' name=\'fb_share\'', raw)
             url = m and m[0] or ''
-            m = re.findall(ur'(?im)<meta property="og:description" content="([^<>]+?)" />', raw)
-            desc = m and m[0] or ''
-            desc = h.unescape(desc)
-            m = re.findall(ur'(?im)<meta property="article:published_time" content="(\d\d\d\d-\d\d-\d\d)T[^<>]+?" />', raw)
+            m = re.findall(ur'(?im)<span class="fecha">(\d\d/\d\d/\d\d\d\d)</span>', raw)
             fecha = m and m[0] or ''
+            if fecha:
+                fecha = fecha.split('/')[2] + '-' + fecha.split('/')[1] + '-' + fecha.split('/')[0]
             
             if title and url and fecha:
-                output = u"* {{noticia|titular=%s|enlace=%s|fuente=LibreRed|fecha=%s}}" % (title, url, fecha)
-                c = int(url.split('?p=')[1])
+                output = "* {{noticia|titular=%s|enlace=%s|fuente=Mundo Obrero|fecha=%s}}" % (title, url, fecha)
+                c = int(url.split('?id=')[1])
                 l.append([c, output])
     
     l.sort()
     c = 0
     for ll in l:
         if c % 10 == 0:
-            print '\n== %d-%d ==\n' % (c, c+10)
-        print ll[1].encode('utf-8')
+            print u'\n== %d-%d ==' % (c, c+10)
+        print ll[1].encode('iso-8859-1')
         c += 1
 
 if __name__ == '__main__':
