@@ -225,9 +225,18 @@ def main():
             print u'Municipio no encontrado en eswiki'
             continue
         
-        wikidata = u''
+        wikidataq = u''
         try:
-            wikidata = pywikibot.ItemPage.fromPage(eswiki).title()
+            item = pywikibot.ItemPage.fromPage(eswiki)
+            wikidataq = item.title()
+            print wikidataq
+            if item:
+                item.get()
+                #print item.claims
+                if 'P1082' in item.claims:
+                    for k in item.claims['P1082']:
+                        print k.getTarget()
+                    #print item.claims['P1082'][0].sources[0]
         except:
             pass
         
@@ -246,8 +255,8 @@ def main():
 |bandera=%s
 |deuda viva={{deuda viva|año=2010|euros=%s}}
 |sitio web=%s
-|enlaces externos=* {{wikipedia|es|%s}}
-}}""" % (nombre, pais, codsccaa[codccaa], codccaa, codsprov[codprov], codprov, comarca, codmuni, escudo, bandera, deuda2010, web, eswikititle)
+|enlaces externos=* {{wikipedia|es|%s%s}}
+}}""" % (nombre, pais, codsccaa[codccaa], codccaa, codsprov[codprov], codprov, comarca, codmuni, escudo, bandera, deuda2010, web, eswikititle, wikidataq and u'|wikidata=%s' % (wikidataq) or '')
         infobox = removeemptyparams(infobox)
         
         page = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'%s' % (nombre))
@@ -287,9 +296,9 @@ def main():
                 add.append(u'|sitio web=%s' % (web))
             if not re.search(ur'(?im)\|enlaces externos=', newtext):
                 if eswikititle:
-                    add.append(u'|enlaces externos=* {{wikipedia|es|%s|wikidata=%s}}' % (eswikititle, wikidata))
+                    add.append(u'|enlaces externos=* {{wikipedia|es|%s|wikidata=%s}}' % (eswikititle, wikidataq))
             elif re.search(ur'(?im)\{\{wikipedia\|es\|%s\}\}' % (eswikititle), newtext):
-                newtext = re.sub(ur'(?im)\{\{wikipedia\|es\|%s\}\}' % (eswikititle), ur'{{wikipedia|es|%s|wikidata=%s}}' % (eswikititle, wikidata), newtext)
+                newtext = re.sub(ur'(?im)\{\{wikipedia\|es\|%s\}\}' % (eswikititle), ur'{{wikipedia|es|%s|wikidata=%s}}' % (eswikititle, wikidataq), newtext)
             
             if add or newtext != page.text:
                 if add:
