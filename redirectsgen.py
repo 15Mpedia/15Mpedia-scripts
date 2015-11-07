@@ -99,7 +99,9 @@ def main():
                             redirects.add(re.sub(ur"Lista de %s de la " % colectivo, ur"Lista de %s en la " % colectivo, wtitle))
                     
                     #sinonimos para listas de comedores sociales, centros sociales y medios de comunicación
-                    if wtitle.startswith(u'Lista de comedores sociales ') and len(wtitle)>30:
+                    if wtitle.startswith(u'Lista de bancos de tiempo ') and len(wtitle)>30:
+                        redirects.add(re.sub(ur"Lista de bancos de tiempo ", ur"Lista de BdT ", wtitle))
+                    elif wtitle.startswith(u'Lista de comedores sociales ') and len(wtitle)>30:
                         redirects.add(re.sub(ur"Lista de comedores sociales ", ur"Lista de comedores ", wtitle))
                     elif wtitle.startswith(u'Lista de centros sociales ') and len(wtitle)>30:
                         redirects.add(re.sub(ur"Lista de centros sociales ", ur"Lista de CSOA ", wtitle))
@@ -126,10 +128,14 @@ def main():
                     
                     #asesinatos machistas
                     if wtitle.startswith(u'Lista de asesinatos machistas en '):
+                        redirects.add(re.sub(ur"Lista de asesinatos machistas en ", ur"Lista de asesinadas en ", wtitle))
                         redirects.add(re.sub(ur"Lista de asesinatos machistas en ", ur"Lista de mujeres asesinadas en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de asesinatos machistas en ", ur"Lista de mujeres muertas por violencia de género en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de asesinatos machistas en ", ur"Lista de mujeres muertas por violencia machista en ", wtitle))
                         redirects.add(re.sub(ur"Lista de asesinatos machistas en ", ur"Lista de muertes relacionadas con violencia machista en ", wtitle))
                         redirects.add(re.sub(ur"Lista de asesinatos machistas en ", ur"Lista de asesinatos relacionados con violencia machista en ", wtitle))
                         redirects.add(re.sub(ur"Lista de asesinatos machistas en ", ur"Lista de muertes por violencia machista en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de asesinatos machistas en ", ur"Lista de asesinatos por violencia de género en ", wtitle))
                         redirects.add(re.sub(ur"Lista de asesinatos machistas en ", ur"Lista de asesinatos por violencia machista en ", wtitle))
                     
                     #violencia de género
