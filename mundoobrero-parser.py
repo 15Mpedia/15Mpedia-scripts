@@ -50,7 +50,7 @@ def main():
     c = 0
     for ll in l:
         if c % 10 == 0:
-            print u'\n== %d-%d ==' % (c, c+10)
+            print u'\n== %d-%d ==' % (c+1, c+10)
         print ll[1].encode('iso-8859-1')
         c += 1
 
