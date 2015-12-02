@@ -89,6 +89,8 @@ def main():
             else:
                 newtext = re.sub(r'(?im)(\|\s*[^\|=]+\s*=[^\n]*?\n)(\}\})', r'\1|palabras clave=%s\n\2' % ', '.join(keywords), filepage.text)
             pywikibot.showDiff(filepage.text, newtext)
+            filepage.text = newtext
+            filepage.save('BOT - Añadiendo palabras clave: %s' % (', '.join(adding)), botflag=False)
         else:
             print('Nothing to add')
 
