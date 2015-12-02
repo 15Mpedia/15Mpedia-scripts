@@ -83,4 +83,4 @@ class Family(family.WikimediaFamily):
         return '/w/api.php'
 
     def protocol(self, code):
-        return 'HTTP'
+        return 'HTTPS'
