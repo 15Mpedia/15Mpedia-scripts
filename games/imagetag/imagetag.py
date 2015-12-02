@@ -81,16 +81,16 @@ def main():
     #guardar tuit en csv
     if not os.path.exists(csvtweets):
         f = open(csvtweets, 'w')
-        f.write('tweetid|text\n')
+        f.write('tweetid|filename|text\n')
         f.close()
     f = csv.writer(open(csvtweets, 'a'), delimiter='|', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    f.writerow([tweetid,status])
+    f.writerow([tweetid,filename,status])
     
     #cargar todos los tweets
     tweets = []
     f = csv.reader(open(csvtweets, 'r'), delimiter='|', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     for row in f:
-        tweets.append(row[0])
+        tweets.append(row)
     
     #guardar replies en csv
     if not os.path.exists(csvreplies):
@@ -108,7 +108,7 @@ def main():
         #saltar si no responde al bot, a un tuit o a un tuit del bot
         if reply['in_reply_to_screen_name'] != botscreenname or \
            reply['in_reply_to_status_id_str'] == None or \
-           not reply['in_reply_to_status_id_str'] in tweets:
+           not reply['in_reply_to_status_id_str'] in [tweet[0] for tweet in tweets]:
             continue
         if reply['id_str'] in [replyold[0] for replyold in repliesold]: #evitar duplicados
             continue
