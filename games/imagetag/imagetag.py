@@ -25,6 +25,12 @@ import sys
 import urllib
 from twython import Twython
 
+#config
+botscreenname = 'emijrp'
+thumbname = 'thumb.jpg'
+csvtweets = 'imagetag-tweets.csv'
+csvreplies = 'imagetag-replies.csv'
+
 def read_keys():
     f = open('%s/.twitter_keys' % (os.path.dirname(os.path.realpath(__file__))), 'r')
     w = f.read()
@@ -39,24 +45,14 @@ def read_tokens():
     OAUTH_TOKEN_SECRET = re.findall(r'(?im)^OAUTH_TOKEN_SECRET\s*=\s*([^\n]+?)\s*$', w)[0].strip()
     return OAUTH_TOKEN, OAUTH_TOKEN_SECRET
 
-def main():
-    APP_KEY, APP_SECRET = read_keys()
-    OAUTH_TOKEN, OAUTH_TOKEN_SECRET = read_tokens()
-    twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
-    
-    #config
-    botscreenname = 'emijrp'
-    userswhitelist = []
-    thumbname = 'thumb.jpg'
-    csvtweets = 'imagetag-tweets.csv'
-    csvreplies = 'imagetag-replies.csv'
-    
+def getwhitelist():
     #load user whitelist
-    f = open('whitelist.txt', 'r')
-    userswhitelist = f.read().splitlines()
-    f.close()
-    print(len(userswhitelist),'users in whitelist')
+    raw = urllib.request.urlopen('https://raw.githubusercontent.com/15Mpedia/15Mpedia-scripts/master/games/imagetag/whitelist.txt').readall()
+    whitelist = [x.decode("utf-8") for x in raw.splitlines()]
+    print(len(whitelist),'users in whitelist')
+    return whitelist
     
+def tweet(twitter):
     #seleccionar imagen aleatoria
     raw = str(urllib.request.urlopen('https://15mpedia.org/w/index.php?title=Especial:Ask&q=[[Page+has+default+form%3A%3AArchivo]]+[[Categor%C3%ADa%3AArchivos+de+Foto+Spanish+Revolution]]&p=format%3Dbroadtable%2Flink%3Dall%2Fheaders%3Dshow%2Fsearchlabel%3D-26hellip%3B-20siguientes-20resultados%2Fclass%3Dsortable-20wikitable-20smwtable&po=%3FAutor%0A&order=random&limit=1&eq=no').read())
     m = re.findall(r'(?im)<td><a href="/wiki/Archivo:([^<> ]*?)" title=[^>]*?>[^<>]*?</a></td>[^<>]*?<td class="Autor">([^<>]*?)</td>', raw)
@@ -86,6 +82,9 @@ def main():
         f.close()
     f = csv.writer(open(csvtweets, 'a'), delimiter='|', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     f.writerow([tweetid,filename,status])
+
+def getreplies(twitter):
+    whitelist = getwhitelist()
     
     #cargar todos los tweets
     tweets = []
@@ -106,6 +105,10 @@ def main():
     replies = twitter.get_mentions_timeline(count=200)
     repliesnew = []
     for reply in replies:
+        #saltar si no es whitelist
+        if not reply['user']['screen_name'] in whitelist:
+            #print('Not in whitelist',reply['user']['screen_name'])
+            continue
         #saltar si no responde al bot, a un tuit o a un tuit del bot
         if reply['in_reply_to_screen_name'] != botscreenname or \
            reply['in_reply_to_status_id_str'] == None or \
@@ -118,6 +121,25 @@ def main():
     f = csv.writer(open(csvreplies, 'a'), delimiter='|', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     for row in repliesnew:
         f.writerow(row)
+
+def main():
+    APP_KEY, APP_SECRET = read_keys()
+    OAUTH_TOKEN, OAUTH_TOKEN_SECRET = read_tokens()
+    twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
+    
+    if len(sys.argv) < 2:
+        print('Missing option: --tweet or --get-replies')
+        sys.exit()
+    else:
+        if sys.argv[1] == '--tweet':
+            tweet(twitter)
+        elif sys.argv[1] == '--get-replies':
+            getreplies(twitter)
+        elif sys.argv[1] == '--whitelist':
+            print(getwhitelist())
+        else:
+            print('Wrong parameter')
+            sys.exit()
     
 if __name__ == '__main__':
     main()

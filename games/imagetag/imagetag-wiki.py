@@ -18,16 +18,19 @@
 import csv
 import pywikibot
 import re
+import urllib
+
+def getwhitelist():
+    #load user whitelist
+    raw = urllib.request.urlopen('https://raw.githubusercontent.com/15Mpedia/15Mpedia-scripts/master/games/imagetag/whitelist.txt').readall()
+    whitelist = [x.decode("utf-8") for x in raw.splitlines()]
+    print(len(whitelist),'users in whitelist')
+    return whitelist
 
 def main():
     csvtweets = '../imagetag-tweets.csv'
     csvreplies = '../imagetag-replies.csv'
-    
-    #load user whitelist
-    f = open('../whitelist.txt', 'r')
-    userswhitelist = f.read().splitlines()
-    f.close()
-    print(len(userswhitelist),'users in whitelist')
+    whitelist = getwhitelist()
     
     #cargar todos los tweets
     tweets = []
@@ -47,7 +50,7 @@ def main():
         if not filename in wiki:
             wiki[filename] = []
         for replyid, replyauthor, replyto, replytext in replies:
-            if not replyauthor in userswhitelist:
+            if not replyauthor in whitelist:
                 continue
             if not replyto in [tweet[0] for tweet in tweets]:
                 continue
@@ -67,7 +70,7 @@ def main():
     
     #comparar con las palabras del wiki
     for filename, keywordstweets in wiki.items():
-        print('#'*30,'\nAnalysing:',filename,'#'*30,'\n')
+        print('\n','#'*30,'\nAnalysing:',filename,'\n','#'*30,'\n')
         filepage = pywikibot.Page(pywikibot.Site("15mpedia", "15mpedia"), 'File:%s' % (filename))
         m = re.findall(r'(?im)\|\s*palabras clave\s*=\s*([^\n\|]*?)\s*\n', filepage.text)
         keywordswiki = set([])
