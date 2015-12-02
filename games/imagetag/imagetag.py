@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2015 emijrp
+# Copyright (C) 2015 emijrp <emijrp@gmail.com>
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -26,7 +26,7 @@ import urllib
 from twython import Twython
 
 #config
-botscreenname = 'emijrp'
+botscreenname = '15MpediaLabs'
 thumbname = 'thumb.jpg'
 csvtweets = 'imagetag-tweets.csv'
 csvreplies = 'imagetag-replies.csv'
