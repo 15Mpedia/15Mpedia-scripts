@@ -46,11 +46,17 @@ def main():
     
     #config
     botscreenname = 'emijrp'
-    userswhitelist = ['emijrp']
+    userswhitelist = []
     thumbname = 'thumb.jpg'
     csvtweets = 'imagetag-tweets.csv'
     csvreplies = 'imagetag-replies.csv'
-    """
+    
+    #load user whitelist
+    f = open('whitelist.txt', 'r')
+    userswhitelist = f.read().splitlines()
+    f.close()
+    print(len(userswhitelist),'users in whitelist')
+    
     #seleccionar imagen aleatoria
     raw = str(urllib.request.urlopen('https://15mpedia.org/w/index.php?title=Especial:Ask&q=[[Page+has+default+form%3A%3AArchivo]]+[[Categor%C3%ADa%3AArchivos+de+Foto+Spanish+Revolution]]&p=format%3Dbroadtable%2Flink%3Dall%2Fheaders%3Dshow%2Fsearchlabel%3D-26hellip%3B-20siguientes-20resultados%2Fclass%3Dsortable-20wikitable-20smwtable&po=%3FAutor%0A&order=random&limit=1&eq=no').read())
     m = re.findall(r'(?im)<td><a href="/wiki/Archivo:([^<> ]*?)" title=[^>]*?>[^<>]*?</a></td>[^<>]*?<td class="Autor">([^<>]*?)</td>', raw)
@@ -78,7 +84,7 @@ def main():
         f.write('tweetid|text\n')
         f.close()
     f = csv.writer(open(csvtweets, 'a'), delimiter='|', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    f.writerow([tweetid,status])"""
+    f.writerow([tweetid,status])
     
     #cargar todos los tweets
     tweets = []
