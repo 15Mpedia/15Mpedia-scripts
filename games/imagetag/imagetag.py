@@ -72,6 +72,7 @@ def main():
     #tuitear imagen aleatoria
     thumb = open(thumbname, 'rb')
     status = 'Ayuda a clasificar esta imagen de %s. Indica tags separados por comas %s' % (authorship, urlfile)
+    print(status)
     response = twitter.upload_media(media=thumb)
     raw = twitter.update_status(status=status, media_ids=[response['media_id']])
     tweetid = raw['id_str']

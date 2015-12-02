@@ -20,11 +20,11 @@ import pywikibot
 import re
 
 def main():
-    csvtweets = 'imagetag-tweets.csv'
-    csvreplies = 'imagetag-replies.csv'
+    csvtweets = '../imagetag-tweets.csv'
+    csvreplies = '../imagetag-replies.csv'
     
     #load user whitelist
-    f = open('whitelist.txt', 'r')
+    f = open('../whitelist.txt', 'r')
     userswhitelist = f.read().splitlines()
     f.close()
     print(len(userswhitelist),'users in whitelist')
