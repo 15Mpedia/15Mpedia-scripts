@@ -31,13 +31,13 @@ def extractkeywords(replytext):
     keywords = []
     temp = re.sub(',', ' ', replytext)
     temp = ' '.join(temp.split(' ')[1:]).split(' ') # remove "@15MpediaLabs " prefix
-    keywords = []
     for k in temp:
         k = re.sub('_', ' ', k.strip())
-        if not k.startswith('#') or len(k) <= 3:
+        if not k.startswith('#') or len(k) <= 2: #   #BN (blanco y negro) es tag tipico
             continue
         k = k[1:] # remove first #
-        keywords.append(k)
+        if not k in keywords:
+            keywords.append(k)
     keywords.sort()
     return keywords
 
@@ -59,12 +59,12 @@ def main():
         replies.append(row)
     
     #extraer keywords de los tweets
-    wiki = {}
-    for tweetid, filename, text in tweets:
+    files = {}
+    for tweetid, filename, tweettext in tweets:
         if filename == 'filename':
             continue
-        if not filename in wiki:
-            wiki[filename] = {'tweetid': [], 'keywordstweets': []}
+        if not filename in files:
+            files[filename] = {'tweetid': set([]), 'keywordstweets': set([])}
         for replyid, replyauthor, replyto, replytext in replies:
             if not replyauthor in whitelist:
                 continue
@@ -75,11 +75,11 @@ def main():
             
             if replyto == tweetid:
                 keywords = extractkeywords(replytext)
-                wiki[filename]['tweetid'] += [replyto]
-                wiki[filename]['keywordstweets'] += keywords
+                files[filename]['tweetid'].add(replyto)
+                files[filename]['keywordstweets'] = files[filename]['keywordstweets'].union(set(keywords))
     
     #comparar con las keywords del wiki
-    for filename, v in wiki.items():
+    for filename, v in files.items():
         keywordstweets = v['keywordstweets']
         tweetid = v['tweetid']
         print('\n','#'*30,'\nAnalysing:',filename,'\n','#'*30,'\n')
@@ -90,7 +90,6 @@ def main():
             for n in m[0].split(','):
                 keywordswiki.add(n.strip())
         print('Keywords in wiki:',keywordswiki)
-        keywordstweets = set(keywordstweets)
         print('Keywords in tweets:',keywordstweets)
         adding = list(keywordstweets-keywordswiki)
         adding.sort()
@@ -108,14 +107,17 @@ def main():
                 newtext = re.sub(r'(?im)(\|\s*[^\|=]+\s*=[^\n]*?\n)(\}\})', r'\1|palabras clave=%s\n\2' % ', '.join(keywords), newtext)
             
             #add Labs tweet id
-            if re.search(r'(?im)\|\s*labs palabras clave\s*=', newtext):
+            if re.search(r'(?im)\|\s*labs palabras clave twitter\s*=', newtext):
                 m = re.findall(r'(?im)\|\s*labs palabras clave twitter\s*=\s*([^\|\n]*?)\n', newtext)
                 if m:
                     temp = set([x.strip() for x in m[0].strip().split(',')])
-                    temp = list(temp.union(set(tweetid)))
-                    newtext = re.sub(r'(?im)\|\s*labs palabras clave twitter\s*=\s*([^\|\n]*?)\n', r'|labs palabras clave twitter=%s' % (', '.join(temp)), newtext)
+                    temp = list(temp.union(tweetid))
+                    temp.sort()
+                    newtext = re.sub(r'(?im)\|\s*labs palabras clave twitter\s*=\s*[^\|\n]*?\n', '|labs palabras clave twitter=%s\n' % (', '.join(temp)), newtext)
             else:
-                newtext = re.sub(r'(?im)(\|\s*[^\|=]+\s*=[^\n]*?\n)(\}\})', r'\1|labs palabras clave twitter=%s\n\2' % (', '.join(tweetid)), newtext)
+                temp = list(tweetid)
+                temp.sort()
+                newtext = re.sub(r'(?im)(\|\s*[^\|=]+\s*=[^\n]*?\n)(\}\})', r'\1|labs palabras clave twitter=%s\n\2' % (', '.join(temp)), newtext)
             
             pywikibot.showDiff(filepage.text, newtext)
             filepage.text = newtext

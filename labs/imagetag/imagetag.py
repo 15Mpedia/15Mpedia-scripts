@@ -139,13 +139,13 @@ def extractkeywords(replytext):
     keywords = []
     temp = re.sub(',', ' ', replytext)
     temp = ' '.join(temp.split(' ')[1:]).split(' ') # remove "@15MpediaLabs " prefix
-    keywords = []
     for k in temp:
         k = re.sub('_', ' ', k.strip())
-        if not k.startswith('#') or len(k) <= 3:
+        if not k.startswith('#') or len(k) <= 2: #   #BN (blanco y negro) es tag tipico
             continue
         k = k[1:] # remove first #
-        keywords.append(k)
+        if not k in keywords:
+            keywords.append(k)
     keywords.sort()
     return keywords
 
@@ -163,7 +163,7 @@ def stats(twitter):
     stats_l = [[v, k] for k, v in stats.items()]
     stats_l.sort(reverse=True)
     
-    status = 'Estadísticas de #tags: %s https://15mpedia.org/w/index.php?limit=50&tagfilter=&title=Especial%3AContribuciones&contribs=user&target=BotQuincemayista&namespace=6&year=&month=-1' % (', '.join(['@%s (%s)' % (user, score) for score, user in stats_l[:3]]))
+    status = 'Estadísticas de #tags: %s https://15mpedia.org/w/index.php?limit=50&tagfilter=&title=Especial%%3AContribuciones&contribs=user&target=BotQuincemayista&namespace=6&year=&month=-1' % (', '.join(['@%s (%s)' % (user, score) for score, user in stats_l[:5]]))
     print(status)
     twitter.update_status(status=status)
 
