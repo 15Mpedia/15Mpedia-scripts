@@ -56,7 +56,7 @@ def main():
                 continue
             if not replyto in [tweet[0] for tweet in tweets]:
                 continue
-            if not replytext.startswith('@'):
+            if not replytext.startswith('@') and not replytext.startswith('.@'):
                 continue
             
             if replyto == tweetid:
