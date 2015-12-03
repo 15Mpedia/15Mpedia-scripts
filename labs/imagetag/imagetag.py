@@ -45,6 +45,22 @@ def read_tokens():
     OAUTH_TOKEN_SECRET = re.findall(r'(?im)^OAUTH_TOKEN_SECRET\s*=\s*([^\n]+?)\s*$', w)[0].strip()
     return OAUTH_TOKEN, OAUTH_TOKEN_SECRET
 
+def loadcsvtweets():
+    tweets = []
+    if os.path.exists(csvtweets):
+        f = csv.reader(open(csvtweets, 'r'), delimiter='|', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        for row in f:
+            tweets.append(row)
+    return tweets
+
+def loadcsvreplies():
+    replies = []
+    if os.path.exists(csvreplies):
+        f = csv.reader(open(csvreplies, 'r'), delimiter='|', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        for row in f:
+            replies.append(row)
+    return replies
+
 def getwhitelist():
     #load user whitelist
     raw = urllib.request.urlopen('https://raw.githubusercontent.com/15Mpedia/15Mpedia-scripts/master/labs/imagetag/whitelist.txt').readall()
@@ -54,7 +70,7 @@ def getwhitelist():
     
 def tweet(twitter):
     #seleccionar imagen aleatoria
-    raw = urllib.request.urlopen('https://15mpedia.org/w/index.php?title=Especial:Ask&q=[[Page+has+default+form%3A%3AArchivo]]+[[Categor%C3%ADa%3AArchivos+de+Foto+Spanish+Revolution]]&p=format%3Dbroadtable%2Flink%3Dall%2Fheaders%3Dshow%2Fsearchlabel%3D-26hellip%3B-20siguientes-20resultados%2Fclass%3Dsortable-20wikitable-20smwtable&po=%3FAutor%0A&order=random&limit=1&eq=no').read().decode('utf-8')
+    raw = urllib.request.urlopen('https://15mpedia.org/w/index.php?title=Especial:Ask&q=[[Page+has+default+form%3A%3AArchivo]]+[[Categor%C3%ADa%3AArchivos+de+Foto+Spanish+Revolution]]+[[Categor%C3%ADa%3AArchivos+sin+palabras+clave]]&p=format%3Dbroadtable%2Flink%3Dall%2Fheaders%3Dshow%2Fsearchlabel%3D-26hellip%3B-20siguientes-20resultados%2Fclass%3Dsortable-20wikitable-20smwtable&po=%3FAutor%0A&order=random&limit=1&eq=no').read().decode('utf-8')
     m = re.findall(r'(?im)<td><a href="/wiki/Archivo:([^<> ]*?)" title=[^>]*?>[^<>]*?</a></td>[^<>]*?<td class="Autor">([^<>]*?)</td>', raw)
     filename = m[0][0]
     authorship = ' '.join(m[0][1].split(']')[0].split(' ')[1:])
@@ -87,12 +103,7 @@ def tweet(twitter):
 
 def getreplies(twitter):
     whitelist = getwhitelist()
-    
-    #cargar todos los tweets
-    tweets = []
-    f = csv.reader(open(csvtweets, 'r'), delimiter='|', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    for row in f:
-        tweets.append(row)
+    tweets = loadcsvtweets()
     
     #guardar replies en csv
     if not os.path.exists(csvreplies):
@@ -124,6 +135,38 @@ def getreplies(twitter):
     for row in repliesnew:
         f.writerow(row)
 
+def extractkeywords(replytext):
+    keywords = []
+    temp = re.sub(',', ' ', replytext)
+    temp = ' '.join(temp.split(' ')[1:]).split(' ') # remove "@15MpediaLabs " prefix
+    keywords = []
+    for k in temp:
+        k = re.sub('_', ' ', k.strip())
+        if not k.startswith('#') or len(k) <= 3:
+            continue
+        k = k[1:] # remove first #
+        keywords.append(k)
+    keywords.sort()
+    return keywords
+
+def stats(twitter):
+    tweets = loadcsvtweets()
+    replies = loadcsvreplies()
+    stats = {}
+    for replyid, replyauthor, replyto, replytext in replies:
+        if replyauthor == 'replyauthor':
+            continue
+        if replyauthor in stats:
+            stats[replyauthor] += len(extractkeywords(replytext))
+        else:
+            stats[replyauthor] = len(extractkeywords(replytext))
+    stats_l = [[v, k] for k, v in stats.items()]
+    stats_l.sort(reverse=True)
+    
+    status = 'Estadísticas de #tags: %s https://15mpedia.org/w/index.php?limit=50&tagfilter=&title=Especial%3AContribuciones&contribs=user&target=BotQuincemayista&namespace=6&year=&month=-1' % (', '.join(['@%s (%s)' % (user, score) for score, user in stats_l[:3]]))
+    print(status)
+    twitter.update_status(status=status)
+
 def main():
     APP_KEY, APP_SECRET = read_keys()
     OAUTH_TOKEN, OAUTH_TOKEN_SECRET = read_tokens()
@@ -139,6 +182,8 @@ def main():
             getreplies(twitter)
         elif sys.argv[1] == '--whitelist':
             print(getwhitelist())
+        elif sys.argv[1] == '--stats':
+            stats(twitter)
         else:
             print('Wrong parameter')
             sys.exit()

@@ -27,6 +27,20 @@ def getwhitelist():
     print(len(whitelist),'users in whitelist')
     return whitelist
 
+def extractkeywords(replytext):
+    keywords = []
+    temp = re.sub(',', ' ', replytext)
+    temp = ' '.join(temp.split(' ')[1:]).split(' ') # remove "@15MpediaLabs " prefix
+    keywords = []
+    for k in temp:
+        k = re.sub('_', ' ', k.strip())
+        if not k.startswith('#') or len(k) <= 3:
+            continue
+        k = k[1:] # remove first #
+        keywords.append(k)
+    keywords.sort()
+    return keywords
+
 def main():
     csvtweets = '../imagetag-tweets.csv'
     csvreplies = '../imagetag-replies.csv'
@@ -60,16 +74,7 @@ def main():
                 continue
             
             if replyto == tweetid:
-                temp = re.sub(',', ' ', replytext)
-                temp = ' '.join(temp.split(' ')[1:]).split(' ') # remove "@15MpediaLabs " prefix
-                keywords = []
-                for k in temp:
-                    k = re.sub('_', ' ', k.strip())
-                    if not k.startswith('#') or len(k) <= 3:
-                        continue
-                    k = k[1:] # remove first #
-                    keywords.append(k)
-                keywords.sort()
+                keywords = extractkeywords(replytext)
                 wiki[filename]['tweetid'] += [replyto]
                 wiki[filename]['keywordstweets'] += keywords
     
@@ -114,7 +119,7 @@ def main():
             
             pywikibot.showDiff(filepage.text, newtext)
             filepage.text = newtext
-            filepage.save('BOT - Añadiendo palabras clave: %s' % (', '.join(adding)), botflag=False)
+            filepage.save('BOT - Añadiendo palabras clave: %s' % (', '.join(adding)), botflag=True)
         else:
             print('Nothing to add')
 
