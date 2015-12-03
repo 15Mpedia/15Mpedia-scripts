@@ -22,7 +22,7 @@ import urllib
 
 def getwhitelist():
     #load user whitelist
-    raw = urllib.request.urlopen('https://raw.githubusercontent.com/15Mpedia/15Mpedia-scripts/master/games/imagetag/whitelist.txt').readall()
+    raw = urllib.request.urlopen('https://raw.githubusercontent.com/15Mpedia/15Mpedia-scripts/master/labs/imagetag/whitelist.txt').readall()
     whitelist = [x.decode("utf-8") for x in raw.splitlines()]
     print(len(whitelist),'users in whitelist')
     return whitelist
@@ -44,11 +44,13 @@ def main():
     for row in f:
         replies.append(row)
     
-    #extraer palabras de los tweets
+    #extraer keywords de los tweets
     wiki = {}
     for tweetid, filename, text in tweets:
+        if filename == 'filename':
+            continue
         if not filename in wiki:
-            wiki[filename] = []
+            wiki[filename] = {'tweetid': [], 'keywordstweets': []}
         for replyid, replyauthor, replyto, replytext in replies:
             if not replyauthor in whitelist:
                 continue
@@ -58,18 +60,23 @@ def main():
                 continue
             
             if replyto == tweetid:
-                temp = ' '.join(replytext.split(' ')[1:]).split(',')
+                temp = re.sub(',', ' ', replytext)
+                temp = ' '.join(temp.split(' ')[1:]).split(' ') # remove "@15MpediaLabs " prefix
                 keywords = []
                 for k in temp:
-                    keyword = k.strip()
-                    if len(keyword) < 3:
+                    k = re.sub('_', ' ', k.strip())
+                    if not k.startswith('#') or len(k) <= 3:
                         continue
-                    keywords.append(keyword)
+                    k = k[1:] # remove first #
+                    keywords.append(k)
                 keywords.sort()
-                wiki[filename] += keywords
+                wiki[filename]['tweetid'] += [replyto]
+                wiki[filename]['keywordstweets'] += keywords
     
-    #comparar con las palabras del wiki
-    for filename, keywordstweets in wiki.items():
+    #comparar con las keywords del wiki
+    for filename, v in wiki.items():
+        keywordstweets = v['keywordstweets']
+        tweetid = v['tweetid']
         print('\n','#'*30,'\nAnalysing:',filename,'\n','#'*30,'\n')
         filepage = pywikibot.Page(pywikibot.Site("15mpedia", "15mpedia"), 'File:%s' % (filename))
         m = re.findall(r'(?im)\|\s*palabras clave\s*=\s*([^\n\|]*?)\s*\n', filepage.text)
@@ -82,15 +89,29 @@ def main():
         print('Keywords in tweets:',keywordstweets)
         adding = list(keywordstweets-keywordswiki)
         adding.sort()
+        #si hay alguna nueva, se añade
         if adding:
             print('Adding:',adding)
             keywords = list(keywordstweets.union(keywordswiki))
             keywords.sort()
-            newtext = ''
-            if re.search(r'(?im)\|\s*palabras clave\s*=', filepage.text):
-                newtext = re.sub(r'(?im)\|\s*palabras clave\s*=\s*[^\|\n]*?\n', r'|palabras clave=%s\n' % ', '.join(keywords), filepage.text)
+            newtext = filepage.text
+            
+            #add keywords
+            if re.search(r'(?im)\|\s*palabras clave\s*=', newtext):
+                newtext = re.sub(r'(?im)\|\s*palabras clave\s*=\s*[^\|\n]*?\n', r'|palabras clave=%s\n' % ', '.join(keywords), newtext)
             else:
-                newtext = re.sub(r'(?im)(\|\s*[^\|=]+\s*=[^\n]*?\n)(\}\})', r'\1|palabras clave=%s\n\2' % ', '.join(keywords), filepage.text)
+                newtext = re.sub(r'(?im)(\|\s*[^\|=]+\s*=[^\n]*?\n)(\}\})', r'\1|palabras clave=%s\n\2' % ', '.join(keywords), newtext)
+            
+            #add Labs tweet id
+            if re.search(r'(?im)\|\s*labs palabras clave\s*=', newtext):
+                m = re.findall(r'(?im)\|\s*labs palabras clave twitter\s*=\s*([^\|\n]*?)\n', newtext)
+                if m:
+                    temp = set([x.strip() for x in m[0].strip().split(',')])
+                    temp = list(temp.union(set(tweetid)))
+                    newtext = re.sub(r'(?im)\|\s*labs palabras clave twitter\s*=\s*([^\|\n]*?)\n', r'|labs palabras clave twitter=%s' % (', '.join(temp)), newtext)
+            else:
+                newtext = re.sub(r'(?im)(\|\s*[^\|=]+\s*=[^\n]*?\n)(\}\})', r'\1|labs palabras clave twitter=%s\n\2' % (', '.join(tweetid)), newtext)
+            
             pywikibot.showDiff(filepage.text, newtext)
             filepage.text = newtext
             filepage.save('BOT - Añadiendo palabras clave: %s' % (', '.join(adding)), botflag=False)

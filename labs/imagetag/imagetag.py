@@ -47,7 +47,7 @@ def read_tokens():
 
 def getwhitelist():
     #load user whitelist
-    raw = urllib.request.urlopen('https://raw.githubusercontent.com/15Mpedia/15Mpedia-scripts/master/games/imagetag/whitelist.txt').readall()
+    raw = urllib.request.urlopen('https://raw.githubusercontent.com/15Mpedia/15Mpedia-scripts/master/labs/imagetag/whitelist.txt').readall()
     whitelist = [x.decode("utf-8") for x in raw.splitlines()]
     print(len(whitelist),'users in whitelist')
     return whitelist
@@ -67,7 +67,7 @@ def tweet(twitter):
     
     #tuitear imagen aleatoria
     thumb = open(thumbname, 'rb')
-    status = 'Ayuda a clasificar esta imagen de %s. Indica tags separados por comas %s' % (authorship, urlfile)
+    status = 'Indica #tags para esta foto de %s %s' % (authorship, urlfile)
     print(status)
     response = twitter.upload_media(media=thumb)
     raw = twitter.update_status(status=status, media_ids=[response['media_id']])
