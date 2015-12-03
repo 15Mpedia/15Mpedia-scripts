@@ -69,7 +69,7 @@ def tweet(twitter):
     
     #tuitear imagen aleatoria
     thumb = open(thumbname, 'rb')
-    status = 'Indica #tags para esta foto de %s %s' % (authorship, urlfile)
+    status = 'Indica #tags para esta foto tomada por %s %s' % (authorship, urlfile)
     print(status)
     response = twitter.upload_media(media=thumb)
     raw = twitter.update_status(status=status, media_ids=[response['media_id']])
