@@ -54,16 +54,18 @@ def getwhitelist():
     
 def tweet(twitter):
     #seleccionar imagen aleatoria
-    raw = str(urllib.request.urlopen('https://15mpedia.org/w/index.php?title=Especial:Ask&q=[[Page+has+default+form%3A%3AArchivo]]+[[Categor%C3%ADa%3AArchivos+de+Foto+Spanish+Revolution]]&p=format%3Dbroadtable%2Flink%3Dall%2Fheaders%3Dshow%2Fsearchlabel%3D-26hellip%3B-20siguientes-20resultados%2Fclass%3Dsortable-20wikitable-20smwtable&po=%3FAutor%0A&order=random&limit=1&eq=no').read())
+    raw = urllib.request.urlopen('https://15mpedia.org/w/index.php?title=Especial:Ask&q=[[Page+has+default+form%3A%3AArchivo]]+[[Categor%C3%ADa%3AArchivos+de+Foto+Spanish+Revolution]]&p=format%3Dbroadtable%2Flink%3Dall%2Fheaders%3Dshow%2Fsearchlabel%3D-26hellip%3B-20siguientes-20resultados%2Fclass%3Dsortable-20wikitable-20smwtable&po=%3FAutor%0A&order=random&limit=1&eq=no').read().decode('utf-8')
     m = re.findall(r'(?im)<td><a href="/wiki/Archivo:([^<> ]*?)" title=[^>]*?>[^<>]*?</a></td>[^<>]*?<td class="Autor">([^<>]*?)</td>', raw)
     filename = m[0][0]
     authorship = ' '.join(m[0][1].split(']')[0].split(' ')[1:])
     md5 = hashlib.md5(filename.encode('utf-8')).hexdigest()
     urlfile = 'https://15mpedia.org/wiki/Archivo:%s' % (filename)
     urlfile2 = 'https://15mpedia.org/w/images/%s/%s/%s' % (md5[0], md5[:2], filename)
-    if os.path.exists(thumbname):
+    if os.path.exists(thumbname): #remove previous thumb
         os.remove(thumbname)
     urllib.request.urlretrieve(urlfile2, thumbname)
+    os.system('convert -resize 1024X768 %s %s2' % (thumbname, thumbname)) #resize
+    os.system('mv %s2 %s' % (thumbname, thumbname)) #rename
     
     #tuitear imagen aleatoria
     thumb = open(thumbname, 'rb')
