@@ -163,7 +163,7 @@ def stats(twitter):
     stats_l = [[v, k] for k, v in stats.items()]
     stats_l.sort(reverse=True)
     
-    status = 'Estadísticas de #tags: %s https://15mpedia.org/w/index.php?limit=50&tagfilter=&title=Especial%%3AContribuciones&contribs=user&target=BotQuincemayista&namespace=6&year=&month=-1' % (', '.join(['@%s (%s)' % (user, score) for score, user in stats_l[:5]]))
+    status = 'Estadísticas de #tags: %s https://15mpedia.org/w/index.php?limit=50&tagfilter=&title=Especial%%3AContribuciones&contribs=user&target=BotQuincemayista&namespace=6&year=&month=-1' % (', '.join(['@%s (%s)' % (user, score) for score, user in stats_l[:4]]))
     print(status)
     twitter.update_status(status=status)
 
