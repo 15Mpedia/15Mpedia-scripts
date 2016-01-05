@@ -166,6 +166,8 @@ def stats(twitter):
     status = 'Estadísticas de #tags: %s https://15mpedia.org/w/index.php?limit=50&tagfilter=&title=Especial%%3AContribuciones&contribs=user&target=BotQuincemayista&namespace=6&year=&month=-1' % (', '.join(['@%s (%s)' % (user, score) for score, user in stats_l[:4]]))
     print(status)
     twitter.update_status(status=status)
+    print('Estadísticas completas:')
+    print(', '.join(['@%s (%s)' % (user, score) for score, user in stats_l]))
 
 def main():
     APP_KEY, APP_SECRET = read_keys()
