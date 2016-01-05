@@ -10,6 +10,7 @@ Euplin
 fanetin
 InformaSol
 Juarkord
+Lamandafi
 lirondos
 lmn_ar
 mangelrp
