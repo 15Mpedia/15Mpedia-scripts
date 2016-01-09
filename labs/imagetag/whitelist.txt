@@ -12,6 +12,7 @@ CarmenGarmuza
 cuadernista
 dekinoden
 dvdgmz
+El_Hacedor
 Elpasajeroensec
 emijrp
 Euplin
@@ -43,4 +44,5 @@ Svenceremos
 tomavistas
 TransonLohk
 unamillaunpaso
+usualminds
 _pablog
