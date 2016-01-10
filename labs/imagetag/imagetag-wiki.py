@@ -27,7 +27,14 @@ def getwhitelist():
     print(len(whitelist),'users in whitelist')
     return whitelist
 
-def extractkeywords(replytext):
+def getbadwords():
+    #load words in badwords list
+    raw = urllib.request.urlopen('https://raw.githubusercontent.com/15Mpedia/15Mpedia-scripts/master/labs/imagetag/badwords.txt').readall()
+    badwords = [x.decode("utf-8").lower() for x in raw.splitlines()]
+    print(len(badwords),' badwords')
+    return badwords
+
+def extractkeywords(replytext, badwords):
     keywords = []
     temp = re.sub(',', ' ', replytext)
     temp = ' '.join(temp.split(' ')[1:]).split(' ') # remove "@15MpediaLabs " prefix
@@ -36,7 +43,7 @@ def extractkeywords(replytext):
         if not k.startswith('#') or len(k) <= 2: #   #BN (blanco y negro) es tag tipico
             continue
         k = k[1:] # remove first #
-        if not k in keywords:
+        if not k in keywords and k.lower() not in badwords:
             keywords.append(k)
     keywords.sort()
     return keywords
@@ -45,6 +52,7 @@ def main():
     csvtweets = '../imagetag-tweets.csv'
     csvreplies = '../imagetag-replies.csv'
     whitelist = getwhitelist()
+    badwords = getbadwords()
     
     #cargar todos los tweets
     tweets = []
@@ -74,7 +82,7 @@ def main():
                 continue
             
             if replyto == tweetid:
-                keywords = extractkeywords(replytext)
+                keywords = extractkeywords(replytext, badwords)
                 files[filename]['tweetid'].add(replyto)
                 files[filename]['keywordstweets'] = files[filename]['keywordstweets'].union(set(keywords))
     
