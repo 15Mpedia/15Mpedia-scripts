@@ -68,6 +68,7 @@ def main():
     
     #extraer keywords de los tweets
     files = {}
+    tweetids = [tweet[0] for tweet in tweets]
     for tweetid, filename, tweettext in tweets:
         if filename == 'filename':
             continue
@@ -76,7 +77,7 @@ def main():
         for replyid, replyauthor, replyto, replytext in replies:
             if not replyauthor in whitelist:
                 continue
-            if not replyto in [tweet[0] for tweet in tweets]:
+            if not replyto in tweetids:
                 continue
             if not replytext.startswith('@') and not replytext.startswith('.@'):
                 continue
