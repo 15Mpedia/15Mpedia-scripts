@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2015 emijrp <emijrp@gmail.com>
+# Copyright (C) 2015-2016 emijrp <emijrp@gmail.com>
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -18,6 +18,7 @@
 import csv
 import pywikibot
 import re
+import time
 import urllib
 
 def getwhitelist():
@@ -59,12 +60,14 @@ def main():
     f = csv.reader(open(csvtweets, 'r'), delimiter='|', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     for row in f:
         tweets.append(row)
+    tweets = tweets[-500:] #reducing workload, last ~5 days
     
     #cargar todos los replies
     replies = []
     f = csv.reader(open(csvreplies, 'r'), delimiter='|', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     for row in f:
         replies.append(row)
+    replies = replies[-500:] #reducing workload
     
     #extraer keywords de los tweets
     files = {}
@@ -89,6 +92,7 @@ def main():
     
     #comparar con las keywords del wiki
     for filename, v in files.items():
+        time.sleep(1)
         keywordstweets = v['keywordstweets']
         tweetid = v['tweetid']
         print('\n','#'*30,'\nAnalysing:',filename,'\n','#'*30,'\n')
