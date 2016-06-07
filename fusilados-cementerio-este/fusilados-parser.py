@@ -20,6 +20,7 @@ import re
 
 def cleancell(cell):
     cell = cell.split('</span>')[0].split('>')[-1]
+    cell = re.sub(r'(?im)<[^<>]+?>([^<>]+?)</[^<>]+?>', r'\1', cell)
     cell = cell.replace('&nbsp;', '')
     cell = cell.replace('\n', '')
     cell = cell.replace('\r', '')
@@ -129,6 +130,7 @@ def main():
         cells = ['>'.join(x.split('>')[1:]).strip() for x in row.split('</td>')[:-1]]
         #print len(cells)
         
+        #print cells
         nombre = '>'.join(cells[0].split('>')[1:])
         nombre = nombre.replace('\n', ' ')
         nombre = re.sub('  +', ' ', nombre)
@@ -195,7 +197,7 @@ def main():
         # Sotero nació en la [[provincia de Guadalajara]]. Era Guardia Civil y fue fusilado cuando tenía 30 años.
         bio = ''
         if lugar_nacimiento:
-            bio += u'%s nació en [[%s]]%s.' % (nombrepila, lugar_nacimiento, provincia_nacimiento and provincia_nacimiento!=lugar_nacimiento and ', [[%s]]' % provincia_nacimiento or '')
+            bio += u'%s nació en [[%s]]%s.' % (nombrepila, lugar_nacimiento, provincia_nacimiento and provincia_nacimiento!=lugar_nacimiento and ', [[provincia de %s]]' % provincia_nacimiento or '')
         
         if profesion:
             if edad:
@@ -205,6 +207,8 @@ def main():
         
         if bio:
             bio += u'<ref name="myl" />'
+        
+        desc = '%s por el franquismo, %s el %s.' % (sexo=='Hombre' and 'Represaliado' or 'Represaliada', sexo=='Hombre' and 'fusilado' or 'fusilada', traducirfecha(fecha_muerte))
         
         ee = u''
         if nombreurl:
@@ -221,14 +225,20 @@ def main():
 |primer apellido=%s
 |segundo apellido=%s
 |sexo=%s
-|lugar de nacimiento=%s%s
+|lugar de nacimiento=%s
 |fecha de nacimiento=%s
 |lugar de fallecimiento=Madrid
 |fecha de fallecimiento=%s
 |ocupación=%s
-|represión={{represión datos|represión=Fusilamiento|represor=Franquismo|fecha=%s|lugar=%s}}
+|descripción=%s
+|represión={{persona represaliada
+|represión=Fusilamiento
+|represor=Franquismo
+|fecha=%s
+|lugar=%s
 }}
-'''%s''', %s por el [[franquismo]], %s el [[%s]] en %s[[Madrid]].<ref name="myl">{{memoria-y-libertad}}</ref>%s%s<ref name="mmpce">{{Memorial-Madrid-PCE}}</ref>
+}}
+'''%s''', %s por el [[franquismo]], [[Lista de personas fusiladas por el franquismo|%s]] el [[%s]] en %s[[Madrid]].<ref name="myl">{{memoria-y-libertad}}</ref>%s%s<ref name="mmpce">{{Memorial-Madrid-PCE}}</ref>
 
 == Biografía ==
 
@@ -237,7 +247,7 @@ def main():
 == Véase también ==
 * [[Memoria histórica]]
 * [[Represión franquista]]
-* [[Lista de personas]]
+* [[Lista de personas fusiladas por el franquismo]]
 
 == Referencias ==
 {{reflist}}
@@ -248,14 +258,17 @@ def main():
 * {{memoria pública|}}
 * {{mcu represión|}}
 -->
-{{represión}}""" % (nombrepila, apellido1, apellido2, sexo, lugar_nacimiento, provincia_nacimiento and provincia_nacimiento!=lugar_nacimiento and ', %s' % (provincia_nacimiento) or '', fecha_nacimiento, fecha_muerte, profesion.lower(), fecha_muerte, 'Cementerio del Este' in lugar_muerte and 'Cementerio del Este' or '', nombrecompleto, sexo=='Hombre' and 'represaliado' or 'represaliada', sexo=='Hombre' and 'fusilado' or 'fusilada', traducirfecha(fecha_muerte), 'Cementerio del Este' in lugar_muerte and 'el Cementerio del Este de ' or '', 'Rojas' in procedencia_info and refrojas or '', 'Cementerio del Este' in lugar_muerte and refcemeste or '', bio and bio or '{{expandir}}', ee)
-            print output.encode('utf-8')
+{{represión}}""" % (nombrepila, apellido1, apellido2, sexo, lugar_nacimiento, fecha_nacimiento, fecha_muerte, profesion.lower(), desc, fecha_muerte, 'Cementerio del Este' in lugar_muerte and 'Cementerio del Este' or '', nombrecompleto, sexo=='Hombre' and 'represaliado' or 'represaliada', sexo=='Hombre' and 'fusilado' or 'fusilada', traducirfecha(fecha_muerte), 'Cementerio del Este' in lugar_muerte and 'el [[Cementerio del Este]] de ' or '', 'Rojas' in procedencia_info and refrojas or '', 'Cementerio del Este' in lugar_muerte and refcemeste or '', bio and bio or '{{expandir}}', ee)
+            
             page = pywikibot.Page(pywikibot.Site("15mpedia", "15mpedia"), nombrecompleto)
             if page.exists():
-                f = open('yaexiste.txt', 'a')
-                f.write(u'%s\n%s' % (output.encode('utf-8'), '-'*50))
+                print 'Ya existe', nombrecompleto.encode('utf-8')
+                f = open('fusilados-yaexiste.txt', 'a')
+                output2 = u'%s\n%s' % (output, '-'*50)
+                f.write(output2.encode('utf-8'))
                 f.close()
             else:
+                print output.encode('utf-8')
                 page.text = output
                 page.save(u'BOT - Creando página', botflag=False)
                 
