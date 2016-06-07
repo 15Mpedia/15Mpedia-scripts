@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import os
+import pywikibot
 import re
 
 def cleancell(cell):
@@ -199,12 +199,20 @@ def main():
         
         if profesion:
             if edad:
-                 bio += u' Era %s y fue %s cuando tenía %s años.' % (profesion.lower(), sexo=='Hombre' and 'fusilado' or 'fusilada', edad)
+                 bio += u' Era %s y tenía %s años cuando fue %s.' % (profesion.lower(), edad, sexo=='Hombre' and 'fusilado' or 'fusilada')
             else:
                  bio += u' Era %s.' % (profesion.lower())
         
         if bio:
-            bio += '<ref name="myl" />'
+            bio += u'<ref name="myl" />'
+        
+        ee = u''
+        if nombreurl:
+            bio += u'<ref name="quieneseran">[%s %s] en [[Quiénes eran]]</ref>' % (nombreurl, nombrecompleto)
+            ee = u'\n* [%s %s] en [[Quiénes eran]]' % (nombreurl, nombrecompleto)
+        
+        refrojas = u'<ref name="nr1997">{{Núñez-Rojas-1997}}</ref>'
+        refcemeste = u'<ref name="fuscemeste">{{Fusilados-Cementerio-Este}}</ref>'
         
         if causa_muerte.lower() == 'fusilamiento':
             #print edad.encode('utf-8'), nombre.encode('utf-8')
@@ -218,18 +226,13 @@ def main():
 |lugar de fallecimiento=Madrid
 |fecha de fallecimiento=%s
 |ocupación=%s
-|represor=franquismo
-|represión=fusilamiento
+|represión={{represión datos|represión=Fusilamiento|represor=Franquismo|fecha=%s|lugar=%s}}
 }}
-'''%s''', %s por el [[franquismo]], %s el [[%s]] en %s[[Madrid]].<ref name="myl">{{memoria-y-libertad}}</ref><ref name="nr1997">{{Núñez-Rojas-1997}}</ref><ref name="fuscemeste">{{Fusilados-Cementerio-Este}}</ref><ref name="mmpce">{{Memorial-Madrid-PCE}}</ref>
+'''%s''', %s por el [[franquismo]], %s el [[%s]] en %s[[Madrid]].<ref name="myl">{{memoria-y-libertad}}</ref>%s%s<ref name="mmpce">{{Memorial-Madrid-PCE}}</ref>
 
 == Biografía ==
 
 %s
-
-== Memoria ==
-
-{{expandir}}
 
 == Véase también ==
 * [[Memoria histórica]]
@@ -240,14 +243,26 @@ def main():
 {{reflist}}
 
 == Enlaces externos ==
-{{enlaces externos}}
-<!--* {{memoria pública|}}
-* {{mcu represión|}}-->
+{{enlaces externos}}%s
+<!--
+* {{memoria pública|}}
+* {{mcu represión|}}
+-->
+{{represión}}""" % (nombrepila, apellido1, apellido2, sexo, lugar_nacimiento, provincia_nacimiento and provincia_nacimiento!=lugar_nacimiento and ', %s' % (provincia_nacimiento) or '', fecha_nacimiento, fecha_muerte, profesion.lower(), fecha_muerte, 'Cementerio del Este' in lugar_muerte and 'Cementerio del Este' or '', nombrecompleto, sexo=='Hombre' and 'represaliado' or 'represaliada', sexo=='Hombre' and 'fusilado' or 'fusilada', traducirfecha(fecha_muerte), 'Cementerio del Este' in lugar_muerte and 'el Cementerio del Este de ' or '', 'Rojas' in procedencia_info and refrojas or '', 'Cementerio del Este' in lugar_muerte and refcemeste or '', bio and bio or '{{expandir}}', ee)
+            print output.encode('utf-8')
+            page = pywikibot.Page(pywikibot.Site("15mpedia", "15mpedia"), nombrecompleto)
+            if page.exists():
+                f = open('yaexiste.txt', 'a')
+                f.write(u'%s\n%s' % (output.encode('utf-8'), '-'*50))
+                f.close()
+            else:
+                page.text = output
+                page.save(u'BOT - Creando página', botflag=False)
+                
+                redtext = u'#REDIRECT [[%s]]' % (nombrecompleto)
+                red = pywikibot.Page(pywikibot.Site("15mpedia", "15mpedia"), nombre)
+                red.text = redtext
+                red.save(u'BOT - Creando redirección a [[%s]]' % (nombrecompleto), botflag=True)
 
-{{represión}}""" % (nombrepila, apellido1, apellido2, sexo, lugar_nacimiento, provincia_nacimiento and provincia_nacimiento!=lugar_nacimiento and ', %s' % (provincia_nacimiento) or '', fecha_nacimiento, fecha_muerte, profesion.lower(), nombrecompleto, sexo=='Hombre' and 'represaliado' or 'represaliada', sexo=='Hombre' and 'fusilado' or 'fusilada', traducirfecha(fecha_muerte), 'Cementerio del Este' in lugar_muerte and 'el Cementerio del Este de ' or '', bio and bio or '{{expandir}}')
-            if apodo:
-                print output.encode('utf-8')
-                print apodo.encode('utf-8')
-        
 if __name__ == '__main__':
     main()
