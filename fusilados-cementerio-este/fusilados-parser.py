@@ -135,6 +135,7 @@ def main():
         nombre = nombre.replace('\n', ' ')
         nombre = re.sub('  +', ' ', nombre)
         nombre = re.sub(r'(?im)(<span[^<>]*?>|</span>)', '', nombre)
+        
         nombreurl = ''
         if '</a>' in nombre:
             nombreurl = nombre.split('href="')[1].split('" target="')[0]
@@ -195,15 +196,21 @@ def main():
         #print causa_muerte.encode('utf-8'), lugar_muerte.encode('utf-8')
         
         # Sotero nació en la [[provincia de Guadalajara]]. Era Guardia Civil y fue fusilado cuando tenía 30 años.
-        bio = ''
+        bio = u''
         if lugar_nacimiento:
             bio += u'%s nació en [[%s]]%s.' % (nombrepila, lugar_nacimiento, provincia_nacimiento and provincia_nacimiento!=lugar_nacimiento and ', [[provincia de %s]]' % provincia_nacimiento or '')
         
         if profesion:
             if edad:
-                 bio += u' Era %s y tenía %s años cuando fue %s.' % (profesion.lower(), edad, sexo=='Hombre' and 'fusilado' or 'fusilada')
+                 if bio:
+                     bio += u' Era %s y tenía %s años cuando fue %s.' % (profesion.lower(), edad, sexo=='Hombre' and 'fusilado' or 'fusilada')
+                 else:
+                     bio += u'%s era %s y tenía %s años cuando fue %s.' % (nombrepila, profesion.lower(), edad, sexo=='Hombre' and 'fusilado' or 'fusilada')
             else:
-                 bio += u' Era %s.' % (profesion.lower())
+                 if bio:
+                     bio += u' Era %s.' % (profesion.lower())
+                 else:
+                     bio += u'%s era %s.' % (nombrepila, profesion.lower())
         
         if bio:
             bio += u'<ref name="myl" />'
@@ -259,6 +266,11 @@ def main():
 * {{mcu represión|}}
 -->
 {{represión}}""" % (nombrepila, apellido1, apellido2, sexo, lugar_nacimiento, fecha_nacimiento, fecha_muerte, profesion.lower(), desc, fecha_muerte, 'Cementerio del Este' in lugar_muerte and 'Cementerio del Este' or '', nombrecompleto, sexo=='Hombre' and 'represaliado' or 'represaliada', sexo=='Hombre' and 'fusilado' or 'fusilada', traducirfecha(fecha_muerte), 'Cementerio del Este' in lugar_muerte and 'el [[Cementerio del Este]] de ' or '', 'Rojas' in procedencia_info and refrojas or '', 'Cementerio del Este' in lugar_muerte and refcemeste or '', bio and bio or '{{expandir}}', ee)
+            
+            print '-'*50
+            if not nombrecompleto: #solo falla con 1 persona, saltamos
+                print 'Error'
+                continue
             
             page = pywikibot.Page(pywikibot.Site("15mpedia", "15mpedia"), nombrecompleto)
             if page.exists():
