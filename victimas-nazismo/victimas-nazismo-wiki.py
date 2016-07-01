@@ -34,13 +34,20 @@ def main():
     f.close()
     
     rows = csv.split('\n')
-    skip = u'Barbero Barbero, Gregorio'
+    skip = u'Carreras Guardia, Simón'
     for row in rows:
         print row
         try:
             apellidosnombre, edad, procedencia, oficio, lugarfallecimiento, fechafallecimiento = row.split(';;;')
         except:
             continue
+        
+        apellidosnombre = apellidosnombre.strip()
+        edad = edad.strip()
+        procedencia = procedencia.strip()
+        oficio = oficio.strip()
+        lugarfallecimiento = lugarfallecimiento.strip()
+        fechafallecimiento = fechafallecimiento.strip()
         
         if skip:
             if skip != apellidosnombre:
@@ -80,13 +87,14 @@ def main():
         else:
             procedenciaprov = ''
         
-        if oficio == '-':
-            oficio = u''
+        #if oficio == '-':
+        #    oficio = u''
+        oficio = u''
         
         fechafallecimiento2 = fechafallecimiento
         
         desc = u'Víctima española del nazismo'
-        bio = u'%s era de [[%s]]%s. Cuando murió en el campo de concentración tenía %s años.<ref name="enrecuerdode" />' % (nombre, procedenciamuni, procedenciaprov and u', [[provincia de %s]]' % (procedenciaprov) or u'', edad)
+        bio = u'%s era de [[%s]]%s. Cuando murió en el campo de concentración tenía %s años.<ref name="enrecuerdode" /><ref name="pares" />' % (nombre, procedenciamuni, procedenciaprov and u', [[provincia de %s]]' % (procedenciaprov) or u'', edad)
         
         output = u"""{{Infobox Persona
 |nombre=%s
@@ -108,7 +116,7 @@ def main():
 }}
 }}
 
-'''%s''', [[Lista de víctimas españolas del nazismo|víctima española]] del [[nazismo]], fue deportado al [[%s]] en [[Austria]], donde murió el [[%s]].<ref name="enrecuerdode">{{en recuerdo de}}</ref>
+'''%s''', [[Lista de víctimas españolas del nazismo|víctima española]] del [[nazismo]], fue deportado al [[%s]] en [[Austria]], donde murió el [[%s]].<ref name="enrecuerdode">{{en recuerdo de}}</ref><ref name="pares">{{PARES deportados}}</ref>
 
 == Biografía ==
 
@@ -124,7 +132,9 @@ def main():
 
 == Enlaces externos ==
 {{enlaces externos}}
-
+<!--
+* {{PARES deportados|id=}}
+-->
 {{represión}}""" % (nombre, apellido1, apellido2, procedenciamuni, lugarfallecimiento, destraducirfecha(fechafallecimiento), oficio, desc, destraducirfecha(fechafallecimiento), lugarfallecimiento, nombreapellidos, lugarfallecimiento, fechafallecimiento, bio)
         #print output.encode('utf-8')
                 
