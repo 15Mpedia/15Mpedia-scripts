@@ -17,7 +17,7 @@
 
 import pywikibot
 
-for year in ['2017']:
+for year in ['1936', '1937', '1938', '1939', '1940', '1941', '1942', '1943', '1944', '1945', '1946', '1947']:
     for month, monthnum in [['enero', '01'], ['febrero', '02'], ['marzo', '03'], ['abril', '04'], ['mayo', '05'], ['junio', '06'], ['julio', '07'], ['agosto', '08'], ['septiembre', '09'], ['octubre', '10'], ['noviembre', '11'], ['diciembre', '12']]:
         print month, year
         mesnombre = u'%s de %s' % (month, year)

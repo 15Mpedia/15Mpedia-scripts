@@ -19,7 +19,7 @@ import pywikibot
 
 num2month = {1:'enero', 2:'febrero', 3:'marzo', 4:'abril', 5:'mayo', 6:'junio', 7:'julio', 8:'agosto', 9:'septiembre', 10:'octubre', 11:'noviembre', 12:'diciembre'}
 
-for year in [2017]:
+for year in range(1936, 1948):
     for month in range(1,13):
         for day in range(1, 32):
             if month == 2 and day > 28:
