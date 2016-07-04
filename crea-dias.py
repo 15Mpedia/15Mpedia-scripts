@@ -45,9 +45,10 @@ for year in [2017]:
                 '%d %s %d' % (day, num2month[month], year), 
                 '%d %s %d' % (day, num2month[month][0].upper()+num2month[month][1:], year), 
             ]
+            redoutput = u"#REDIRECT [[%s]]" % (title)
             for red in redirects:
                 redp = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), red)
-                output = u"#REDIRECT [[%s]]" % (title)
-                redp.text = output
-                redp.save(u"BOT - Creando redirección")
+                if not redp.exists():
+                    redp.text = redoutput
+                    redp.save(u"BOT - Creando redirección")
 
