@@ -62,6 +62,9 @@ def main():
         fusilados.append([i[1],i[0]])
     fusilados.sort()
     
+    if not fusilados:
+        sys.exit()
+    
     #generar imagen
     fusiladosnum = len(fusilados)
     high = 25
