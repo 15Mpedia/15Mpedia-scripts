@@ -39,14 +39,17 @@ def main():
             print(u'Ya tiene el ID')
             continue
         
-        nombre = re.findall(ur'(?im)\|nombre=([^\|]*)', wtext)[0].strip()
-        primerapellido = re.findall(ur'(?im)\|primer apellido=([^\|]*)', wtext)[0].strip()
-        segundoapellido = re.findall(ur'(?im)\|segundo apellido=([^\|]*)', wtext)[0].strip()
-        apellidos = u'%s %s' % (primerapellido, segundoapellido)
-        nombre_ = re.sub(ur' ', ur'+', nombre)
-        apellidos_ = re.sub(ur' ', ur'+', apellidos)
-        fechafallecimiento = re.findall(ur'(?im)\|fecha de fallecimiento=(\d\d\d\d/\d\d/\d\d)', wtext)[0].strip()
-        fechafallecimiento2 = u'%s/%s/%s' % (fechafallecimiento.split('/')[2], fechafallecimiento.split('/')[1], fechafallecimiento.split('/')[0])
+        try:
+            nombre = re.findall(ur'(?im)\|nombre=([^\|]*)', wtext)[0].strip()
+            primerapellido = re.findall(ur'(?im)\|primer apellido=([^\|]*)', wtext)[0].strip()
+            segundoapellido = re.findall(ur'(?im)\|segundo apellido=([^\|]*)', wtext)[0].strip()
+            apellidos = u'%s %s' % (primerapellido, segundoapellido)
+            nombre_ = re.sub(ur' ', ur'+', nombre)
+            apellidos_ = re.sub(ur' ', ur'+', apellidos)
+            fechafallecimiento = re.findall(ur'(?im)\|fecha de fallecimiento=(\d\d\d\d/\d\d/\d\d)', wtext)[0].strip()
+            fechafallecimiento2 = u'%s/%s/%s' % (fechafallecimiento.split('/')[2], fechafallecimiento.split('/')[1], fechafallecimiento.split('/')[0])
+        except:
+            continue
         
         #print nombre, apellidos
         url = 'http://especiales.publico.es/es/memoria-publica/buscar?nombre=%s&apellidos=%s' % (nombre_.encode('utf-8'), apellidos_.encode('utf-8'))
