@@ -52,7 +52,7 @@ def main():
         fecha = ''
         if fosa['fecha']:
             t = fosa['fecha'][0].split('/')
-            fecha = '%s-%s-%s' % (t[2], t[1], t[0])
+            fecha = '%s/%s/%s' % (t[2], t[1], t[0])
         ccaa = fosa['comunidad'] and fosa['comunidad'][0] or ''
         #print ccaa.encode('utf-8')
         provincia = fosa['provincia'] and fosa['provincia'][0] or ''
@@ -92,11 +92,11 @@ def main():
 |provincia=Provincia de %s
 |municipio=%s
 |coordenadas=%s
-|estado=%s
+|estado=%s%s
 |número de víctimas=%s
 |mjusticia código=%s
 |mjusticia url=%s
-}}""" % (nombre.strip() or 'Fosa %s' % (codigo), ccaa, provincia, municipio, coord, tipos[tipo], victimas, codigo, url)
+}}""" % (nombre.strip() or 'Fosa %s' % (codigo), ccaa, provincia, municipio, coord, tipos[tipo], fecha and '\n|fecha=%s' % (fecha) or '', victimas, codigo, url)
         
         nombrepagina = nombre.strip()
         if nombrepagina:
@@ -104,9 +104,13 @@ def main():
         else:
             nombrepagina = 'Fosa %s' % (codigo)
         page = pywikibot.Page(site, nombrepagina)
-        if not page.exists():
+        if not page.exists() or \
+           (page.exists() and page.text.strip() != textopagina.strip()):
+            if page.exists():
+                pywikibot.showDiff(page.text, textopagina)
+            else:
+                pywikibot.showDiff('', textopagina)
             page.text = textopagina
-            print(page.text)
             page.save('BOT - Creando artículo sobre fosa')
         
         #redirects
