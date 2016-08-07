@@ -96,15 +96,15 @@ def main():
 |número de víctimas=%s
 |mjusticia código=%s
 |mjusticia url=%s
-}}""" % (nombre, ccaa, provincia, municipio, coord, tipos[tipo], victimas, codigo, url)
+}}""" % (nombre.strip() or 'Fosa %s' % (codigo), ccaa, provincia, municipio, coord, tipos[tipo], victimas, codigo, url)
         
-        nombrepagina = nombre
+        nombrepagina = nombre.strip()
         if nombrepagina:
             nombrepagina = '%s (%s)' % (nombrepagina, codigo)
         else:
-            nombrepagina = '%s (%s)' % (nombre, codigo)
+            nombrepagina = 'Fosa %s' % (codigo)
         page = pywikibot.Page(site, nombrepagina)
-        if True or not page.exists():
+        if not page.exists():
             page.text = textopagina
             print(page.text)
             page.save('BOT - Creando artículo sobre fosa')
@@ -112,10 +112,11 @@ def main():
         #redirects
         redtitle = "Fosa %s" % (codigo)
         redtext = "#REDIRECCIÓN [[%s]]" % (nombrepagina)
-        redpage = pywikibot.Page(site, redtitle)
-        if True or not redpage.exists():
-            redpage.text = redtext
-            redpage.save('BOT - Creando redirección')
+        if redtitle != nombrepagina:
+            redpage = pywikibot.Page(site, redtitle)
+            if not redpage.exists():
+                redpage.text = redtext
+                redpage.save('BOT - Creando redirección')
         
     #print(setinternal.encode('utf-8'))
 
