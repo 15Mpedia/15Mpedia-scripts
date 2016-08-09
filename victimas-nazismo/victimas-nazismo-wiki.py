@@ -34,7 +34,7 @@ def main():
     f.close()
     
     rows = csv.split('\n')
-    skip = u'Carreras Guardia, Simón'
+    skip = u'Pardo Fernández, Eugenio'
     for row in rows:
         print row
         try:
@@ -76,8 +76,47 @@ def main():
             apellido1 = ''
             apellido2 = ''
         
+        paiscampo = {}
         if 'gusen' in lugarfallecimiento.lower():
             lugarfallecimiento = u'Campo de concentración de Gusen'
+            paiscampo[lugarfallecimiento] = u'Austria'
+            continue #skiping done bios
+        elif 'mauth' in lugarfallecimiento.lower():
+            lugarfallecimiento = u'Campo de concentración de Mauthausen'
+            paiscampo[lugarfallecimiento] = u'Austria'
+        elif 'harth' in lugarfallecimiento.lower():
+            lugarfallecimiento = u'Campo de concentración de Hartheim'
+            paiscampo[lugarfallecimiento] = u'Austria'
+        elif 'dachau' in lugarfallecimiento.lower():
+            lugarfallecimiento = u'Campo de concentración de Dachau'
+            paiscampo[lugarfallecimiento] = u'Alemania'
+        elif 'steyr' in lugarfallecimiento.lower():
+            lugarfallecimiento = u'Campo de concentración de Steyr'
+            paiscampo[lugarfallecimiento] = u'Austria'
+        elif 'buchen' in lugarfallecimiento.lower():
+            lugarfallecimiento = u'Campo de concentración de Buchenwald'
+            paiscampo[lugarfallecimiento] = u'Alemania'
+        elif 'floss' in lugarfallecimiento.lower():
+            lugarfallecimiento = u'Campo de concentración de Flossenbürg'
+            paiscampo[lugarfallecimiento] = u'Alemania'
+        elif 'neuen' in lugarfallecimiento.lower():
+            lugarfallecimiento = u'Campo de concentración de Neuengamme'
+            paiscampo[lugarfallecimiento] = u'Alemania'
+        elif 'melk' in lugarfallecimiento.lower():
+            lugarfallecimiento = u'Campo de concentración de Melk'
+            paiscampo[lugarfallecimiento] = u'Austria'
+        elif 'ternberg' in lugarfallecimiento.lower():
+            lugarfallecimiento = u'Campo de concentración de Ternberg'
+            paiscampo[lugarfallecimiento] = u'Austria'
+        elif 'bergen' in lugarfallecimiento.lower():
+            lugarfallecimiento = u'Campo de concentración de Bergen-Belsen'
+            paiscampo[lugarfallecimiento] = u'Alemania'
+        elif 'ausch' in lugarfallecimiento.lower():
+            lugarfallecimiento = u'Campo de concentración de Auschwitz'
+            paiscampo[lugarfallecimiento] = u'Polonia'
+        elif 'ravens' in lugarfallecimiento.lower():
+            lugarfallecimiento = u'Campo de concentración de Ravensbrück'
+            paiscampo[lugarfallecimiento] = u'Alemania'
         else:
             continue
         
@@ -116,7 +155,7 @@ def main():
 }}
 }}
 
-'''%s''', [[Lista de víctimas españolas del nazismo|víctima española]] del [[nazismo]], fue deportado al [[%s]] en [[Austria]], donde murió el [[%s]].<ref name="enrecuerdode">{{en recuerdo de}}</ref><ref name="pares">{{PARES deportados}}</ref>
+'''%s''', [[Lista de víctimas españolas del nazismo|víctima española]] del [[nazismo]], fue deportado al [[%s]] en [[%s]], donde murió el [[%s]].<ref name="enrecuerdode">{{en recuerdo de}}</ref><ref name="pares">{{PARES deportados}}</ref>
 
 == Biografía ==
 
@@ -135,7 +174,7 @@ def main():
 <!--
 * {{PARES deportados|id=}}
 -->
-{{represión}}""" % (nombre, apellido1, apellido2, procedenciamuni, lugarfallecimiento, destraducirfecha(fechafallecimiento), oficio, desc, destraducirfecha(fechafallecimiento), lugarfallecimiento, nombreapellidos, lugarfallecimiento, fechafallecimiento, bio)
+{{represión}}""" % (nombre, apellido1, apellido2, procedenciamuni, lugarfallecimiento, destraducirfecha(fechafallecimiento), oficio, desc, destraducirfecha(fechafallecimiento), lugarfallecimiento, nombreapellidos, lugarfallecimiento, paiscampo[lugarfallecimiento], fechafallecimiento, bio)
         #print output.encode('utf-8')
                 
         page = pywikibot.Page(pywikibot.Site("15mpedia", "15mpedia"), nombreapellidos)
