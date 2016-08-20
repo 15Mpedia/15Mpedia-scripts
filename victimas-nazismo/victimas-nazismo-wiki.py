@@ -34,9 +34,20 @@ def main():
     f.close()
     
     rows = csv.split('\n')
-    skip = u'Pardo Fernández, Eugenio'
+    skip = u''
     for row in rows:
         print row
+        nombre = ''
+        nombreapellidos = ''
+        apellidos = ''
+        apellido1 = ''
+        apellido2 = ''
+        procedenciamuni = ''
+        procedenciaprov = ''
+        lugarfallecimiento = ''
+        fechafallecimiento = ''
+        oficio = ''
+        
         try:
             apellidosnombre, edad, procedencia, oficio, lugarfallecimiento, fechafallecimiento = row.split(';;;')
         except:
@@ -80,7 +91,7 @@ def main():
         if 'gusen' in lugarfallecimiento.lower():
             lugarfallecimiento = u'Campo de concentración de Gusen'
             paiscampo[lugarfallecimiento] = u'Austria'
-            continue #skiping done bios
+            #continue #skiping done bios
         elif 'mauth' in lugarfallecimiento.lower():
             lugarfallecimiento = u'Campo de concentración de Mauthausen'
             paiscampo[lugarfallecimiento] = u'Austria'
@@ -124,6 +135,7 @@ def main():
             procedenciamuni = procedencia.split(' (')[0]
             procedenciaprov = procedencia.split(' (')[1].split(')')[0]
         else:
+            procedenciamuni = procedencia
             procedenciaprov = ''
         
         #if oficio == '-':
@@ -179,11 +191,15 @@ def main():
                 
         page = pywikibot.Page(pywikibot.Site("15mpedia", "15mpedia"), nombreapellidos)
         if page.exists():
-            print 'Ya existe', nombreapellidos.encode('utf-8')
+            if page.text != output:
+                pywikibot.showDiff(page.text, output)
+                page.text = output
+                page.save(u'BOT - Actualizando datos')
+            """print 'Ya existe', nombreapellidos.encode('utf-8')
             f = open('victimas-yaexiste.txt', 'a')
             output2 = u'%s\n%s' % (output, '-'*50)
             f.write(output2.encode('utf-8'))
-            f.close()
+            f.close()"""
         else:
             print output.encode('utf-8')
             page.text = output
