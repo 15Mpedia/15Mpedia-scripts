@@ -73,6 +73,8 @@ def main():
             if ' ' in apellidos:
                 apellido1 = apellidos.split(' ')[0]
                 apellido2 = ' '.join(apellidos.split(' ')[1:])
+            else:
+                apellido1 = apellidos
         elif ',' in apellidosnombre:
             nombre = apellidosnombre.split(',')[1]
             apellidos = apellidosnombre.split(',')[0]
@@ -80,6 +82,8 @@ def main():
             if ' ' in apellidos:
                 apellido1 = apellidos.split(' ')[0]
                 apellido2 = ' '.join(apellidos.split(' ')[1:])
+            else:
+                apellido1 = apellidos
         else:
             nombre = apellidosnombre
             nombreapellidos = apellidosnombre
