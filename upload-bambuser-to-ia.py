@@ -123,9 +123,9 @@ def main():
             print 'Subiendo streamings del usuario %s del año %s' % (user, argyear)
             
             for year, files in filestoupload.items():
-                if int(year) >= 2015:
-                    print 'Ignorando ficheros del anyo %s' % (year)
-                    continue
+                #if int(year) >= 2015:
+                #    print 'Ignorando ficheros del anyo %s' % (year)
+                #    continue
                 
                 user_ = re.sub('\+', ' ', user)
                 itemname = 'bambuser-%s-%s' % (user_, year)
@@ -149,7 +149,7 @@ def main():
                     if os.path.exists(filename):
                         files2.append(filename)
                     else:
-                        errorlog('No se encontro el fichero: %s\n' % (filename))
+                        errorlog('ERROR: No se encontro el fichero: %s\n' % (filename))
                 files = files2
                 
                 #preparar metadatos
