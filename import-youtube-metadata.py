@@ -69,7 +69,8 @@ def main():
         try:
             title = re.findall(ur'<meta property="og:title" content="([^>]+?)">', raw)[0]
             title = unquote(title)
-            thumburl = re.findall(ur'<meta property="og:image" content="([^>]+?)">', raw)[0]
+            #thumburl = re.findall(ur'<meta property="og:image" content="([^>]+?)">', raw)[0]
+            thumburl = 'https://i.ytimg.com/vi/'+id+'/hqdefault.jpg'
             desc = unquote(unicode(subprocess.Popen(["python", "youtube-dl", url, "--get-description"], stdout=subprocess.PIPE).communicate()[0], 'utf-8')).strip()
             if desc == u'No description available.':
                 desc = u''
@@ -129,6 +130,7 @@ def main():
             print 'La pagina de imagen File:%s ya existe. No subimos' % (imagename)
             continue
         
+        #print thumburl
         bot = upload.UploadRobot([thumburl], description=infobox, useFilename=imagename, keepFilename=True, verifyDescription=False, targetSite=site, uploadByUrl=True, ignoreWarning=['duplicate'])
         bot.run()
         

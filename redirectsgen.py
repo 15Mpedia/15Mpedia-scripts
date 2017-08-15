@@ -20,6 +20,7 @@
 
 import re
 import sys
+import time
 
 import pywikibot
 import pywikibot.pagegenerators as pagegenerators
@@ -52,15 +53,15 @@ def main():
     gen = pagegenerators.AllpagesPageGenerator(start=skip, namespace=0, site=site)
     pre = pagegenerators.PreloadingGenerator(gen, pageNumber=250)
     alltitles = []
-    #c = 0
+    c = 0
     for page in pre:
         if not page.exists(): #do not put .isRedirectPage() or it will never find redirects when checking below before creating
             continue
         alltitles.append(page.title())
         print page.title()
-        #c +=1
-        #if c > 250:
-        #    break
+        c +=1
+        if c % 250 == 0:
+            time.sleep(1)
         
     for wtitle in alltitles:
         if wtitle.startswith('Lista de votaciones') or \
@@ -158,6 +159,7 @@ def main():
                         msg = u"BOT - Creating redirect to [[%s]]" % (wtitle)
                         red.text = output
                         red.save(msg)
+                        time.sleep(0.2)
 
 if __name__ == '__main__':
     main()

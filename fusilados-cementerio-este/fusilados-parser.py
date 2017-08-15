@@ -125,6 +125,7 @@ def main():
     f.close()
     
     rows = html.split('<tr ')[2:-2]
+    skip = u'Alejandro Yunta Jiménez'
     for row in rows:
         row = '<tr ' + row
         cells = ['>'.join(x.split('>')[1:]).strip() for x in row.split('</td>')[:-1]]
@@ -158,6 +159,13 @@ def main():
             else:
                 apellido1 = apellidos
                 apellido2 = ''
+        
+        if skip:
+            if nombrecompleto == skip:
+                skip = ''
+            else:
+                print 'Skiping...', nombrecompleto.encode('utf-8')
+                continue
         
         fecha_muerte = invertirfecha(cleancell(cells[1]))
         fecha_nacimiento = invertirfecha(cleancell(cells[2]))
