@@ -53,6 +53,7 @@ def main():
         lugares[x.split(',')[0]] = x.split(',')[1]
     f.close()
     
+    skip = u'Jose Herrero Pastor'
     for fusilado in fusilados:
         apellidos, nombrepila, fechafus, pob, edad, prof, pobfus = fusilado.split(';')
         apellidos = apellidos.strip()
@@ -63,6 +64,11 @@ def main():
         prof = prof.strip()
         pobfus = pobfus.strip()        
         nombrecompleto = nombrepila + ' ' + apellidos
+        if skip:
+            print('Skiping', nombrecompleto)
+            if nombrecompleto == skip:
+                skip = ''
+            continue
         nombrecompleto2 = apellidos + ', ' + nombrepila
         apellido1 = ''
         apellido2 = ''
@@ -86,13 +92,13 @@ def main():
         if pob != '?':
             bio += u'%s era de %s[[%s]].' % (nombrepila, u'provincia' in pobtrad.lower() and u'la ' or u'', pobtrad)
         if proftrad == '?':
-            if edad:
+            if edad != '?':
                  if bio:
                      bio += u' Tenía %s años cuando fue %s.' % (edad, sexo=='Hombre' and 'fusilado' or 'fusilada')
                  else:
                      bio += u'%s tenía %s años cuando fue %s.' % (nombrepila, edad, sexo=='Hombre' and 'fusilado' or 'fusilada')
         else:
-            if edad:
+            if edad != '?':
                  if bio:
                      bio += u' Era %s y tenía %s años cuando fue %s.' % (proftrad.lower(), edad, sexo=='Hombre' and 'fusilado' or 'fusilada')
                  else:
