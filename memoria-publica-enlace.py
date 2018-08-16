@@ -17,71 +17,105 @@
 
 import re
 import time
-import urllib2
+import urllib.parse
+import urllib.request
 import pywikibot
 import pywikibot.pagegenerators as pagegenerators
 
+def getURL(url=''):
+    raw = ''
+    req = urllib.request.Request(url, headers={ 'User-Agent': 'Mozilla/5.0' })
+    try:
+        raw = urllib.request.urlopen(req).read().strip().decode('utf-8')
+    except:
+        try:
+            raw = urllib.request.urlopen(req).read().strip().decode('latin-1')
+        except:
+            sleep = 10 # seconds
+            maxsleep = 0
+            while sleep <= maxsleep:
+                print('Error while retrieving: %s' % (url))
+                print('Retry in %s seconds...' % (sleep))
+                time.sleep(sleep)
+                try:
+                    raw = urllib.request.urlopen(req).read().strip().decode('utf-8')
+                except:
+                    pass
+                sleep = sleep * 2
+    return raw
+
 def main():
     site = pywikibot.Site('15mpedia', '15mpedia')
-    category = pywikibot.Category(site, u'Categoría:Personas fusiladas por el franquismo')
-    gen = pagegenerators.CategorizedPageGenerator(category=category, start='', namespaces=[0])
-    pre = pagegenerators.PreloadingGenerator(gen, pageNumber=250)
+    catnames = [
+        'Categoría:Personas fusiladas por el franquismo', 
+    ]
     
-    for page in pre:
-        if not page.exists() or page.isRedirectPage():
-            continue
-        wtext = page.text
-        wtitle = page.title()
-        if not re.search(ur'{{Infobox Persona', wtext):
-            continue
-        print('\n== %s ==' % (wtitle))
-        if re.search(ur'{{memoria pública\|[\d]+\}\}', wtext):
-            print(u'Ya tiene el ID')
-            continue
+    for catname in catnames:
+        category = pywikibot.Category(site, catname)
+        gen = pagegenerators.CategorizedPageGenerator(category=category, start='', namespaces=[0])
+        pre = pagegenerators.PreloadingGenerator(gen, pageNumber=50)
         
-        try:
-            nombre = re.findall(ur'(?im)\|nombre=([^\|]*)', wtext)[0].strip()
-            primerapellido = re.findall(ur'(?im)\|primer apellido=([^\|]*)', wtext)[0].strip()
-            segundoapellido = re.findall(ur'(?im)\|segundo apellido=([^\|]*)', wtext)[0].strip()
-            apellidos = u'%s %s' % (primerapellido, segundoapellido)
-            nombre_ = re.sub(ur' ', ur'+', nombre)
-            apellidos_ = re.sub(ur' ', ur'+', apellidos)
-            fechafallecimiento = re.findall(ur'(?im)\|fecha de fallecimiento=(\d\d\d\d/\d\d/\d\d)', wtext)[0].strip()
-            fechafallecimiento2 = u'%s/%s/%s' % (fechafallecimiento.split('/')[2], fechafallecimiento.split('/')[1], fechafallecimiento.split('/')[0])
-        except:
-            continue
-        
-        #print nombre, apellidos
-        url = 'http://especiales.publico.es/es/memoria-publica/buscar?nombre=%s&apellidos=%s' % (nombre_.encode('utf-8'), apellidos_.encode('utf-8'))
-        req = urllib2.Request(url, headers={ 'User-Agent': 'Mozilla/5.0' })
-        raw = urllib2.urlopen(req).read()
-        raw = unicode(raw, 'utf-8')
-        
-        if re.search(ur'Fecha de muerte: <span>%s</span>' % (fechafallecimiento2), raw):
-            print(u'La fecha coincide, debe ser la misma persona')
-            mempubid = re.findall(ur'<meta property="og:url" content="http://especiales.publico.es/es/memoria-publica/ficha/(\d+)/', raw)[0]
-            #print(mempubid)
-            print(u'Añadiendo ID %s al artículo' % mempubid)
-            newtext = wtext.replace(u"""<!--
+        for page in pre:
+            if not page.exists() or page.isRedirectPage():
+                continue
+            wtext = page.text
+            wtitle = page.title()
+            if not re.search(r'{{Infobox Persona', wtext):
+                continue
+            print('\n== %s ==' % (wtitle))
+            if re.search(r'{{memoria pública\|[\d]+\}\}', wtext):
+                print('Ya tiene el ID')
+                continue
+            
+            try:
+                nombre = re.findall(r'(?im)\|nombre=([^\|]*)', wtext)[0].strip()
+                primerapellido = re.findall(r'(?im)\|primer apellido=([^\|]*)', wtext)[0].strip()
+                segundoapellido = re.findall(r'(?im)\|segundo apellido=([^\|]*)', wtext)[0].strip()
+                apellidos = '%s %s' % (primerapellido, segundoapellido)
+                apellidos = apellidos.strip()
+                nombre_ = re.sub(r' ', r'+', nombre)
+                apellidos_ = re.sub(r' ', r'+', apellidos)
+                fechafallecimiento = re.findall(r'(?im)\|fecha de fallecimiento=(\d\d\d\d/\d\d/\d\d)', wtext)[0].strip()
+                fechafallecimiento2 = '%s/%s/%s' % (fechafallecimiento.split('/')[2], fechafallecimiento.split('/')[1], fechafallecimiento.split('/')[0])
+            except:
+                continue
+            
+            #print nombre, apellidos
+            url = 'https://especiales.publico.es/es/memoria-publica/buscar?nombre=%s&apellidos=%s' % (nombre_, apellidos_)
+            raw = getURL(url=url)
+            
+            if re.search(r'Fecha de muerte:', raw):
+                if re.search(r'Fecha de muerte: <span>%s</span>' % (fechafallecimiento2), raw):
+                    print('La fecha coincide, debe ser la misma persona')
+                    mempubid = re.findall(r'<meta property="og:url" content="http://especiales.publico.es/es/memoria-publica/ficha/(\d+)/', raw)[0]
+                    #print(mempubid)
+                    print('Añadiendo ID %s al artículo' % mempubid)
+                    newtext = wtext.replace("""<!--
 * {{memoria pública|}}
 * {{mcu represión|}}
 -->""", u"""* {{memoria pública|%s}}
 <!--
 * {{mcu represión|}}
 -->""" % (mempubid))
-            if wtext != newtext:
-                pywikibot.showDiff(wtext, newtext)
-                page.text = newtext
-                page.save(u'BOT - Añadiendo enlace a [[Memoria Pública]]', botflag=True)
-        else:
-            print(u'ERROR: La fecha no coincide, saltando')
-            f = open('memoria-publica.error', 'a')
-            msg = u'\n* [[%s]] no coincide su nombre en Memoria Pública' % (wtitle)
-            f.write(msg.encode('utf-8'))
-            f.close()
-        
-        #print(raw)
-        time.sleep(10)
+                    if wtext != newtext:
+                        pywikibot.showDiff(wtext, newtext)
+                        page.text = newtext
+                        page.save('BOT - Añadiendo enlace a [[Memoria Pública]]', botflag=True)
+                else:
+                    print('ERROR: La fecha no coincide, saltando')
+                    f = open('memoria-publica.error', 'a')
+                    msg = '\n* [[%s]] no coincide su fecha en Memoria Pública' % (wtitle)
+                    f.write(msg)
+                    f.close()
+            else:
+                print('ERROR: No hay ficha para esta persona, saltando')
+                f = open('memoria-publica.error', 'a')
+                msg = '\n* [[%s]] no tiene ficha en Memoria Pública' % (wtitle)
+                f.write(msg)
+                f.close()
+            
+            #print(raw)
+            time.sleep(10)
     
 if __name__ == '__main__':
     main()
