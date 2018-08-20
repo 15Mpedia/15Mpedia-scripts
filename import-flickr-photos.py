@@ -116,77 +116,89 @@ def main():
         print('Provide --categories: parameter. Example: --categories:"15M_en_Madrid;Ocupa_el_Congreso"')
         sys.exit()"""
     
-    flickrseturl = flickrseturl.replace('/sets/', '/albums/')
-    flickruser = flickrseturl.split('/photos/')[1].split('/albums/')[0].strip()
-    flickrsetid = flickrseturl.split('/albums/')[1].split('/')[0].strip('/').strip()
-    raw = getURL(url=flickrseturl)
-    m = re.findall(r'"albumId":"%s","nsid":"([^"]+?)"' % (flickrsetid), raw)
-    flickeruserid = ''
-    if m:
-        flickeruserid = m[0]
+    flickrseturls = []
+    if '://' in flickrseturl:
+        flickrseturls = [flickrseturl]
     else:
-        print("No se encontro flickeruserid")
-        sys.exit()
-    m = re.findall(r',"pathAlias":"([^"]+?)"', raw)
+        f = open(flickrseturl, 'r')
+        flickrseturls = f.read().strip().splitlines()
+        f.close()
     
-    #load set metadata
-    apiquery = 'https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=%s&photoset_id=%s&user_id=%s&per_page=%s&format=json&nojsoncallback=1' % (flickrapikey, flickrsetid, flickeruserid, flickrapilimit)
-    jsonset = json.loads(getURL(url=apiquery))
-    #print(jsonset)
-    flickrsetname = jsonset["photoset"]["title"]
-    flickeruser = jsonset["photoset"]["ownername"]
-    photoids = [photo["id"] for photo in jsonset["photoset"]["photo"]]
-    print('There are', len(photoids), 'images in the set', flickrsetid, 'by', flickruser)
-    
-    #load images metadata
-    for photoid in photoids:
-        apiquery = 'https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=%s&photo_id=%s&format=json&nojsoncallback=1' % (flickrapikey, photoid)
-        jsonphoto = json.loads(getURL(url=apiquery))
+    for flickrseturl in flickrseturls:
+        flickrseturl = flickrseturl.replace('/sets/', '/albums/')
+        flickruser = flickrseturl.split('/photos/')[1].split('/albums/')[0].strip()
+        flickrsetid = flickrseturl.split('/albums/')[1].split('/')[0].strip('/').strip()
+        raw = getURL(url=flickrseturl)
+        m = re.findall(r'"albumId":"%s","nsid":"([^"]+?)"' % (flickrsetid), raw)
+        flickeruserid = ''
+        if m:
+            flickeruserid = m[0]
+        else:
+            print("No se encontro flickeruserid")
+            sys.exit()
+        m = re.findall(r',"pathAlias":"([^"]+?)"', raw)
         
-        #check license, if not free, do not donwload later
-        photolicense = jsonphoto["photo"]["license"]
-        if not photolicense in ["1", "2", "3", "4", "5", "6", "9"]:
-            print('Skiping', photoid, 'which is not Creative Commons or Public Domain')
-            continue
+        #load set metadata
+        apiquery = 'https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=%s&photoset_id=%s&user_id=%s&per_page=%s&format=json&nojsoncallback=1' % (flickrapikey, flickrsetid, flickeruserid, flickrapilimit)
+        jsonset = json.loads(getURL(url=apiquery))
+        if not "photoset" in jsonset:
+            print("ERROR: API key caducada o invalida?")
+            sys.exit()
+        #print(jsonset)
+        flickrsetname = jsonset["photoset"]["title"]
+        flickeruser = jsonset["photoset"]["ownername"]
+        photoids = [photo["id"] for photo in jsonset["photoset"]["photo"]]
+        print('There are', len(photoids), 'images in the set', flickrsetid, 'by', flickruser)
         
-        photometadata = {
-            'title': unquote("title" in jsonphoto["photo"] and jsonphoto["photo"]["title"]["_content"].strip() or ''), 
-            'description': unquote("description" in jsonphoto["photo"] and jsonphoto["photo"]["description"]["_content"].strip() or ''),
-            'date-taken': "taken" in jsonphoto["photo"]["dates"] and jsonphoto["photo"]["dates"]["taken"] or '', 
-            'license': photolicense, 
-            'coordinates': "location" in jsonphoto["photo"] and [jsonphoto["photo"]["location"]["latitude"], jsonphoto["photo"]["location"]["longitude"]] or '', 
-            'localfilename': '%s - %s - %s.jpg' % (flickruser, flickrsetid, photoid), 
-            'photourl': "https://www.flickr.com/photos/%s/%s/" % (flickruser, photoid), 
-            'tags': [tag["raw"] for tag in jsonphoto["photo"]["tags"]["tag"]] + tags, 
-        }
-        photometadata['description'] = re.sub(r' *\n+ *', r'\n\n', photometadata['description'])
-        if 'has uploaded' in photometadata['description']:
-            photometadata['description'] = ''
-        photofullres = 'https://farm%s.staticflickr.com/%s/%s_%s_o_d.jpg' % (jsonphoto["photo"]["farm"], jsonphoto["photo"]["server"], jsonphoto["photo"]["id"], jsonphoto["photo"]["originalsecret"])
-        
-        print(photoid)
-        print(photometadata)
-        print(photofullres)
-        
-        cats = ''
-        if categories:
-            cats = '\n\n%s' % ('\n'.join(['[[Categoría:%s]]' % (category) for category in categories]))
-        
-        output = generateInfobox(photoid, photometadata, cats, flickrseturl, flickrsetname, flickruser)
-        
-        #https://www.mediawiki.org/wiki/Manual:Pywikibot/upload.py
-        aborts = set()
-        ignorewarn = set(['duplicate']) # los duplicados los controlamos con page.exists() mas abajo
-        summary = "BOT - Subiendo imagen %s" % (photometadata['photourl'])
-        
-        page = pywikibot.Page(site, "File:%s" % (photometadata['localfilename']))
-        if page.exists():
-            print("Ya existe")
-            continue
-        
-        #print(output)
-        bot = UploadRobot(photofullres, description=output, useFilename=photometadata['localfilename'], keepFilename=True, verifyDescription=False, aborts=aborts, ignoreWarning=ignorewarn, summary=summary, targetSite=site)
-        bot.run()
+        #load images metadata
+        for photoid in photoids:
+            apiquery = 'https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=%s&photo_id=%s&format=json&nojsoncallback=1' % (flickrapikey, photoid)
+            jsonphoto = json.loads(getURL(url=apiquery))
+            
+            #check license, if not free, do not donwload later
+            photolicense = jsonphoto["photo"]["license"]
+            if not photolicense in ["1", "2", "3", "4", "5", "6", "9"]:
+                print('Skiping', photoid, 'which is not Creative Commons or Public Domain')
+                continue
+            
+            photometadata = {
+                'title': unquote("title" in jsonphoto["photo"] and jsonphoto["photo"]["title"]["_content"].strip() or ''), 
+                'description': unquote("description" in jsonphoto["photo"] and jsonphoto["photo"]["description"]["_content"].strip() or ''),
+                'date-taken': "taken" in jsonphoto["photo"]["dates"] and jsonphoto["photo"]["dates"]["taken"] or '', 
+                'license': photolicense, 
+                'coordinates': "location" in jsonphoto["photo"] and [jsonphoto["photo"]["location"]["latitude"], jsonphoto["photo"]["location"]["longitude"]] or '', 
+                'localfilename': '%s - %s - %s.jpg' % (flickruser, flickrsetid, photoid), 
+                'photourl': "https://www.flickr.com/photos/%s/%s/" % (flickruser, photoid), 
+                'tags': [tag["raw"] for tag in jsonphoto["photo"]["tags"]["tag"]] + tags, 
+            }
+            photometadata['description'] = re.sub(r' *\n+ *', r'\n\n', photometadata['description'])
+            if 'has uploaded' in photometadata['description']:
+                photometadata['description'] = ''
+            photofullres = 'https://farm%s.staticflickr.com/%s/%s_%s_o_d.jpg' % (jsonphoto["photo"]["farm"], jsonphoto["photo"]["server"], jsonphoto["photo"]["id"], jsonphoto["photo"]["originalsecret"])
+            
+            print(photoid)
+            print(photometadata)
+            print(photofullres)
+            
+            cats = ''
+            if categories:
+                cats = '\n\n%s' % ('\n'.join(['[[Categoría:%s]]' % (category) for category in categories]))
+            
+            output = generateInfobox(photoid, photometadata, cats, flickrseturl, flickrsetname, flickruser)
+            
+            #https://www.mediawiki.org/wiki/Manual:Pywikibot/upload.py
+            aborts = set()
+            ignorewarn = set(['duplicate']) # los duplicados los controlamos con page.exists() mas abajo
+            summary = "BOT - Subiendo imagen %s" % (photometadata['photourl'])
+            
+            page = pywikibot.Page(site, "File:%s" % (photometadata['localfilename']))
+            if page.exists():
+                print("Ya existe")
+                continue
+            
+            #print(output)
+            bot = UploadRobot(photofullres, description=output, useFilename=photometadata['localfilename'], keepFilename=True, verifyDescription=False, aborts=aborts, ignoreWarning=ignorewarn, summary=summary, targetSite=site)
+            bot.run()
 
 if __name__ == '__main__':
     main()
