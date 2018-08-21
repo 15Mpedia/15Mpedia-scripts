@@ -48,6 +48,7 @@ def main():
         'Categoría:Víctimas del nazismo', 
     ]
     start = ''
+    skip = 'José Ces Caamaño'
     
     for catname in catnames:
         category = pywikibot.Category(site, catname)
@@ -59,6 +60,14 @@ def main():
                 continue
             wtext = page.text
             wtitle = page.title()
+            
+            if skip:
+                if skip == wtitle:
+                    skip = ''
+                else:
+                    print("Skiping", wtitle)
+                    continue
+            
             if not re.search(r'{{Infobox Persona', wtext):
                 continue
             print('\n== %s ==' % (wtitle))
