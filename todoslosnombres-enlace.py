@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2016 emijrp <emijrp@gmail.com>
+# Copyright (C) 2018 emijrp <emijrp@gmail.com>
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -22,36 +22,27 @@ import urllib.parse
 import urllib.request
 import pywikibot
 import pywikibot.pagegenerators as pagegenerators
+import unicodedata
+
+def removeaccute(s):
+    return ''.join((c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn'))
 
 def getURL(url=''):
     raw = ''
-    req = urllib.request.Request(url, headers={ 'User-Agent': 'Mozilla/5.0' })
+    req = urllib.request.Request(url, headers={ 'User-Agent': '' })
     try:
         raw = urllib.request.urlopen(req).read().strip().decode('utf-8')
     except:
-        try:
-            raw = urllib.request.urlopen(req).read().strip().decode('latin-1')
-        except:
-            sleep = 10 # seconds
-            maxsleep = 0
-            while sleep <= maxsleep:
-                print('Error while retrieving: %s' % (url))
-                print('Retry in %s seconds...' % (sleep))
-                time.sleep(sleep)
-                try:
-                    raw = urllib.request.urlopen(req).read().strip().decode('utf-8')
-                except:
-                    pass
-                sleep = sleep * 2
+        pass
     return raw
 
 def main():
     site = pywikibot.Site('15mpedia', '15mpedia')
     catnames = [
-        #'Categoría:Personas fusiladas por el franquismo', 
+        'Categoría:Personas fusiladas por el franquismo', 
         'Categoría:Víctimas del nazismo', 
     ]
-    start = 'Pastor'
+    start = ''
     
     for catname in catnames:
         category = pywikibot.Category(site, catname)
@@ -66,7 +57,7 @@ def main():
             if not re.search(r'{{Infobox Persona', wtext):
                 continue
             print('\n== %s ==' % (wtitle))
-            if re.search(r'(?im){{memoria p[úu]blica\|[\d]+\}\}', wtext):
+            if re.search(r'(?im){{todos[ -]los[ -]nombres\|', wtext):
                 print('Ya tiene el ID')
                 continue
             
@@ -76,60 +67,52 @@ def main():
                 segundoapellido = re.findall(r'(?im)\|segundo apellido=([^\|]*)', wtext)[0].strip()
                 apellidos = '%s %s' % (primerapellido, segundoapellido)
                 apellidos = apellidos.strip()
-                nombre_ = re.sub(r' ', r'+', nombre)
-                apellidos_ = re.sub(r' ', r'+', apellidos)
+                nombre_ = re.sub(r' ', r'-', nombre)
+                apellidos_ = re.sub(r' ', r'-', apellidos)
+                nombrecompleto = '%s-%s' % (nombre_, apellidos_)
+                nombrecompleto_ = removeaccute(nombrecompleto.lower())
                 fechafallecimiento = re.findall(r'(?im)\|fecha de fallecimiento=(\d\d\d\d/\d\d/\d\d)', wtext)[0].strip()
                 fechafallecimiento2 = '%s/%s/%s' % (fechafallecimiento.split('/')[2], fechafallecimiento.split('/')[1], fechafallecimiento.split('/')[0])
             except:
                 continue
             
             #print nombre, apellidos
-            url = 'https://especiales.publico.es/es/memoria-publica/buscar?nombre=%s&apellidos=%s' % (nombre_, apellidos_)
+            url = 'http://www.todoslosnombres.org/content/personas/%s' % (nombrecompleto_)
+            archiveurl = 'https://web.archive.org/web/2020/http://www.todoslosnombres.org/content/personas/%s' % (nombrecompleto_)
+            url = archiveurl #mientras el server no carga, tiramos de archive
+            
+            print(url)
             raw = getURL(url=url)
             
-            if re.search(r'Fecha de muerte:', raw):
-                if re.search(r'Fecha de muerte: <span>%s</span>' % (fechafallecimiento2), raw):
+            if raw and (not re.search(r'Página no encontrada', raw) and not re.search(r'This page is not available on the web', raw)):
+                if re.search(r'%s' % (fechafallecimiento2), raw):
                     print('La fecha coincide, debe ser la misma persona')
-                    mempubid = re.findall(r'<meta property="og:url" content="http://especiales.publico.es/es/memoria-publica/ficha/(\d+)/', raw)[0]
-                    #print(mempubid)
-                    print('Añadiendo ID %s al artículo' % mempubid)
-                    if 'franquismo' in catname:
-                        newtext = wtext.replace("""<!--
-* {{memoria pública|}}
-* {{mcu represión|}}
--->""", """* {{memoria pública|%s}}
+                    tlnid = nombrecompleto_
+                    #print(tlnid)
+                    print('Añadiendo ID %s al artículo' % tlnid)
+                    newtext = wtext.replace("""<!--
+* {{""", """* {{todos los nombres|%s}}
 <!--
-* {{mcu represión|}}
--->""" % (mempubid))
-                    elif 'nazismo' in catname:
-                        newtext = wtext.replace("""<!--
-* {{PARES deportados|id=}}
--->""", """* {{memoria pública|%s}}
-<!--
-* {{PARES deportados|id=}}
--->""" % (mempubid))
-                    else:
-                        print('Error, categoria desconocida')
-                        sys.exit()
+* {{""" % (tlnid))
                     if wtext != newtext:
                         pywikibot.showDiff(wtext, newtext)
                         page.text = newtext
-                        page.save('BOT - Añadiendo enlace a [[Memoria Pública]]', botflag=True)
+                        page.save('BOT - Añadiendo enlace a [[Todos los nombres]]', botflag=True)
                 else:
                     print('ERROR: La fecha no coincide, saltando')
-                    f = open('memoria-publica.error', 'a')
-                    msg = '\n* [[%s]] no coincide su fecha en Memoria Pública' % (wtitle)
+                    f = open('todoslosnombres.error', 'a')
+                    msg = '\n* [[%s]] no coincide su fecha en todoslosnombres' % (wtitle)
                     f.write(msg)
                     f.close()
             else:
                 print('ERROR: No hay ficha para esta persona, saltando')
-                f = open('memoria-publica.error', 'a')
-                msg = '\n* [[%s]] no tiene ficha en Memoria Pública' % (wtitle)
+                f = open('todoslosnombres.error', 'a')
+                msg = '\n* [[%s]] no tiene ficha en todoslosnombres' % (wtitle)
                 f.write(msg)
                 f.close()
             
             #print(raw)
-            time.sleep(10)
+            time.sleep(1)
     
 if __name__ == '__main__':
     main()

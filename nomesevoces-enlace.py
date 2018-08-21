@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2016 emijrp <emijrp@gmail.com>
+# Copyright (C) 2018 emijrp <emijrp@gmail.com>
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -22,36 +22,29 @@ import urllib.parse
 import urllib.request
 import pywikibot
 import pywikibot.pagegenerators as pagegenerators
+import unicodedata
 
 def getURL(url=''):
     raw = ''
-    req = urllib.request.Request(url, headers={ 'User-Agent': 'Mozilla/5.0' })
+    req = urllib.request.Request(url, headers={ 'User-Agent': '' })
     try:
         raw = urllib.request.urlopen(req).read().strip().decode('utf-8')
     except:
-        try:
-            raw = urllib.request.urlopen(req).read().strip().decode('latin-1')
-        except:
-            sleep = 10 # seconds
-            maxsleep = 0
-            while sleep <= maxsleep:
-                print('Error while retrieving: %s' % (url))
-                print('Retry in %s seconds...' % (sleep))
-                time.sleep(sleep)
-                try:
-                    raw = urllib.request.urlopen(req).read().strip().decode('utf-8')
-                except:
-                    pass
-                sleep = sleep * 2
+        pass
     return raw
+
+def number2month(n=0):
+    months = {1:"xaneiro", 2:"febreiro", 3:"marzo", 4:"abril", 5:"maio", 6:"xuño", 7:"xullo", 8:"agosto",
+    9:"setembro", 10:"outubro", 11:"novembro", 12:"decembro", }
+    return months[n]
 
 def main():
     site = pywikibot.Site('15mpedia', '15mpedia')
     catnames = [
-        #'Categoría:Personas fusiladas por el franquismo', 
+        'Categoría:Personas fusiladas por el franquismo', 
         'Categoría:Víctimas del nazismo', 
     ]
-    start = 'Pastor'
+    start = ''
     
     for catname in catnames:
         category = pywikibot.Category(site, catname)
@@ -66,7 +59,7 @@ def main():
             if not re.search(r'{{Infobox Persona', wtext):
                 continue
             print('\n== %s ==' % (wtitle))
-            if re.search(r'(?im){{memoria p[úu]blica\|[\d]+\}\}', wtext):
+            if re.search(r'(?im){{(nomesevoces|nomes[ -]e[ -]voces)\|', wtext):
                 print('Ya tiene el ID')
                 continue
             
@@ -78,58 +71,47 @@ def main():
                 apellidos = apellidos.strip()
                 nombre_ = re.sub(r' ', r'+', nombre)
                 apellidos_ = re.sub(r' ', r'+', apellidos)
+                nombrecompleto = '%s, %s' % (apellidos, nombre)
+                nombrecompleto_ = '%s+%s' % (apellidos_, nombre_)
                 fechafallecimiento = re.findall(r'(?im)\|fecha de fallecimiento=(\d\d\d\d/\d\d/\d\d)', wtext)[0].strip()
                 fechafallecimiento2 = '%s/%s/%s' % (fechafallecimiento.split('/')[2], fechafallecimiento.split('/')[1], fechafallecimiento.split('/')[0])
+                fechafallecimiento3 = '%s de %s de %s' % (fechafallecimiento.split('/')[2], number2month(int(fechafallecimiento.split('/')[1])), fechafallecimiento.split('/')[0])
             except:
                 continue
             
-            #print nombre, apellidos
-            url = 'https://especiales.publico.es/es/memoria-publica/buscar?nombre=%s&apellidos=%s' % (nombre_, apellidos_)
+            url = 'http://vitimas.nomesevoces.net/gl/buscar/?orde=nome&buscar=%s' % (nombrecompleto_)                        
+            print(url)
             raw = getURL(url=url)
             
-            if re.search(r'Fecha de muerte:', raw):
-                if re.search(r'Fecha de muerte: <span>%s</span>' % (fechafallecimiento2), raw):
-                    print('La fecha coincide, debe ser la misma persona')
-                    mempubid = re.findall(r'<meta property="og:url" content="http://especiales.publico.es/es/memoria-publica/ficha/(\d+)/', raw)[0]
-                    #print(mempubid)
-                    print('Añadiendo ID %s al artículo' % mempubid)
-                    if 'franquismo' in catname:
+            if not re.search(r'(?im)Atopamos 0 resultados', raw):
+                m = re.findall(r'(?im)<a href="/gl/ficha/(\d+)/">%s</a>' % (nombrecompleto), raw)
+                for n in m:
+                    url2 = 'http://vitimas.nomesevoces.net/gl/ficha/%s/' % (n)
+                    raw2 = getURL(url=url2)
+                    if re.search(r'(?im)%s' % (fechafallecimiento3), raw2):
+                        print('La fecha coincide, debe ser la misma persona')
+                        nevid = n
+                        #print(nevid)
+                        print('Añadiendo ID %s al artículo' % nevid)
                         newtext = wtext.replace("""<!--
-* {{memoria pública|}}
-* {{mcu represión|}}
--->""", """* {{memoria pública|%s}}
+* {{""", """* {{nomes e voces|%s}}
 <!--
-* {{mcu represión|}}
--->""" % (mempubid))
-                    elif 'nazismo' in catname:
-                        newtext = wtext.replace("""<!--
-* {{PARES deportados|id=}}
--->""", """* {{memoria pública|%s}}
-<!--
-* {{PARES deportados|id=}}
--->""" % (mempubid))
+* {{""" % (nevid))
+                        if wtext != newtext:
+                            pywikibot.showDiff(wtext, newtext)
+                            page.text = newtext
+                            page.save('BOT - Añadiendo enlace a [[Nomes e Voces]]', botflag=True)
                     else:
-                        print('Error, categoria desconocida')
-                        sys.exit()
-                    if wtext != newtext:
-                        pywikibot.showDiff(wtext, newtext)
-                        page.text = newtext
-                        page.save('BOT - Añadiendo enlace a [[Memoria Pública]]', botflag=True)
-                else:
-                    print('ERROR: La fecha no coincide, saltando')
-                    f = open('memoria-publica.error', 'a')
-                    msg = '\n* [[%s]] no coincide su fecha en Memoria Pública' % (wtitle)
-                    f.write(msg)
-                    f.close()
+                        print('ERROR: La fecha no coincide, saltando')
             else:
                 print('ERROR: No hay ficha para esta persona, saltando')
-                f = open('memoria-publica.error', 'a')
-                msg = '\n* [[%s]] no tiene ficha en Memoria Pública' % (wtitle)
+                f = open('nomesevoces.error', 'a')
+                msg = '\n* [[%s]] no tiene ficha en nomesevoces' % (wtitle)
                 f.write(msg)
                 f.close()
             
             #print(raw)
-            time.sleep(10)
+            time.sleep(5)
     
 if __name__ == '__main__':
     main()
