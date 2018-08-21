@@ -24,9 +24,12 @@ import pywikibot
 import pywikibot.pagegenerators as pagegenerators
 import unicodedata
 
+def removeaccute(s):
+    return ''.join((c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn'))
+
 def getURL(url=''):
     raw = ''
-    req = urllib.request.Request(url, headers={ 'User-Agent': '' })
+    req = urllib.request.Request(url, headers={ 'User-Agent': 'Mozilla/5.0' })
     try:
         raw = urllib.request.urlopen(req).read().strip().decode('utf-8')
     except:
@@ -79,14 +82,18 @@ def main():
             except:
                 continue
             
-            url = 'http://vitimas.nomesevoces.net/gl/buscar/?orde=nome&buscar=%s' % (nombrecompleto_)                        
+            url = 'http://vitimas.nomesevoces.net/gl/buscar/?orde=nome&buscar=%s' % (removeaccute(nombrecompleto_))
             print(url)
             raw = getURL(url=url)
+            if not raw:
+                print("ERROR retrieving page")
+                continue
             
             if not re.search(r'(?im)Atopamos 0 resultados', raw):
                 m = re.findall(r'(?im)<a href="/gl/ficha/(\d+)/">%s</a>' % (nombrecompleto), raw)
                 for n in m:
                     url2 = 'http://vitimas.nomesevoces.net/gl/ficha/%s/' % (n)
+                    print(url2)
                     raw2 = getURL(url=url2)
                     if re.search(r'(?im)%s' % (fechafallecimiento3), raw2):
                         print('La fecha coincide, debe ser la misma persona')
@@ -111,7 +118,7 @@ def main():
                 f.close()
             
             #print(raw)
-            time.sleep(5)
+            time.sleep(10)
     
 if __name__ == '__main__':
     main()
