@@ -67,7 +67,7 @@ def generateInfobox(photoid, photometadata, cats, flickrseturl, flickrsetname, f
     <license id="10" name="Public Domain Mark" url="https://creativecommons.org/publicdomain/mark/1.0/" />
     </licenses>
     """
-    licenses = { "1": "cc-by-nc-sa-2.0", "2": "cc-by-nc-2.0", "3": "cc-by-nc-nd-2.0", "4": "cc-by-2.0", "5": "cc-by-sa-2.0", "6": "cc-by-nd-2.0", "9": "cc-zero-1.0"}
+    licenses = { "1": "cc-by-nc-sa-2.0", "2": "cc-by-nc-2.0", "3": "cc-by-nc-nd-2.0", "4": "cc-by-2.0", "5": "cc-by-sa-2.0", "6": "cc-by-nd-2.0", "9": "cc-zero-1.0", "10": "cc-pd-mark-1.0"}
     desc = photometadata['title']
     if photometadata['description']:
         if desc:
@@ -118,36 +118,56 @@ def main():
     
     flickrseturls = []
     if '://' in flickrseturl:
-        flickrseturls = [flickrseturl]
+        if '/people/' in flickrseturl:
+            raw = getURL(url=flickrseturl)
+            flickruser = flickrseturl.split('/people/')[1].split('/')[0].strip('/')
+            flickruserid = re.findall(r'"nsid":"([^"]+)"', raw)[0]
+            apiquery = 'https://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key=%s&user_id=%s&format=json&nojsoncallback=1' % (flickrapikey, flickruserid)
+            jsonset3 = json.loads(getURL(url=apiquery))
+            if not "photosets" in jsonset3:
+                print("ERROR: API key caducada o invalida?")
+                sys.exit()
+            flickrseturls = ["https://www.flickr.com/photos/%s/albums/%s" % (flickruser, x["id"]) for x in jsonset3["photosets"]["photoset"]]
+            print('\n'.join(flickrseturls))
+            sys.exit()
+        else:
+            flickrseturls = [flickrseturl]
     else:
         f = open(flickrseturl, 'r')
         flickrseturls = f.read().strip().splitlines()
         f.close()
     
+    print('Loaded', len(flickrseturls), 'photosets')
     for flickrseturl in flickrseturls:
         flickrseturl = flickrseturl.replace('/sets/', '/albums/')
         flickruser = flickrseturl.split('/photos/')[1].split('/albums/')[0].strip()
         flickrsetid = flickrseturl.split('/albums/')[1].split('/')[0].strip('/').strip()
         raw = getURL(url=flickrseturl)
         m = re.findall(r'"albumId":"%s","nsid":"([^"]+?)"' % (flickrsetid), raw)
-        flickeruserid = ''
+        flickruserid = ''
         if m:
-            flickeruserid = m[0]
+            flickruserid = m[0]
         else:
-            print("No se encontro flickeruserid")
+            print("No se encontro flickruserid")
             sys.exit()
         m = re.findall(r',"pathAlias":"([^"]+?)"', raw)
         
         #load set metadata
-        apiquery = 'https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=%s&photoset_id=%s&user_id=%s&per_page=%s&format=json&nojsoncallback=1' % (flickrapikey, flickrsetid, flickeruserid, flickrapilimit)
+        apiquery = 'https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=%s&photoset_id=%s&user_id=%s&per_page=%s&format=json&nojsoncallback=1' % (flickrapikey, flickrsetid, flickruserid, flickrapilimit)
         jsonset = json.loads(getURL(url=apiquery))
         if not "photoset" in jsonset:
             print("ERROR: API key caducada o invalida?")
             sys.exit()
         #print(jsonset)
         flickrsetname = jsonset["photoset"]["title"]
-        flickeruser = jsonset["photoset"]["ownername"]
+        #flickruser = jsonset["photoset"]["ownername"] #hay usuarios con espacios, mejor extraer el usuario de la url del set
         photoids = [photo["id"] for photo in jsonset["photoset"]["photo"]]
+        pages = int(jsonset["photoset"]["pages"])
+        if pages > 1:
+            for page in range(2, pages+1):
+                apiquery2 = apiquery + '&page=' + str(page)
+                jsonset2 = json.loads(getURL(url=apiquery2))
+                photoids += [photo["id"] for photo in jsonset2["photoset"]["photo"]]
         print('There are', len(photoids), 'images in the set', flickrsetid, 'by', flickruser)
         
         #load images metadata
@@ -157,7 +177,7 @@ def main():
             
             #check license, if not free, do not donwload later
             photolicense = jsonphoto["photo"]["license"]
-            if not photolicense in ["1", "2", "3", "4", "5", "6", "9"]:
+            if not photolicense in ["1", "2", "3", "4", "5", "6", "9", "10"]:
                 print('Skiping', photoid, 'which is not Creative Commons or Public Domain')
                 continue
             
