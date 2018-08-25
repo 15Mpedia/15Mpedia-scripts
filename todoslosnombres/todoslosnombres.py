@@ -79,7 +79,7 @@ def main():
     nombrespilamujer = f.read().lower().strip().splitlines()
     f.close()
     
-    skipmuni = '12719'
+    skipmuni = '12676'
     for municipioid in municipiosids:
         if skipmuni:
             if skipmuni == municipioid:
@@ -103,6 +103,7 @@ def main():
         if re.search(r'(?im)Actualmente no hay contenido', raw):
             print("Este municipio no tiene fichas")
             continue
+        time.sleep(10)
         
         m = re.findall(r'(?im)page=(\d+)', raw)
         numpages = m and max([int(n) for n in m]) or 0
@@ -111,26 +112,46 @@ def main():
             raw2 = ''
             if c != 0:
                 url2 = 'http://www.todoslosnombres.org/taxonomy/term/%s?page=%s' % (municipioid, str(c))
-                status = archiveurl(url=url2, force=True)
+                status = '404'
+                d = 1
+                while status == '404' and d <= 3:
+                    status = archiveurl(url=url2, force=True)
+                    d += 1
+                    time.sleep((d-1)*20+10)
+                if status == '404':
+                    continue
                 url2save = 'https://web.archive.org/web/2025/' + url2
-                raw2 = getURL(url=url2save)
+                try:
+                    raw2 = getURL(url=url2save)
+                except:
+                    print("Error al leer la pagina del municipio")
+                    break
             else:
                 raw2 = raw
+            time.sleep(10)
             personas = re.findall(r'(?im)node-title"><a href="[^<>]+/content/personas/([^<>]+)">', raw2)
             if not personas:
                 print("No hay mas personas en este municipio")
-                continue
+                break
             for persona in personas:
                 print('\n==', persona, '==\n')
                 url3 = 'http://www.todoslosnombres.org/content/personas/' + persona
-                status = archiveurl(url=url3, force=False)
+                
+                status = '404'
+                d = 1
+                while status == '404' and d <= 3:
+                    status = archiveurl(url=url3, force=True)
+                    d += 1
+                    time.sleep((d-1)*20+10)
+                if status == '404':
+                    print("Error al leer la ficha")
+                    continue
                 url3save = 'https://web.archive.org/web/2025/' + url3
                 try:
                     raw3 = getURL(url=url3save)
                 except:
                     print("Error al leer la ficha")
                     continue
-                time.sleep(10)
                 
                 apellido1 = ''
                 apellido1regexp = r'(?im)Primer apellido[^<>]+?</div><div class="field-items"><div class="field-item even">([^<>]+?)</div>'
@@ -151,6 +172,10 @@ def main():
                     print(nombrecompleto)
                 else:
                     print("Falta nombre o apellidos")
+                    continue
+                
+                if '/' in nombrecompleto:
+                    print("Nombre ambiguo")
                     continue
                 
                 apodo = ''
