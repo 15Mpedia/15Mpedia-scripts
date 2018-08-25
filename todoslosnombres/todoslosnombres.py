@@ -79,7 +79,7 @@ def main():
     nombrespilamujer = f.read().lower().strip().splitlines()
     f.close()
     
-    skipmuni = '12676'
+    skipmuni = '10790'
     for municipioid in municipiosids:
         if skipmuni:
             if skipmuni == municipioid:
@@ -99,6 +99,10 @@ def main():
         municipionombre = re.findall(r'(?im)id="page-title">([^<>]+?)</h1>', raw)[0]
         print('==', municipionombre, '==')
         print(url)
+        
+        if '/' in municipionombre or '?' in municipionombre or ',' in municipionombre or '&' in municipionombre or '.' in municipionombre:
+            print("Saltando municipio ambiguo")
+            continue
         
         if re.search(r'(?im)Actualmente no hay contenido', raw):
             print("Este municipio no tiene fichas")
@@ -183,6 +187,10 @@ def main():
                 if re.search(apodoregexp, raw3):
                     apodo = re.findall(apodoregexp, raw3)[0].strip()
                 
+                sexo = 'Hombre'
+                if nombrepila.lower() in nombrespilamujer:
+                    sexo = 'Mujer'
+                
                 prof = ''
                 profregexp = r'(?im)Profesión[^<>]+?</div><div class="field-items"><div class="field-item even">([^<>]+?)</div>'
                 if re.search(profregexp, raw3):
@@ -192,6 +200,8 @@ def main():
                     prof = 'ama de casa'
                 if prof.lower() == 'campo':
                     prof = 'trabajador del campo'
+                    if sexo == 'Mujer':
+                        prof = 'trabajadora del campo'
                 
                 lugnacimiento = ''
                 lugnacimientoregexp = r'(?im)Municipio de nacimiento[^<>]+?</div><div class="field-items"><div class="field-item even">([^<>]+?)</div>'
@@ -246,10 +256,6 @@ def main():
                 else:
                     print("No fue fusilado, saltamos")
                     continue
-                
-                sexo = 'Hombre'
-                if nombrepila.lower() in nombrespilamujer:
-                    sexo = 'Mujer'
                 
                 bio = ''
                 if lugnacimiento:
