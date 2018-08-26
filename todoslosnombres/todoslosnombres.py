@@ -79,7 +79,8 @@ def main():
     nombrespilamujer = f.read().lower().strip().splitlines()
     f.close()
     
-    skipmuni = '10790'
+    skipmuni = '10792'
+    skipbio = 'antonio-lopez-romera'
     for municipioid in municipiosids:
         if skipmuni:
             if skipmuni == municipioid:
@@ -139,6 +140,12 @@ def main():
                 break
             for persona in personas:
                 print('\n==', persona, '==\n')
+                if skipbio:
+                    if skipbio == persona:
+                        skipbio = ''
+                    else:
+                        print("Saltando", persona)
+                        continue
                 url3 = 'http://www.todoslosnombres.org/content/personas/' + persona
                 
                 status = '404'
