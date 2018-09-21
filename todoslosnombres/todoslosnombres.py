@@ -66,8 +66,23 @@ def archiveurl(url='', force=False):
 def getURL(url=''):
     raw = ''
     req = urllib.request.Request(url, headers={ 'User-Agent': 'Mozilla/5.0' })
-    raw = urllib.request.urlopen(req).read().strip().decode('utf-8')
-
+    try:
+        raw = urllib.request.urlopen(req).read().strip().decode('utf-8')
+    except:
+        try:
+            raw = urllib.request.urlopen(req).read().strip().decode('latin-1')
+        except:
+            sleep = 10 # seconds
+            maxsleep = 60
+            while sleep <= maxsleep:
+                print('Error while retrieving: %s' % (url))
+                print('Retry in %s seconds...' % (sleep))
+                time.sleep(sleep)
+                try:
+                    raw = urllib.request.urlopen(req).read().strip().decode('utf-8')
+                except:
+                    pass
+                sleep = sleep * 2
     return raw
 
 def main():
@@ -79,8 +94,9 @@ def main():
     nombrespilamujer = f.read().lower().strip().splitlines()
     f.close()
     
-    skipmuni = '10792'
-    skipbio = 'antonio-lopez-romera'
+    skipmuni = '8408'
+    skipbio = 'lorenzo-jimenez-raya' #minusculas y espacios como -
+    skippage = 144 #para municipios grandes, podemos saltar a la pagina concreta http://www.todoslosnombres.org/taxonomy/term/8408?page=144
     for municipioid in municipiosids:
         if skipmuni:
             if skipmuni == municipioid:
@@ -89,13 +105,20 @@ def main():
                 print("Skiping", municipioid)
                 continue
         url = 'http://www.todoslosnombres.org/taxonomy/term/' + municipioid
-        status = archiveurl(url=url, force=True)
-        
         urlsave = 'https://web.archive.org/web/2025/' + url
-        try:
-            raw = getURL(url=urlsave)
-        except:
-            print("Error, no existe pagina para el municipio?")
+        d = 1
+        raw = ''
+        while not raw and d <= 5:
+            status = archiveurl(url=url, force=True)
+            try:
+                raw = getURL(url=urlsave)
+            except:
+                print("Error, no existe pagina para el municipio?")
+                continue
+            time.sleep(10*d)
+            d += 1
+        if not raw:
+            print("Error leyendo municipio, saltando")
             continue
         municipionombre = re.findall(r'(?im)id="page-title">([^<>]+?)</h1>', raw)[0]
         print('==', municipionombre, '==')
@@ -113,6 +136,10 @@ def main():
         m = re.findall(r'(?im)page=(\d+)', raw)
         numpages = m and max([int(n) for n in m]) or 0
         c = 0
+        if skippage:
+            print("Skiping to page", skippage)
+            c = skippage
+            skippage = ''
         while c <= numpages:
             raw2 = ''
             if c != 0:
