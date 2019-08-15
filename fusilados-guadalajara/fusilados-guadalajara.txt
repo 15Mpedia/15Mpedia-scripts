@@ -1,0 +1,4938 @@
+<tr>
+<td align="LEFT" height="18"><b>APELLIDOS Y NOMBRE</b></td>
+<td align="CENTER"><b>EDAD</b></td>
+<td align="CENTER"><b>PROFESIÓN</b></td>
+<td align="LEFT"><b>NATURALEZA Y/O VECINDAD</b></td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Abad Heras, Benito</td>
+<td align="CENTER">29</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Fuentenovilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Abad Ochoa, Eusebio</td>
+<td align="CENTER">30</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Abad Rodilla, Facundo</td>
+<td align="CENTER">48</td>
+<td align="LEFT">carpintero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Adalia Mateo, Balbino</td>
+<td align="CENTER">62</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Alhóndiga</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Adalia Moreno, Román</td>
+<td align="CENTER">34</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Salmerón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Aguado García, Antonio</td>
+<td align="CENTER">40</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Humanes de Mohernando / Yunquera de H.</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Aguado Hita, Julián</td>
+<td align="CENTER">28</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Aguilar Polo, Julián</td>
+<td align="CENTER">66</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Aguirre Aguirre, Nicolás</td>
+<td align="CENTER">41</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Mondéjar</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Agustín Taravillo, Casto de</td>
+<td align="CENTER">24</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Chiloeches</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Agustín Taravillo, Miguel de</td>
+<td align="CENTER">26</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Chiloeches</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Albarsan Díaz, Sandalio</td>
+<td align="CENTER">43</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Ledanca</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Alcantarilla Mercado, Valentín</td>
+<td align="CENTER">28</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Alcaraz Carralero, Gabino</td>
+<td align="CENTER">29</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Alcaraz Carralero, Sebastián</td>
+<td align="CENTER">23</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Alcaraz Carralero, Victoriano</td>
+<td align="CENTER">36</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Algora Flores, Feliciano</td>
+<td align="CENTER">24</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Almendros Montero, Mariano</td>
+<td align="CENTER">30</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Alonso Agudo, Alfonso</td>
+<td align="CENTER">32</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Trijueque</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Alonso Bautista, Anselmo D.</td>
+<td align="CENTER">21</td>
+<td align="LEFT">obrero</td>
+<td align="LEFT">Sta Cruz de R. (Toledo) / Loranca de T.</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Alonso de la Torre, Anselmo</td>
+<td align="CENTER">43</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Alique</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Alonso Gusano, Francisco</td>
+<td align="CENTER">25</td>
+<td align="LEFT">herrador</td>
+<td align="LEFT">Valdeolivas (Cuenca) / Salmerón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Alonso Muñiz, Miguel</td>
+<td align="CENTER">49</td>
+<td align="LEFT">guardia civil</td>
+<td align="LEFT">Guadalupe (Cáceres) / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Alonso Parra, Cosme</td>
+<td align="CENTER">59</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Robledo de Corpes</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Alonso Puerta, Pedro</td>
+<td align="CENTER">31</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alique</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Alonso Romera, Eusebio</td>
+<td align="CENTER">47</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Alique</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Alonso San José, Valentín</td>
+<td align="CENTER">39</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Álvaro Lerín, Salvador</td>
+<td align="CENTER">37</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Pareja</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Álvaro Málaga, Alberto</td>
+<td align="CENTER">43</td>
+<td align="LEFT">conductor</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Álvaro Riviel, Enrique</td>
+<td align="CENTER">30</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Pareja</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Amil Pérez, Conrado de</td>
+<td align="CENTER">48</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Renera / Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Amil Rodrigo, Francisco de</td>
+<td align="CENTER">28</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Renera / Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Amil Rodrigo, Julio de</td>
+<td align="CENTER">27</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Renera / Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Amo Hernández, Marcelino del</td>
+<td align="CENTER">28</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Cendejas de la Torre</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Andradas Román, Victoriano</td>
+<td align="CENTER">25</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Villanueva de la Torre</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Andrés Carrascosa, Florentino</td>
+<td align="CENTER">30</td>
+<td align="LEFT">cerrajero</td>
+<td align="LEFT">Cabanillas del Campo</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Andrés Carrascosa, Vidal</td>
+<td align="CENTER">21</td>
+<td align="LEFT">ajustador</td>
+<td align="LEFT">Cabanillas del Campo / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Andrés Saboya, Hermenegildo</td>
+<td align="CENTER">41</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Fuentelencina</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Antón Herranz, Cipriano</td>
+<td align="CENTER">59</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Renales</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Aparicio Aparicio, Jesús</td>
+<td align="CENTER">50</td>
+<td align="LEFT">empleado</td>
+<td align="LEFT">Monterde (Zaragoza) / Humanes de M.</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Aranda Oliván, Emilio</td>
+<td align="CENTER">43</td>
+<td align="LEFT">empleado</td>
+<td align="LEFT">La Coruña / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Arcas Barrera, Pedro</td>
+<td align="CENTER">40</td>
+<td align="LEFT">cordelero</td>
+<td align="LEFT">Carracedo, Braganza (Portugal) / GU</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ardiz Gil, Ángel</td>
+<td align="CENTER">47</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Arévalo Coello, Agapito</td>
+<td align="CENTER">46</td>
+<td align="LEFT">ferroviario</td>
+<td align="LEFT">Miguelturra (Ciudad Real) / Sigüenza</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Arrazola Armuña, Marcial</td>
+<td align="CENTER">36</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Mondéjar</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Arroyo Carnicero, Francisco</td>
+<td align="CENTER">51</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Tamajón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Arroyo Felipe, Julio</td>
+<td align="CENTER">41</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Trijueque</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Arroyo Muñoz, José</td>
+<td align="CENTER">33</td>
+<td align="LEFT">mecánico</td>
+<td align="LEFT">Lucena (Córdoba)</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Atienza Paños, Patricio</td>
+<td align="CENTER">31</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Romancos</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ayllón Sánchez, Luís</td>
+<td align="CENTER">30</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Badorrey Aranda, Félix</td>
+<td align="CENTER">24</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Ayllón (Segovia) / Tamajón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ballesteros Alique, Pantaleón</td>
+<td align="CENTER">46</td>
+<td align="LEFT">tratante</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ballesteros Alique, Telesforo</td>
+<td align="CENTER">44</td>
+<td align="LEFT">industrial</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ballesteros Ayllón, Melitón</td>
+<td align="CENTER">26</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ballesteros Herraiz, Antonio</td>
+<td align="CENTER">58</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Baños Mayor, Juan</td>
+<td align="CENTER">30</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sayatón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Baños Mayor, Julián</td>
+<td align="CENTER">28</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sayatón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Barahona Hernández, Mariano</td>
+<td align="CENTER">24</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Jadraque</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Barbero Ortega, Julián</td>
+<td align="CENTER">30</td>
+<td align="LEFT">caminero</td>
+<td align="LEFT">Cendejas de la Torre</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Barcelona Causapie, José</td>
+<td align="CENTER">34</td>
+<td align="LEFT"></td>
+<td align="LEFT">La Unión (Murcia) / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Barco Cuerda, Pablo</td>
+<td align="CENTER">26</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Hueva / Renera</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Barco Gómez, León</td>
+<td align="CENTER">42</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Yebra</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Barco Lozano, Alejandro</td>
+<td align="CENTER">49</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Yebra</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Barranquero Moraleja, Toribio</td>
+<td align="CENTER">35</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Yebra</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Barriopedro Arroyo, Juan</td>
+<td align="CENTER">27</td>
+<td align="LEFT">ferroviario</td>
+<td align="LEFT">Trijueque</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Barriopedro Bravo, Juan</td>
+<td align="CENTER">51</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Mondéjar</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Barriopedro Santamaría, Jesús</td>
+<td align="CENTER">22</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Mondéjar</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Barroso López, Jacinto</td>
+<td align="CENTER">22</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Bartolomé Martín, Bernabé</td>
+<td align="CENTER">22</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Casa de Uceda</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Bartolomé Martín, Víctor</td>
+<td align="CENTER">23</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Casa de Uceda</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Bedoya García, Juan</td>
+<td align="CENTER">47</td>
+<td align="LEFT">funcionario</td>
+<td align="LEFT">Valdenuño Fernández</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Beltrán Cambronero, Francisco</td>
+<td align="CENTER">37</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Yunquera de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Benito Anaya, Feliciano</td>
+<td align="CENTER">44</td>
+<td align="LEFT">papelero</td>
+<td align="LEFT">Tabladillo (Segovia) / Madrid</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Benito Batanero, Enrique</td>
+<td align="CENTER">32</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Trillo</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Benito Fernández, Luís</td>
+<td align="CENTER">62</td>
+<td align="LEFT">carpintero</td>
+<td align="LEFT">Casasana</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Benito García, Marcelino de</td>
+<td align="CENTER">31</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Marchamalo</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Benito Grediaga, Mariano</td>
+<td align="CENTER">39</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Benito Henche, Tomás</td>
+<td align="CENTER">29</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Morillejo / Trillo</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Benito Vindel, Adrián</td>
+<td align="CENTER">32</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Bermejo de la Cueva, Vicente</td>
+<td align="CENTER">54</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Budia</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Bermejo Muñoz, Alberto</td>
+<td align="CENTER">40</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Casa de Uceda</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Bermejo Santos, José</td>
+<td align="CENTER">54</td>
+<td align="LEFT">electricista</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Bermejo Sotoca, Patricio</td>
+<td align="CENTER">40</td>
+<td align="LEFT"></td>
+<td align="LEFT">Esplegares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Blanco Antoral, Venancio</td>
+<td align="CENTER">35</td>
+<td align="LEFT">mecánico</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Blanco López, Francisco</td>
+<td align="CENTER">63</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Blanco Moreno, Jesús</td>
+<td align="CENTER">32</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Blanco Tomico, Toribio</td>
+<td align="CENTER">47</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Blas Notario, José</td>
+<td align="CENTER">25</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Yunquera de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Blas Notario, Manuel</td>
+<td align="CENTER">25</td>
+<td align="LEFT">campesino</td>
+<td align="LEFT">Yunquera de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Bonillo Martínez, Bartolomé</td>
+<td align="CENTER">35</td>
+<td align="LEFT">molinero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Bravo Valenciano, Demetrio</td>
+<td align="CENTER">21</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Mohernando</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Buendía Gallego, Raimundo</td>
+<td align="CENTER">33</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Buendía Yebra, Eustaquio</td>
+<td align="CENTER">66</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Bueno Tamayo, Juan</td>
+<td align="CENTER">29</td>
+<td align="LEFT">ferroviario</td>
+<td align="LEFT">Sigüenza</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Burgos Alcaraz, Pablo</td>
+<td align="CENTER">53</td>
+<td align="LEFT">caminero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Burgos Portero, José</td>
+<td align="CENTER">58</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Madrid / Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Burgos Rodríguez, Pedro</td>
+<td align="CENTER">52</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Butrón Vicente, Rogelio</td>
+<td align="CENTER">27</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Utande</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Caballero Barriopedro, José</td>
+<td align="CENTER">51</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Caballero del Olmo, José</td>
+<td align="CENTER">24</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Caballero Sanz, Antonio</td>
+<td align="CENTER">53</td>
+<td align="LEFT">funcionario</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Calero Noguerales, Cesáreo</td>
+<td align="CENTER">31</td>
+<td align="LEFT">fontanero</td>
+<td align="LEFT">Rienda</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Calleja Verges, Patricio</td>
+<td align="CENTER">31</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Tamajón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Calvo Ambite, Darío</td>
+<td align="CENTER">27</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Calvo Ambite, Florentino</td>
+<td align="CENTER">25</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Calvo Ambite, Mariano</td>
+<td align="CENTER">22</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Calvo Espartosa, Benigno</td>
+<td align="CENTER">30</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Calvo García, Agustín</td>
+<td align="CENTER">31</td>
+<td align="LEFT">zapatero</td>
+<td align="LEFT">Valdeavellano / Romanones</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Calvo Herreros, Antonio</td>
+<td align="CENTER">51</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Calvo Mata, Julio</td>
+<td align="CENTER">23</td>
+<td align="LEFT">cerrajero</td>
+<td align="LEFT">Arcos del Jalón (Soria) / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Calvo Valero, Ángel</td>
+<td align="CENTER">26</td>
+<td align="LEFT">peluquero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Calvo Vera, Jesús</td>
+<td align="CENTER">27</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Salmerón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cámara Manzano, Félix</td>
+<td align="CENTER">32</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Yebra</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cámara Sierra, Feliciano</td>
+<td align="CENTER">51</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Yebra</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Camarillo Gutiérrez, Félix</td>
+<td align="CENTER">27</td>
+<td align="LEFT">ebanista</td>
+<td align="LEFT">Marchamalo</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cambronero Gonzalo, Ramón</td>
+<td align="CENTER">75</td>
+<td align="LEFT">alguacil</td>
+<td align="LEFT">Budia / Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cambronero Luna, José</td>
+<td align="CENTER">37</td>
+<td align="LEFT">panadero</td>
+<td align="LEFT">Villarrobledo (Albacete) / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Campo Alonso, Juan del</td>
+<td align="CENTER">49</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Campos González, Gregorio</td>
+<td align="CENTER">35</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sevilleja de la Jara (Toledo)</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Candela Urban, Luís</td>
+<td align="CENTER">30</td>
+<td align="LEFT">peluquero</td>
+<td align="LEFT">Crevillente (Alicante)</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cañadas Ortego, Antonio</td>
+<td align="CENTER">47</td>
+<td align="LEFT">Maestro</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cañadas Ortego, Aurelio</td>
+<td align="CENTER">37</td>
+<td align="LEFT">v. carreteras</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cañas Herraiz, Pascual</td>
+<td align="CENTER">27</td>
+<td align="LEFT">carpintero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cañas Martínez, Toribio</td>
+<td align="CENTER">56</td>
+<td align="LEFT">carpintero</td>
+<td align="LEFT">Albalate de las N. (Cuenca) / Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Cañaveras Viana, José</td>
+<td align="CENTER">68</td>
+<td align="LEFT">propietario</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Carlero Ruano, Saturnino</td>
+<td align="CENTER">68</td>
+<td align="LEFT">industrial</td>
+<td align="LEFT">Cabanillas del Campo / Azuqueca de H.</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Carralero Martínez, Deogracias</td>
+<td align="CENTER">62</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Carralero Martínez, Epifanio</td>
+<td align="CENTER">47</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Carrasco Moreno, Cesáreo</td>
+<td align="CENTER">49</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Torija</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Carrascosa García, Andrés</td>
+<td align="CENTER">60</td>
+<td align="LEFT">cantero</td>
+<td align="LEFT">Checa</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Carrillo Flores, Jesús</td>
+<td align="CENTER">50</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Trillo</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Carrillo Flores, Juan</td>
+<td align="CENTER">42</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Trillo</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Casa Ayuso, Pedro de la</td>
+<td align="CENTER">27</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Casa Díaz, Gabriel de la</td>
+<td align="CENTER">30</td>
+<td align="LEFT">mecánico</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Casanova Corona, Victoriano</td>
+<td align="CENTER">30</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Casanova Martínez, Mariano</td>
+<td align="CENTER">22</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Castell Olmeda, Ángel</td>
+<td align="CENTER">40</td>
+<td align="LEFT">empleado</td>
+<td align="LEFT">Trijueque</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Castellote Daza, Guillermo</td>
+<td align="CENTER">26</td>
+<td align="LEFT">chofer</td>
+<td align="LEFT">Humanes de Mohernando / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Castillo Corral, Emeterio</td>
+<td align="CENTER">25</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Armuña de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Castillo Serrano, Atanasio</td>
+<td align="CENTER">28</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Tomellosa</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Centenera Hernández, Ricardo</td>
+<td align="CENTER">25</td>
+<td align="LEFT">dependiente</td>
+<td align="LEFT">Segovia / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cepero López, Bernardo</td>
+<td align="CENTER">24</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cepero López, Francisco</td>
+<td align="CENTER">26</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cepero Molina, Antonio</td>
+<td align="CENTER">20</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cepero Ortiz, Manuel</td>
+<td align="CENTER">22</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cerro Lite, Julián del</td>
+<td align="CENTER">34</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Monreal de Ariza (Zaragoza) / Matillas</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Chena Benito, Rosendo</td>
+<td align="CENTER">42</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Fuentelencina</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Chiloeches Díaz, Sebastián</td>
+<td align="CENTER">22</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Horche</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Chiloeches Ruiz, Andrés</td>
+<td align="CENTER">50</td>
+<td align="LEFT">industrial</td>
+<td align="LEFT">Horche</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Chiloeches Ruiz, Jesús</td>
+<td align="CENTER">53</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Horche</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cillero Arrande, Andrés</td>
+<td align="CENTER">25</td>
+<td align="LEFT">chofer</td>
+<td align="LEFT">Madrid / Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Cillero Duro, Simón</td>
+<td align="CENTER">63</td>
+<td align="LEFT">comerciante</td>
+<td align="LEFT">Sta. Cecilia (Soria) / Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ciruelas Irala, Dionisio</td>
+<td align="CENTER">25</td>
+<td align="LEFT">chofer</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cobo Moreno, Emiliano</td>
+<td align="CENTER">33</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Moratilla de los Meleros / Loranca de T.</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Colina Lozano, Mariano</td>
+<td align="CENTER">24</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Cuerva (Toledo) / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Coloma Alcalá, Hilario</td>
+<td align="CENTER">40</td>
+<td align="LEFT">chófer</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Concha Medina, Juan</td>
+<td align="CENTER">37</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Cobeta</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Contreras Benito, Maximino</td>
+<td align="CENTER">25</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Tomellosa</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Contreras Calvo, Ignacio</td>
+<td align="CENTER">36</td>
+<td align="LEFT">conductor</td>
+<td align="LEFT">Horche</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Contreras Castillo, Celedonio</td>
+<td align="CENTER">31</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Tomellosa</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Córdoba Tevar, Domingo</td>
+<td align="CENTER">20</td>
+<td align="LEFT">panadero</td>
+<td align="LEFT">La Roda (Albacete)</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cordón Eusebio, Emilio</td>
+<td align="CENTER">50</td>
+<td align="LEFT">comerciante</td>
+<td align="LEFT">Mondéjar</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cordón Gómez, Pascual</td>
+<td align="CENTER">43</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Yebra</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cordón Herreros, Francisco</td>
+<td align="CENTER">42</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Corona Cámara, Pablo</td>
+<td align="CENTER">41</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Yebra</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Corral Alcolea, Francisco</td>
+<td align="CENTER">33</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Corral Noguel, Esteban</td>
+<td align="CENTER">25</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Corral Pastor, Esteban</td>
+<td align="CENTER">31</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Armuña de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Corral Rivas, Felipe</td>
+<td align="CENTER">47</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Fuentenovilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Corral Sánchez, Pedro</td>
+<td align="CENTER">24</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Pastrana / Armuña de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Correa Algora, Basilio</td>
+<td align="CENTER">23</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Atanzón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cortés Ayllón, Juan</td>
+<td align="CENTER">41</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Tendilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cortijo Cezón, Antonio</td>
+<td align="CENTER">27</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cortijo Letón, Juan</td>
+<td align="CENTER">39</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Solanillos del Extremo</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Coruña Ruiz, Gregorio</td>
+<td align="CENTER">42</td>
+<td align="LEFT">conserje</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Costa Godofre, Teodoro</td>
+<td align="CENTER">49</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Villafranca del Panadés (Barcelona) / GU</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Costero Costero, Valentín</td>
+<td align="CENTER">25</td>
+<td align="LEFT">carretero</td>
+<td align="LEFT">Arbeteta del Tajo</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Costero Herraiz, Romualdo</td>
+<td align="CENTER">42</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Casasana</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Criado Oliver, Felipe</td>
+<td align="CENTER">26</td>
+<td align="LEFT">comerciante</td>
+<td align="LEFT">Cogolludo</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Criado Romero, Felipe</td>
+<td align="CENTER">58</td>
+<td align="LEFT">comerciante</td>
+<td align="LEFT">Cogolludo</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cruselles Espallargas, Manuel</td>
+<td align="CENTER">37</td>
+<td align="LEFT">zapatero</td>
+<td align="LEFT">Zaragoza / Sigüenza</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Cruz Gómez, Emilio</td>
+<td align="CENTER">25</td>
+<td align="LEFT">fontanero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cruz Yela, Saturnino de la</td>
+<td align="CENTER">28</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Azuqueca de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cuadrado Garrido, Tomás</td>
+<td align="CENTER">53</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Cuadrado Viana, Juan</td>
+<td align="CENTER">58</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Pastrana</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Cubero de la Sen, Bartolomé</td>
+<td align="CENTER">54</td>
+<td align="LEFT"></td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cuéllar Sánchez, Gregorio</td>
+<td align="CENTER">52</td>
+<td align="LEFT">industrial</td>
+<td align="LEFT">Escariche</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cuenca Arroyo, Mariano</td>
+<td align="CENTER">31</td>
+<td align="LEFT">jardinero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Cuenca Lorenzo, Luís</td>
+<td align="CENTER">32</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Cereceda / Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Culebras Torralbo, Francisco</td>
+<td align="CENTER">41</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Pareja</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Delgado Fraile, Raimundo</td>
+<td align="CENTER">49</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Yebra</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Delgado González, Modesto</td>
+<td align="CENTER">31</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Delgado Molinero, Felipe</td>
+<td align="CENTER">42</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Díaz Aparicio, Francisco</td>
+<td align="CENTER">38</td>
+<td align="LEFT">mecánico</td>
+<td align="LEFT">Vélez Málaga (Málaga) / Mondéjar</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Díaz Carretero, Cayetano</td>
+<td align="CENTER">25</td>
+<td align="LEFT">ferroviario</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Díaz Cuenca, Miguel</td>
+<td align="CENTER">48</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Díaz de la Randa, Victorino</td>
+<td align="CENTER">33</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sayatón / Valdeconcha</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Díaz Garralón, Sebastián</td>
+<td align="CENTER">25</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Málaga del Fresno</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Díaz López, Antonio</td>
+<td align="CENTER">29</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Díaz López, Dolores</td>
+<td align="CENTER">23</td>
+<td align="LEFT">s.l.</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Díaz López, Pascual</td>
+<td align="CENTER">27</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Díaz López, Vicente</td>
+<td align="CENTER">32</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Díaz Martínez, Facundo</td>
+<td align="CENTER">54</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Díaz Martínez, Gabriel</td>
+<td align="CENTER">76</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Díaz Martínez, Matías</td>
+<td align="CENTER">27</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Díaz Martínez, Vicente</td>
+<td align="CENTER">28</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Díaz Razola, Nicanor</td>
+<td align="CENTER">46</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Díaz Rubio, Dámaso</td>
+<td align="CENTER">38</td>
+<td align="LEFT">zapatero</td>
+<td align="LEFT">Humanes de Mohernando</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Diego Ortega, Alfonso de</td>
+<td align="CENTER">26</td>
+<td align="LEFT">comerciante</td>
+<td align="LEFT">Mayor (Soria) / Sigüenza</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Diges del Castillo, Julio</td>
+<td align="CENTER">23</td>
+<td align="LEFT">panadero</td>
+<td align="LEFT">Horche</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Domínguez Cuevas, Baldomero</td>
+<td align="CENTER">40</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Romanones</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Domínguez Vacas, Lázaro</td>
+<td align="CENTER">54</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Hiendelaencina</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Domínguez Viciedo, Pedro</td>
+<td align="CENTER">58</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Pastrana</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Doncel Buendía, Benjamín</td>
+<td align="CENTER">21</td>
+<td align="LEFT">conductor</td>
+<td align="LEFT">Moratilla de los Meleros</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Doncel López, Emeterio</td>
+<td align="CENTER">47</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Tendilla / Moratilla de los Meleros</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Doncel López, José</td>
+<td align="CENTER">50</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Tendilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Doncel Nuevo, Jesús</td>
+<td align="CENTER">26</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Tendilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Doñoro Lozano, Maximino</td>
+<td align="CENTER">30</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Corpa (Madrid)</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Dueñas Anguita, Bernardino</td>
+<td align="CENTER">27</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Madrid / Pastrana</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Duque Casero, Gregorio</td>
+<td align="CENTER">48</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Duro Gil, Emilio</td>
+<td align="CENTER">23</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Chillarón del Rey</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ecija Alocén, Mariano</td>
+<td align="CENTER">60</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ecija Buendía, Ciriaco</td>
+<td align="CENTER">34</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ecija Buendía, Domingo</td>
+<td align="CENTER">41</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ecija Guindo, Teodoro</td>
+<td align="CENTER">35</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ecija López, Juan</td>
+<td align="CENTER">61</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ecija Martínez, Pablo</td>
+<td align="CENTER">53</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ecija Vivar, Gregorio</td>
+<td align="CENTER">52</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Elizalde García, Luís</td>
+<td align="CENTER">55</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Humanes de Mohernando</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Elizalde González, Emilio</td>
+<td align="CENTER">22</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Yunquera de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Elvira Tapia, Evaristo</td>
+<td align="CENTER">35</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Argecilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Embid Jiménez, Mariano</td>
+<td align="CENTER">23</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Embid Martínez, Gabriel</td>
+<td align="CENTER">22</td>
+<td align="LEFT">campesino</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Escamilla Fernández, Jesús</td>
+<td align="CENTER">23</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Escamilla Rebollo, Manuel</td>
+<td align="CENTER">25</td>
+<td align="LEFT">campesino</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Escamilla Rebollo, Tomás</td>
+<td align="CENTER">28</td>
+<td align="LEFT">campesino</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Escribano Algora, Pedro</td>
+<td align="CENTER">29</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Budia</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Escribano Gago, Restituto</td>
+<td align="CENTER">21</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Hiendelaencina</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">España Trillo, Alfonso</td>
+<td align="CENTER">33</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Espliego Andrés, Vicente</td>
+<td align="CENTER">28</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Iriépal</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Esteban Arroyo, Inocente</td>
+<td align="CENTER">54</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Valdesaz</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Esteban Muñoz, Florentino</td>
+<td align="CENTER">39</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Robledo de Corpes</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Esteban Plaza, Francisco</td>
+<td align="CENTER">23</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Marchamalo</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Esteban Roncero, Alejandro</td>
+<td align="CENTER">60</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Chillarón del Rey</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Eugenio Gabalén, Juan José</td>
+<td align="CENTER">37</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Madrid / Armuña de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Eusebio Gajero, Eusebio</td>
+<td align="CENTER">43</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Mondéjar</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Eusebio López, Domingo</td>
+<td align="CENTER">23</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Mondéjar</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Expósito Crespo, Ángel</td>
+<td align="CENTER">29</td>
+<td align="LEFT">metalúrgico</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Expósito Delgado, Isidro</td>
+<td align="CENTER">36</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Expósito Delgado, Teodoro</td>
+<td align="CENTER">39</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Expósito España, Luís</td>
+<td align="CENTER">32</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Expósito Gómez, Andrés</td>
+<td align="CENTER">39</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Pastrana</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Fernández Antón, Sotero</td>
+<td align="CENTER">42</td>
+<td align="LEFT">sec. Ayto.</td>
+<td align="LEFT">La Torresaviñán / Riba de Santiuste</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Fernández Calvo, Ambrosio</td>
+<td align="CENTER">53</td>
+<td align="LEFT">carretero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Fernández Castillo, Daniel</td>
+<td align="CENTER">22</td>
+<td align="LEFT">empleado</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Fernández España, Eugenio</td>
+<td align="CENTER">25</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Humanes de Mohernando</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Fernández Fernández, María</td>
+<td align="CENTER">26</td>
+<td align="LEFT">s.l.</td>
+<td align="LEFT">Matellana (Zamora) / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Fernández Gandu, Ciriaco</td>
+<td align="CENTER">33</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Fernández Magaña, Esteban</td>
+<td align="CENTER">51</td>
+<td align="LEFT">ferroviario</td>
+<td align="LEFT">Yebra</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Fernández Manzanares, Fausto</td>
+<td align="CENTER">49</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Fernández Manzanares, Feliciano</td>
+<td align="CENTER">36</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Fernández Pacheco, Juan Julián</td>
+<td align="CENTER">45</td>
+<td align="LEFT">guardia civil</td>
+<td align="LEFT">Madrid / Cabanillas del Campo</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Fernández Postigo, Eleuterio</td>
+<td align="CENTER">22</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Illana</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Fernández Sánchez, Mariano</td>
+<td align="CENTER">50</td>
+<td align="LEFT">capataz o.p.</td>
+<td align="LEFT">Alhóndiga</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Fernández Sánchez, Román</td>
+<td align="CENTER">28</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Renera</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Fernández Vázquez, Manuel</td>
+<td align="CENTER">63</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Florián Expósito, Gregorio</td>
+<td align="CENTER">48</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Guadalajara / Torija</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Franco Batanero, Hipólito</td>
+<td align="CENTER">28</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Trillo</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Franco Morales, Santiago</td>
+<td align="CENTER">52</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Trillo</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Franco Sacristán, Jesús</td>
+<td align="CENTER">21</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Trillo</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Freijo Gallego, Julián</td>
+<td align="CENTER">42</td>
+<td align="LEFT">maestro</td>
+<td align="LEFT">Cuenca / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Fresno Sánchez, José María del</td>
+<td align="CENTER">37</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Moral de Calatrava (C. Real) / Torija</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Frías Crespo, Mariano</td>
+<td align="CENTER">31</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Pareja</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Frutos Muñoz, Joaquín</td>
+<td align="CENTER">39</td>
+<td align="LEFT">escribiente</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Fuente de la Fuente, Pedro de la</td>
+<td align="CENTER">35</td>
+<td align="LEFT">sec. ayto.</td>
+<td align="LEFT">Bochones / Gárgoles de Arriba</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Gajero Rincón, Pablo</td>
+<td align="CENTER">32</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Mondéjar</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Galindo Álvaro, Luís</td>
+<td align="CENTER">28</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Trillo</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Gallego Plaza, Agustín</td>
+<td align="CENTER">25</td>
+<td align="LEFT">tipógrafo</td>
+<td align="LEFT">Sigüenza</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Gamarra Cabellos, Amador Marcelino</td>
+<td align="CENTER">49</td>
+<td align="LEFT">capataz</td>
+<td align="LEFT">Cifuentes / Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Gamonal Alonso, Basilio</td>
+<td align="CENTER">21</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Alique / Chillarón del Rey</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Gamonal Expósito, Estanislao</td>
+<td align="CENTER">45</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Madrid / Chillarón del Rey</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Gaona Díaz, Patricio</td>
+<td align="CENTER">45</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Garcés Garcés, Blas</td>
+<td align="CENTER">20</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Chiloeches</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">García Alcalde, Ildefonso</td>
+<td align="CENTER">42</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Budia</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">García Alcalde, Martina</td>
+<td align="CENTER">30</td>
+<td align="LEFT">s.l.</td>
+<td align="LEFT">Budia</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">García Asenjo, Mariano</td>
+<td align="CENTER">35</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Gárgoles de Arriba</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">García Blanco, Segundo</td>
+<td align="CENTER">61</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">García Burgos, Domingo</td>
+<td align="CENTER">37</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">García Castillo, Francisco</td>
+<td align="CENTER">30</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Valdepeñas de la Sierra / Puebla de Valles</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">García Centenera, Pablo</td>
+<td align="CENTER">31</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Alhóndiga</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">García Cuadrado, Cándido</td>
+<td align="CENTER">40</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Pajares</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">García Domínguez, Gregorio</td>
+<td align="CENTER">56</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">García Fernández, Rafael</td>
+<td align="CENTER">55</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Escopete / Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">García Herranz, Pablo</td>
+<td align="CENTER">27</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Esplegares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">García Horcajada, Mariano</td>
+<td align="CENTER">33</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">García López, Claudio</td>
+<td align="CENTER">32</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Yebra</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">García Martínez, Ricardo</td>
+<td align="CENTER">43</td>
+<td align="LEFT">molinero</td>
+<td align="LEFT">Cifuentes / Mandayona</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">García Moya, Dionisio</td>
+<td align="CENTER">31</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Horche</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">García Moya, Juan</td>
+<td align="CENTER">36</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Horche</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">García Moya, Santiago</td>
+<td align="CENTER">24</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Horche</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">García Nuevo, Nicolás</td>
+<td align="CENTER">26</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Tendilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">García Pereda, Vicente</td>
+<td align="CENTER">32</td>
+<td align="LEFT">conductor</td>
+<td align="LEFT">Madrid</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">García Pérez, Manuel</td>
+<td align="CENTER">55</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Tendilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">García Rivas, Antonio</td>
+<td align="CENTER">55</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">García Roldán, Eusebio</td>
+<td align="CENTER">36</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Horche</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">García Sanz, Joaquín</td>
+<td align="CENTER">39</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Pajares</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">García Sanz, Vicente</td>
+<td align="CENTER">38</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Pajares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Garralón Alcorlo, Domingo</td>
+<td align="CENTER">24</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Yunquera de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Garrido Díaz, Román</td>
+<td align="CENTER">31</td>
+<td align="LEFT">pastor</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Garrido Montero, Ramón</td>
+<td align="CENTER">55</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Cifuentes</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Gascueña Jiménez, Domingo</td>
+<td align="CENTER">41</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Gayoso Cañaveras, Tomás</td>
+<td align="CENTER">29</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Armuña de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Gayoso Retuerta, Juan</td>
+<td align="CENTER">37</td>
+<td align="LEFT">herrero</td>
+<td align="LEFT">Armuña de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Gayoso Sánchez, Andrés</td>
+<td align="CENTER">54</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Armuña de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Gelpi Asorey, Antonio</td>
+<td align="CENTER">39</td>
+<td align="LEFT">médico</td>
+<td align="LEFT">Pontevedra / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Gil Batanero, Félix</td>
+<td align="CENTER">39</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Trillo</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Gil Batanero, Juan</td>
+<td align="CENTER">36</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Trillo</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Gil Fernández, Conrado</td>
+<td align="CENTER">24</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sayatón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Gil Monge, Jesús</td>
+<td align="CENTER">27</td>
+<td align="LEFT">obrero</td>
+<td align="LEFT">Marchamalo</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Gómez Centenera, Félix</td>
+<td align="CENTER">34</td>
+<td align="LEFT">pastor</td>
+<td align="LEFT">Yunquera de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Gómez García, Francisco</td>
+<td align="CENTER">48</td>
+<td align="LEFT">ferroviario</td>
+<td align="LEFT">Almansa (Albacete) / Sigüenza</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Gómez Hernández, Víctor</td>
+<td align="CENTER">37</td>
+<td align="LEFT">conductor</td>
+<td align="LEFT">Baños de M. (Cáceres) / Sigüenza</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Gómez Liñán, Pedro</td>
+<td align="CENTER">38</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Pareja</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Gómez Núñez, Demetrio</td>
+<td align="CENTER">36</td>
+<td align="LEFT">ferroviario</td>
+<td align="LEFT">Valsequillo (Córdoba) / Mohernando</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Gómez Ortiz, Teófilo</td>
+<td align="CENTER">48</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Renera</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Gómez Polo, Antonio</td>
+<td align="CENTER">39</td>
+<td align="LEFT">industrial</td>
+<td align="LEFT">Alcalá de Henares / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Gómez Sánchez, Francisco</td>
+<td align="CENTER">23</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Mondéjar</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Gómez Sánchez, Lucas</td>
+<td align="CENTER">32</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Mondéjar</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">González Antón, Luís</td>
+<td align="CENTER">35</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Uceda / Fontanar</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">González de la Vega, Manuel</td>
+<td align="CENTER">38</td>
+<td align="LEFT">mecánico</td>
+<td align="LEFT">Antequera (Málaga) / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">González García, Félix Esteban</td>
+<td align="CENTER">35</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">González González, Romualdo</td>
+<td align="CENTER">43</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Renera</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">González Hernández, Valeriano</td>
+<td align="CENTER">43</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Renera</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">González Tierraseca, Matías</td>
+<td align="CENTER">53</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Casasana</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Gonzalo Caballero, Ignacio</td>
+<td align="CENTER">64</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Malaguilla / Málaga del Fresno</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Gonzalo Monge, Pedro</td>
+<td align="CENTER">55</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Humanes de Mohernando</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Gonzalo Palomino, José</td>
+<td align="CENTER">43</td>
+<td align="LEFT">chofer</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Grande de la Torre, Felipe</td>
+<td align="CENTER">25</td>
+<td align="LEFT">carpintero</td>
+<td align="LEFT">Salmerón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Grediaga Moya, Torcuato</td>
+<td align="CENTER">27</td>
+<td align="LEFT">guarnicionero</td>
+<td align="LEFT">Cifuentes / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Grediaga Viana, Francisco</td>
+<td align="CENTER">58</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Guerra Mancebo, Miguel</td>
+<td align="CENTER">45</td>
+<td align="LEFT">guardia civil</td>
+<td align="LEFT">Toledo / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Guijarro Bravo, Basilio</td>
+<td align="CENTER">26</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Guijarro Bravo, Domingo</td>
+<td align="CENTER">29</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Guijarro García, Eugenio</td>
+<td align="CENTER">39</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Guijarro Garcipérez, Atanasio</td>
+<td align="CENTER">48</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Guijarro Priego, Primitivo</td>
+<td align="CENTER">32</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Salmerón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Guijarro Villalta, Florentino</td>
+<td align="CENTER">28</td>
+<td align="LEFT">capataz</td>
+<td align="LEFT">Salmerón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Guijosa Blas, Hilario</td>
+<td align="CENTER">41</td>
+<td align="LEFT">ferroviario</td>
+<td align="LEFT">Yunquera de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Guillén Castillo, Ramón</td>
+<td align="CENTER">26</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alarilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Guillén Celada, Crescencio</td>
+<td align="CENTER">29</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Moratilla de los Meleros</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Guillén Celada, Elidia</td>
+<td align="CENTER">24</td>
+<td align="LEFT">s.l.</td>
+<td align="LEFT">Moratilla de los Meleros</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Guindal Palomo, Teófilo</td>
+<td align="CENTER">25</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Guindo del Río, Benito</td>
+<td align="CENTER">40</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Gutiérrez Fondanalla, José</td>
+<td align="CENTER">37</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Madrid / Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Gutiérrez Heras, Pedro</td>
+<td align="CENTER">27</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Almonacid de Zorita</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Gutiérrez Hernández, Eustaquio</td>
+<td align="CENTER">34</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Pioz</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Gutiérrez Montero, Ildefonso</td>
+<td align="CENTER">44</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Gutiérrez Saceda, Eloy</td>
+<td align="CENTER">60</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Illana</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Gutiérrez Sordo, Florentino</td>
+<td align="CENTER">40</td>
+<td align="LEFT">ferroviario</td>
+<td align="LEFT">Sardon de Duero (Valladolid)</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Guzmán Fernández, Pedro</td>
+<td align="CENTER">36</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Alhóndiga</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Henche Corral, Antonio</td>
+<td align="CENTER">53</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Henche Valles, Alberto</td>
+<td align="CENTER">37</td>
+<td align="LEFT">fumista</td>
+<td align="LEFT">Moratilla de los Meleros</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Heras Lucía, Guillermo de las</td>
+<td align="CENTER">29</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Robledo de Corpes</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Hermosilla García, Benito</td>
+<td align="CENTER">46</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Castilblanco de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Hernández Barranco, Aquilino</td>
+<td align="CENTER">25</td>
+<td align="LEFT">chofer</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Hernández Barranco, Manuel</td>
+<td align="CENTER">34</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Hernando Arroyo, Eusebio</td>
+<td align="CENTER">31</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Castejón de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Hernando Serrano, Francisco</td>
+<td align="CENTER">25</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Castejón de las Armas (Zaragoza)</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Hidalgo Jiménez, Luís</td>
+<td align="CENTER">27</td>
+<td align="LEFT">zapatero</td>
+<td align="LEFT">Hiendelaencina</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Hita López, Florentino</td>
+<td align="CENTER">23</td>
+<td align="LEFT">fontanero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Hita Ramos, Cirilo</td>
+<td align="CENTER">38</td>
+<td align="LEFT">pintor</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Horcajada Ibarra, Santos</td>
+<td align="CENTER">31</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Hurtado Puertas, Salvador</td>
+<td align="CENTER">50</td>
+<td align="LEFT">cartero</td>
+<td align="LEFT">Santa Mª de Poyos</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Hurtado Romo, Emilio</td>
+<td align="CENTER">29</td>
+<td align="LEFT">carpintero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Ibáñez Rebollo, Bernardo</td>
+<td align="CENTER">33</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ibarra Tomico, Andrés</td>
+<td align="CENTER">57</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Illana Cristóbal, Benito</td>
+<td align="CENTER">38</td>
+<td align="LEFT">comerciante</td>
+<td align="LEFT">Alcalá de Henares / Tomellosa</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Izquierdo Tomico, Gabriel</td>
+<td align="CENTER">43</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">La Isabela</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Jabonero Ranera, Antonio</td>
+<td align="CENTER">36</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Pastrana</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Jabonero Toledano, Julián</td>
+<td align="CENTER">56</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Pastrana</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Jiménez Fernández, Basilio</td>
+<td align="CENTER">47</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Yebra</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Jiménez Fernández, Juan</td>
+<td align="CENTER">26</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sta. Cruz del Valle (Ávila) / El Recuenco</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Jiménez Garralón, Alfonso</td>
+<td align="CENTER">27</td>
+<td align="LEFT">campesino</td>
+<td align="LEFT">Yunquera de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Jiménez Pérez, Gregoria</td>
+<td align="CENTER">30</td>
+<td align="LEFT">s.l.</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Jiménez Pérez, Wenceslao</td>
+<td align="CENTER">46</td>
+<td align="LEFT">hortelano</td>
+<td align="LEFT">Mondéjar</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Jiménez Retuerta, Leocadio</td>
+<td align="CENTER">45</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Azuqueca de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Juanas de Francisco, Ángel</td>
+<td align="CENTER">28</td>
+<td align="LEFT">zapatero</td>
+<td align="LEFT">Villacorza / Sigüenza</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Juárez Pazo, Pedro</td>
+<td align="CENTER">37</td>
+<td align="LEFT">electricista</td>
+<td align="LEFT">Argecilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Lacerda Jiménez Rojo, Francisco</td>
+<td align="CENTER">59</td>
+<td align="LEFT">empleado</td>
+<td align="LEFT">Cádiz / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Láinez Espinel, Román</td>
+<td align="CENTER">28</td>
+<td align="LEFT">guarnicionero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Lamparero Llorente, Hilario</td>
+<td align="CENTER">47</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Muduex / Trijueque</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Lanza Morales, Joaquín</td>
+<td align="CENTER">38</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Larriba López, Víctor</td>
+<td align="CENTER">28</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Chiloeches</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Lázaro de Castro, Josefa</td>
+<td align="CENTER">28</td>
+<td align="LEFT">s.l.</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Lázaro de Castro, Julián</td>
+<td align="CENTER">34</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Lázaro García, Eusebio</td>
+<td align="CENTER">52</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Lázaro Santos, Pedro</td>
+<td align="CENTER">34</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Lázaro Santos, Valentina</td>
+<td align="CENTER">22</td>
+<td align="LEFT">s.l.</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Lerena Mazo, Félix</td>
+<td align="CENTER">42</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Iruecha (Soria) / Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Llana Gonzalo, Pedro de la</td>
+<td align="CENTER">30</td>
+<td align="LEFT">campesino</td>
+<td align="LEFT">Armallones</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Llera Díaz, Francisco de</td>
+<td align="CENTER">49</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Valdeconcha</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Lopesino Bravo, Saturnino</td>
+<td align="CENTER">47</td>
+<td align="LEFT">ferroviario</td>
+<td align="LEFT">Mondéjar</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">López Agreda, Genaro</td>
+<td align="CENTER">65</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">López Arcos, Juan Antonio</td>
+<td align="CENTER">53</td>
+<td align="LEFT">guarda</td>
+<td align="LEFT">Villanueva de los Infantes (C. Real) / GU</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">López Arroyo, Félix</td>
+<td align="CENTER">55</td>
+<td align="LEFT">esquilador</td>
+<td align="LEFT">Moratilla de los Meleros</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">López Brotons, Aurelio</td>
+<td align="CENTER">32</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">López Cámara, Andrés</td>
+<td align="CENTER">49</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Yebra</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">López Cámara, Benito</td>
+<td align="CENTER">50</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Yebra</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">López de Felipe, Félix</td>
+<td align="CENTER">32</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Pastrana</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">López de la Torre Hdez, Dativo</td>
+<td align="CENTER">45</td>
+<td align="LEFT">ferroviario</td>
+<td align="LEFT">Burguillos de Toledo (Toledo) / Sigüenza</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">López del Campo, Mariano</td>
+<td align="CENTER">23</td>
+<td align="LEFT">chofer</td>
+<td align="LEFT">Mandayona</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">López Fernández, Pablo</td>
+<td align="CENTER">22</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Mondéjar</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">López García, Alfonso</td>
+<td align="CENTER">54</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">López García, Pablo</td>
+<td align="CENTER">21</td>
+<td align="LEFT">campesino</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">López García, Pedro</td>
+<td align="CENTER">26</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">López Gracia, Fernando</td>
+<td align="CENTER">44</td>
+<td align="LEFT">zapatero</td>
+<td align="LEFT">Zaragoza / Sigüenza</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">López Guillén, Juan</td>
+<td align="CENTER">45</td>
+<td align="LEFT">industrial</td>
+<td align="LEFT">Corduente / Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">López López, Bonifacio</td>
+<td align="CENTER">24</td>
+<td align="LEFT">herrero</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">López Maldonado, Jesús</td>
+<td align="CENTER">23</td>
+<td align="LEFT">hortelano</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">López Martín, Aquilino</td>
+<td align="CENTER">31</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Cabanillas del Campo / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">López Martínez, Faustino</td>
+<td align="CENTER">32</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">López Martínez, Juan</td>
+<td align="CENTER">31</td>
+<td align="LEFT">mecánico</td>
+<td align="LEFT">Arquillos (Jaén)</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">López Martínez, Román</td>
+<td align="CENTER">44</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Horche</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">López Martínez, Santiago</td>
+<td align="CENTER">37</td>
+<td align="LEFT">industrial</td>
+<td align="LEFT">Horche</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">López Moreno, Jesús</td>
+<td align="CENTER">52</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Armallones</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">López Ochoa, Claudio</td>
+<td align="CENTER">29</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">López Ochoa, Roque</td>
+<td align="CENTER">32</td>
+<td align="LEFT">esquilador</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">López Ortiz, Baldomero</td>
+<td align="CENTER">43</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">López Pascual, Eugenio</td>
+<td align="CENTER">33</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Hiendelaencina</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">López Tomico, Sabas</td>
+<td align="CENTER">25</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Casasana</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Lorenzo Díaz, Críspulo</td>
+<td align="CENTER">53</td>
+<td align="LEFT"></td>
+<td align="LEFT">Málaga del Fresno</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Lorenzo Marisánchez, Román</td>
+<td align="CENTER">30</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Málaga del Fresno</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Lorenzo Remontillo, Dionisio</td>
+<td align="CENTER">28</td>
+<td align="LEFT">chofer</td>
+<td align="LEFT">Armuña de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Lorenzo Remontillo, Germán</td>
+<td align="CENTER">31</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Armuña de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Lozano Benedito, Lorenzo</td>
+<td align="CENTER">35</td>
+<td align="LEFT">electricista</td>
+<td align="LEFT">Villel de Mesa / Caspueñas</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Lozano Cantal, Doroteo</td>
+<td align="CENTER">42</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Yunquera de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Lozano Moreda, Demófilo Miguel</td>
+<td align="CENTER">48</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sayatón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Lozano Moreda, Isidoro</td>
+<td align="CENTER">31</td>
+<td align="LEFT">barbero</td>
+<td align="LEFT">Sayatón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Lucas Hervás, Braulio de</td>
+<td align="CENTER">22</td>
+<td align="LEFT">chofer</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Lucas Hervás, Mariano de</td>
+<td align="CENTER">30</td>
+<td align="LEFT">conductor</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Lucas Hervás, Paulino de</td>
+<td align="CENTER">20</td>
+<td align="LEFT">panadero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Lucas Hervás, Vicente de</td>
+<td align="CENTER">32</td>
+<td align="LEFT">conductor</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Lucía Lucía, Juan</td>
+<td align="CENTER">46</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacecorbo</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Luz Medel, Saturnino de</td>
+<td align="CENTER">43</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Tendilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Maldonado González, Bienvenido</td>
+<td align="CENTER">34</td>
+<td align="LEFT">botero</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Manchado Recio, Julio</td>
+<td align="CENTER">25</td>
+<td align="LEFT">panadero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Manzano Expósito, Julián</td>
+<td align="CENTER">29</td>
+<td align="LEFT">panadero</td>
+<td align="LEFT">Alarilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Manzano Pedromingo, Antonio</td>
+<td align="CENTER">28</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Málaga del Fresno</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Manzano Vivar, Anastasio</td>
+<td align="CENTER">25</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Marco Martín, Francisco</td>
+<td align="CENTER">51</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Marcos Centenera, Emiliano</td>
+<td align="CENTER">25</td>
+<td align="LEFT">cerrajero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Marcos Córdoba, Jacinto</td>
+<td align="CENTER">42</td>
+<td align="LEFT">camarero</td>
+<td align="LEFT">Tórtola de Henares / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Marcos Escribano, Tiburcio</td>
+<td align="CENTER">26</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Hiendelaencina</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Marcos García, Ángel</td>
+<td align="CENTER">37</td>
+<td align="LEFT">militar</td>
+<td align="LEFT">Casablanca (Marruecos) / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Marcos Grediaga, Jesús</td>
+<td align="CENTER">36</td>
+<td align="LEFT">cestero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Marcos Grediaga, Mariano</td>
+<td align="CENTER">28</td>
+<td align="LEFT">cestero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Marcos Grediaga, Mariano</td>
+<td align="CENTER">42</td>
+<td align="LEFT">cestero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Mariscal Martínez, Victorio</td>
+<td align="CENTER">52</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Mondéjar</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Márquez Guillén, Santiago</td>
+<td align="CENTER">47</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Moratilla de los Meleros</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Martín Glez del Arco, Marcelino</td>
+<td align="CENTER">54</td>
+<td align="LEFT">catedrático</td>
+<td align="LEFT">Cespedosa de Tormes (Salamanca) / GU</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Martín Merino, Maximino</td>
+<td align="CENTER">24</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">El Cubillo de Uceda</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Martínez Álvaro, Cecilio</td>
+<td align="CENTER">23</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Martínez Bermejo, Senen</td>
+<td align="CENTER">63</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Budia</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Martínez Bozada, Casildo</td>
+<td align="CENTER">32</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Moratilla de los Meleros</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Martínez Bozada, Germán</td>
+<td align="CENTER">34</td>
+<td align="LEFT">cartero</td>
+<td align="LEFT">Moratilla de los Meleros</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Martínez Bozada, Virginia</td>
+<td align="CENTER">28</td>
+<td align="LEFT">s.l.</td>
+<td align="LEFT">Moratilla de los Meleros</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Martínez del Río, Felipe</td>
+<td align="CENTER">48</td>
+<td align="LEFT"></td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Martínez Elvira, Federico</td>
+<td align="CENTER">39</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Martínez Espada, Romualdo</td>
+<td align="CENTER">29</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sayatón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Martínez Herranz, Leandro</td>
+<td align="CENTER">40</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Lebrancón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Martínez Letón, Sebastián</td>
+<td align="CENTER">42</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Solanillos del Extremo</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Martínez López, Pedro</td>
+<td align="CENTER">49</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Pastrana / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Martínez López, Quiterio</td>
+<td align="CENTER">26</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Martínez López, Ricardo</td>
+<td align="CENTER">38</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Martínez Manzano, Segundo</td>
+<td align="CENTER">32</td>
+<td align="LEFT">panadero</td>
+<td align="LEFT">Málaga del Fresno</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Martínez Martínez, Calixto</td>
+<td align="CENTER">45</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Armallones</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Martínez Martínez, Francisco</td>
+<td align="CENTER">52</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Martínez Martínez, Gregorio</td>
+<td align="CENTER">36</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Martínez Martínez, Juliana</td>
+<td align="CENTER">38</td>
+<td align="LEFT">s.l.</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Martínez Mayordomo, Francisco</td>
+<td align="CENTER">43</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Martínez Mayordomo, Gregorio</td>
+<td align="CENTER">35</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Martínez Oñez, Sebastián</td>
+<td align="CENTER">47</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Martínez Pareja, Benito</td>
+<td align="CENTER">44</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Madrid / Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Martínez Rodríguez, Epifanio</td>
+<td align="CENTER">37</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Gárgoles de Arriba</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Martínez Rojo, Epifanio</td>
+<td align="CENTER">46</td>
+<td align="LEFT">caminero</td>
+<td align="LEFT">Cifuentes / Tendilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Martínez Sánchez, Alejandro</td>
+<td align="CENTER">40</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Fuentenovilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Martínez Santamaría, Ramón S.</td>
+<td align="CENTER">30</td>
+<td align="LEFT">campesino</td>
+<td align="LEFT">Alcalá de Henares / Azuqueca de H.</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Martínez Serna, Francisco</td>
+<td align="CENTER">49</td>
+<td align="LEFT">empleado</td>
+<td align="LEFT">Madrid / Sayatón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Martínez Somolinos, Ángel</td>
+<td align="CENTER">48</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Cogolludo</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Martínez Tomico, Alejandro</td>
+<td align="CENTER">33</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Martínez Torres Garrido, Juan</td>
+<td align="CENTER">53</td>
+<td align="LEFT">ag. comercial</td>
+<td align="LEFT">Valladolid</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Martínez Vivar, Juan</td>
+<td align="CENTER">51</td>
+<td align="LEFT"></td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Mas Molina, Pablo</td>
+<td align="CENTER">28</td>
+<td align="LEFT">tejero</td>
+<td align="LEFT">Sayatón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Mateo Ongil, Juan</td>
+<td align="CENTER">21</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Mohernando</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Mauricio Pascual, Juan</td>
+<td align="CENTER">27</td>
+<td align="LEFT">maestro</td>
+<td align="LEFT">Sigüenza / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Mayor García, Ambrosio</td>
+<td align="CENTER">63</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Alhóndiga</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Mayor Sanz, Pablo</td>
+<td align="CENTER">30</td>
+<td align="LEFT">zapatero</td>
+<td align="LEFT">Sayatón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Meléndez Torres, Gerardo</td>
+<td align="CENTER">37</td>
+<td align="LEFT">hortelano</td>
+<td align="LEFT">Humanes de Mohernando</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Melero Carrillo, Humberto</td>
+<td align="CENTER">45</td>
+<td align="LEFT">juez</td>
+<td align="LEFT">Villalba (Valladolid) / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Mendieta Alcalá, Timoteo</td>
+<td align="CENTER">41</td>
+<td align="LEFT">carnicero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Mercado Molada, Castro</td>
+<td align="CENTER">48</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Merencio Martínez, Nicolás</td>
+<td align="CENTER">50</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Chiloeches</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Merino Molinero, Cándido</td>
+<td align="CENTER">47</td>
+<td align="LEFT">arriero</td>
+<td align="LEFT">Sigüenza / Espinosa de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Miguel Antón, Máximo de</td>
+<td align="CENTER">24</td>
+<td align="LEFT">dependiente</td>
+<td align="LEFT">Moratilla de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Miguel Fuentes, Gil de</td>
+<td align="CENTER">29</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Mandayona</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Mingo Llorente, Jerónimo</td>
+<td align="CENTER">31</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Torrejón del Rey</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Mira Calvo, Agapito</td>
+<td align="CENTER">59</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Aranzueque / Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Molina Cedrón, Mateo</td>
+<td align="CENTER">68</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Yunquera de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Molina Embid, José</td>
+<td align="CENTER">62</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Armallones</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Molina Escribano, Ángel</td>
+<td align="CENTER">35</td>
+<td align="LEFT"></td>
+<td align="LEFT">Cendejas de la Torre</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Molina Gonzalo, Benito</td>
+<td align="CENTER">24</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Yunquera de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Molina Henche, Francisco</td>
+<td align="CENTER">28</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Molina Martínez, Ubaldo</td>
+<td align="CENTER">30</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">La Isabela</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Molina Morato, Eugenio</td>
+<td align="CENTER">24</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Molina Temprado, Gregorio</td>
+<td align="CENTER">36</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Armallones</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Montesinos Roa, Teodoro</td>
+<td align="CENTER">24</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Chiloeches</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Moracho Cortijo, Manuel</td>
+<td align="CENTER">34</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Solanillos del Extremo</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Moral Pérez, Julio</td>
+<td align="CENTER">42</td>
+<td align="LEFT">panadero</td>
+<td align="LEFT">Estremera de Tajo (Madrid)</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Morales Caballero, Demetrio</td>
+<td align="CENTER">58</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Naharros / La Miñosa</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Morales Corral, Francisco</td>
+<td align="CENTER">26</td>
+<td align="LEFT">conductor</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Moratilla Bernardo, Isidoro</td>
+<td align="CENTER">44</td>
+<td align="LEFT">chofer</td>
+<td align="LEFT">Chiloeches</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Moreda Santacruz, Gregorio</td>
+<td align="CENTER">23</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sayatón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Moreno Delgado, Mauricio</td>
+<td align="CENTER">55</td>
+<td align="LEFT">carretero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Moreno González, Domingo</td>
+<td align="CENTER">59</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Almiruete / Tamajón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Moreno Pérez, Balbino</td>
+<td align="CENTER">30</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedoncillo / Tamajón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Moreno Rodríguez, Antonio</td>
+<td align="CENTER">40</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Pajares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Moreno Romo, Mariano</td>
+<td align="CENTER">50</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Muñoz Alonso, Antonio</td>
+<td align="CENTER">40</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Robledo de Corpes</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Muñoz de Pedroviejo, Augusto</td>
+<td align="CENTER">30</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Ciruelos del Pinar / Yunquera de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Muñoz Guijarro, Federico</td>
+<td align="CENTER">34</td>
+<td align="LEFT">camarero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Muñoz Horche, Domingo</td>
+<td align="CENTER">33</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Horche</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Muñoz Lucía, Esteban</td>
+<td align="CENTER">37</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Robledo de Corpes</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Muñoz Viejo, Eulogio</td>
+<td align="CENTER">28</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Ciruelas / Yunquera de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Mur Guijosa, Marcos</td>
+<td align="CENTER">21</td>
+<td align="LEFT">esquilador</td>
+<td align="LEFT">Yunquera de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Narro Huerta, Martín</td>
+<td align="CENTER">21</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Esplegares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Narro Narro, Justino</td>
+<td align="CENTER">21</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Esplegares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Navalón Jiménez, Esteban</td>
+<td align="CENTER">63</td>
+<td align="LEFT">propietario</td>
+<td align="LEFT">Salmerón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Navarro Culebras, Luís</td>
+<td align="CENTER">44</td>
+<td align="LEFT">propietario</td>
+<td align="LEFT">Madrid / Salmerón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Navarro Rojo, Máximo</td>
+<td align="CENTER">31</td>
+<td align="LEFT">carpintero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Nicolás Román, Julián de</td>
+<td align="CENTER">36</td>
+<td align="LEFT">camarero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Nuevo Palero, Timoteo</td>
+<td align="CENTER">45</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Tendilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Ocaña Pérez, Ignacio</td>
+<td align="CENTER">43</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Pastrana</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Ocaña Sánchez, Juan</td>
+<td align="CENTER">31</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Pozo de Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Oliva de Miguel, Fernando</td>
+<td align="CENTER">66</td>
+<td align="LEFT">guarda</td>
+<td align="LEFT">Casasana</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Olivares Sánchez, Esteban</td>
+<td align="CENTER">38</td>
+<td align="LEFT">industrial</td>
+<td align="LEFT">Mondéjar</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Olivares Sánchez, Felipe</td>
+<td align="CENTER">26</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Mondéjar</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Olivares Segovia, Leoncio</td>
+<td align="CENTER">29</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Mondéjar</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Olivo Mendieta, Ambrosio</td>
+<td align="CENTER">46</td>
+<td align="LEFT">empleado</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Olmeda Antón, Esteban</td>
+<td align="CENTER">27</td>
+<td align="LEFT">tejedor</td>
+<td align="LEFT">Sigüenza</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Olmeda Butrón, Esteban</td>
+<td align="CENTER">58</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Olmo Montesinos, Felipe del</td>
+<td align="CENTER">29</td>
+<td align="LEFT">militar</td>
+<td align="LEFT">Chiloeches / Azuqueca de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Orasio Yuntas, Emiliano</td>
+<td align="CENTER">30</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Pastrana</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Orcero Ruiz, Felipe</td>
+<td align="CENTER">25</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Salmerón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ortega Aranda, Francisco</td>
+<td align="CENTER">48</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ortega López, Félix</td>
+<td align="CENTER">52</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ortega Ortega, Braulio</td>
+<td align="CENTER">29</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Cendejas de la Torre</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ortega Somolinos, Esteban</td>
+<td align="CENTER">21</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Cendejas de Enmedio</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ortega Somolinos, Patricio</td>
+<td align="CENTER">22</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Cendejas de Enmedio</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ortiz Cepero, Adrián</td>
+<td align="CENTER">36</td>
+<td align="LEFT">cacharrero</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ortiz Cepero, Alfredo</td>
+<td align="CENTER">33</td>
+<td align="LEFT">tratante</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ortiz Cepero, José María</td>
+<td align="CENTER">39</td>
+<td align="LEFT">tratante</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ortiz García, José</td>
+<td align="CENTER">29</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Ortiz Gil, Ángel</td>
+<td align="CENTER">60</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ortiz Obra, Dámaso</td>
+<td align="CENTER">29</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Sacecorbo</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Oter Andradas, Pablo</td>
+<td align="CENTER">29</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Azuqueca de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Padrino Delgado, Alfonso</td>
+<td align="CENTER">32</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Yebra</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Páez Jaramillo Cerrada, Isidro</td>
+<td align="CENTER">43</td>
+<td align="LEFT">carretero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Paganos Domingo, Ricardo</td>
+<td align="CENTER">26</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Cabanillas del Campo</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Pajares Crespo, Juan José</td>
+<td align="CENTER">56</td>
+<td align="LEFT">electricista</td>
+<td align="LEFT">Fuentenovilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Pajares González, Cecilio</td>
+<td align="CENTER">51</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Mondéjar</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Palacios Rodrigálvarez, Antonio</td>
+<td align="CENTER">49</td>
+<td align="LEFT">camarero</td>
+<td align="LEFT">Madrid / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Palero del Olmo, Juan</td>
+<td align="CENTER">49</td>
+<td align="LEFT">hojalatero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Palero Ruiz, José</td>
+<td align="CENTER">36</td>
+<td align="LEFT">militar</td>
+<td align="LEFT">Tendilla / Moratilla de los Meleros</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Palomar Ortiz, Eusebio</td>
+<td align="CENTER">52</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Chillarón del Rey</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Palomar Ortiz, Justo</td>
+<td align="CENTER">46</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Chillarón del Rey</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Palomeras Dueñas, Teodoro</td>
+<td align="CENTER">43</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Buendía (Cuenca) / Sayatón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Palomino González, Justo</td>
+<td align="CENTER">34</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Parada Martínez, Quirico</td>
+<td align="CENTER">32</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Valdeconcha</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Pardo Borda, Rafael</td>
+<td align="CENTER">31</td>
+<td align="LEFT">empleado</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Pareja Martínez, Mariano</td>
+<td align="CENTER">46</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Parra Toledo, Pedro</td>
+<td align="CENTER">30</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alhóndiga</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Pasamón Pinilla, Policarpo</td>
+<td align="CENTER">51</td>
+<td align="LEFT">industrial</td>
+<td align="LEFT">Cifuentes</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Pascual Gil, Florencio</td>
+<td align="CENTER">31</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Trillo</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Pastor de Luz, Nicasio</td>
+<td align="CENTER">35</td>
+<td align="LEFT">chofer</td>
+<td align="LEFT">Romanones</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Pastor Mogollón, Felipe</td>
+<td align="CENTER">38</td>
+<td align="LEFT">alfarero</td>
+<td align="LEFT">Sigüenza</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Paz Cuevas, Felipe de la</td>
+<td align="CENTER">44</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Budia</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Pedro Ureta, Alejandro de</td>
+<td align="CENTER">30</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Bujalaro</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Pedroviejo Viejo, Juan de</td>
+<td align="CENTER">61</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Hita</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Peiró Vaquero, Catalino</td>
+<td align="CENTER">43</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Pérez Baeza, Amalio</td>
+<td align="CENTER">52</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Fuentenovilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Pérez Cordón, Antonio</td>
+<td align="CENTER">29</td>
+<td align="LEFT">guardia civil</td>
+<td align="LEFT">Freguenal de la S. (Badajoz) / Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Pérez de la Torre, Francisco</td>
+<td align="CENTER">38</td>
+<td align="LEFT">ferroviario</td>
+<td align="LEFT">Yunquera de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Pérez Delgado, Ángel</td>
+<td align="CENTER">54</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Trillo</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Pérez García, Francisco</td>
+<td align="CENTER">47</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Tendilla / Armuña de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Pérez López, Saturnino</td>
+<td align="CENTER">28</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Budia / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Pérez Martín, Joaquín</td>
+<td align="CENTER">35</td>
+<td align="LEFT">ferroviario</td>
+<td align="LEFT">Madrid</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Pérez Martínez, Juan Francisco</td>
+<td align="CENTER">39</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Gárgoles de Arriba</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Pérez Moreno, Timoteo</td>
+<td align="CENTER">28</td>
+<td align="LEFT">resinero</td>
+<td align="LEFT">Armallones</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Pérez Romo, Eladio</td>
+<td align="CENTER">23</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Pérez Senén, Enrique</td>
+<td align="CENTER">23</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Cabanillas del Campo</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Pérez Villegas, Víctor</td>
+<td align="CENTER">35</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Las Inviernas</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Pérez Yélamos, Isidro</td>
+<td align="CENTER">36</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Tomellosa</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Picazo González, Francisco</td>
+<td align="CENTER">41</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Valdeconcha</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Pineda Montoya, Félix</td>
+<td align="CENTER">45</td>
+<td align="LEFT">militar</td>
+<td align="LEFT">Vitoria (Álava) / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Pinilla Dorado, Benito</td>
+<td align="CENTER">21</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Pinilla López, Pedro</td>
+<td align="CENTER">48</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Pinilla Martínez, Bernabé</td>
+<td align="CENTER">37</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Pino Lobo, Federico del</td>
+<td align="CENTER">25</td>
+<td align="LEFT">chofer</td>
+<td align="LEFT">Mérida (Badajoz) / Sigüenza</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Pisuerga de la Cruz, Ponciano</td>
+<td align="CENTER">53</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Madrid</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Planas Alborná, José</td>
+<td align="CENTER">29</td>
+<td align="LEFT">ebanista</td>
+<td align="LEFT">La Garriga (Barcelona) / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Plaza Asenjo, Enrique</td>
+<td align="CENTER">30</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Azuqueca de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Plaza de la Fuente, Julián</td>
+<td align="CENTER">20</td>
+<td align="LEFT">zapatero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Plaza Giralt, Emilio</td>
+<td align="CENTER">42</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Salmerón / Madrid</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Polo Cristóbal, Eugenio</td>
+<td align="CENTER">26</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Polo Lázaro, Pedro</td>
+<td align="CENTER">21</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Portillo Aladrén, José</td>
+<td align="CENTER">39</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Mirabueno</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Pozo Ruiz, Isaac del</td>
+<td align="CENTER">30</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Bujalaro</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Puebla Centenera, Fernando</td>
+<td align="CENTER">24</td>
+<td align="LEFT">forjador</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Puerta García Plaza, Antonio</td>
+<td align="CENTER">39</td>
+<td align="LEFT">telegrafista</td>
+<td align="LEFT">Sacedón / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Puerta Gonzalo, Ángel</td>
+<td align="CENTER">21</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Yunquera de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Puerto Fernández, Antonio</td>
+<td align="CENTER">56</td>
+<td align="LEFT">herrero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Puerto Ibarra, Romualdo</td>
+<td align="CENTER">37</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Puyol Sánchez, Juan</td>
+<td align="CENTER">22</td>
+<td align="LEFT">panadero</td>
+<td align="LEFT">Yebra</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Quesada Casero, Emilio</td>
+<td align="CENTER">47</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Raboso Expósito, Obdulio</td>
+<td align="CENTER">30</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sayatón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ramos Fernández, Pedro</td>
+<td align="CENTER">29</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Horche</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ramos Martínez, Miguel</td>
+<td align="CENTER">23</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alique</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Razola Olivo, Manuel</td>
+<td align="CENTER">47</td>
+<td align="LEFT">carpintero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Rebollo Rebollo, Ático</td>
+<td align="CENTER">37</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Hontanillas / Pareja</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Rebollo Rebollo, Heliodora</td>
+<td align="CENTER">47</td>
+<td align="LEFT">s.l.</td>
+<td align="LEFT">Hontanillas</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Rebollo Rebollo, Julián</td>
+<td align="CENTER">51</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Hontanillas</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Rebollo Rebollo, Tomás</td>
+<td align="CENTER">66</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Hontanillas</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Rebollo Romo, Tomás</td>
+<td align="CENTER">33</td>
+<td align="LEFT">carpintero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Rebollo Torralbo, Justo</td>
+<td align="CENTER">51</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Hontanillas</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Rebollo Vaquero, Emilio</td>
+<td align="CENTER">32</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Chillarón del Rey</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Rebollo Vaquero, Eugenio</td>
+<td align="CENTER">39</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Chillarón del Rey</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Recio Pastor, Víctor</td>
+<td align="CENTER">42</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alocén / Escopete</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Recuero Mateo, Juan Manuel</td>
+<td align="CENTER">35</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Ruguilla / Yunquera de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Recuero Valdominos, Juan</td>
+<td align="CENTER">57</td>
+<td align="LEFT">guarnicionero</td>
+<td align="LEFT">Humanes de Mohernando / Tamajón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Redondo Pérez, Manuel</td>
+<td align="CENTER">42</td>
+<td align="LEFT">pintor</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Relaño Martínez, Arsenio</td>
+<td align="CENTER">36</td>
+<td align="LEFT">empleado</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Relaño Martínez, Vicente Isidro</td>
+<td align="CENTER">35</td>
+<td align="LEFT">delineante</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Remacha Díaz, Primo</td>
+<td align="CENTER">39</td>
+<td align="LEFT">metalúrgico</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Retuerta Carretero, Aquilino</td>
+<td align="CENTER">41</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Pajares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Retuerta Lozano, Bernardo</td>
+<td align="CENTER">36</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Romancos</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Retuerta Lozano, Juan</td>
+<td align="CENTER">41</td>
+<td align="LEFT">industrial</td>
+<td align="LEFT">Romancos</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Retuerta Retuerta, Venancio</td>
+<td align="CENTER">55</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">San Martín de Valdeiglesias (Mad.) / Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Riaza Martínez, Enrique</td>
+<td align="CENTER">50</td>
+<td align="LEFT">veterinario</td>
+<td align="LEFT">Brihuega / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Rienda Borda, Isidro</td>
+<td align="CENTER">37</td>
+<td align="LEFT">panadero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Río Blanco, Ignacio del</td>
+<td align="CENTER">57</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Río Oliva, Antonio del</td>
+<td align="CENTER">57</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Casasana</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Riofrío de la Roca, Julián</td>
+<td align="CENTER">46</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Yunquera de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Rivas Solano, Cecilio Ignacio</td>
+<td align="CENTER">55</td>
+<td align="LEFT">mecánico</td>
+<td align="LEFT">Madrid / Yunquera de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Roa Leona, Isidro</td>
+<td align="CENTER">36</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Roca Tejedor, Joaquín</td>
+<td align="CENTER">35</td>
+<td align="LEFT">mecánico</td>
+<td align="LEFT">Gárgoles de Abajo</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Rodríguez de la Torre, Justo</td>
+<td align="CENTER">30</td>
+<td align="LEFT">campesino</td>
+<td align="LEFT">Illana</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Rodríguez García, José</td>
+<td align="CENTER">44</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Pezuela de las T. (Madrid) / Loranca T.</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Rodríguez Largo, Carlos</td>
+<td align="CENTER">37</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Rodríguez Lago, Mariano</td>
+<td align="CENTER">46</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Rodríguez López, Tomás</td>
+<td align="CENTER">33</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Rodríguez Rubio, Pablo</td>
+<td align="CENTER">53</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Viana de Mondéjar / Pareja</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Rojas Gutiérrez, Luís</td>
+<td align="CENTER">62</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Mohernando</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Rojas Terceño, Anastasio</td>
+<td align="CENTER">45</td>
+<td align="LEFT">ferroviario</td>
+<td align="LEFT">Humanes de M / Yunquera de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Rojo Lozano, Juan</td>
+<td align="CENTER">25</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sigüenza</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Rojo Roa, Juan</td>
+<td align="CENTER">24</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Rojo Rojo, Mariano</td>
+<td align="CENTER">48</td>
+<td align="LEFT">carpintero</td>
+<td align="LEFT">Tortonda / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Roldán Rimonte, Eladio</td>
+<td align="CENTER">54</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Alcalá de Henares (Madrid) / Fuentenovilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Román Moraleda, Mariano</td>
+<td align="CENTER">24</td>
+<td align="LEFT">metalúrgico</td>
+<td align="LEFT">Toledo</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Romera Cepero, Manuel</td>
+<td align="CENTER">22</td>
+<td align="LEFT">carbonero</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Romo Alcantarilla, Eulogio</td>
+<td align="CENTER">41</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Romo Corona, Crisantos</td>
+<td align="CENTER">69</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Romo Cuadrado, Mariano</td>
+<td align="CENTER">26</td>
+<td align="LEFT"></td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Romo Mendieta, Sixto</td>
+<td align="CENTER">44</td>
+<td align="LEFT">panadero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Roncero Frías, Mariano</td>
+<td align="CENTER">43</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Pareja</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Roncero Lara, José</td>
+<td align="CENTER">29</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Tabladillo / Alique</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Rosas Cuenca, Manuel</td>
+<td align="CENTER">45</td>
+<td align="LEFT">barbero</td>
+<td align="LEFT">Palenciana (Córdoba) / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Rubio Canfrán, Victoriano</td>
+<td align="CENTER">36</td>
+<td align="LEFT">panadero</td>
+<td align="LEFT">Sigüenza</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Rubio García, José</td>
+<td align="CENTER">45</td>
+<td align="LEFT">guardia civil</td>
+<td align="LEFT">Alcalá de Henares / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Rubio Pérez, Vicente</td>
+<td align="CENTER">27</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sella (Alicante)</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Ruiz Cortés, Mariano</td>
+<td align="CENTER">33</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Ruiz de la Zarza, Bernabé</td>
+<td align="CENTER">42</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alhóndiga</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ruiz Doncel, Domingo José</td>
+<td align="CENTER">38</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Tendilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Ruiz Fernández, Alejo</td>
+<td align="CENTER">42</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Alhóndiga</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Ruiz Fernández, Loreto</td>
+<td align="CENTER">41</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Alhóndiga</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Ruiz Luna, Miguel</td>
+<td align="CENTER">28</td>
+<td align="LEFT">carpintero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Ruiz Parra, Modesto</td>
+<td align="CENTER">43</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Almonacid de Zorita</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Ruiz Pinilla, David</td>
+<td align="CENTER">22</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ruiz Sáez, José</td>
+<td align="CENTER">37</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Ruiz Sánchez, Florentino</td>
+<td align="CENTER">26</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Chiloeches / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Ruiz Sánchez, Raimundo</td>
+<td align="CENTER">27</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Chiloeches</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Ruiz Tabernero, Manuel</td>
+<td align="CENTER">21</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alhóndiga</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Saceda Razola, Julián</td>
+<td align="CENTER">49</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Sacristán Pérez, Francisco</td>
+<td align="CENTER">52</td>
+<td align="LEFT">electricista</td>
+<td align="LEFT">Horche</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Saenz Gamo, Antonia</td>
+<td align="CENTER">50</td>
+<td align="LEFT">s.l.</td>
+<td align="LEFT">Espinosa de Henares / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sáez Berninches, Justo</td>
+<td align="CENTER">39</td>
+<td align="LEFT">caminero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Sáez Crespo, Antonio</td>
+<td align="CENTER">45</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Sáez García, Julio</td>
+<td align="CENTER">33</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sáez García, Ruperto</td>
+<td align="CENTER">22</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Sáiz Huelde, José</td>
+<td align="CENTER">32</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Salmerón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Sáiz Muñoz, Marcos</td>
+<td align="CENTER">47</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Trillo</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Salamanca de Luz, Julio</td>
+<td align="CENTER">40</td>
+<td align="LEFT">panadero</td>
+<td align="LEFT">Tendilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Salmerón Blanco, Alberto</td>
+<td align="CENTER">35</td>
+<td align="LEFT">carpintero</td>
+<td align="LEFT">Buendía (Cuenca) / Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Salvador Guindal, Aurelio</td>
+<td align="CENTER">30</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Salvador Heras, Jacinto</td>
+<td align="CENTER">45</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Salvador Heras, Víctor</td>
+<td align="CENTER">52</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Salvador Ibáñez, Mariano</td>
+<td align="CENTER">38</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Salvador Romo, Bernardo</td>
+<td align="CENTER">38</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">San Andrés Palomeque, Agustín</td>
+<td align="CENTER">22</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">San José Martínez, Emilio</td>
+<td align="CENTER">45</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Madrid / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sanabria Alcantarilla, Pedro</td>
+<td align="CENTER">47</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Sánchez Alonso, Julio</td>
+<td align="CENTER">37</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Hita</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sánchez Barco, Carlos</td>
+<td align="CENTER">47</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Yebra</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sánchez Cogollor, Eugenio</td>
+<td align="CENTER">23</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Azuqueca de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sánchez Corona, Blas</td>
+<td align="CENTER">32</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Yebra</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sánchez Cortés, Jesús</td>
+<td align="CENTER">67</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Armuña de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sánchez Crespo, Julio</td>
+<td align="CENTER">43</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Tendilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sánchez Crespo, Mateo</td>
+<td align="CENTER">52</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Tendilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sánchez Fraile, Perfecto</td>
+<td align="CENTER">32</td>
+<td align="LEFT">industrial</td>
+<td align="LEFT">Yebra</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sánchez Garrido, Ildefonso</td>
+<td align="CENTER">47</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Yebra</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sánchez Gómez, Pedro</td>
+<td align="CENTER">38</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sánchez Jiménez, Lorenzo</td>
+<td align="CENTER">31</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Mondéjar</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sánchez Lorenzo, Lucía</td>
+<td align="CENTER">45</td>
+<td align="LEFT">s.l.</td>
+<td align="LEFT">Armuña de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sánchez Lozano, Francisco</td>
+<td align="CENTER">52</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Yebra</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sánchez Pérez, Tomás</td>
+<td align="CENTER">40</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Armuña de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sánchez Polo, Juan Ignacio</td>
+<td align="CENTER">55</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Armuña de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sánchez Ruiz, Manuel</td>
+<td align="CENTER">27</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Armuña de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sánchez Sánchez, José</td>
+<td align="CENTER">31</td>
+<td align="LEFT">chofer</td>
+<td align="LEFT">Valderachas</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Sánchez Santiago, Claudio</td>
+<td align="CENTER">27</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sánchez Trujillo, Celestino</td>
+<td align="CENTER">25</td>
+<td align="LEFT">estudiante</td>
+<td align="LEFT">Jaraiz de la Vera (Cáceres)</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sánchez Valero, Constancio</td>
+<td align="CENTER">28</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Armuña de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sánchez Yebra, Doroteo</td>
+<td align="CENTER">41</td>
+<td align="LEFT">empleado</td>
+<td align="LEFT">Almonacid de Zorita</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sandi Alocén, José</td>
+<td align="CENTER">47</td>
+<td align="LEFT">cocinero</td>
+<td align="LEFT">Pastrana / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Santamaría Cuadrado, Segundo</td>
+<td align="CENTER">29</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Yunquera de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Santiago Bachiller, Gil</td>
+<td align="CENTER">46</td>
+<td align="LEFT">hortelano</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Santiago Gómez, Clemente</td>
+<td align="CENTER">37</td>
+<td align="LEFT">mecánico</td>
+<td align="LEFT">Madrid / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Santiago Vivar, Valentín</td>
+<td align="CENTER">37</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Santos Ibarra, Domingo</td>
+<td align="CENTER">22</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Santos Portal, Francisca</td>
+<td align="CENTER">55</td>
+<td align="LEFT">s.l.</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Santos Portal, León</td>
+<td align="CENTER">48</td>
+<td align="LEFT">ferroviario</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sanz Aparicio, Andrés</td>
+<td align="CENTER">38</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Mirabueno</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Sanz de la Cal, Carlos</td>
+<td align="CENTER">23</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Jadraque</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sanz Ferrer, Marcelino</td>
+<td align="CENTER">33</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Sayatón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sanz García, Simón</td>
+<td align="CENTER">29</td>
+<td align="LEFT">campesino</td>
+<td align="LEFT">Villanueva de Alcorón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sanz Gonzalo, Juan José</td>
+<td align="CENTER">40</td>
+<td align="LEFT">impresor</td>
+<td align="LEFT">Terzaga</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Sanz Ortiz, Gonzalo</td>
+<td align="CENTER">24</td>
+<td align="LEFT">panadero</td>
+<td align="LEFT">Molina de Aragón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sanz Palancar, Nicolás</td>
+<td align="CENTER">58</td>
+<td align="LEFT">maestro</td>
+<td align="LEFT">Imón / Iriépal</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sanz Rueda, Felipe</td>
+<td align="CENTER">27</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Orea / Durón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Sanz Sánchez, Emilio</td>
+<td align="CENTER">26</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Málaga del Fresno</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Serrano Corral, Gregorio</td>
+<td align="CENTER">43</td>
+<td align="LEFT">fundidor</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Serrano Horche, Juan</td>
+<td align="CENTER">23</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Quer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Serrano Mayor, Fidel</td>
+<td align="CENTER">38</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Argecilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sierra Olivo, Antonio</td>
+<td align="CENTER">24</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sayatón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sierra Olivo, Tomás</td>
+<td align="CENTER">28</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Pastrana / Sayatón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sierra Rey, Mariano</td>
+<td align="CENTER">56</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Villaescusa de Palositos / Hontanillas</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sol Rincón, Pablo del</td>
+<td align="CENTER">30</td>
+<td align="LEFT">conductor</td>
+<td align="LEFT">Cifuentes</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Solano Paganos, Isidoro</td>
+<td align="CENTER">28</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Marchamalo</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Soria Blanco, Juan</td>
+<td align="CENTER">64</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Soria Ibarra, Máximo</td>
+<td align="CENTER">33</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Soria Sánchez, Candelas</td>
+<td align="CENTER">42</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Armuña de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Soriano Remartínez, Hilario</td>
+<td align="CENTER">47</td>
+<td align="LEFT">recaudador</td>
+<td align="LEFT">Ateca (Zaragoza) / Yebra</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sorrosal Martínez, Rafael</td>
+<td align="CENTER">23</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Sotoca Díaz, Marcos</td>
+<td align="CENTER">53</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Esplegares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Tapia Serrano, Andrés</td>
+<td align="CENTER">34</td>
+<td align="LEFT">panadero</td>
+<td align="LEFT">Argecilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Tapia Serrano, Jacinto</td>
+<td align="CENTER">32</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Argecilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Taravilla Andradas, Tomás</td>
+<td align="CENTER">27</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Chiloeches</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Taravilla Antoral, Gregorio</td>
+<td align="CENTER">36</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Chiloeches</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Taravillo Martínez, Mariano</td>
+<td align="CENTER">20</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Azuqueca de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Taravillo Martínez, Román</td>
+<td align="CENTER">28</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Azuqueca de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Tejero del Pozo, Pedro</td>
+<td align="CENTER">49</td>
+<td align="LEFT">panadero</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Temprado Martínez, Francisco</td>
+<td align="CENTER">35</td>
+<td align="LEFT">sec. Ayto.</td>
+<td align="LEFT">Establés / Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Tobajas Blasco, Gregorio</td>
+<td align="CENTER">33</td>
+<td align="LEFT">empleado</td>
+<td align="LEFT">Sigüenza / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Toledano Albarracín, José</td>
+<td align="CENTER">25</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sayatón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Toledano Mínguez, Juan Antonio</td>
+<td align="CENTER">43</td>
+<td align="LEFT">comerciante</td>
+<td align="LEFT">Fresno de la Carballeda (Zamora) / Tarancón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Tomico López, Mariano</td>
+<td align="CENTER">43</td>
+<td align="LEFT">maestro</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Torija Benito, Valentín</td>
+<td align="CENTER">24</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Bustares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Toro López, Francisco</td>
+<td align="CENTER">50</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Tendilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Torralbo Culebras, Juan</td>
+<td align="CENTER">25</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Pareja</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Torre Cervigón, Restituto de la</td>
+<td align="CENTER">49</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Bellisca (Cuenca) / Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Torre de la Torre, Francisco de la</td>
+<td align="CENTER">31</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Yebra</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Torre Matasanz, Crisanto de la</td>
+<td align="CENTER">41</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Fuentenovilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Torres Cantal, Antonio</td>
+<td align="CENTER">29</td>
+<td align="LEFT">campesino</td>
+<td align="LEFT">Yunquera de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Torrontero del Amo, Jesús</td>
+<td align="CENTER">35</td>
+<td align="LEFT">carpintero</td>
+<td align="LEFT">Sigüenza</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Tortuero Silvestre, Jesús</td>
+<td align="CENTER">46</td>
+<td align="LEFT">comerciante</td>
+<td align="LEFT">Azuqueca de Henares</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Trillo Gálvez, Gregorio</td>
+<td align="CENTER">23</td>
+<td align="LEFT">tipógrafo</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Utrilla Castillo, Rufino</td>
+<td align="CENTER">33</td>
+<td align="LEFT">panadero</td>
+<td align="LEFT">Aldeanueva de Guadalajara / Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Valdeolivas Martínez, Benito</td>
+<td align="CENTER">29</td>
+<td align="LEFT">campesino</td>
+<td align="LEFT">La Isabela</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Valdés Aguado, Cesáreo</td>
+<td align="CENTER">38</td>
+<td align="LEFT">maestro</td>
+<td align="LEFT">Illana</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Valenciano García Abad, Victoriano</td>
+<td align="CENTER">43</td>
+<td align="LEFT">carpintero</td>
+<td align="LEFT">Illana</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Valentín Serrano, Martín</td>
+<td align="CENTER">38</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Argecilla</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Valero Jiménez, Mariano</td>
+<td align="CENTER">23</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Mejorada del Campo (Madrid) / Mondéjar</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Valero Vega, Eliseo</td>
+<td align="CENTER">44</td>
+<td align="LEFT">maestro</td>
+<td align="LEFT">Villar de Olalla (Cuenca) / Budia</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Vázquez de Luz, Alberto</td>
+<td align="CENTER">51</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Romanones</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Vázquez Romero, Apolonio</td>
+<td align="CENTER">43</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Loranca de Tajuña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Vega Blas, Julián de la</td>
+<td align="CENTER">37</td>
+<td align="LEFT">molinero</td>
+<td align="LEFT">Alameda del Valle (Madrid) / Tamajón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Veguillas Serrano, Teófilo</td>
+<td align="CENTER">30</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Matillas</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Velasco Manzano, Telesforo</td>
+<td align="CENTER">28</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Almoguera</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Velázquez Blanco, Dámaso</td>
+<td align="CENTER">28</td>
+<td align="LEFT">mecánico</td>
+<td align="LEFT">Valladolid</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Vera Ecija, Vicente</td>
+<td align="CENTER">51</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Salmerón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Vera Regidor, Saturnino</td>
+<td align="CENTER">41</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Salmerón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Vera Saldaña, Jesús</td>
+<td align="CENTER">25</td>
+<td align="LEFT">mecánico</td>
+<td align="LEFT">Los Santos de Humosa (Mad.) / Azuqueca</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Verges García, Julio</td>
+<td align="CENTER">25</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Tamajón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Vicente Escudero, Norberto</td>
+<td align="CENTER">35</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Aldeanueva de Guadalajara / Torija</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Vicente Lorente, Tomás</td>
+<td align="CENTER">27</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Auñón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Viejo Congostrina, Nicasio</td>
+<td align="CENTER">31</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Villa Alfaro, Máximo</td>
+<td align="CENTER">61</td>
+<td align="LEFT">matarife</td>
+<td align="LEFT">Budia / Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Villa del Río, Juan</td>
+<td align="CENTER">21</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón / Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Villa Díaz, Severino</td>
+<td align="CENTER">34</td>
+<td align="LEFT">zapatero</td>
+<td align="LEFT">Almonacid de Zorita</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Villa Heras, Estanislao</td>
+<td align="CENTER">67</td>
+<td align="LEFT">caminero</td>
+<td align="LEFT">Cañaveruelas (Cuenca) / Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Villar Acirón, Francisco</td>
+<td align="CENTER">24</td>
+<td align="LEFT">barbero</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Vindel Arroyo, Bernardo</td>
+<td align="CENTER">50</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Chillarón del Rey</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Vindel Regidor, Casimiro</td>
+<td align="CENTER">58</td>
+<td align="LEFT">maestro</td>
+<td align="LEFT">Casasana / Pajares</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Viñas Díaz, Ángel</td>
+<td align="CENTER">31</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Viñas Ibarra, Eusebio</td>
+<td align="CENTER">28</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Sacedón</td>
+</tr>
+<tr>
+<td align="LEFT" height="18">Vivares Notario, Maximiliano</td>
+<td align="CENTER">44</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Alcocer</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Wandelmer Cubero, Ángel</td>
+<td align="CENTER">22</td>
+<td align="LEFT">mecánico</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Wandelmer Martínez, Pedro</td>
+<td align="CENTER">70</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Yagüe Martínez, Aurelio</td>
+<td align="CENTER">34</td>
+<td align="LEFT">empleado</td>
+<td align="LEFT">Brihuega</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Yagüe Sienes, Anastasio</td>
+<td align="CENTER">28</td>
+<td align="LEFT">molinero</td>
+<td align="LEFT">Sigüenza</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Yebra Albarracín, Eugenio</td>
+<td align="CENTER">61</td>
+<td align="LEFT">labrador</td>
+<td align="LEFT">Sayatón</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Yela García, Celestino</td>
+<td align="CENTER">43</td>
+<td align="LEFT">albañil</td>
+<td align="LEFT">Guadalajara</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Yela Monge, Mariano</td>
+<td align="CENTER">45</td>
+<td align="LEFT">caminero</td>
+<td align="LEFT">Torrebeleña</td>
+</tr>
+<tr>
+<td align="LEFT" height="19">Zornoza Aranda, Fermín</td>
+<td align="CENTER">44</td>
+<td align="LEFT">jornalero</td>
+<td align="LEFT">Alique</td>
+</tr>
