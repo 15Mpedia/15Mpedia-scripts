@@ -38,7 +38,7 @@ def main():
     
     for fusilado in fusilados:
         print(fusilado)
-        if '(' in fusilado[0] or '&' in fusilado[0]:
+        if '(' in fusilado[0] or '&' in fusilado[0] or '[' in fusilado[0]:
             continue
         if not ', ' in fusilado[0]:
             continue
