@@ -139,6 +139,30 @@ def main():
                         redirects.add(re.sub(ur"Lista de asesinatos machistas en ", ur"Lista de asesinatos por violencia de género en ", wtitle))
                         redirects.add(re.sub(ur"Lista de asesinatos machistas en ", ur"Lista de asesinatos por violencia machista en ", wtitle))
                     
+                    #capitalismo
+                    if wtitle.startswith(u'Crímenes del capitalismo '):
+                        redirects.add(re.sub(ur"Crímenes del capitalismo ", ur"Crímenes capitalistas ", wtitle))
+                    
+                    if wtitle.endswith(u' regímenes capitalistas'):
+                        redirects.add(re.sub(ur" regímenes capitalistas", ur" el capitalismo", wtitle))
+                        redirects.add(re.sub(ur" regímenes capitalistas", ur" estados capitalistas", wtitle))
+                        redirects.add(re.sub(ur" regímenes capitalistas", ur" países capitalistas", wtitle))
+                    
+                    if wtitle.endswith(u' el capitalismo'):
+                        redirects.add(re.sub(ur" el capitalismo", ur" regímenes capitalistas", wtitle))
+                        redirects.add(re.sub(ur" el capitalismo", ur" estados capitalistas", wtitle))
+                        redirects.add(re.sub(ur" el capitalismo", ur" países capitalistas", wtitle))
+                    
+                    #memoria historica
+                    if wtitle.startswith(u'Memoria histórica en '):
+                        redirects.add(re.sub(ur"Memoria histórica en ", ur"Memoria Histórica en ", wtitle))
+                        redirects.add(re.sub(ur"Memoria histórica en ", ur"Memoria histórica de ", wtitle))
+                        redirects.add(re.sub(ur"Memoria histórica en ", ur"Memoria Histórica de ", wtitle))
+                        redirects.add(re.sub(ur"Memoria histórica en ", ur"Memoria de ", wtitle))
+                        redirects.add(re.sub(ur"Memoria histórica en ", ur"Memoria en ", wtitle))
+                        redirects.add(re.sub(ur"Memoria histórica en ", ur"MH de ", wtitle))
+                        redirects.add(re.sub(ur"Memoria histórica en ", ur"MH en ", wtitle))
+                    
                     #violencia de género
                     if wtitle.startswith(u'Violencia de género en '):
                         redirects.add(re.sub(ur"Violencia de género en ", ur"Violencia intrafamiliar en ", wtitle))
@@ -159,7 +183,7 @@ def main():
                         msg = u"BOT - Creating redirect to [[%s]]" % (wtitle)
                         red.text = output
                         red.save(msg)
-                        time.sleep(0.2)
+                        time.sleep(0.1)
 
 if __name__ == '__main__':
     main()
