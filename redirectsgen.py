@@ -139,6 +139,10 @@ def main():
                         redirects.add(re.sub(ur"Lista de asesinatos machistas en ", ur"Lista de asesinatos por violencia de género en ", wtitle))
                         redirects.add(re.sub(ur"Lista de asesinatos machistas en ", ur"Lista de asesinatos por violencia machista en ", wtitle))
                     
+                    #actualidad
+                    if wtitle.startswith(u'Actualidad en '):
+                        redirects.add(re.sub(ur"Actualidad en ", ur"Actualidad de ", wtitle))
+                    
                     #capitalismo
                     if wtitle.startswith(u'Crímenes del capitalismo '):
                         redirects.add(re.sub(ur"Crímenes del capitalismo ", ur"Crímenes capitalistas ", wtitle))
@@ -162,6 +166,25 @@ def main():
                         redirects.add(re.sub(ur"Memoria histórica en ", ur"Memoria en ", wtitle))
                         redirects.add(re.sub(ur"Memoria histórica en ", ur"MH de ", wtitle))
                         redirects.add(re.sub(ur"Memoria histórica en ", ur"MH en ", wtitle))
+                    
+                    if wtitle.startswith(u'Lista de personas fusiladas por el franquismo en '):
+                        redirects.add(re.sub(ur"Lista de personas fusiladas por el franquismo en ", ur"Lista de fusilados por el franquismo en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de personas fusiladas por el franquismo en ", ur"Fusilados en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de personas fusiladas por el franquismo en ", ur"Fusilamientos en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de personas fusiladas por el franquismo en ", ur"Asesinados por el franquismo en ", wtitle))
+                    
+                    if wtitle.startswith(u'Lista de víctimas españolas del nazismo deportadas al Campo de concentración de '):
+                        redirects.add(re.sub(ur"Lista de víctimas españolas del nazismo deportadas al Campo de concentración de ", ur"Deportados a ", wtitle))
+                        redirects.add(re.sub(ur"Lista de víctimas españolas del nazismo deportadas al Campo de concentración de ", ur"Personas deportadas a ", wtitle))
+                        redirects.add(re.sub(ur"Lista de víctimas españolas del nazismo deportadas al ", ur"Deportados al ", wtitle))
+                        redirects.add(re.sub(ur"Lista de víctimas españolas del nazismo deportadas al ", ur"Personas deportadas al ", wtitle))
+                        redirects.add(re.sub(ur"Lista de víctimas españolas del nazismo deportadas al ", ur"Víctimas del ", wtitle))
+                    
+                    #propaganda
+                    if wtitle.startswith(u'Manipulación y propaganda '):
+                        redirects.add(re.sub(ur"Manipulación y propaganda ", ur"Manipulación ", wtitle))
+                        redirects.add(re.sub(ur"Manipulación y propaganda ", ur"Propaganda ", wtitle))
+                        redirects.add(re.sub(ur"Manipulación y propaganda ", ur"Propaganda y manipulación ", wtitle))
                     
                     #violencia de género
                     if wtitle.startswith(u'Violencia de género en '):
