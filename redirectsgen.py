@@ -180,6 +180,28 @@ def main():
                         redirects.add(re.sub(ur"Lista de víctimas españolas del nazismo deportadas al ", ur"Personas deportadas al ", wtitle))
                         redirects.add(re.sub(ur"Lista de víctimas españolas del nazismo deportadas al ", ur"Víctimas del ", wtitle))
                     
+                    #muertos
+                    if wtitle.startswith(u'Lista de muertos en protestas en '):
+                        redirects.add(re.sub(ur"Lista de muertos en protestas en ", ur"Lista de asesinados en manifestaciones en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de muertos en protestas en ", ur"Lista de asesinados en protestas en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de muertos en protestas en ", ur"Lista de fallecidos en manifestaciones en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de muertos en protestas en ", ur"Lista de fallecidos en protestas en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de muertos en protestas en ", ur"Lista de manifestantes asesinados en protestas en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de muertos en protestas en ", ur"Lista de manifestantes fallecidos en protestas en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de muertos en protestas en ", ur"Lista de manifestantes muertos en protestas en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de muertos en protestas en ", ur"Lista de muertes en manifestaciones en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de muertos en protestas en ", ur"Lista de muertos en manifestaciones en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de muertos en protestas en ", ur"Lista de personas asesinadas en manifestaciones en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de muertos en protestas en ", ur"Lista de personas fallecidas en manifestaciones en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de muertos en protestas en ", ur"Lista de personas muertas en manifestaciones en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de muertos en protestas en ", ur"Lista de personas asesinadas en protestas en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de muertos en protestas en ", ur"Lista de personas fallecidas en protestas en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de muertos en protestas en ", ur"Lista de personas muertas en protestas en ", wtitle))
+                    
+                    #privatizaciones
+                    if wtitle.startswith(u'Lista de privatizaciones en '):
+                        redirects.add(re.sub(ur"Lista de privatizaciones en ", ur"Lista de empresas privatizadas en ", wtitle))
+                    
                     #propaganda
                     if wtitle.startswith(u'Manipulación y propaganda '):
                         redirects.add(re.sub(ur"Manipulación y propaganda ", ur"Manipulación ", wtitle))
