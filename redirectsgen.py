@@ -208,6 +208,12 @@ def main():
                         redirects.add(re.sub(ur"Manipulación y propaganda ", ur"Propaganda ", wtitle))
                         redirects.add(re.sub(ur"Manipulación y propaganda ", ur"Propaganda y manipulación ", wtitle))
                     
+                    #torturas
+                    if wtitle.startswith(u'Lista de personas que han denunciado torturas en '):
+                        redirects.add(re.sub(ur"Lista de personas que han denunciado torturas en ", ur"Lista de personas torturadas en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de personas que han denunciado torturas en ", ur"Lista de torturadas en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de personas que han denunciado torturas en ", ur"Lista de torturados en ", wtitle))
+                    
                     #violencia de género
                     if wtitle.startswith(u'Violencia de género en '):
                         redirects.add(re.sub(ur"Violencia de género en ", ur"Violencia intrafamiliar en ", wtitle))
