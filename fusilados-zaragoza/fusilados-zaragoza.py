@@ -53,7 +53,13 @@ def main():
         fusilados.append([fus[0], fus[1], fus[2], fus[3]])
     #print(fusilados)
     
+    skip = 'CASTILLON VILLAS, Antonio'
     for fusilado in fusilados:
+        if skip:
+            if skip == fusilado[0]:
+                skip = ''
+            continue
+        
         if not ', ' in fusilado[0] or not ' ' in fusilado[0]:
             continue
         
@@ -73,9 +79,9 @@ def main():
         nombrecompleto = '%s %s' % (nombrepila, apellidos_)
         nombrecompleto2 = '%s, %s' % (apellidos_, nombrepila)
         
-        edad = fusilado[1]
-        fechafus = fusilado[2]
-        resmuni = fusilado[3].rstrip('(').strip()
+        edad = fusilado[1].strip()
+        fechafus = fusilado[2].strip()
+        resmuni = fusilado[3].strip().rstrip('(').strip()
         print(nombrecompleto, edad, fechafus, resmuni)
         
         sexo = 'Hombre'
@@ -87,7 +93,8 @@ def main():
             if edad:
                 bio += ' Tenía %s años cuando fue %s.' % (edad, sexo=='Hombre' and 'fusilado' or 'fusilada')
         else:
-            bio += '%s tenía %s años cuando fue %s.' % (nombrepila, edad, sexo=='Hombre' and 'fusilado' or 'fusilada')
+            if edad:
+                bio += '%s tenía %s años cuando fue %s.' % (nombrepila, edad, sexo=='Hombre' and 'fusilado' or 'fusilada')
         
         if bio:
             bio += '<ref name="Casanova-2001" /><ref name="Memorial-Torrero" />'
