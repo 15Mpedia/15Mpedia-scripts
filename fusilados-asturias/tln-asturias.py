@@ -100,15 +100,27 @@ def main():
     'https://web.archive.org/web/20130611040744/http://todoslosnombres.es/modules.php?name=Encyclopedia&op=terms&eid=1&ltr=Y', 
     'https://web.archive.org/web/20130611040744/http://todoslosnombres.es/modules.php?name=Encyclopedia&op=terms&eid=1&ltr=Z', 
     ]
-    personas = []
     for url in urls:
         raw = ''
         raw = getURL(url=url)
         m = re.findall(r'(?im)tid=(\d+)">([^<>]*?)</a></td></tr>', raw)
+        skip = ''
         for personaid, personanombre in m:
             personaid = personaid.strip()
+            if skip:
+                if skip == personaid:
+                    skip = ''
+                continue
             url2 = 'https://web.archive.org/web/20130611041005/http://todoslosnombres.es/modules.php?name=Encyclopedia&op=content&tid=%s' % (personaid)
             raw2 = getURL(url=url2)
+            if not raw2:
+                time.sleep(60*2)
+                raw2 = getURL(url=url2)
+                if not raw2:
+                    h = open('tln-asturias-errors.txt', 'a')
+                    h.write('\n%s' % (url2))
+                    h.close()
+                    continue
             nombre = re.findall(r'(?im)<font class="title">([^<>]*?)</font>', raw2)[0].strip()
             causamuerte = re.findall(r'(?im)<strong>\s*?Causa de la muerte:\s*?</strong>([^<>]*?)<', raw2)[0].strip()
             lugarmuerte = re.findall(r'(?im)<strong>\s*?Lugar:\s*?</strong>([^<>]*?)<', raw2)[0].strip()
@@ -122,11 +134,11 @@ def main():
             padres = re.findall(r'(?im)<strong>\s*?Padres:\s*?</strong>([^<>]*?)<', raw2)[0].strip()
             profesion = re.findall(r'(?im)<strong>\s*?Profesión:\s*?</strong>([^<>]*?)<', raw2)[0].strip()
             personarow = [personaid, nombre, causamuerte, lugarmuerte, fechamuerteiso, lugarnacimiento, lugarresidencia, edad, estadocivil, padres, profesion]
-            personas.append(personarow)
             print(personarow)
-        g = open('tln-asturias.txt', 'a')
-        g.write('\n'+'\n'.join([';'.join(x) for x in personas]))
-        g.close()
+            g = open('tln-asturias.txt', 'a')
+            g.write('\n'+';'.join(personarow))
+            g.close()
+            time.sleep(1)
 
 if __name__ == '__main__':
     main()
