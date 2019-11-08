@@ -31,8 +31,8 @@ def getURL(url=''):
         try:
             raw = urllib.request.urlopen(req).read().strip().decode('latin-1')
         except:
-            sleep = 10 # seconds
-            maxsleep = 60
+            sleep = 5 # seconds
+            maxsleep = 5
             while sleep <= maxsleep:
                 print('Error while retrieving: %s' % (url))
                 print('Retry in %s seconds...' % (sleep))
@@ -100,21 +100,23 @@ def main():
     'https://web.archive.org/web/20130611040744/http://todoslosnombres.es/modules.php?name=Encyclopedia&op=terms&eid=1&ltr=Y', 
     'https://web.archive.org/web/20130611040744/http://todoslosnombres.es/modules.php?name=Encyclopedia&op=terms&eid=1&ltr=Z', 
     ]
+    skip = '1387003'
     for url in urls:
         raw = ''
+        print(url)
         raw = getURL(url=url)
         m = re.findall(r'(?im)tid=(\d+)">([^<>]*?)</a></td></tr>', raw)
-        skip = ''
         for personaid, personanombre in m:
-            personaid = personaid.strip()
+            personaid = str(personaid).strip()
             if skip:
+                print('Skiping', personaid)
                 if skip == personaid:
                     skip = ''
                 continue
             url2 = 'https://web.archive.org/web/20130611041005/http://todoslosnombres.es/modules.php?name=Encyclopedia&op=content&tid=%s' % (personaid)
             raw2 = getURL(url=url2)
             if not raw2:
-                time.sleep(60*2)
+                time.sleep(5)
                 raw2 = getURL(url=url2)
                 if not raw2:
                     h = open('tln-asturias-errors.txt', 'a')
