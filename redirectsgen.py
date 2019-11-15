@@ -198,6 +198,10 @@ def main():
                         redirects.add(re.sub(ur"Lista de muertos en protestas en ", ur"Lista de personas fallecidas en protestas en ", wtitle))
                         redirects.add(re.sub(ur"Lista de muertos en protestas en ", ur"Lista de personas muertas en protestas en ", wtitle))
                     
+                    #partidos
+                    if wtitle.startswith(u'Lista de partidos políticos '):
+                        redirects.add(re.sub(ur"Lista de partidos políticos ", ur"Lista de partidos ", wtitle))
+                    
                     #privatizaciones
                     if wtitle.startswith(u'Lista de privatizaciones en '):
                         redirects.add(re.sub(ur"Lista de privatizaciones en ", ur"Lista de empresas privatizadas en ", wtitle))
