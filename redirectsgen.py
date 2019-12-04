@@ -157,6 +157,9 @@ def main():
                         redirects.add(re.sub(ur" el capitalismo", ur" estados capitalistas", wtitle))
                         redirects.add(re.sub(ur" el capitalismo", ur" países capitalistas", wtitle))
                     
+                    if wtitle.startswith(u'Fascismo en '):
+                        redirects.add(re.sub(ur"Fascismo en ", ur"Fascismo de ", wtitle))
+                    
                     #memoria historica
                     if wtitle.startswith(u'Memoria histórica en '):
                         redirects.add(re.sub(ur"Memoria histórica en ", ur"Memoria Histórica en ", wtitle))
@@ -179,6 +182,9 @@ def main():
                         redirects.add(re.sub(ur"Lista de víctimas españolas del nazismo deportadas al ", ur"Deportados al ", wtitle))
                         redirects.add(re.sub(ur"Lista de víctimas españolas del nazismo deportadas al ", ur"Personas deportadas al ", wtitle))
                         redirects.add(re.sub(ur"Lista de víctimas españolas del nazismo deportadas al ", ur"Víctimas del ", wtitle))
+                    
+                    if wtitle.startswith(u'Lista de agresiones de la extrema derecha '):
+                        redirects.add(re.sub(ur"Lista de agresiones de la extrema derecha ", ur"Lista de agresiones fascistas ", wtitle))
                     
                     #muertos
                     if wtitle.startswith(u'Lista de muertos en protestas en '):
@@ -217,6 +223,9 @@ def main():
                         redirects.add(re.sub(ur"Lista de personas que han denunciado torturas en ", ur"Lista de personas torturadas en ", wtitle))
                         redirects.add(re.sub(ur"Lista de personas que han denunciado torturas en ", ur"Lista de torturadas en ", wtitle))
                         redirects.add(re.sub(ur"Lista de personas que han denunciado torturas en ", ur"Lista de torturados en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de personas que han denunciado torturas en ", ur"Lista de víctimas de tortura en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de personas que han denunciado torturas en ", ur"Lista de víctimas de torturas en ", wtitle))
+                        redirects.add(re.sub(ur"Lista de personas que han denunciado torturas en ", ur"Lista de víctimas torturadas en ", wtitle))
                     
                     #violencia de género
                     if wtitle.startswith(u'Violencia de género en '):
