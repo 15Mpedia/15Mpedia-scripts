@@ -185,6 +185,11 @@ def main():
                     
                     if wtitle.startswith(u'Lista de agresiones de la extrema derecha '):
                         redirects.add(re.sub(ur"Lista de agresiones de la extrema derecha ", ur"Lista de agresiones fascistas ", wtitle))
+                        redirects.add(re.sub(ur"Lista de agresiones de la extrema derecha ", ur"Lista de agresiones de fascistas ", wtitle))
+                        redirects.add(re.sub(ur"Lista de agresiones de la extrema derecha ", ur"Lista de agresiones del fascismo ", wtitle))
+                        redirects.add(re.sub(ur"Lista de agresiones de la extrema derecha ", ur"Lista de agresiones de la ultraderecha ", wtitle))
+                        redirects.add(re.sub(ur"Lista de agresiones de la extrema derecha ", ur"Lista de agresiones ultraderechistas ", wtitle))
+                        redirects.add(re.sub(ur"Lista de agresiones de la extrema derecha ", ur"Lista de agresiones de ultraderechistas ", wtitle))
                     
                     #muertos
                     if wtitle.startswith(u'Lista de muertos en protestas en '):
