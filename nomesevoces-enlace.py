@@ -48,7 +48,7 @@ def main():
         'Categoría:Víctimas del nazismo', 
     ]
     start = ''
-    skip = 'José Ces Caamaño'
+    skip = ''
     
     for catname in catnames:
         category = pywikibot.Category(site, catname)
@@ -127,7 +127,7 @@ def main():
                 f.close()
             
             #print(raw)
-            time.sleep(10)
+            time.sleep(20)
     
 if __name__ == '__main__':
     main()

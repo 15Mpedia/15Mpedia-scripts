@@ -48,15 +48,17 @@ def getURL(url=''):
 def main():
     site = pywikibot.Site('15mpedia', '15mpedia')
     catnames = [
-        #'Categoría:Personas fusiladas por el franquismo', 
+        'Categoría:Personas fusiladas por el franquismo', 
         'Categoría:Víctimas del nazismo', 
     ]
-    start = 'Pastor'
-    
+    start = ''
     for catname in catnames:
         category = pywikibot.Category(site, catname)
         gen = pagegenerators.CategorizedPageGenerator(category=category, start=start, namespaces=[0])
         pre = pagegenerators.PreloadingGenerator(gen, pageNumber=50)
+        """templatepage = pywikibot.Page(site, template)
+        gen = pagegenerators.ReferringPageGenerator(templatepage, followRedirects=True, withTemplateInclusion=True)
+        pre = pagegenerators.PreloadingGenerator(gen, pageNumber=50)"""
         
         for page in pre:
             if not page.exists() or page.isRedirectPage():
@@ -93,7 +95,7 @@ def main():
                     mempubid = re.findall(r'<meta property="og:url" content="http://especiales.publico.es/es/memoria-publica/ficha/(\d+)/', raw)[0]
                     #print(mempubid)
                     print('Añadiendo ID %s al artículo' % mempubid)
-                    if 'franquismo' in catname:
+                    if '<!--\n* {{memoria pública|}}' in wtext:
                         newtext = wtext.replace("""<!--
 * {{memoria pública|}}
 * {{mcu represión|}}
@@ -101,7 +103,7 @@ def main():
 <!--
 * {{mcu represión|}}
 -->""" % (mempubid))
-                    elif 'nazismo' in catname:
+                    elif '<!--\n* {{PARES deportados|id=}}' in wtext:
                         newtext = wtext.replace("""<!--
 * {{PARES deportados|id=}}
 -->""", """* {{memoria pública|%s}}
@@ -109,8 +111,8 @@ def main():
 * {{PARES deportados|id=}}
 -->""" % (mempubid))
                     else:
-                        print('Error, categoria desconocida')
-                        sys.exit()
+                        newtext = wtext.replace("""<!--""", """* {{memoria pública|%s}}
+<!--""" % (mempubid))
                     if wtext != newtext:
                         pywikibot.showDiff(wtext, newtext)
                         page.text = newtext
@@ -129,7 +131,7 @@ def main():
                 f.close()
             
             #print(raw)
-            time.sleep(10)
+            time.sleep(20)
     
 if __name__ == '__main__':
     main()

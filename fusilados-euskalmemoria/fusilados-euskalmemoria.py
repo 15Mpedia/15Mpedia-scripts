@@ -66,7 +66,7 @@ def main():
     f = open('nombrespilamujer', 'r')
     nombresmujer = f.read().strip().splitlines()
     f.close()
-    for page in range(1, 2):
+    for page in range(50, 104):
         fusilados = []
         raw = ''
         url = 'http://www.euskalmemoria.eus/es/db/fusilatuak?page=%d' % (page)

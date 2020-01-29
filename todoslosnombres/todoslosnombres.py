@@ -94,9 +94,9 @@ def main():
     nombrespilamujer = f.read().lower().strip().splitlines()
     f.close()
     
-    skipmuni = '8408'
-    skipbio = 'lorenzo-jimenez-raya' #minusculas y espacios como -
-    skippage = 144 #para municipios grandes, podemos saltar a la pagina concreta http://www.todoslosnombres.org/taxonomy/term/8408?page=144
+    skipmuni = '8900'
+    skipbio = '' #en minusculas, y espacios como -
+    skippage = 49 #para municipios grandes, podemos saltar a la pagina concreta http://www.todoslosnombres.org/taxonomy/term/8408?page=144
     for municipioid in municipiosids:
         if skipmuni:
             if skipmuni == municipioid:
