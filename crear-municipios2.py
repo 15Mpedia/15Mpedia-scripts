@@ -212,25 +212,25 @@ def main():
                 escudo = ''
                 if re.search(r'(?im)escudo\s*=\s*.', eswiki.text):
                     try:
-                        escudo = re.findall(r'(?im)escudo\s*=\s*([^\n\r\|\[\]\{\}]+)', eswiki.text)[0].strip()
+                        escudo = re.findall(r'(?im)escudo\s*=\s*([^\n\r\|\[\]\{\}/<]+)', eswiki.text)[0].strip()
                     except:
                         pass
-                    if escudo == 'no':
+                    if escudo == 'no' or not re.search(r'(?im)\.(jpe?g|pne?g|svg)', escudo):
                         escudo = ''
                 bandera = ''
                 if re.search(r'(?im)bandera\s*=\s*.', eswiki.text):
                     try:
-                        bandera = re.findall(r'(?im)bandera\s*=\s*([^\n\r\|\[\]\{\}]+)', eswiki.text)[0].strip()
+                        bandera = re.findall(r'(?im)bandera\s*=\s*([^\n\r\|\[\]\{\}/<]+)', eswiki.text)[0].strip()
                     except:
                         pass
-                    if bandera == 'no':
+                    if bandera == 'no' or not re.search(r'(?im)\.(jpe?g|pne?g|svg)', bandera):
                         bandera = ''
                 comarca = ''
                 if re.search(r'(?im)comarca\s*=\s*\[\[', eswiki.text):
                     comarca = re.findall(r'(?im)comarca\s*=\s*\[\[([^\n\r\|\[\]]+?)(?:\|[^\n\r\[\]]+?)?\]\]', eswiki.text)[0].strip()
                 web = ''
                 if re.search(r'(?im)(?:página web|web)\s*=\s*\[?(?:https?://)?w', eswiki.text):
-                    web = re.findall(r'(?im)(?:página web|web)\s*=\s*\[?((?:https?://)?w[^\s\]]+)', eswiki.text)[0].strip()
+                    web = re.findall(r'(?im)(?:página web|web)\s*=\s*\[?((?:https?://)?w[^\s\]\<\|]+)', eswiki.text)[0].strip()
                     if web.startswith('www'):
                         web = 'http://' + web
             else:
@@ -296,8 +296,8 @@ def main():
                 add.append('|escudo=%s' % (escudo))
             if not re.search(r'(?im)\|bandera=', newtext) and bandera:
                 add.append('|bandera=%s' % (bandera))
-            if not re.search(r'(?im)\|deuda viva=', newtext) and deuda2010:
-                add.append('|deuda viva={{deuda viva|año=2010|euros=%s}}' % (deuda2010))
+            #if not re.search(r'(?im)\|deuda viva=', newtext) and deuda2010:
+            #    add.append('|deuda viva={{deuda viva|año=2010|euros=%s}}' % (deuda2010))
             if not re.search(r'(?im)\|sitio web=', newtext) and web:
                 add.append('|sitio web=%s' % (web))
             if not re.search(r'(?im)\|enlaces externos=', newtext):
