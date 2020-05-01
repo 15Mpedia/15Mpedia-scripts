@@ -42,6 +42,8 @@ def float2str(d):
     d = d.replace('.', '-')
     d = d.replace(',', '.')
     d = d.replace('-', ',')
+    d = re.sub(r',0+$', '', d) # remove ,0 & ,00
+    d = re.sub(r'(,\d\d)\d+$', r'\1', d) #round 2
     return d
 
 def main():
