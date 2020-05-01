@@ -226,8 +226,10 @@ def main():
                     if bandera == 'no' or not re.search(r'(?im)\.(jpe?g|pne?g|svg)', bandera):
                         bandera = ''
                 comarca = ''
-                if re.search(r'(?im)comarca\s*=\s*\[\[', eswiki.text):
+                if re.search(r'(?im)comarca\s*=\s*\[\[([^\n\r\|\[\]]+?)(?:\|[^\n\r\[\]]+?)?\]\]', eswiki.text):
                     comarca = re.findall(r'(?im)comarca\s*=\s*\[\[([^\n\r\|\[\]]+?)(?:\|[^\n\r\[\]]+?)?\]\]', eswiki.text)[0].strip()
+                    if ':' in comarca:
+                        comarca = ''
                 web = ''
                 if re.search(r'(?im)(?:página web|web)\s*=\s*\[?(?:https?://)?w', eswiki.text):
                     web = re.findall(r'(?im)(?:página web|web)\s*=\s*\[?((?:https?://)?w[^\s\]\<\|]+)', eswiki.text)[0].strip()
@@ -268,9 +270,10 @@ def main():
                 continue
             
             if not re.search(r'(?im)municipio código=%s' % (codmuni), page.text):
-                print('La pagina existe pero el código de municipio %s no coincide' % (codmuni))
-                logerror('%s existe en 15Mpedia pero el código de municipio %s no coincide\n\n%s\n\n' % (nombre, codmuni, infobox))
-                continue
+                if not re.search(r'(?im)provincia=%s' % (codsprov[codprov]), page.text):
+                    print('La pagina existe pero el código de municipio %s no coincide' % (codmuni))
+                    logerror('%s existe en 15Mpedia pero el código de municipio %s no coincide\n\n%s\n\n' % (nombre, codmuni, infobox))
+                    continue
             
             print('La pagina ya existe, rellenando lo que falta')
             newtext = page.text
