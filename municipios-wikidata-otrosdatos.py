@@ -80,9 +80,11 @@ def main():
                 print("No tiene infobox municipio")
                 continue
             
-            if re.search(r'\|altitud=\d+', wtext) and re.search(r'\|superficie=\d+', wtext):
+            """comentado para lanzarlo una vez y comprobar que todos son municipios de españa o subcategorias
+            if re.search(r'\|altitud=\d+', wtext) and re.search(r'\|superficie=\d+', wtext) and re.search(r'\|coordenadas=\d+', wtext):
                 print("Ya tiene todos los datos")
                 continue
+            """
             
             m = re.findall(r"(?im){{wikidata\|(Q\d+)\}\}", wtext)
             if not m:
@@ -93,6 +95,16 @@ def main():
             wdjson = json.loads(getURL(url=url))
             newtext = wtext
             if "entities" in wdjson and wikidataid in wdjson["entities"] and "claims" in wdjson["entities"][wikidataid]:
+                esmunicipioespana = False
+                if "P31" in wdjson["entities"][wikidataid]["claims"]:
+                    for p31 in wdjson["entities"][wikidataid]["claims"]["P31"]:
+                        if p31["mainsnak"]["datavalue"]["value"]["id"] in ["Q2074737", "Q2276925", "Q3284867", "Q5055981", "Q33146843", "Q55863584", "Q61763947"]:
+                            esmunicipioespana = True
+                if not esmunicipioespana:
+                    msg = '[[%s]] (%s) no es municipio Espana\n' % (wtitle, wikidataid)
+                    print(msg)
+                    logerror(msg)
+                    continue
                 #altitud
                 if not re.search(r'\|altitud=\d+', wtext):
                     if "P2044" in wdjson["entities"][wikidataid]["claims"]:
@@ -100,7 +112,7 @@ def main():
                         #print(p2044)
                         altitud = ''
                         if len(p2044) != 1:
-                            msg = '[[%s]] (%s) error en altitud' % (wtitle, wikidataid)
+                            msg = '[[%s]] (%s) error en altitud\n' % (wtitle, wikidataid)
                             print(msg)
                             logerror(msg)
                         else:
@@ -111,7 +123,7 @@ def main():
                             if altitudunit == 'http://www.wikidata.org/entity/Q11573': #metros
                                 newtext = newtext.replace("{{Infobox Municipio", """{{Infobox Municipio\n|altitud=%s""" % (altitud))
                             else:
-                                msg = '[[%s]] (%s) error en unidad de altitud' % (wtitle, wikidataid)
+                                msg = '[[%s]] (%s) error en unidad de altitud\n' % (wtitle, wikidataid)
                                 print(msg)
                                 logerror(msg)
                 
@@ -122,7 +134,7 @@ def main():
                         #print(p2046)
                         superficie = ''
                         if len(p2046) != 1:
-                            msg = '[[%s]] (%s) error en superficie' % (wtitle, wikidataid)
+                            msg = '[[%s]] (%s) error en superficie\n' % (wtitle, wikidataid)
                             print(msg)
                             logerror(msg)
                         else:
@@ -133,14 +145,37 @@ def main():
                             if superficieunit == 'http://www.wikidata.org/entity/Q712226': #km2
                                 newtext = newtext.replace("{{Infobox Municipio", """{{Infobox Municipio\n|superficie=%s""" % (superficie))
                             else:
-                                msg = '[[%s]] (%s) error en unidad de superficie' % (wtitle, wikidataid)
+                                msg = '[[%s]] (%s) error en unidad de superficie\n' % (wtitle, wikidataid)
+                                print(msg)
+                                logerror(msg)
+                
+                #coordenadas
+                if not re.search(r'\|coordenadas=\d+', wtext):
+                    if "P625" in wdjson["entities"][wikidataid]["claims"]:
+                        p625 = wdjson["entities"][wikidataid]["claims"]["P625"]
+                        #print(p625)
+                        coordenadas = ''
+                        if len(p625) != 1:
+                            msg = '[[%s]] (%s) error en coordenadas\n' % (wtitle, wikidataid)
+                            print(msg)
+                            logerror(msg)
+                        else:
+                            lat = p625[0]["mainsnak"]["datavalue"]["value"]["latitude"]
+                            lon = p625[0]["mainsnak"]["datavalue"]["value"]["longitude"]
+                            coordenadas = "%s, %s" % (lat, lon)
+                            print(coordenadas)
+                            globe = p625[0]["mainsnak"]["datavalue"]["value"]["globe"]
+                            if globe == 'http://www.wikidata.org/entity/Q2': #earth
+                                newtext = newtext.replace("{{Infobox Municipio", """{{Infobox Municipio\n|coordenadas=%s""" % (coordenadas))
+                            else:
+                                msg = '[[%s]] (%s) error en globo de coordenadas\n' % (wtitle, wikidataid)
                                 print(msg)
                                 logerror(msg)
                 
                 if wtext != newtext and len(newtext) > len(wtext):
                     pywikibot.showDiff(wtext, newtext)
                     page.text = newtext
-                    page.save("BOT - Añadiendo altitud/superficie desde Wikidata", botflag=True)
+                    page.save("BOT - Añadiendo datos desde Wikidata", botflag=True)
             else:
                 print("Error leyendo wikidata")
 
