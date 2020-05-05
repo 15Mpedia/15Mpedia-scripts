@@ -232,7 +232,7 @@ def main():
                         comarca = ''
                 web = ''
                 if re.search(r'(?im)(?:página web|web)\s*=\s*\[?(?:https?://)?w', eswiki.text):
-                    web = re.findall(r'(?im)(?:página web|web)\s*=\s*\[?((?:https?://)?w[^\s\]\<\|]+)', eswiki.text)[0].strip()
+                    web = re.findall(r'(?im)(?:página web|web)\s*=\s*\[?((?:https?://)?w[^\s\]\<\|\{\}]+)', eswiki.text)[0].strip()
                     if web.startswith('www'):
                         web = 'http://' + web
             else:
