@@ -21,6 +21,7 @@ import urllib.request
 import pywikibot
 import pywikibot.pagegenerators as pagegenerators
 import re
+import time
 import sys
 
 def logerror(errorline):
@@ -32,7 +33,7 @@ def getURL(url=''):
     raw = ''
     req = urllib.request.Request(url, headers={ 'User-Agent': 'Mozilla/5.0' })
     try:
-        raw = urllib.request.urlopen(req).read().strip().decode('utf-8')
+        raw = urllib.request.urlopen(req, timeout=15).read().strip().decode('utf-8')
     except:
         pass
     return raw
@@ -54,7 +55,7 @@ def main():
     start = ''
     skip = ''
     if len(sys.argv) > 1:
-        skip = sys.argv[1]
+        #skip = sys.argv[1]
         start = sys.argv[1]
     
     for catname in catnames:
@@ -80,11 +81,9 @@ def main():
                 print("No tiene infobox municipio")
                 continue
             
-            """comentado para lanzarlo una vez y comprobar que todos son municipios de españa o subcategorias
             if re.search(r'\|altitud=\d+', wtext) and re.search(r'\|superficie=\d+', wtext) and re.search(r'\|coordenadas=\d+', wtext):
                 print("Ya tiene todos los datos")
                 continue
-            """
             
             m = re.findall(r"(?im){{wikidata\|(Q\d+)\}\}", wtext)
             if not m:
@@ -92,7 +91,15 @@ def main():
                 continue
             wikidataid = m[0]
             url = "https://www.wikidata.org/wiki/Special:EntityData/%s.json" % (wikidataid)
-            wdjson = json.loads(getURL(url=url))
+            wdjson = ''
+            try:
+                time.sleep(1)
+                wdjson = json.loads(getURL(url=url))
+            except:
+                sl = 30
+                print("Reintentando en %s segundos..." % (sl))
+                time.sleep(sl)
+                wdjson = json.loads(getURL(url=url))
             newtext = wtext
             if "entities" in wdjson and wikidataid in wdjson["entities"] and "claims" in wdjson["entities"][wikidataid]:
                 esmunicipioespana = False
@@ -127,6 +134,8 @@ def main():
                                 print(msg)
                                 logerror(msg)
                 
+                """
+                los datos de superficie de wikidata contienen errores, algunos los han importado mal desde plantillas con el harvest
                 #superficie
                 if not re.search(r'\|superficie=\d+', wtext):
                     if "P2046" in wdjson["entities"][wikidataid]["claims"]:
@@ -143,11 +152,12 @@ def main():
                             superficie = '.' in superficie_ and float2str(float(superficie_)) or int(superficie_)
                             superficieunit = p2046[0]["mainsnak"]["datavalue"]["value"]["unit"]
                             if superficieunit == 'http://www.wikidata.org/entity/Q712226': #km2
-                                newtext = newtext.replace("{{Infobox Municipio", """{{Infobox Municipio\n|superficie=%s""" % (superficie))
+                                newtext = newtext.replace("{{Infobox Municipio", "{{Infobox Municipio\n|superficie=%s" % (superficie))
                             else:
                                 msg = '[[%s]] (%s) error en unidad de superficie\n' % (wtitle, wikidataid)
                                 print(msg)
                                 logerror(msg)
+                """
                 
                 #coordenadas
                 if not re.search(r'\|coordenadas=\d+', wtext):
