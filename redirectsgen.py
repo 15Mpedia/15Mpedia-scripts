@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2011-2015 emijrp <emijrp@gmail.com>
+# Copyright (C) 2011-2020 emijrp <emijrp@gmail.com>
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -112,6 +112,12 @@ def main():
                     elif wtitle.startswith(u'Lista de círculos de Podemos ') and len(wtitle)>40:
                         redirects.add(re.sub(ur"Lista de círculos de Podemos ", ur"Lista de nodos de Podemos ", wtitle))
                     
+                    #sinonimos para listas de documentales y películas
+                    if wtitle.startswith(u'Lista de documentales '):
+                        redirects.add(re.sub(ur"Lista de documentales ", ur"Lista de docus ", wtitle))
+                    elif wtitle.startswith(u'Lista de películas '):
+                        redirects.add(re.sub(ur"Lista de películas ", ur"Lista de pelis ", wtitle))
+                    
                     #gentilicios para ccaa
                     #solo los que no sean ambiguos, ej: Andalucía. Ej ambiguos: Madrileños (pq abarcaría ccaa, prov, municipio)
                     #división entre feminimo y masculino
@@ -120,6 +126,47 @@ def main():
                             redirects.add(re.sub(ur"(?im)^Lista de (acampadas|asambleas) (de|en) %s$" % (xccaa), ur"Lista de \1 %s" % (xfem), wtitle))
                         if re.search(ur"(?im)^Lista de (bancos de tiempo|centros sociales|CSOA|CSO|comedores sociales) (de|en) %s$" % (xccaa), wtitle):
                             redirects.add(re.sub(ur"(?im)^Lista de (bancos de tiempo|centros sociales|CSOA|CSO|comedores sociales) (de|en) %s$" % (xccaa), ur"Lista de \1 %s" % (xmas), wtitle))
+                    #ccaa en idiomas cooficiales
+                    if u'rovincia de La Coruña' in wtitle: #sin la P para que pueda ser mayuscula o minuscula
+                        redirects.add(re.sub(ur"rovincia de La Coruña", ur"rovincia de A Coruña", wtitle))
+                    elif u'rovincia de A Coruña' in wtitle:
+                        redirects.add(re.sub(ur"rovincia de A Coruña", ur"rovincia de La Coruña", wtitle))
+                    elif u'rovincia de Álava' in wtitle:
+                        redirects.add(re.sub(ur"rovincia de Álava", ur"rovincia de Araba", wtitle))
+                    elif u'rovincia de Araba' in wtitle:
+                        redirects.add(re.sub(ur"rovincia de Araba", ur"rovincia de Álava", wtitle))
+                    elif u'rovincia de Alicante' in wtitle:
+                        redirects.add(re.sub(ur"rovincia de Alicante", ur"rovincia de Alacant", wtitle))
+                    elif u'rovincia de Alacant' in wtitle:
+                        redirects.add(re.sub(ur"rovincia de Alacant", ur"rovincia de Alicante", wtitle))
+                    elif u'rovincia de Gerona' in wtitle:
+                        redirects.add(re.sub(ur"rovincia de Gerona", ur"rovincia de Girona", wtitle))
+                    elif u'rovincia de Girona' in wtitle:
+                        redirects.add(re.sub(ur"rovincia de Girona", ur"rovincia de Gerona", wtitle))
+                    elif u'rovincia de Guipúzcoa' in wtitle:
+                        redirects.add(re.sub(ur"rovincia de Guipúzcoa", ur"rovincia de Gipuzkoa", wtitle))
+                    elif u'rovincia de Gipuzkoa' in wtitle:
+                        redirects.add(re.sub(ur"rovincia de Gipuzkoa", ur"rovincia de Guipúzcoa", wtitle))
+                    elif u'rovincia de Lérida' in wtitle:
+                        redirects.add(re.sub(ur"rovincia de Lérida", ur"rovincia de Lleida", wtitle))
+                    elif u'rovincia de Lleida' in wtitle:
+                        redirects.add(re.sub(ur"rovincia de Lleida", ur"rovincia de Lérida", wtitle))
+                    elif u'rovincia de Orense' in wtitle:
+                        redirects.add(re.sub(ur"rovincia de Orense", ur"rovincia de Ourense", wtitle))
+                    elif u'rovincia de Ourense' in wtitle:
+                        redirects.add(re.sub(ur"rovincia de Ourense", ur"rovincia de Orense", wtitle))
+                    elif u'rovincia de Valencia' in wtitle:
+                        redirects.add(re.sub(ur"rovincia de Valencia", ur"rovincia de València", wtitle))
+                    elif u'rovincia de València' in wtitle:
+                        redirects.add(re.sub(ur"rovincia de València", ur"rovincia de Valencia", wtitle))
+                    elif u'rovincia de Vizcaya' in wtitle:
+                        redirects.add(re.sub(ur"rovincia de Vizcaya", ur"rovincia de Bizkaia", wtitle))
+                    elif u'rovincia de Bizkaia' in wtitle:
+                        redirects.add(re.sub(ur"rovincia de Bizkaia", ur"rovincia de Vizcaya", wtitle))
+                    
+                    #municipios
+                    if wtitle.startswith(u'Lista de municipios '):
+                        redirects.add(re.sub(ur"Lista de municipios ", ur"Listado de municipios ", wtitle)) #"Listado" busqueda frecuente
                     
                     #fosas comunes
                     if wtitle.startswith(u'Lista de fosas en '):
