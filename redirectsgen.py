@@ -168,6 +168,11 @@ def main():
                     if wtitle.startswith(u'Lista de municipios '):
                         redirects.add(re.sub(ur"Lista de municipios ", ur"Listado de municipios ", wtitle)) #"Listado" busqueda frecuente
                     
+                    if wtitle.startswith(u'Lista de municipios ') and wtitle.endswith(u' por altura'):
+                        redirects.add(re.sub(ur" por altura", ur" por elevación", wtitle))
+                    elif wtitle.startswith(u'Lista de municipios ') and wtitle.endswith(u' por superficie'):
+                        redirects.add(re.sub(ur" por superficie", ur" por extensión", wtitle))
+                    
                     #fosas comunes
                     if wtitle.startswith(u'Lista de fosas en '):
                         redirects.add(re.sub(ur"Lista de fosas en ", ur"Lista de fosas comunes en ", wtitle))

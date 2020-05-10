@@ -39,6 +39,9 @@ def main():
     ]
     start = ''
     skip = ''
+    if len(sys.argv) > 1:
+        skip = sys.argv[1]
+        start = sys.argv[1]
     
     for catname in catnames:
         category = pywikibot.Category(site, catname)
