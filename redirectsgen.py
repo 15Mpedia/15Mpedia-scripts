@@ -195,6 +195,16 @@ def main():
                     if wtitle.startswith(u'Actualidad en '):
                         redirects.add(re.sub(ur"Actualidad en ", ur"Actualidad de ", wtitle))
                     
+                    #15M
+                    if wtitle.startswith(u'Movimiento 15M en '):
+                        redirects.add(re.sub(ur"Movimiento 15M en ", ur"Movimiento 15-M en ", wtitle))
+                        redirects.add(re.sub(ur"Movimiento 15M en ", ur"Movimiento 15M de ", wtitle))
+                        redirects.add(re.sub(ur"Movimiento 15M en ", ur"Movimiento 15-M de ", wtitle))
+                        redirects.add(re.sub(ur"Movimiento 15M en ", ur"15M en ", wtitle))
+                        redirects.add(re.sub(ur"Movimiento 15M en ", ur"15-M en ", wtitle))
+                        redirects.add(re.sub(ur"Movimiento 15M en ", ur"15M de ", wtitle))
+                        redirects.add(re.sub(ur"Movimiento 15M en ", ur"15-M de ", wtitle))
+                    
                     #capitalismo
                     if wtitle.startswith(u'Crímenes del capitalismo '):
                         redirects.add(re.sub(ur"Crímenes del capitalismo ", ur"Crímenes capitalistas ", wtitle))
