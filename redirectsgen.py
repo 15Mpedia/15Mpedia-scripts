@@ -222,6 +222,10 @@ def main():
                     if wtitle.startswith(u'Fascismo en '):
                         redirects.add(re.sub(ur"Fascismo en ", ur"Fascismo de ", wtitle))
                     
+                    #medios de comunicacion
+                    if wtitle.startswith(u'Lista de medios de comunicación alternativos '):
+                        redirects.add(re.sub(ur"Lista de medios de comunicación alternativos ", ur"Lista de medios alternativos ", wtitle))
+                    
                     #memoria historica
                     if wtitle.startswith(u'Memoria histórica en '):
                         redirects.add(re.sub(ur"Memoria histórica en ", ur"Memoria Histórica en ", wtitle))
