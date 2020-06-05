@@ -16,36 +16,20 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import re
-import wikipedia
+import pywikibot
 
 def main():
-    site = wikipedia.Site('15mpedia', '15mpedia')
-    page = wikipedia.Page(site, u"Lista de noticias")
+    site = pywikibot.Site('15mpedia', '15mpedia')
+    page = pywikibot.Page(site, "Lista de noticias")
     wtext = page.get()
     medios = re.findall(ur"(?im){{noticias por fuente\|fuente=([^|]*?)\|format=count}}", wtext)
     
     for medio in medios:
-        page2 = wikipedia.Page(site, u"Lista de noticias de %s" % (medio))
-        if page2.exists():
-            continue
-        output = u"""La siguiente es una '''lista de noticias de %s'''. En este momento hay información sobre '''{{noticias por fuente|fuente=%s|format=count}} noticias'''.
-
-== Noticias de %s ==
-{{semántica}}
-{{noticias por fuente|fuente=%s}}
-
-== Véase también ==
-* [[Lista de noticias]]
-* [[%s]]
-
-{{noticias}}
-
-[[Categoría:Listas|Noticias de %s]]
-[[Categoría:Noticias|%s]]
-""" % (medio, medio, medio, medio, medio, medio, medio, )
-        print output
-        page2.put(output, u"BOT - Creando lista de noticias")
-        
+        page2 = pywikibot.Page(site, "Lista de noticias de %s" % (medio))
+        if True or not page2.exists():
+            output = u"{{Lista de noticias por fuente|fuente=%s}}" % (medio)
+            print(output)
+            page2.put(output, "BOT - Creando lista de noticias")
 
 if __name__ == '__main__':
     main()
