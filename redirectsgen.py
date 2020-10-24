@@ -223,9 +223,9 @@ def main():
                         redirects.add(re.sub(ur"Fascismo en ", ur"Fascismo de ", wtitle))
                     
                     #cine y literatura
-                    if re.search(ur'(?im)^Cine de \d\d\d\d$'):
+                    if re.search(ur'(?im)^Cine de \d\d\d\d$', wtitle):
                         redirects.add(re.sub(ur"Cine de ", ur"Cine en ", wtitle))
-                    if re.search(ur'(?im)^Literatura de \d\d\d\d$'):
+                    if re.search(ur'(?im)^Literatura de \d\d\d\d$', wtitle):
                         redirects.add(re.sub(ur"Literatura de ", ur"Literatura en ", wtitle))
                     
                     #medios de comunicacion
