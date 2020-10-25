@@ -18,14 +18,29 @@
 import pywikibot
 
 site = pywikibot.Site('15mpedia', '15mpedia')
+
+for year in range(1848, 2021):
+    title = 'Lista de obras de %d' % (year)
+    p = pywikibot.Page(site, title)
+    output = "{{Lista de obras por año|año=%d}}" % (year)
+    p.text = output
+    p.save("BOT - Creando lista")
+    
+    title = 'Categoría:Obras de %d' % (year)
+    p = pywikibot.Page(site, title)
+    output = "{{Categoría obras por año|año=%d}}" % (year)
+    p.text = output
+    p.save("BOT - Creando categoría")
+
+"""
 for year in range(1930, 2021):
     title = 'Cine de %d' % (year)
     p = pywikibot.Page(site, title)
     output = "{{Cine por año|año=%d}}" % (year)
     p.text = output
-    p.save("BOT - Creando página")
-    
-    """title = u'Lista de documentales de %d' % (year)
+    p.save("BOT - Creando página")"""
+
+"""title = u'Lista de documentales de %d' % (year)
     p = pywikibot.Page(site, title)
     output = u"{{Lista de documentales por año|año=%d}}" % (year)
     p.text = output
@@ -61,6 +76,7 @@ for year in range(1930, 2021):
     p.text = output
     p.save("BOT - Creando categoría")"""
 
+"""
 for year in range(1848, 2021):
     title = 'Literatura de %d' % (year)
     p = pywikibot.Page(site, title)
@@ -68,7 +84,7 @@ for year in range(1848, 2021):
     p.text = output
     p.save("BOT - Creando página")
 
-"""
+
     title = u'Lista de libros de %d' % (year)
     p = pywikibot.Page(site, title)
     output = u"{{Lista de libros por año|año=%d}}" % (year)
@@ -87,10 +103,11 @@ for year in range(1848, 2021):
     p.text = output
     p.save("BOT - Creando categoría")
 """
-
+"""
 for year in range(1780, 2021):
     title = 'Plantilla:%d' % (year)
     p = pywikibot.Page(site, title)
     output = "{{Navbox Año|año=%d}}<noinclude>[[Categoría:Plantillas de navegación]]</noinclude>" % (year)
     p.text = output
     p.save("BOT - Creando plantilla")
+"""
