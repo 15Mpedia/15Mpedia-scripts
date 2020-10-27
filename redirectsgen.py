@@ -259,6 +259,19 @@ def main():
                         redirects.add(re.sub(ur"Lista de personas fusiladas por el franquismo en ", ur"Fusilamientos en ", wtitle))
                         redirects.add(re.sub(ur"Lista de personas fusiladas por el franquismo en ", ur"Asesinados por el franquismo en ", wtitle))
                     
+                    if wtitle.startswith(u'Fusilados en '):
+                        redirects.add(re.sub(ur"Fusilados en ", ur"Fusilado en ", wtitle))
+                        redirects.add(re.sub(ur"Fusilados en ", ur"Fusilamiento en ", wtitle))
+                        redirects.add(re.sub(ur"Fusilados en ", ur"Fusilamientos en ", wtitle))
+                        #redirects.add(re.sub(ur"Fusilados en ", ur"Fusilada en ", wtitle))
+                        #redirects.add(re.sub(ur"Fusilados en ", ur"Fusiladas en ", wtitle))
+                    
+                    if wtitle.startswith(u'Fusilados de '):
+                        redirects.add(re.sub(ur"Fusilados de ", ur"Fusilado de ", wtitle))
+                        #no significa exactamente lo mismo redirects.add(re.sub(ur"Fusilados de ", ur"Fusilamiento de ", wtitle))
+                        #redirects.add(re.sub(ur"Fusilados de ", ur"Fusilada de ", wtitle))
+                        #redirects.add(re.sub(ur"Fusilados de ", ur"Fusiladas de ", wtitle))
+                    
                     if wtitle.startswith(u'Lista de víctimas españolas del nazismo deportadas al Campo de concentración de '):
                         redirects.add(re.sub(ur"Lista de víctimas españolas del nazismo deportadas al Campo de concentración de ", ur"Deportados a ", wtitle))
                         redirects.add(re.sub(ur"Lista de víctimas españolas del nazismo deportadas al Campo de concentración de ", ur"Personas deportadas a ", wtitle))
