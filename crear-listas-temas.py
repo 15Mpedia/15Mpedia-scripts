@@ -125,6 +125,7 @@ for tema in temas:
         p.text = output
         p.save("BOT - Creando página")
     
+    #literatura y libros
     title = 'Literatura de %s' % (tema_)
     p = pywikibot.Page(site, title)
     if not p.exists():
@@ -143,6 +144,49 @@ for tema in temas:
     p = pywikibot.Page(site, title)
     if not p.exists():
         output = "#redirect [[Lista de libros sobre %s]]" % (tema_)
+        p.text = output
+        p.save("BOT - Creando redirect")
+    
+    #cine y peliculas
+    title = 'Cine sobre %s' % (tema_)
+    p = pywikibot.Page(site, title)
+    if not p.exists():
+        output = "{{Cine por tema|tema=%s}}" % (tema)
+        p.text = output
+        p.save("BOT - Creando página")
+    
+    title = 'Cine de %s' % (tema_)
+    p = pywikibot.Page(site, title)
+    if not p.exists():
+        output = "#redirect [[Cine sobre %s]]" % (tema_)
+        p.text = output
+        p.save("BOT - Creando redirect")
+    
+    title = 'Lista de películas sobre %s' % (tema_)
+    p = pywikibot.Page(site, title)
+    if not p.exists():
+        output = "{{Lista de películas por tema|tema=%s}}" % (tema)
+        p.text = output
+        p.save("BOT - Creando lista")
+    
+    title = 'Lista de películas de %s' % (tema_)
+    p = pywikibot.Page(site, title)
+    if not p.exists():
+        output = "#redirect [[Lista de películas sobre %s]]" % (tema_)
+        p.text = output
+        p.save("BOT - Creando redirect")
+    
+    title = 'Lista de documentales sobre %s' % (tema_)
+    p = pywikibot.Page(site, title)
+    if not p.exists():
+        output = "{{Lista de documentales por tema|tema=%s}}" % (tema)
+        p.text = output
+        p.save("BOT - Creando lista")
+    
+    title = 'Lista de documentales de %s' % (tema_)
+    p = pywikibot.Page(site, title)
+    if not p.exists():
+        output = "#redirect [[Lista de documentales sobre %s]]" % (tema_)
         p.text = output
         p.save("BOT - Creando redirect")
     
