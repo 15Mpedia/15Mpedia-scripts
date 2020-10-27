@@ -222,11 +222,22 @@ def main():
                     if wtitle.startswith(u'Fascismo en '):
                         redirects.add(re.sub(ur"Fascismo en ", ur"Fascismo de ", wtitle))
                     
-                    #cine y literatura
+                    #cine, literatura, obras
                     if re.search(ur'(?im)^Cine de \d\d\d\d$', wtitle):
                         redirects.add(re.sub(ur"Cine de ", ur"Cine en ", wtitle))
                     if re.search(ur'(?im)^Literatura de \d\d\d\d$', wtitle):
                         redirects.add(re.sub(ur"Literatura de ", ur"Literatura en ", wtitle))
+                    if re.search(ur'(?im)^Lista de obras de \d\d\d\d$', wtitle):
+                        redirects.add(re.sub(ur"Lista de obras de ", ur"Lista de obras en ", wtitle))
+                    
+                    if wtitle.startswith(u'Lista de obras sobre '):
+                        redirects.add(re.sub(ur"Lista de obras sobre ", ur"Lista de obras de ", wtitle))
+                    if wtitle.startswith(u'Lista de libros sobre '):
+                        redirects.add(re.sub(ur"Lista de libros sobre ", ur"Lista de libros de ", wtitle))
+                    if wtitle.startswith(u'Lista de películas sobre '):
+                        redirects.add(re.sub(ur"Lista de películas sobre ", ur"Lista de películas de ", wtitle))
+                    if wtitle.startswith(u'Lista de documentales sobre '):
+                        redirects.add(re.sub(ur"Lista de documentales sobre ", ur"Lista de documentales de ", wtitle))
                     
                     #medios de comunicacion
                     if wtitle.startswith(u'Lista de medios de comunicación alternativos '):
