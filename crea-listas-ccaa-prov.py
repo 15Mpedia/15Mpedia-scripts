@@ -38,8 +38,17 @@ ccaa = {
     "Principado de Asturias": ["Asturias"], 
     "Región de Murcia": ["Murcia"], 
 }
-tema = "Movimiento 15M"
-preposicion = 'en' #de o en
+#tema = "Movimiento 15M"
+tema = "Lista de bancos de tiempo"
+tema = "Lista de centros sociales"
+tema = "Lista de comedores sociales"
+tema = "Lista de cooperativas"
+tema = "Lista de plataformas"
+tema = "Lista de realojos"
+tema = "Lista de colectivos"
+preposicion = 'de' #de o en
+overwrite = True #True or False
+botflag = True #True or False
 for comunidad, provincias in ccaa.items():
     prep = preposicion
     if comunidad == 'Islas Baleares':
@@ -61,31 +70,31 @@ for comunidad, provincias in ccaa.items():
     wtitle = "%s %s %s" % (tema, prep, comunidad)
     wtext = "{{%s por lugar|país=España|comunidad autónoma=%s}}" % (tema, comunidad)
     page = pywikibot.Page(site, wtitle)
-    if page.exists():
+    if not overwrite and page.exists():
         print("La pagina %s ya existe" % (wtitle))
     else:
         page.text = wtext
-        page.save("BOT - Creando página por comunidad autónoma", botflag=False)
+        page.save("BOT - Creando página por comunidad autónoma", botflag=botflag)
     
     if len(provincias) > 1:
         for provincia in provincias:
             wtitle = "%s %s la provincia de %s" % (tema, preposicion, provincia)
             wtext = "{{%s por lugar|país=España|comunidad autónoma=%s|provincia=Provincia de %s}}" % (tema, comunidad, provincia)
             page = pywikibot.Page(site, wtitle)
-            if page.exists():
+            if not overwrite and page.exists():
                 print("La pagina %s ya existe" % (wtitle))
             else:
                 page.text = wtext
-                page.save("BOT - Creando página por provincia", botflag=False)
+                page.save("BOT - Creando página por provincia", botflag=botflag)
     else:
         wtitle = "%s %s la provincia de %s" % (tema, preposicion, provincias[0])
         redtitle = "%s %s %s" % (tema, prep, comunidad)
         wtext = u"#REDIRECT [[%s]]" % (redtitle)
         page = pywikibot.Page(site, wtitle)
-        if page.exists():
+        if not overwrite and page.exists():
             print("La pagina %s ya existe" % (wtitle))
         else:
             page.text = wtext
-            page.save("BOT - Creando redirect hacia [[%s]]" % (redtitle), botflag=False)
+            page.save("BOT - Creando redirect hacia [[%s]]" % (redtitle), botflag=botflag)
 
 

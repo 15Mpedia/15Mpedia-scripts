@@ -43,7 +43,6 @@ paises = [
     "Japón", 
     "Marruecos", 
     "México", 
-    "Marruecos", 
     "Nicaragua", 
     "Noruega", 
     "Panamá", 
@@ -61,10 +60,47 @@ paises = [
     "Venezuela", 
     "Vietnam", 
 ]
-
+paisesminimum = [
+    "Alemania", 
+    "Bélgica", 
+    "Bolivia", 
+    "Brasil", 
+    "Canadá", 
+    "Chile", 
+    "China", 
+    "Colombia", 
+    "Cuba", 
+    "Ecuador", 
+    "El Salvador", 
+    "España", 
+    "Estados Unidos", 
+    "Finlandia", 
+    "Francia", 
+    "Grecia", 
+    "Honduras", 
+    "Italia", 
+    "Marruecos", 
+    "México", 
+    "Nicaragua", 
+    "Noruega", 
+    "Panamá", 
+    "Paraguay", 
+    "Países Bajos", 
+    "Perú", 
+    "Polonia", 
+    "Portugal", 
+    "Reino Unido", 
+    "Rusia", 
+    "Suecia", 
+    "Turquía", 
+    "Ucrania", 
+    "Uruguay", 
+    "Venezuela", 
+]
+overwrite = True
 site = pywikibot.Site('15mpedia', '15mpedia')
-for pais in paises:
-    title = 'Cine de %s' % (pais)
+for pais in paisesminimum:
+    """title = 'Cine de %s' % (pais)
     p = pywikibot.Page(site, title)
     if not p.exists():
         output = "{{Cine por lugar|país=%s}}" % (pais)
@@ -90,4 +126,22 @@ for pais in paises:
         output = "{{Lista de documentales por lugar|país=%s}}" % (pais)
         p.text = output
         p.save("BOT - Creando lista")
+    """
+    temas = [
+        #"Lista de asambleas", 
+        #"Lista de asociaciones", 
+        #"Lista de bancos de tiempo", 
+        #"Lista de centros sociales", 
+        "Lista de comedores sociales", 
+        "Lista de cooperativas", 
+        "Lista de plataformas", 
+        "Lista de colectivos", 
+    ]
+    for tema in temas:
+        title = '%s de %s' % (tema, pais)
+        p = pywikibot.Page(site, title)
+        if overwrite or not p.exists():
+            output = "{{%s por lugar|país=%s}}" % (tema, pais)
+            p.text = output
+            p.save("BOT - Creando lista")
 
