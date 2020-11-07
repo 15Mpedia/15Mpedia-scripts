@@ -195,6 +195,14 @@ def main():
                     if wtitle.startswith(u'Actualidad en '):
                         redirects.add(re.sub(ur"Actualidad en ", ur"Actualidad de ", wtitle))
                     
+                    #años, décadas
+                    if wtitle.startswith(u'Años 1'):
+                        redirects.add(re.sub(ur"Años 1", ur"Década 1", wtitle))
+                        redirects.add(re.sub(ur"Años 1", ur"Década de 1", wtitle))
+                    if wtitle.startswith(u'Años 2'):
+                        redirects.add(re.sub(ur"Años 2", ur"Década 2", wtitle))
+                        redirects.add(re.sub(ur"Años 2", ur"Década de 2", wtitle))
+                    
                     #15M
                     if wtitle.startswith(u'Movimiento 15M en '):
                         redirects.add(re.sub(ur"Movimiento 15M en ", ur"Movimiento 15-M en ", wtitle))
