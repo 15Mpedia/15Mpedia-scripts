@@ -128,14 +128,18 @@ for pais in paisesminimum:
         p.save("BOT - Creando lista")
     """
     temas = [
-        #"Lista de asambleas", 
-        #"Lista de asociaciones", 
-        #"Lista de bancos de tiempo", 
-        #"Lista de centros sociales", 
+        "Lista de asambleas", 
+        "Lista de asociaciones", 
+        "Lista de bancos de tiempo", 
+        "Lista de centros sociales", 
         "Lista de comedores sociales", 
         "Lista de cooperativas", 
         "Lista de plataformas", 
         "Lista de colectivos", 
+        "Lista de manifestaciones", 
+        "Lista de actividades", 
+        "Lista de acampadas", 
+        "Lista de acontecimientos", 
     ]
     for tema in temas:
         title = '%s de %s' % (tema, pais)
@@ -144,4 +148,10 @@ for pais in paisesminimum:
             output = "{{%s por lugar|país=%s}}" % (tema, pais)
             p.text = output
             p.save("BOT - Creando lista")
-
+        
+        title = '%s en %s' % (tema, pais)
+        p = pywikibot.Page(site, title)
+        if overwrite or not p.exists():
+            output = "#redirect [[%s de %s]]" % (tema, pais)
+            p.text = output
+            p.save("BOT - Creando redirect")
