@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2015 emijrp <emijrp@gmail.com>
+# Copyright (C) 2015-2020 emijrp <emijrp@gmail.com>
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -17,15 +17,21 @@
 
 import pywikibot
 
-for year in ['2018', '2019', '2020']:
+for year in range(1900, 2020+1):
     for month, monthnum in [['enero', '01'], ['febrero', '02'], ['marzo', '03'], ['abril', '04'], ['mayo', '05'], ['junio', '06'], ['julio', '07'], ['agosto', '08'], ['septiembre', '09'], ['octubre', '10'], ['noviembre', '11'], ['diciembre', '12']]:
-        print month, year
-        mesnombre = u'%s de %s' % (month, year)
-        mesiso = u'%s-%s' % (year, monthnum)
-
-        p = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'Categoría:%s' % mesnombre)
-        #if not p.exists():
-        output = u"""{{navegación por mes categoría|mes=%s}}""" % (mesiso)
-        p.text = output
-        p.save(u"BOT - Creando categoría mes")
+        print(month, year)
+        mesnombre = '%s de %s' % (month, year)
+        mesiso = '%s-%s' % (year, monthnum)
+        
+        p = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), '%s' % mesnombre)
+        if not p.exists():
+            output = """{{Infobox Mes\n|mes=%s\n}}""" % (mesiso)
+            p.text = output
+            p.save("BOT - Creando mes")
+        
+        p = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), 'Categoría:%s' % mesnombre)
+        if not p.exists():
+            output = """{{navegación por mes categoría|mes=%s}}""" % (mesiso)
+            p.text = output
+            p.save("BOT - Creando categoría mes")
 
