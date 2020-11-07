@@ -46,6 +46,10 @@ tema = "Lista de cooperativas"
 tema = "Lista de plataformas"
 tema = "Lista de realojos"
 tema = "Lista de colectivos"
+tema = "Lista de manifestaciones"
+tema = "Lista de acampadas"
+tema = "Lista de actividades"
+tema = "Lista de acontecimientos"
 preposicion = 'de' #de o en
 overwrite = True #True or False
 botflag = True #True or False
@@ -96,5 +100,3 @@ for comunidad, provincias in ccaa.items():
         else:
             page.text = wtext
             page.save("BOT - Creando redirect hacia [[%s]]" % (redtitle), botflag=botflag)
-
-
