@@ -23,9 +23,9 @@ import pywikibot
 
 def main():
     purgethis = [
-        "Portada", 
-        "Memoria Histórica", 
-        "Actualidad", 
+        u"Portada", 
+        u"Memoria Histórica", 
+        u"Actualidad", 
     ]
     for wtitle in purgethis:
         site = pywikibot.Site("15mpedia", "15mpedia")
