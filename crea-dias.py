@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2015 emijrp <emijrp@gmail.com>
+# Copyright (C) 2015-2021 emijrp <emijrp@gmail.com>
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -19,7 +19,8 @@ import pywikibot
 
 num2month = {1:'enero', 2:'febrero', 3:'marzo', 4:'abril', 5:'mayo', 6:'junio', 7:'julio', 8:'agosto', 9:'septiembre', 10:'octubre', 11:'noviembre', 12:'diciembre'}
 
-for year in range(2018, 2021):
+#for year in range(2018, 2021+1):
+for year in range(2021, 2021+1):
     for month in range(1,13):
         for day in range(1, 32):
             if month == 2 and day > 28:
