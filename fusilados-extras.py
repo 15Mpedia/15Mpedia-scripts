@@ -45,7 +45,7 @@ def main():
             
             #elimina plantillas vacias
             newtext2 = newtext
-            newtext = re.sub(ur"(?im)\n<!--(\s*\*\s*{{mcu represión\|\s*i*d*=*\s*}}|\s*\*\s*{{memoria pública\|\s*i*d*=*\s*}}|\s*\*\s*{{nomes e voces\|\s*i*d*=*\s*}}|\s*\*\s*{{pares deportados\|\s*i*d*=*\s*}}|\s*\*\s*{{todos los nombres\|\s*i*d*=*\s*}})+\s*-->", ur"", newtext)
+            newtext = re.sub(ur"(?im)\n<!--(\s*\*\s*{{mcu represión\|\s*(id\s*=)?\s*}}|\s*\*\s*{{memoria pública\|\s*(id\s*=)?\s*}}|\s*\*\s*{{nomes e voces\|\s*(id\s*=)?\s*}}|\s*\*\s*{{pares deportados\|\s*(id\s*=)?\s*}}|\s*\*\s*{{todos los nombres\|\s*(id\s*=)?\s*}})+\s*-->", ur"", newtext)
             if newtext != newtext2:
                 comments.append(u"eliminando plantillas vacías")
             
@@ -59,9 +59,9 @@ def main():
             ]
             for x, y in replaces:
                 if re.search(ur"(?im)\*\s*{{\s*%s\s*\|" % (x), newtext):
-                    m = re.findall(ur"(?im)\*\s*{{\s*%s\s*\|\s*i*d*=*\s*([^\{\}]+)\s*\}\}\n" % (x), newtext)
+                    m = re.findall(ur"(?im)\*\s*{{\s*%s\s*\|\s*(?!id\s*=)?\s*([^\{\}]+)\s*\}\}\n" % (x), newtext)
                     if m:
-                        newtext = re.sub(ur"(?im)\*\s*{{\s*%s\s*\|\s*i*d*=*\s*([^\{\}]+)\s*\}\}\n" % (x), ur"", newtext)
+                        newtext = re.sub(ur"(?im)\*\s*{{\s*%s\s*\|\s*(?!id\s*=)?\s*([^\{\}]+)\s*\}\}\n" % (x), ur"", newtext)
                         newtext = re.sub(ur"(?im)({{Infobox Persona)", ur"\1\n|%s=%s" % (y, m[0]), newtext)
             
             if newtext != newtext2:
