@@ -52,10 +52,12 @@ def main():
             #bbdd id
             newtext2 = newtext
             replaces = [
+                #plantilla, atributo id
                 [u"mcu represión", u"pares represaliados id"], 
                 [u"memoria pública", u"memoria pública id"], 
                 [u"nomes e voces", u"nomes e voces id"], 
                 [u"todos los nombres", u"todos los nombres id"], 
+                [u"víctimas de la dictadura en clm", u"víctimas de la dictadura en clm id"], 
             ]
             for x, y in replaces:
                 if re.search(ur"(?im)\*\s*{{\s*%s\s*\|" % (x), newtext):
