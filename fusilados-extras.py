@@ -45,7 +45,7 @@ def main():
             
             #elimina plantillas vacias
             newtext2 = newtext
-            newtext = re.sub(ur"(?im)\n<!--(\s*\*\s*{{mcu represión\|}}|\s*\*\s*{{memoria pública\|}}|\s*\*\s*{{pares deportados\|id=}})+\s*-->", ur"", newtext)
+            newtext = re.sub(ur"(?im)\n<!--(\s*\*\s*{{mcu represión\|\s*i*d*=*\s*}}|\s*\*\s*{{memoria pública\|\s*i*d*=*\s*}}|\s*\*\s*{{nomes e voces\|\s*i*d*=*\s*}}|\s*\*\s*{{pares deportados\|\s*i*d*=*\s*}}|\s*\*\s*{{todos los nombres\|\s*i*d*=*\s*}})+\s*-->", ur"", newtext)
             if newtext != newtext2:
                 comments.append(u"eliminando plantillas vacías")
             
@@ -84,7 +84,7 @@ def main():
                         for homenaje in homenajes:
                             homenajes_ += "|%d=%s" % (c, homenaje)
                             c += 1
-                        newtext = re.sub(ur'(?im)(==\s*Memoria\s*==\n)', ur"\1\n{{Homenajes\n%s}}" % (homenajes_), newtext)
+                        newtext = re.sub(ur'(?im)(==\s*Memoria\s*==)\n', ur"\1\n{{Homenajes\n%s}}" % (homenajes_), newtext)
                     if newtext != newtext2:
                         comments.append(u"modificando sección memoria")
                 else:
