@@ -42,10 +42,10 @@ def bestcandidate(x, l):
     if len(occurenceslist) == 1: #todos los candidatos son iguales
         if occurenceslist[0][1]: #no es vacio
             best = occurenceslist[0][1]
-    elif re.search(r'(?im)[áéíóúü]', '-'.join(l)) and sum([freq for freq, word in occurenceslist])>=10: #si hay alguno con acentos
-        #el que represente el >25% de las ocurrencias si hay >=10 ocurrencias en total
+    elif re.search(r'(?im)[áéíóúü]', '-'.join(l)) and sum([freq for freq, word in occurenceslist])>=5: #si hay alguno con acentos
+        #el que represente el >=20% de las ocurrencias si hay >=5 ocurrencias en total
         for freq, word in occurenceslist:
-            if re.search(r'(?im)[áéíóúü]', word) and freq > totalfreq/4.0: #25% y con acentos, ok
+            if re.search(r'(?im)[áéíóúü]', word) and freq >= totalfreq/5.0: #20% y con acentos, ok
                 best = word
                 break
     else:
@@ -122,7 +122,7 @@ def main():
         output = ""
         for x, l in acentoslist:
             best = bestcandidate(x, l)
-            if len(l) >= 10 and re.search(r'(?im)[áéíóúü]', best):
+            if len(l) >= 5 and re.search(r'(?im)[áéíóúü]', best):
                 output += "\n# [[%s]]->[[%s]]" % (x, best)
                 replacements[x] = best
         
@@ -136,6 +136,7 @@ def main():
         for x, y in m:
             replacements[x] = y
     
+    time.sleep(100)
     #replacements
     start = ''
     for catname in catnames:
