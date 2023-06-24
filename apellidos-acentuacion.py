@@ -197,7 +197,7 @@ def main():
                     page.save("BOT - Corrigiendo acentos en el nombre: [[%s]]->[[%s]]" % (nombrecompletooriginal, nombrecompletobien), botflag=True)
                     time.sleep(5)
                     page.text = ""
-                    page.save("BOT - Vacío propiedades para traslado", botflag=True)
+                    page.save("BOT - Vaciando propiedades para trasladar", botflag=True)
                     print("Trasladando")
                     page.move(nombrecompletobien, reason="BOT - Trasladando tras corregir acentos en el nombre: [[%s]]->[[%s]]" % (nombrecompletooriginal, nombrecompletobien))
                     time.sleep(5)
