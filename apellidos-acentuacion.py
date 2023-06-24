@@ -61,7 +61,7 @@ def main():
     ]
     acentos = {}
     start = ''
-    generatelist = False
+    generatelist = True
     replacements = {}
     if generatelist:
         for catname in catnames:
