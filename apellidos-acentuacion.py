@@ -195,13 +195,15 @@ def main():
                     print("Corrigiendo en el texto")
                     page.text = newtext
                     page.save("BOT - Corrigiendo acentos en el nombre: [[%s]]->[[%s]]" % (nombrecompletooriginal, nombrecompletobien), botflag=True)
-                    print("Traslandando")
+                    print("Trasladando")
                     page.move(nombrecompletobien, reason="BOT - Trasladando tras corregir acentos en el nombre: [[%s]]->[[%s]]" % (nombrecompletooriginal, nombrecompletobien))
+                    time.sleep(5)
                     originalpage = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), nombrecompletooriginal)
                     redirecttext = originalpage.text
                     originalpage.text = ""
                     print("Limpiando propiedades")
                     originalpage.save('BOT - Limpiando caché de propiedades semánticas', botflag=True)
+                    time.sleep(5)
                     originalpage.text = redirecttext
                     print("Creamos redirect")
                     originalpage.save('BOT - Creando redirección hacia [[%s]]' % (nombrecompletobien), botflag=True)
