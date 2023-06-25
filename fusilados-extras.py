@@ -75,7 +75,7 @@ def main():
             else:
                 if re.search(ur'(?im)==\s*Memoria\s*==', newtext):
                     newtext2 = newtext
-                    m = re.findall(ur"(?im)(\{\{homenaje[^\{\}]+\}\}\n)", newtext)
+                    m = re.findall(ur"(?im)(\{\{homenaje-[^\{\}]+\}\}\n)", newtext)
                     if m:
                         homenajes = []
                         for n in m:

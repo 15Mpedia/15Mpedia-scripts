@@ -137,10 +137,14 @@ def main():
             replacements[x] = y
     
     #replacements
-    start = ''
-    for catname in catnames:
+    catnames2 = [
+        'Categoría:Personas fusiladas por el franquismo', 
+        #'Categoría:Víctimas del nazismo', #estan bien acentuados, mejor no tocar, pero lo usamos de corrector arriba
+    ]
+    start2 = ''
+    for catname in catnames2:
         category = pywikibot.Category(site, catname)
-        gen = pagegenerators.CategorizedPageGenerator(category=category, start=start, namespaces=[0])
+        gen = pagegenerators.CategorizedPageGenerator(category=category, start=start2, namespaces=[0])
         pre = pagegenerators.PreloadingGenerator(gen, pageNumber=250)
         
         for page in pre:
