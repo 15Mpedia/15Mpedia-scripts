@@ -85,6 +85,9 @@ def main():
                 apellidos = apellidos.strip()
                 nombre_ = re.sub(r' ', r'+', nombre)
                 apellidos_ = re.sub(r' ', r'+', apellidos)
+                fechanacimiento = re.findall(r'(?im)\|fecha de nacimiento=(\d\d\d\d/\d\d/\d\d)', wtext)[0].strip()
+                fechanacimiento2 = '%s/%s/%s' % (fechanacimiento.split('/')[2], fechanacimiento.split('/')[1], fechanacimiento.split('/')[0])
+                fechanacimiento3 = '%d.%d.%d' % (int(fechanacimiento.split('/')[2]), int(fechanacimiento.split('/')[1]), int(fechanacimiento.split('/')[0]))
                 fechafallecimiento = re.findall(r'(?im)\|fecha de fallecimiento=(\d\d\d\d/\d\d/\d\d)', wtext)[0].strip()
                 fechafallecimiento2 = '%s/%s/%s' % (fechafallecimiento.split('/')[2], fechafallecimiento.split('/')[1], fechafallecimiento.split('/')[0])
                 fechafallecimiento3 = '%d.%d.%d' % (int(fechafallecimiento.split('/')[2]), int(fechafallecimiento.split('/')[1]), int(fechafallecimiento.split('/')[0]))
@@ -102,30 +105,30 @@ def main():
                 nombrecompleto = '%s %s' % (nombre, apellidos)
                 nombrecompleto_ = removeaccute(nombrecompleto)
                 if re.search(r'(?im)%s' % (nombrecompleto), split) or re.search(r'(?im)%s' % (nombrecompleto_), split):
-                    if re.search(r'(?im)Muert', split):
-                        if re.search(r'(?im)Muert[oa]:?\s*%s' % (fechafallecimiento3), split):
-                            print('La fecha coincide, debe ser la misma persona')
-                            bbddid = re.findall(r'&p=(\d+)&L[^<>]*?">\s*Seguir leyendo', split)[0]
-                            #print(bbddid)
-                            print('Añadiendo ID %s al artículo' % bbddid)
-                            newtext = re.sub(r"(?im)({{Infobox Persona)", r"\1\n|mauthausen memorial id=%s" % (bbddid), newtext)
-                            
-                            if wtext != newtext:
-                                pywikibot.showDiff(wtext, newtext)
-                                page.text = newtext
-                                page.save('BOT - Añadiendo enlace a [[Mauthausen Memorial]]', botflag=True)
-                        else:
-                            print('ERROR: La fecha no coincide, saltando')
-                            f = open('mauthausenmemorial.error', 'a')
-                            msg = '\n* [[%s]] no coincide su fecha en mauthausenmemorial' % (wtitle)
-                            f.write(msg)
-                            f.close()
+                    if re.search(r'(?im)Muert[oa]:?\s*%s' % (fechafallecimiento3), split) or re.search(r'(?im)Nacid[oa]:?\s*%s' % (fechanacimiento3), split):
+                        print('La fecha coincide, debe ser la misma persona')
+                        bbddid = re.findall(r'&p=(\d+)&L[^<>]*?">\s*Seguir leyendo', split)[0]
+                        #print(bbddid)
+                        print('Añadiendo ID %s al artículo' % bbddid)
+                        newtext = re.sub(r"(?im)({{Infobox Persona)", r"\1\n|mauthausen memorial id=%s" % (bbddid), newtext)
+                        
+                        if wtext != newtext:
+                            pywikibot.showDiff(wtext, newtext)
+                            page.text = newtext
+                            page.save('BOT - Añadiendo enlace a [[Mauthausen Memorial]]', botflag=True)
+                            break
                     else:
-                        print('ERROR: No hay ficha para esta persona, saltando')
+                        print('ERROR: La fecha no coincide, saltando')
                         f = open('mauthausenmemorial.error', 'a')
-                        msg = '\n* [[%s]] no tiene ficha en mauthausenmemorial' % (wtitle)
+                        msg = '\n* [[%s]] no coincide su fecha en mauthausenmemorial' % (wtitle)
                         f.write(msg)
                         f.close()
+                else:
+                    print('ERROR: No hay ficha para esta persona, saltando')
+                    f = open('mauthausenmemorial.error', 'a')
+                    msg = '\n* [[%s]] no tiene ficha en mauthausenmemorial' % (wtitle)
+                    f.write(msg)
+                    f.close()
             
             #print(raw)
             time.sleep(10)
