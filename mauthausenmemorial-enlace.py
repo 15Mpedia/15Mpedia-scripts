@@ -92,7 +92,7 @@ def main():
                 continue
             
             #print nombre, apellidos
-            url = 'https://raumdernamen.mauthausen-memorial.org/index.php?txtSearch=%s+%s&id=5&L=6' % (nombre_, apellidos_)
+            url = 'https://raumdernamen.mauthausen-memorial.org/index.php?txtSearch=%s+%s&id=5&L=6' % (removeaccute(nombre_), removeaccute(apellidos_))
             raw = getURL(url=url)
             splits = raw.split('<div class="column-main">')
             if splits:
