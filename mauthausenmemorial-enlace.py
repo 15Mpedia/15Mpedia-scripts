@@ -77,6 +77,11 @@ def main():
                 print('Ya tiene el ID')
                 continue
             
+            nombre = ""
+            primerapellido = ""
+            segundoapellido = ""
+            fechanacimiento = ""
+            fechafallecimiento = ""
             try:
                 nombre = re.findall(r'(?im)\|nombre=([^\|]*)', wtext)[0].strip()
                 primerapellido = re.findall(r'(?im)\|primer apellido=([^\|]*)', wtext)[0].strip()
@@ -85,13 +90,23 @@ def main():
                 apellidos = apellidos.strip()
                 nombre_ = re.sub(r' ', r'+', nombre)
                 apellidos_ = re.sub(r' ', r'+', apellidos)
+            except:
+                pass
+            try:
                 fechanacimiento = re.findall(r'(?im)\|fecha de nacimiento=(\d\d\d\d/\d\d/\d\d)', wtext)[0].strip()
                 fechanacimiento2 = '%s/%s/%s' % (fechanacimiento.split('/')[2], fechanacimiento.split('/')[1], fechanacimiento.split('/')[0])
                 fechanacimiento3 = '%d.%d.%d' % (int(fechanacimiento.split('/')[2]), int(fechanacimiento.split('/')[1]), int(fechanacimiento.split('/')[0]))
+            except:
+                pass
+            try: #separados para q coja este aunque falle el anterior
                 fechafallecimiento = re.findall(r'(?im)\|fecha de fallecimiento=(\d\d\d\d/\d\d/\d\d)', wtext)[0].strip()
                 fechafallecimiento2 = '%s/%s/%s' % (fechafallecimiento.split('/')[2], fechafallecimiento.split('/')[1], fechafallecimiento.split('/')[0])
                 fechafallecimiento3 = '%d.%d.%d' % (int(fechafallecimiento.split('/')[2]), int(fechafallecimiento.split('/')[1]), int(fechafallecimiento.split('/')[0]))
             except:
+                pass
+            
+            if not nombre or not primerapellido or not segundoapellido or (not fechanacimiento and not fechafallecimiento):
+                print("Faltan datos en la bio para hacer una buena busqueda")
                 continue
             
             #print nombre, apellidos
@@ -131,7 +146,7 @@ def main():
                     f.close()
             
             #print(raw)
-            time.sleep(10)
+            time.sleep(60)
     
 if __name__ == '__main__':
     main()
