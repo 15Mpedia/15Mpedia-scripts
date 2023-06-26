@@ -53,7 +53,8 @@ def main():
     site = pywikibot.Site('15mpedia', '15mpedia')
     catnames = [
         #'Categoría:Personas fusiladas por el franquismo', 
-        'Categoría:Personas deportadas al Campo de concentración de Mauthausen', 
+        #'Categoría:Personas deportadas al Campo de concentración de Mauthausen', 
+        'Categoría:Personas deportadas por el nazismo', 
     ]
     start = ''
     for catname in catnames:
@@ -81,7 +82,11 @@ def main():
             primerapellido = ""
             segundoapellido = ""
             fechanacimiento = ""
+            fechanacimiento2 = ""
+            fechanacimiento3 = ""
             fechafallecimiento = ""
+            fechafallecimiento2 = ""
+            fechafallecimiento3 = ""
             try:
                 nombre = re.findall(r'(?im)\|nombre=([^\|]*)', wtext)[0].strip()
                 primerapellido = re.findall(r'(?im)\|primer apellido=([^\|]*)', wtext)[0].strip()
@@ -120,7 +125,7 @@ def main():
                 nombrecompleto = '%s %s' % (nombre, apellidos)
                 nombrecompleto_ = removeaccute(nombrecompleto)
                 if re.search(r'(?im)%s' % (nombrecompleto), split) or re.search(r'(?im)%s' % (nombrecompleto_), split):
-                    if re.search(r'(?im)Muert[oa]:?\s*%s' % (fechafallecimiento3), split) or re.search(r'(?im)Nacid[oa]:?\s*%s' % (fechanacimiento3), split):
+                    if (fechafallecimiento3 and re.search(r'(?im)Muert[oa]:?\s*%s' % (fechafallecimiento3), split)) or (fechanacimiento3 and re.search(r'(?im)Nacid[oa]:?\s*%s' % (fechanacimiento3), split)):
                         print('La fecha coincide, debe ser la misma persona')
                         bbddid = re.findall(r'&p=(\d+)&L[^<>]*?">\s*Seguir leyendo', split)[0]
                         #print(bbddid)
@@ -146,7 +151,7 @@ def main():
                     f.close()
             
             #print(raw)
-            time.sleep(60)
+            time.sleep(30)
     
 if __name__ == '__main__':
     main()
