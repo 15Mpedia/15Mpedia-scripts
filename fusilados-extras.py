@@ -23,10 +23,9 @@ def main():
     site = pywikibot.Site('15mpedia', '15mpedia')
     catnames = [
         u'Categoría:Personas fusiladas por el franquismo', 
-        u'Categoría:Víctimas del nazismo', 
+        #u'Categoría:Víctimas del nazismo', 
     ]
     start = ''
-    
     for catname in catnames:
         category = pywikibot.Category(site, catname)
         gen = pagegenerators.CategorizedPageGenerator(category=category, start=start, namespaces=[0])
@@ -94,7 +93,12 @@ def main():
                     newtext = re.sub(ur"(?im)(==\s*Véase también\s*==)", ur"== Memoria ==\n{{Homenajes}}\n\n\1", newtext)
                     if newtext != newtext2:
                         comments.append(u"añadiendo sección memoria")
-                
+            
+            #fallecimiento=Sí para fusilados
+            if re.search(ur"(?im){{Infobox Persona", newtext) and len(re.findall(ur"(?im)\|represión={{Persona represaliada", newtext)) == 1 and re.search(ur"(?im)\|represión=Fusilamiento", newtext) and not re.search(ur"(?im)\|fallecimiento=", newtext):
+                newtext = re.sub(ur"(?im)(\|represión={{Persona represaliada)", ur"\1\n|fallecimiento=Sí", newtext)
+                comments.append(u"añadiendo parámetro a plantilla")
+            
             if wtext != newtext:
                 pywikibot.showDiff(wtext, newtext)
                 page.text = newtext
