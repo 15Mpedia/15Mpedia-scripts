@@ -18,6 +18,7 @@
 import pywikibot
 import pywikibot.pagegenerators as pagegenerators
 import re
+import sys
 
 def main():
     site = pywikibot.Site('15mpedia', '15mpedia')
@@ -25,14 +26,14 @@ def main():
         u'Categoría:Personas fusiladas por el franquismo', 
         #u'Categoría:Víctimas del nazismo', 
     ]
-    start = ''
+    start = sys.argv[1]
     for catname in catnames:
         category = pywikibot.Category(site, catname)
         gen = pagegenerators.CategorizedPageGenerator(category=category, start=start, namespaces=[0])
         pre = pagegenerators.PreloadingGenerator(gen, pageNumber=250)
         
-        comments = []
         for page in pre:
+            comments = []
             if not page.exists() or page.isRedirectPage():
                 continue
             wtext = page.text
