@@ -60,7 +60,7 @@ def main():
     log = f.read()
     f.close()
     start = '!'
-    start = 'Almoza'
+    start = '!'
     delay = 3
     cache = {}
     for catname in catnames:
