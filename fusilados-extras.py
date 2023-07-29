@@ -106,7 +106,10 @@ def main():
                 comments = list(set(comments))
                 comments.sort()
                 comment = u'BOT - %s' % (', '.join(comments))
-                page.save(comment, botflag=True)
+                try:
+                    page.save(comment, botflag=True)
+                except: # a veces da timeout pero graba y luego editconflict, pasamos
+                    pass
 
 if __name__ == '__main__':
     main()
