@@ -92,6 +92,7 @@ def main():
                 apellidos = '%s %s' % (primerapellido, segundoapellido)
                 apellidos = apellidos.strip()
                 nombreapellidos = nombre + " " + apellidos
+                nombreapellidosentrecomillas = '"' + nombre + " " + apellidos + '"'
                 apellidosnombre = apellidos + " " + nombre
                 apellidoscomanombre = apellidos + ", " + nombre
                 apellidoscomanombreentrecomillas = '"' + apellidos + ", " + nombre + '"'
@@ -115,7 +116,7 @@ def main():
                     continue
                 
                 busquedas = [
-                    nombreapellidos,
+                    nombreapellidosentrecomillas,
                     apellidoscomanombreentrecomillas,
                     #nombreapellidos + " site:" + bd,
                     #apellidoscomanombreentrecomillas + " site:" + bd,
