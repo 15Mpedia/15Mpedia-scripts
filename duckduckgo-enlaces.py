@@ -61,6 +61,8 @@ def main():
     f.close()
     start = '!'
     start = 'Almoza'
+    delay = 3
+    cache = {}
     for catname in catnames:
         category = pywikibot.Category(site, catname)
         gen = pagegenerators.CategorizedPageGenerator(category=category, start=start, namespaces=[0])
@@ -106,17 +108,28 @@ def main():
                 ["fallecidos en los campos nazis id", "fallecidosenloscamposnazis.org", r'(?im)https?://fallecidosenloscamposnazis\.org/(?:ca|es)?/?(\d+/[^\.]+?)\.html'], 
                 #Maria Alonso Alonso no es la misma["ihrworld id", "scwd.ihr.world", r'(?im)https?://scwd\.ihr\.world/es/document/(\d+)'], 
             ]
+            
             for wikiid, bd, linkregexp in bbdd:
                 if re.search(r'(?im)%s' % (wikiid), wtext):
                     print('Ya tiene el ID', wikiid)
                     continue
                 
-                busqueda = apellidoscomanombreentrecomillas + " site:" + bd
+                busqueda = apellidoscomanombreentrecomillas
+                #busqueda = apellidoscomanombreentrecomillas + " site:" + bd
                 url = "https://html.duckduckgo.com/html/?q=" + urllib.parse.quote_plus(busqueda)
-                raw = getURL(url=url)
+                raw = ""
+                cached = False
+                if url in cache.keys():
+                    print("Cached url...", url)
+                    raw = cache[url]
+                    cached = True
+                else:
+                    print("Retrieving url...", url)
+                    raw = getURL(url=url)
+                    cache[url] = raw
                 if '<div class="no-results">' in raw:
                     print("Sin resultados")
-                    time.sleep(2)
+                    time.sleep(cached and 0.1 or delay)
                     continue
                 
                 splits = raw.split('<h2 class="result__title">')[1:]
@@ -147,9 +160,9 @@ def main():
                                     pywikibot.showDiff(wtext, newtext)
                                     page.text = newtext
                                     page.save('BOT - Añadiendo enlace a [[%s]]' % (bd), botflag=True)
-                time.sleep(2)
+                time.sleep(cached and 0.1 or delay)
             #print(raw)
-            time.sleep(10)
+            time.sleep(1)
     
 if __name__ == '__main__':
     main()
