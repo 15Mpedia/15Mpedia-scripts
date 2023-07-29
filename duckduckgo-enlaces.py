@@ -114,53 +114,58 @@ def main():
                     print('Ya tiene el ID', wikiid)
                     continue
                 
-                busqueda = apellidoscomanombreentrecomillas
-                #busqueda = apellidoscomanombreentrecomillas + " site:" + bd
-                url = "https://html.duckduckgo.com/html/?q=" + urllib.parse.quote_plus(busqueda)
-                raw = ""
-                cached = False
-                if url in cache.keys():
-                    print("Cached url...", url)
-                    raw = cache[url]
-                    cached = True
-                else:
-                    print("Retrieving url...", url)
-                    raw = getURL(url=url)
-                    cache[url] = raw
-                if '<div class="no-results">' in raw:
-                    print("Sin resultados")
-                    time.sleep(cached and 0.1 or delay)
-                    continue
-                
-                splits = raw.split('<h2 class="result__title">')[1:]
-                for split in splits:
-                    #print(split)
-                    wtext = page.text
-                    newtext = wtext
-                    if re.search(r'(?im)%s' % (wikiid), newtext): #necesario comprobar en cada bucle split por si lo añadio antes
-                        #print('Ya tiene el ID', wikiid)
+                busquedas = [
+                    nombreapellidos,
+                    apellidoscomanombreentrecomillas,
+                    #nombreapellidos + " site:" + bd,
+                    #apellidoscomanombreentrecomillas + " site:" + bd,
+                ]
+                for busqueda in busquedas:
+                    url = "https://html.duckduckgo.com/html/?q=" + urllib.parse.quote_plus(busqueda)
+                    raw = ""
+                    cached = False
+                    if url in cache.keys():
+                        print("Cached url...", url)
+                        raw = cache[url]
+                        cached = True
+                    else:
+                        print("Retrieving url...", url)
+                        raw = getURL(url=url)
+                        cache[url] = raw
+                    if '<div class="no-results">' in raw:
+                        print("Sin resultados")
+                        time.sleep(cached and 0.1 or delay)
                         continue
-                    m = re.findall(r'(?im)<a rel="nofollow" class="result__a" href="([^"]+?)">[^<>]*?</a>', split)
-                    if m and len(m) == 1:
-                        munquote = urllib.parse.unquote_plus(m[0]).split('uddg=')[1].split('&amp;rut=')[0]
-                        m = re.findall(linkregexp, munquote)
+                    
+                    splits = raw.split('<h2 class="result__title">')[1:]
+                    for split in splits:
+                        #print(split)
+                        wtext = page.text
+                        newtext = wtext
+                        if re.search(r'(?im)%s' % (wikiid), newtext): #necesario comprobar en cada bucle split por si lo añadio antes
+                            #print('Ya tiene el ID', wikiid)
+                            continue
+                        m = re.findall(r'(?im)<a rel="nofollow" class="result__a" href="([^"]+?)">[^<>]*?</a>', split)
                         if m and len(m) == 1:
-                            bdid = m[0]
-                            print(munquote)
-                            n1 = re.findall(r"(?im)%s" % (nombreapellidos), split)
-                            n2 = re.findall(r"(?im)%s" % (apellidoscomanombre), split)
-                            if (n1 and len(n1) >= 1) or (n2 and len(n2) >= 1):
-                                print(m)
-                                print(n1)
-                                print(n2)
-                                print('Añadiendo ID %s %s al artículo' % (wikiid, bdid))
-                                newtext = re.sub(r"(?im)({{Infobox Persona)", r"\1\n|%s=%s" % (wikiid, bdid), newtext)
-                                
-                                if wtext != newtext:
-                                    pywikibot.showDiff(wtext, newtext)
-                                    page.text = newtext
-                                    page.save('BOT - Añadiendo enlace a [[%s]]' % (bd), botflag=True)
-                time.sleep(cached and 0.1 or delay)
+                            munquote = urllib.parse.unquote_plus(m[0]).split('uddg=')[1].split('&amp;rut=')[0]
+                            m = re.findall(linkregexp, munquote)
+                            if m and len(m) == 1:
+                                bdid = m[0]
+                                print(munquote)
+                                n1 = re.findall(r"(?im)%s" % (nombreapellidos), split)
+                                n2 = re.findall(r"(?im)%s" % (apellidoscomanombre), split)
+                                if (n1 and len(n1) >= 1) or (n2 and len(n2) >= 1):
+                                    print(m)
+                                    print(n1)
+                                    print(n2)
+                                    print('Añadiendo ID %s %s al artículo' % (wikiid, bdid))
+                                    newtext = re.sub(r"(?im)({{Infobox Persona)", r"\1\n|%s=%s" % (wikiid, bdid), newtext)
+                                    
+                                    if wtext != newtext:
+                                        pywikibot.showDiff(wtext, newtext)
+                                        page.text = newtext
+                                        page.save('BOT - Añadiendo enlace a [[%s]]' % (bd), botflag=True)
+                    time.sleep(cached and 0.1 or delay)
             #print(raw)
             time.sleep(1)
     
