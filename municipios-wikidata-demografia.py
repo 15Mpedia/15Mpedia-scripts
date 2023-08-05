@@ -115,7 +115,7 @@ def main():
                     if wtext != newtext:
                         pywikibot.showDiff(wtext, newtext)
                         page.text = newtext
-                        #page.save("BOT - Añadiendo datos de población, fuente INE/Wikidata", botflag=True)
+                        page.save("BOT - Añadiendo datos de población, fuente INE/Wikidata", botflag=True)
                         #break
             else:
                 print("Error leyendo wikidata")
