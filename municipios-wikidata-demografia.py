@@ -65,7 +65,7 @@ def main():
                     print("Skiping", wtitle)
                     continue
             
-            print('\n== %s ==' % (wtitle))
+            print(u'\n== %s ==' % (wtitle))
             if not re.search(r'{{Infobox Municipio', wtext):
                 print("No tiene infobox municipio")
                 continue
@@ -95,7 +95,7 @@ def main():
                             pobdate = pobdata["qualifiers"]["P585"][0]["datavalue"]["value"]["time"]
                             pobdate = pobdate.split('T')[0][1:5]
                         if pobdate in [x for x, y in demografia]:
-                            msg = '\n[[%s]] (%s) tiene poblacion duplicada en %s' % (wtitle, wikidataid, pobdate)
+                            msg = u'\n[[%s]] (%s) tiene poblacion duplicada en %s' % (wtitle, wikidataid, pobdate)
                             print(msg)
                             logerror(msg)
                             demoerror = True
@@ -107,10 +107,10 @@ def main():
                     #print('\n'.join(["%s, %s" % (str(x), str(y)) for x, y in demografia]))
                     demografiaplain = ''.join(["{{población|total=%s|año=%s}}" % (str(y), str(x)) for x, y in demografia])
                     newtext = wtext
-                    if re.search(r'(?im)demografía=', wtext):
-                        newtext = re.sub("(?im)(demografía=)[^\n\s]+?", "\1%s" % (demografiaplain))
+                    if re.search(ur'(?im)demografía=', wtext):
+                        newtext = re.sub(ur"(?im)(demografía=)[^\n\s]+?", ur"\1%s" % (demografiaplain))
                     else:
-                        newtext = newtext.replace("{{Infobox Municipio", """{{Infobox Municipio\n|demografía=%s""" % (demografiaplain))
+                        newtext = newtext.replace(u"{{Infobox Municipio", u"{{Infobox Municipio\n|demografía=%s" % (demografiaplain))
                     if wtext != newtext:
                         pywikibot.showDiff(wtext, newtext)
                         page.text = newtext
