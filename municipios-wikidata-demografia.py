@@ -39,7 +39,7 @@ def getURL(url=''):
 def main():
     site = pywikibot.Site('15mpedia', '15mpedia')
     catnames = [
-        'Categoría:Municipios de España', 
+        u'Categoría:Municipios de España', 
     ]
     start = ''
     skip = ''
