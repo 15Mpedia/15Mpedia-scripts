@@ -16,7 +16,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import json
-import urllib.parse
 import urllib.request
 import pywikibot
 import pywikibot.pagegenerators as pagegenerators
