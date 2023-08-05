@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2020 emijrp <emijrp@gmail.com>
+# Copyright (C) 2020-2023 emijrp <emijrp@gmail.com>
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -71,9 +71,9 @@ def main():
                 print("No tiene infobox municipio")
                 continue
             
-            if re.search(r'demografía=', wtext):
+            """if re.search(r'demografía=', wtext):
                 print("Ya tiene demografia")
-                continue
+                continue"""
             
             m = re.findall(r"(?im){{wikidata\|(Q\d+)\}\}", wtext)
             if not m:
@@ -96,23 +96,26 @@ def main():
                             pobdate = pobdata["qualifiers"]["P585"][0]["datavalue"]["value"]["time"]
                             pobdate = pobdate.split('T')[0][1:5]
                         if pobdate in [x for x, y in demografia]:
-                            msg = '[[%s]] (%s) tiene poblacion duplicada en %s' % (wtitle, wikidataid, pobdate)
+                            msg = '\n[[%s]] (%s) tiene poblacion duplicada en %s' % (wtitle, wikidataid, pobdate)
                             print(msg)
                             logerror(msg)
                             demoerror = True
-                            break
+                            continue #saltamos este dato y nos quedamos con el que ya cogimos
                         demografia.append([pobdate, pobnum])
                     demografia.sort()
-                    if demoerror:
+                    if False and demoerror: #guardar demografia aunque haya duplicados (ya los descartamos con el continue), sino quedan 50 munis sin demografia...
                         continue
                     #print('\n'.join(["%s, %s" % (str(x), str(y)) for x, y in demografia]))
                     demografiaplain = ''.join(["{{población|total=%s|año=%s}}" % (str(y), str(x)) for x, y in demografia])
                     newtext = wtext
-                    newtext = newtext.replace("{{Infobox Municipio", """{{Infobox Municipio\n|demografía=%s""" % (demografiaplain))
+                    if re.search(r'(?im)demografía=', wtext):
+                        newtext = re.sub("(?im)(demografía=)[^\n\s]+?", "\1%s" % (demografiaplain))
+                    else:
+                        newtext = newtext.replace("{{Infobox Municipio", """{{Infobox Municipio\n|demografía=%s""" % (demografiaplain))
                     if wtext != newtext:
                         pywikibot.showDiff(wtext, newtext)
                         page.text = newtext
-                        page.save("BOT - Añadiendo datos de población, fuente INE/Wikidata", botflag=True)
+                        #page.save("BOT - Añadiendo datos de población, fuente INE/Wikidata", botflag=True)
                         #break
             else:
                 print("Error leyendo wikidata")
