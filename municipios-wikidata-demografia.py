@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import json
-import urllib.request
+import urllib2 
 import pywikibot
 import pywikibot.pagegenerators as pagegenerators
 import re
@@ -29,9 +29,9 @@ def logerror(errorline):
 
 def getURL(url=''):
     raw = ''
-    req = urllib.request.Request(url, headers={ 'User-Agent': 'Mozilla/5.0' })
+    req = urllib2.Request(url, headers={ 'User-Agent': 'Mozilla/5.0' })
     try:
-        raw = urllib.request.urlopen(req).read().strip().decode('utf-8')
+        raw = urllib2.urlopen(req).read().strip().decode('utf-8')
     except:
         pass
     return raw
