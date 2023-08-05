@@ -105,7 +105,7 @@ def main():
                     if False and demoerror: #guardar demografia aunque haya duplicados (ya los descartamos con el continue), sino quedan 50 munis sin demografia...
                         continue
                     #print('\n'.join(["%s, %s" % (str(x), str(y)) for x, y in demografia]))
-                    demografiaplain = ''.join(["{{población|total=%s|año=%s}}" % (str(y), str(x)) for x, y in demografia])
+                    demografiaplain = ''.join([u"{{población|total=%s|año=%s}}" % (str(y), str(x)) for x, y in demografia])
                     newtext = wtext
                     if re.search(ur'(?im)demografía=', wtext):
                         newtext = re.sub(ur"(?im)(demografía=)[^\n\s]+?", ur"\1%s" % (demografiaplain))
