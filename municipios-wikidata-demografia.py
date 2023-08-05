@@ -108,6 +108,7 @@ def main():
                     demografiaplain = ''.join([u"{{población|total=%s|año=%s}}" % (str(y), str(x)) for x, y in demografia])
                     newtext = wtext
                     if re.search(ur'(?im)demografía=', newtext):
+                        newtext = re.sub(ur"(?im){{Población\s\|\stotal\s=\s(\d+)\s\|\saño\s=\s(\d+)\s}}", ur"{{Población|total=\1|año=\2}}", newtext)
                         newtext = re.sub(ur"(?im)(demografía=)([^\n\s]+)(\n\|)", ur"\1%s\3" % (demografiaplain), newtext)
                     else:
                         newtext = newtext.replace(u"{{Infobox Municipio", u"{{Infobox Municipio\n|demografía=%s" % (demografiaplain))
