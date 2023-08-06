@@ -24,7 +24,7 @@ import sys
 
 def logerror(errorline):
     error = open('demografia-municipios.errores', 'a')
-    error.write(errorline)
+    error.write(errorline.encode('utf-8'))
     error.close()
 
 def getURL(url=''):
