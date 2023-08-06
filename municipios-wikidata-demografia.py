@@ -89,6 +89,8 @@ def main():
                     for pobdata in wdjson["entities"][wikidataid]["claims"]["P1082"]:
                         if not "datavalue" in pobdata["mainsnak"]: #sin valor Q1606686
                             continue
+                        if not "qualifiers" in pobdata:
+                            continue
                         pobnum = int(pobdata["mainsnak"]["datavalue"]["value"]["amount"])
                         pobdate = ''
                         if "P585" in pobdata["qualifiers"]:
