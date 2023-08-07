@@ -83,34 +83,34 @@ for comunidad, provincias in ccaa.items():
     
     for por in ["población"]:
         for year in range(2001, 2023):
-            wtitle = "Lista de municipios %s %s por %s (%s)" % (de, comunidad, por, year)
-            wtext = "{{Lista de municipios por lugar|país=España|comunidad autónoma=%s|año=%s|sort=%s}}" % (comunidad, year, por)
+            wtitle = u"Lista de municipios %s %s por %s (%s)" % (de, comunidad, por, year)
+            wtext = u"{{Lista de municipios por lugar|país=España|comunidad autónoma=%s|año=%s|sort=%s}}" % (comunidad, year, por)
             page = pywikibot.Page(site, wtitle)
             if False and page.exists():
-                print("La pagina %s ya existe" % (wtitle))
+                print(u"La pagina %s ya existe" % (wtitle))
             else:
                 page.text = wtext
-                page.save("BOT - Creando lista de comunidad autónoma", botflag=False)
+                page.save(u"BOT - Creando lista de comunidad autónoma", botflag=False)
             
             if len(provincias) > 1:
                 for provincia in provincias:
-                    wtitle = "Lista de municipios de la provincia de %s por %s (%s)" % (provincia, por, year)
-                    wtext = "{{Lista de municipios por lugar|país=España|comunidad autónoma=%s|provincia=Provincia de %s|año=%s|sort=%s}}" % (comunidad, provincia, year, por)
+                    wtitle = u"Lista de municipios de la provincia de %s por %s (%s)" % (provincia, por, year)
+                    wtext = u"{{Lista de municipios por lugar|país=España|comunidad autónoma=%s|provincia=Provincia de %s|año=%s|sort=%s}}" % (comunidad, provincia, year, por)
                     page = pywikibot.Page(site, wtitle)
                     if False and page.exists():
-                        print("La pagina %s ya existe" % (wtitle))
+                        print(u"La pagina %s ya existe" % (wtitle))
                     else:
                         page.text = wtext
-                        page.save("BOT - Creando lista de provincia", botflag=False)
+                        page.save(u"BOT - Creando lista de provincia", botflag=False)
             else:
-                wtitle = "Lista de municipios de la provincia de %s por %s (%s)" % (provincias[0], por, year)
-                redtitle = "Lista de municipios %s %s por %s (%s)" % (de, comunidad, por, year)
+                wtitle = u"Lista de municipios de la provincia de %s por %s (%s)" % (provincias[0], por, year)
+                redtitle = u"Lista de municipios %s %s por %s (%s)" % (de, comunidad, por, year)
                 wtext = u"#REDIRECT [[%s]]" % (redtitle)
                 page = pywikibot.Page(site, wtitle)
                 if page.exists():
-                    print("La pagina %s ya existe" % (wtitle))
+                    print(u"La pagina %s ya existe" % (wtitle))
                 else:
                     page.text = wtext
-                    page.save("BOT - Creando redirect hacia [[%s]]" % (redtitle), botflag=False)
+                    page.save(u"BOT - Creando redirect hacia [[%s]]" % (redtitle), botflag=False)
 
 
