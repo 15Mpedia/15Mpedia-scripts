@@ -57,7 +57,7 @@ for comunidad, provincias in ccaa.items():
             print("La pagina %s ya existe" % (wtitle))
         else:
             page.text = wtext
-            page.save("BOT - Creando lista de comunidad autónoma", botflag=False)
+            page.save("BOT - Creando lista de comunidad autónoma", botflag=True)
         
         if len(provincias) > 1:
             for provincia in provincias:
@@ -68,7 +68,7 @@ for comunidad, provincias in ccaa.items():
                     print("La pagina %s ya existe" % (wtitle))
                 else:
                     page.text = wtext
-                    page.save("BOT - Creando lista de provincia", botflag=False)
+                    page.save("BOT - Creando lista de provincia", botflag=True)
         else:
             wtitle = "Lista de municipios de la provincia de %s por %s" % (provincias[0], por)
             redtitle = "Lista de municipios %s %s por %s" % (de, comunidad, por)
@@ -78,7 +78,7 @@ for comunidad, provincias in ccaa.items():
                 print("La pagina %s ya existe" % (wtitle))
             else:
                 page.text = wtext
-                page.save("BOT - Creando redirect hacia [[%s]]" % (redtitle), botflag=False)
+                page.save("BOT - Creando redirect hacia [[%s]]" % (redtitle), botflag=True)
     """
     
     for por in [u"población"]:
@@ -90,7 +90,7 @@ for comunidad, provincias in ccaa.items():
                 print(u"La pagina %s ya existe" % (wtitle))
             else:
                 page.text = wtext
-                page.save(u"BOT - Creando lista de comunidad autónoma", botflag=False)
+                page.save(u"BOT - Creando lista de comunidad autónoma", botflag=True)
             
             if len(provincias) > 1:
                 for provincia in provincias:
@@ -101,7 +101,7 @@ for comunidad, provincias in ccaa.items():
                         print(u"La pagina %s ya existe" % (wtitle))
                     else:
                         page.text = wtext
-                        page.save(u"BOT - Creando lista de provincia", botflag=False)
+                        page.save(u"BOT - Creando lista de provincia", botflag=True)
             else:
                 wtitle = u"Lista de municipios de la provincia de %s por %s (%s)" % (provincias[0], por, year)
                 redtitle = u"Lista de municipios %s %s por %s (%s)" % (de, comunidad, por, year)
@@ -111,6 +111,6 @@ for comunidad, provincias in ccaa.items():
                     print(u"La pagina %s ya existe" % (wtitle))
                 else:
                     page.text = wtext
-                    page.save(u"BOT - Creando redirect hacia [[%s]]" % (redtitle), botflag=False)
+                    page.save(u"BOT - Creando redirect hacia [[%s]]" % (redtitle), botflag=True)
 
 
