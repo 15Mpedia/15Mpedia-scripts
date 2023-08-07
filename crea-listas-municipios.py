@@ -81,7 +81,7 @@ for comunidad, provincias in ccaa.items():
                 page.save("BOT - Creando redirect hacia [[%s]]" % (redtitle), botflag=False)
     """
     
-    for por in ["población"]:
+    for por in [u"población"]:
         for year in range(2001, 2023):
             wtitle = u"Lista de municipios %s %s por %s (%s)" % (de, comunidad, por, year)
             wtext = u"{{Lista de municipios por lugar|país=España|comunidad autónoma=%s|año=%s|sort=%s}}" % (comunidad, year, por)
