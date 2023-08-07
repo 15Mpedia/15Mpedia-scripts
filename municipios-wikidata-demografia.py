@@ -118,8 +118,7 @@ def main():
                         pywikibot.showDiff(wtext, newtext)
                         page.text = newtext
                         page.save("BOT - Añadiendo datos de población, fuente INE/Wikidata", botflag=True)
-                        page.save() #purge atributos
-                        #break
+                    page.save() #purge atributos
             else:
                 print("Error leyendo wikidata")
 
