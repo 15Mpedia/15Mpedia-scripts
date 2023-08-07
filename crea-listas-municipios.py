@@ -20,33 +20,33 @@ import sys
 
 site = pywikibot.Site('15mpedia', '15mpedia')
 ccaa = {
-    u"Andalucíau": [u"Almeríau", u"Cádizu", u"Córdobau", u"Granadau", u"Huelvau", u"Jaénu", u"Málagau", u"Sevillau"], 
-    u"Aragónu": [u"Huescau", u"Teruelu", u"Zaragozau"], 
-    u"Canariasu": [u"Las Palmasu", u"Santa Cruz de Tenerifeu"], 
-    u"Cantabriau": [u"Cantabriau"], 
-    u"Castilla-La Manchau": [u"Albaceteu", u"Ciudad Realu", u"Cuencau", u"Guadalajarau", u"Toledou"], 
-    u"Castilla y Leónu": [u"Ávilau", u"Burgosu", u"Leónu", u"Palenciau", u"Salamancau", u"Segoviau", u"Soriau", u"Valladolidu", u"Zamorau"], 
-    u"Cataluñau": [u"Barcelonau", u"Gironau", u"Lleidau", u"Tarragonau"], 
-    u"Comunidad de Madridu": [u"Madridu"], 
-    u"Comunidad Foral de Navarrau": [u"Navarrau"], 
-    u"Comunidad Valencianau": [u"Alicanteu", u"Castellónu", u"Valenciau"], 
-    u"Extremadurau": [u"Badajozu", u"Cáceresu"], 
-    u"Galiciau": [u"A Coruñau", u"Lugou", u"Ourenseu", u"Pontevedrau"], 
-    u"Islas Balearesu": [u"Balearesu"], 
-    u"La Riojau": [u"La Riojau"], 
-    u"País Vascou": [u"Álavau", u"Gipuzkoau", u"Vizcayau"], 
-    u"Principado de Asturiasu": [u"Asturiasu"], 
-    u"Región de Murciau": [u"Murciau"], 
+    u"Andalucía": [u"Almería", u"Cádiz", u"Córdoba", u"Granada", u"Huelva", u"Jaén", u"Málaga", u"Sevilla"], 
+    u"Aragón": [u"Huesca", u"Teruel", u"Zaragoza"], 
+    u"Canarias": [u"Las Palmas", u"Santa Cruz de Tenerife"], 
+    u"Cantabria": [u"Cantabria"], 
+    u"Castilla-La Mancha": [u"Albacete", u"Ciudad Real", u"Cuenca", u"Guadalajara", u"Toledo"], 
+    u"Castilla y León": [u"Ávila", u"Burgos", u"León", u"Palencia", u"Salamanca", u"Segovia", u"Soria", u"Valladolid", u"Zamora"], 
+    u"Cataluña": [u"Barcelona", u"Girona", u"Lleida", u"Tarragona"], 
+    u"Comunidad de Madrid": [u"Madrid"], 
+    u"Comunidad Foral de Navarra": [u"Navarra"], 
+    u"Comunidad Valenciana": [u"Alicante", u"Castellón", u"Valencia"], 
+    u"Extremadura": [u"Badajoz", u"Cáceres"], 
+    u"Galicia": [u"A Coruña", u"Lugo", u"Ourense", u"Pontevedra"], 
+    u"Islas Baleares": [u"Baleares"], 
+    u"La Rioja": [u"La Rioja"], 
+    u"País Vasco": [u"Álava", u"Gipuzkoa", u"Vizcaya"], 
+    u"Principado de Asturias": [u"Asturias"], 
+    u"Región de Murcia": [u"Murcia"], 
 }
 
 for comunidad, provincias in ccaa.items():
-    de = 'de'
-    if comunidad == 'Islas Baleares':
-        de = 'de las'
-    elif comunidad in ['País Vasco', 'Principado de Asturias']:
-        de = 'del'
-    elif comunidad in ['Comunidad Foral de Navarra', 'Comunidad de Madrid', 'Comunidad Valenciana', 'Región de Murcia']:
-        de = 'de la'
+    de = u'de'
+    if comunidad == u'Islas Baleares':
+        de = u'de las'
+    elif comunidad in [u'País Vasco', u'Principado de Asturias']:
+        de = u'del'
+    elif comunidad in [u'Comunidad Foral de Navarra', u'Comunidad de Madrid', u'Comunidad Valenciana', u'Región de Murcia']:
+        de = u'de la'
     
     """
     for por in ["altitud", "población", "superficie"]:
