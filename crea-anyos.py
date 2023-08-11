@@ -33,8 +33,8 @@ def main():
             page.text = infobox
             page.save(u'BOT - Creando año', botflag=True)
         redirects = [
-            '%s (año)' % (year), 
-            'Año %s' % (year), 
+            u'%s (año)' % (year), 
+            u'Año %s' % (year), 
         ]
         redoutput = u"#REDIRECT [[%s]]" % (year)
         for red in redirects:
@@ -46,7 +46,7 @@ def main():
         #number disambig
         page = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), u'%s (desambiguación)' % (year))
         if not page.exists():
-            page.text = "{{desambiguación número}}"
+            page.text = u"{{desambiguación número}}"
             page.save(u'BOT - Creando página de desambiguación', botflag=True)
         
         """
