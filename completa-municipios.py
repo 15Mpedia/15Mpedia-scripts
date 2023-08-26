@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2014 emijrp
+# Copyright (C) 2014-2023 emijrp
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import catlib
 import re
-import pagegenerators
-import wikipedia
+import sys
+import pywikibot
+import pywikibot.pagegenerators as pagegenerators
 
 """
 Bot para importar datos de Wikipedia para los municipios.
@@ -26,10 +26,10 @@ De momento solo la comarca y poco más.
 """
 
 def main():
-    eswiki = wikipedia.Site('es', 'wikipedia')
-    site = wikipedia.Site('15mpedia', '15mpedia')
-    cat = catlib.Category(site, u"Category:Municipios de España")
-    gen = pagegenerators.CategorizedPageGenerator(cat,start="Motril")
+    eswiki = pywikibot.Site('es', 'wikipedia')
+    site = pywikibot.Site('15mpedia', '15mpedia')
+    cat = pywikibot.Category(site, u"Category:Municipios de España")
+    gen = pagegenerators.CategorizedPageGenerator(cat,start=sys.argv[1])
     pre = pagegenerators.PreloadingGenerator(gen, pageNumber=60)
     
     for page in pre:
@@ -58,7 +58,7 @@ def main():
                 print "Usando mismo titulo"
         
         #comprobando si existe en wikipedia
-        eswikipage = wikipedia.Page(eswiki, eswikititle)
+        eswikipage = pywikibot.Page(eswiki, eswikititle)
         if eswikipage.exists():
             print "Existe en Wikipedia"
         else:
@@ -88,8 +88,48 @@ def main():
             comarca = re.findall(ur"(?im)\|\s*comarca\s*=\s*(?:\[\[\s*(?:Archivo|File|Imagen?)\s*:\s*[^\[\]\r\n]*?\s*\]\])?\s*\[\[([^\[\]\r\n]+?)(?:\|[^\[\]\r\n]*?)?\]\]", eswikitext)
             if comarca:
                 comarca = comarca[0]
-                parametros.append(u"|comarca=%s" % (comarca))
-                resumen.append(u"comarca")
+                if not ':' in comarca:
+                    parametros.append(u"|comarca=%s" % (comarca))
+                    resumen.append(u"comarca")
+        #capturar gentilicio
+        if not re.search(ur"(?im)\|\s*gentilicio", wtext):
+            gentilicios = re.findall(ur"(?im)\|\s*gentilicio\s*=\s*([a-záéíóúñ]+o, ?-?[rnñ]?a)[\n\r\s<]", eswikitext)
+            if gentilicios:
+                gentilicioms = gentilicios[0].split(',')[0].strip()
+                gentiliciofs = gentilicioms[:-1] + 'a'
+                gentiliciomp = gentilicioms + 's'
+                gentiliciofp = gentiliciofs + 's'
+                parametros.append(u"|gentilicio fs=%s" % (gentiliciofs))
+                parametros.append(u"|gentilicio ms=%s" % (gentilicioms))
+                parametros.append(u"|gentilicio fp=%s" % (gentiliciofp))
+                parametros.append(u"|gentilicio mp=%s" % (gentiliciomp))
+                resumen.append(u"gentilicio [fs=%s,ms=%s,fp=%s,mp=%s]" % (gentiliciofs, gentilicioms, gentiliciofp, gentiliciomp))
+            else:
+                gentilicios = re.findall(ur"(?im)\|\s*gentilicio\s*=\s*([a-záéíóúñ]+és, ?-?a)[\n\r\s<]", eswikitext)
+                if gentilicios:
+                    gentilicioms = gentilicios[0].split(',')[0].strip()
+                    gentiliciofs = gentilicioms[:-2] + 'esa'
+                    gentiliciomp = gentilicioms[:-2] + 'eses'
+                    gentiliciofp = gentiliciofs + 's'
+                    parametros.append(u"|gentilicio fs=%s" % (gentiliciofs))
+                    parametros.append(u"|gentilicio ms=%s" % (gentilicioms))
+                    parametros.append(u"|gentilicio fp=%s" % (gentiliciofp))
+                    parametros.append(u"|gentilicio mp=%s" % (gentiliciomp))
+                    resumen.append(u"gentilicio [fs=%s,ms=%s,fp=%s,mp=%s]" % (gentiliciofs, gentilicioms, gentiliciofp, gentiliciomp))
+                else:
+                    gentilicios = re.findall(ur"(?im)\|\s*gentilicio\s*=\s*([a-záéíóúñ]+nse)[\n\r\s<]", eswikitext)
+                    if gentilicios:
+                        gentilicioms = gentilicios[0].strip()
+                        gentiliciofs = gentilicioms
+                        gentiliciomp = gentilicioms + 's'
+                        gentiliciofp = gentiliciofs + 's'
+                        parametros.append(u"|gentilicio fs=%s" % (gentiliciofs))
+                        parametros.append(u"|gentilicio ms=%s" % (gentilicioms))
+                        parametros.append(u"|gentilicio fp=%s" % (gentiliciofp))
+                        parametros.append(u"|gentilicio mp=%s" % (gentiliciomp))
+                        resumen.append(u"gentilicio [fs=%s,ms=%s,fp=%s,mp=%s]" % (gentiliciofs, gentilicioms, gentiliciofp, gentiliciomp))
+                    else:
+                        print re.findall(ur"(?im)\|\s*gentilicio\s*=\s*[^\n\r]+", eswikitext)
         
         print '\n'.join(parametros)
         print ', '.join(resumen)
@@ -97,19 +137,11 @@ def main():
         newtext = wtext
         if parametros:
             newtext = re.sub(ur"(?im)(\{\{\s*Infobox Municipio)", ur"\1\n%s" % ('\n'.join(parametros)), newtext)
-        if not re.search(ur"(?im)\{\{\s*enlaces externos\s*\}\}", newtext):
-            if re.search(ur"(?im)\|\s*enlaces externos\s*=", newtext):
-                newtext = re.sub(ur"(?im)(\|\s*enlaces externos\s*=)", ur"\1{{enlaces externos}}\n", newtext)
-            else:
-                newtext = re.sub(ur"(?im)(\{\{\s*Infobox Municipio)", ur"\1\n|enlaces externos={{enlaces externos}}", newtext)
-        if wikipediatemplate and not re.search(ur"(?im)\{\{\s*wikipedia", newtext):
-            newtext = re.sub(ur"(?im)({{enlaces externos}})", ur"\1\n%s" % (wikipediatemplate), newtext)
         if wtext != newtext:
-            wikipedia.showDiff(wtext, newtext)
+            pywikibot.showDiff(wtext, newtext)
             if resumen:
+                pass
                 page.put(newtext, u"BOT - Añadiendo datos de [[:wikipedia:es:%s]]: %s" % (eswikititle, ', '.join(resumen)), botflag=True)
-            else:
-                page.put(newtext, u"BOT - Añadiendo plantillas de enlaces externos", botflag=True)
         #break
         
 if __name__ == '__main__':

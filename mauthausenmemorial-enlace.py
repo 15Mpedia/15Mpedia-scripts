@@ -56,11 +56,15 @@ def main():
         #'Categoría:Personas deportadas al Campo de concentración de Mauthausen', 
         'Categoría:Personas deportadas por el nazismo', 
     ]
-    start = ''
+    f = open('mauthausenmemorial.error', 'r')
+    log = f.read()
+    f.close()
+    start = '!'
+    delay = 5
     for catname in catnames:
         category = pywikibot.Category(site, catname)
         gen = pagegenerators.CategorizedPageGenerator(category=category, start=start, namespaces=[0])
-        pre = pagegenerators.PreloadingGenerator(gen, pageNumber=50)
+        pre = pagegenerators.PreloadingGenerator(gen, pageNumber=250)
         """templatepage = pywikibot.Page(site, template)
         gen = pagegenerators.ReferringPageGenerator(templatepage, followRedirects=True, withTemplateInclusion=True)
         pre = pagegenerators.PreloadingGenerator(gen, pageNumber=50)"""
@@ -77,6 +81,9 @@ def main():
             if re.search(r'(?im)mauthausen memorial id', wtext):
                 print('Ya tiene el ID')
                 continue
+            if wtitle in log:
+                print('Ya en el log')
+                continue
             
             nombre = ""
             primerapellido = ""
@@ -84,9 +91,11 @@ def main():
             fechanacimiento = ""
             fechanacimiento2 = ""
             fechanacimiento3 = ""
+            fechanacimiento3sindia = ""
             fechafallecimiento = ""
             fechafallecimiento2 = ""
             fechafallecimiento3 = ""
+            fechafallecimiento3sindia = ""
             try:
                 nombre = re.findall(r'(?im)\|nombre=([^\|]*)', wtext)[0].strip()
                 primerapellido = re.findall(r'(?im)\|primer apellido=([^\|]*)', wtext)[0].strip()
@@ -101,12 +110,14 @@ def main():
                 fechanacimiento = re.findall(r'(?im)\|fecha de nacimiento=(\d\d\d\d/\d\d/\d\d)', wtext)[0].strip()
                 fechanacimiento2 = '%s/%s/%s' % (fechanacimiento.split('/')[2], fechanacimiento.split('/')[1], fechanacimiento.split('/')[0])
                 fechanacimiento3 = '%d.%d.%d' % (int(fechanacimiento.split('/')[2]), int(fechanacimiento.split('/')[1]), int(fechanacimiento.split('/')[0]))
+                fechanacimiento3sindia = '.{0,4}%d.%d' % (int(fechanacimiento.split('/')[1]), int(fechanacimiento.split('/')[0]))
             except:
                 pass
             try: #separados para q coja este aunque falle el anterior
                 fechafallecimiento = re.findall(r'(?im)\|fecha de fallecimiento=(\d\d\d\d/\d\d/\d\d)', wtext)[0].strip()
                 fechafallecimiento2 = '%s/%s/%s' % (fechafallecimiento.split('/')[2], fechafallecimiento.split('/')[1], fechafallecimiento.split('/')[0])
                 fechafallecimiento3 = '%d.%d.%d' % (int(fechafallecimiento.split('/')[2]), int(fechafallecimiento.split('/')[1]), int(fechafallecimiento.split('/')[0]))
+                fechafallecimiento3sindia = '.{0,4}%d.%d' % (int(fechafallecimiento.split('/')[1]), int(fechafallecimiento.split('/')[0]))
             except:
                 pass
             
@@ -125,7 +136,8 @@ def main():
                 nombrecompleto = '%s %s' % (nombre, apellidos)
                 nombrecompleto_ = removeaccute(nombrecompleto)
                 if re.search(r'(?im)%s' % (nombrecompleto), split) or re.search(r'(?im)%s' % (nombrecompleto_), split):
-                    if (fechafallecimiento3 and re.search(r'(?im)Muert[oa]:?\s*%s' % (fechafallecimiento3), split)) or (fechanacimiento3 and re.search(r'(?im)Nacid[oa]:?\s*%s' % (fechanacimiento3), split)):
+                    if True or (fechafallecimiento3 and re.search(r'(?im)Muert[oa]:?\s*%s' % (fechafallecimiento3), split)) or (fechanacimiento3 and re.search(r'(?im)Nacid[oa]:?\s*%s' % (fechanacimiento3), split)) or \
+                        (fechafallecimiento3sindia and re.search(r'(?im)Muert[oa]:?\s*%s' % (fechafallecimiento3sindia), split)) or (fechanacimiento3sindia and re.search(r'(?im)Nacid[oa]:?\s*%s' % (fechanacimiento3sindia), split)):
                         print('La fecha coincide, debe ser la misma persona')
                         bbddid = re.findall(r'&p=(\d+)&L[^<>]*?">\s*Seguir leyendo', split)[0]
                         #print(bbddid)
@@ -136,6 +148,7 @@ def main():
                             pywikibot.showDiff(wtext, newtext)
                             page.text = newtext
                             page.save('BOT - Añadiendo enlace a [[Mauthausen Memorial]]', botflag=True)
+                            delay = 30
                             break
                     else:
                         print('ERROR: La fecha no coincide, saltando')
@@ -151,7 +164,7 @@ def main():
                     f.close()
             
             #print(raw)
-            time.sleep(30)
+            time.sleep(delay)
     
 if __name__ == '__main__':
     main()

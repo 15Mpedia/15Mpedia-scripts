@@ -55,6 +55,8 @@ def main():
         #'Categoría:Personas fusiladas por el franquismo', #cuidado, diferenciar con fechas si es la persona
         #'Categoría:Personas deportadas al Campo de concentración de Mauthausen', 
         'Categoría:Personas deportadas por el nazismo', 
+        #'Categoría:Huesca', 
+        #'Categoría:Teruel', 
     ]
     f = open('duckduckgo.error', 'r')
     log = f.read()
@@ -76,6 +78,8 @@ def main():
             wtitle = page.title()
             if not re.search(r'{{Infobox Persona', wtext):
                 continue
+            if not re.search(r'{{Persona represaliada', wtext):
+                continue
             print('\n== %s ==' % (wtitle))
             """
             if wtitle in log:
@@ -85,6 +89,14 @@ def main():
             nombre = ""
             primerapellido = ""
             segundoapellido = ""
+            fechanacimiento = ""
+            fechanacimiento2 = ""
+            fechanacimiento3 = ""
+            fechanacimiento3sindia = ""
+            fechafallecimiento = ""
+            fechafallecimiento2 = ""
+            fechafallecimiento3 = ""
+            fechafallecimiento3sindia = ""
             try:
                 nombre = re.findall(r'(?im)\|nombre=([^\|]*)', wtext)[0].strip()
                 primerapellido = re.findall(r'(?im)\|primer apellido=([^\|]*)', wtext)[0].strip()
@@ -100,14 +112,38 @@ def main():
                 print("Error al parsear nombre o apellidos")
                 continue
             
+            try:
+                fechanacimiento = re.findall(r'(?im)\|fecha de nacimiento=(\d\d\d\d/\d\d/\d\d)', wtext)[0].strip()
+                fechanacimiento2 = '%s/%s/%s' % (fechanacimiento.split('/')[2], fechanacimiento.split('/')[1], fechanacimiento.split('/')[0])
+                fechanacimiento3 = '%d.%d.%d' % (int(fechanacimiento.split('/')[2]), int(fechanacimiento.split('/')[1]), int(fechanacimiento.split('/')[0]))
+                fechanacimiento3sindia = '.{0,4}%d.%d' % (int(fechanacimiento.split('/')[1]), int(fechanacimiento.split('/')[0]))
+            except:
+                pass
+            try: #separados para q coja este aunque falle el anterior
+                fechafallecimiento = re.findall(r'(?im)\|fecha de fallecimiento=(\d\d\d\d/\d\d/\d\d)', wtext)[0].strip()
+                fechafallecimiento2 = '%s/%s/%s' % (fechafallecimiento.split('/')[2], fechafallecimiento.split('/')[1], fechafallecimiento.split('/')[0])
+                fechafallecimiento3 = '%d.%d.%d' % (int(fechafallecimiento.split('/')[2]), int(fechafallecimiento.split('/')[1]), int(fechafallecimiento.split('/')[0]))
+                fechafallecimiento3sindia = '.{0,4}%d.%d' % (int(fechafallecimiento.split('/')[1]), int(fechafallecimiento.split('/')[0]))
+            except:
+                pass
+            
+            if not nombre or not primerapellido or not segundoapellido or (not fechanacimiento and not fechafallecimiento):
+                print("Faltan datos en la bio para hacer una buena busqueda")
+                continue
+            
             bbdd = [
                 #de momento solo editamos deportados, buscando en bbdd de deportados
                 
                 ["banc de la memoria id", "banc.memoria.gencat.cat", r'(?im)https?://banc\.memoria\.gencat\.cat/(?:ca|es)?/?results/deportats/(\d+)'], 
-                ["barcelonins deportats id", "barceloninsdeportats.org", r'(?im)https?://barceloninsdeportats\.org/(?:ca|es)?/?(\d+/[^\.]+?)\.html'], 
+                #["barcelonins deportats id", "barceloninsdeportats.org", r'(?im)https?://barceloninsdeportats\.org/(?:ca|es)?/?(\d+/[^\.]+?)\.html'], 
                 #["censo de represaliados de la ugt id", "censorepresaliadosugt.es", r'(?im)https?://censorepresaliadosugt\.es/s/public/item/(\d+)'], 
-                ["fallecidos en los campos nazis id", "fallecidosenloscamposnazis.org", r'(?im)https?://fallecidosenloscamposnazis\.org/(?:ca|es)?/?(\d+/[^\.]+?)\.html'], 
-                #Maria Alonso Alonso no es la misma["ihrworld id", "scwd.ihr.world", r'(?im)https?://scwd\.ihr\.world/es/document/(\d+)'], 
+                #["con nombre y apellidos id", "connombreyapellidos.es", r'(?im)https?://connombreyapellidos\.es/victima/([^\/]+)/'], 
+                #["fallecidos en los campos nazis id", "fallecidosenloscamposnazis.org", r'(?im)https?://fallecidosenloscamposnazis\.org/(?:ca|es)?/?(\d+/[^\.]+?)\.html'],
+                
+                 
+                #Maria Alonso Alonso no es la misma
+                #lo lanzo pero verificando fecha nacimiento/fallecimiento y con site y con la palabra "suceso" #patch temp
+                #["ihrworld id", "scwd.ihr.world", r'(?im)https?://scwd\.ihr\.world/es/document/(\d+)'], 
             ]
             
             for wikiid, bd, linkregexp in bbdd:
@@ -116,10 +152,18 @@ def main():
                     continue
                 
                 busquedas = [
-                    nombreapellidosentrecomillas,
-                    apellidoscomanombreentrecomillas,
+                    #nombreapellidosentrecomillas,
+                    #apellidoscomanombreentrecomillas,
+                    
                     #nombreapellidos + " site:" + bd,
                     #apellidoscomanombreentrecomillas + " site:" + bd,
+                    
+                    #patch temp para banc memoria
+                    nombreapellidosentrecomillas + " site:" + bd,
+                    
+                    #patch temp para ihrworld
+                    #nombreapellidosentrecomillas + " site:" + bd + " suceso",
+                    #apellidoscomanombreentrecomillas + " site:" + bd + " suceso",
                 ]
                 for busqueda in busquedas:
                     url = "https://html.duckduckgo.com/html/?q=" + urllib.parse.quote_plus(busqueda)
@@ -156,6 +200,11 @@ def main():
                                 n1 = re.findall(r"(?im)%s" % (nombreapellidos), split)
                                 n2 = re.findall(r"(?im)%s" % (apellidoscomanombre), split)
                                 if (n1 and len(n1) >= 1) or (n2 and len(n2) >= 1):
+                                    if "ihr" in bd and \
+                                       (fechafallecimiento2 and not re.search(r'(?im)%s' % (fechafallecimiento2), split)) and \
+                                       (fechafallecimiento3 and not re.search(r'(?im)%s' % (fechafallecimiento3), split)):
+                                        #ihr tiene muchos registros, verificamos con fechas y si no coincide saltamos
+                                        continue
                                     print(m)
                                     print(n1)
                                     print(n2)

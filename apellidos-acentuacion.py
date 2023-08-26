@@ -141,7 +141,7 @@ def main():
         'Categoría:Personas fusiladas por el franquismo', 
         #'Categoría:Víctimas del nazismo', #estan bien acentuados, mejor no tocar, pero lo usamos de corrector arriba
     ]
-    start2 = ''
+    start2 = 'Sancho'
     for catname in catnames2:
         category = pywikibot.Category(site, catname)
         gen = pagegenerators.CategorizedPageGenerator(category=category, start=start2, namespaces=[0])
@@ -196,28 +196,29 @@ def main():
                 if targetpage.exists():
                     print("-->No se puede ya existe, saltamos")
                 else:
+                    sleep = 0
                     print("Corrigiendo en el texto")
                     page.text = newtext
                     page.save("BOT - Corrigiendo acentos en el nombre: [[%s]]->[[%s]]" % (nombrecompletooriginal, nombrecompletobien), botflag=True)
-                    time.sleep(5)
+                    time.sleep(sleep)
                     page.text = ""
                     page.save("BOT - Vaciando propiedades para trasladar", botflag=True)
                     print("Trasladando")
                     page.move(nombrecompletobien, reason="BOT - Trasladando tras corregir acentos en el nombre: [[%s]]->[[%s]]" % (nombrecompletooriginal, nombrecompletobien))
-                    time.sleep(5)
+                    time.sleep(sleep)
                     targetpage.text = newtext
                     targetpage.save("BOT - Restaurando propiedades")
-                    time.sleep(5)
+                    time.sleep(sleep)
                     originalpage = pywikibot.Page(pywikibot.Site('15mpedia', '15mpedia'), nombrecompletooriginal)
                     redirecttext = originalpage.text
                     originalpage.text = ""
                     print("Limpiando propiedades")
                     originalpage.save('BOT - Limpiando caché de propiedades semánticas', botflag=True)
-                    time.sleep(5)
+                    time.sleep(sleep)
                     originalpage.text = redirecttext
                     print("Creamos redirect")
                     originalpage.save('BOT - Creando redirección hacia [[%s]]' % (nombrecompletobien), botflag=True)
-                time.sleep(10)
+                    time.sleep(sleep*10)
 
 if __name__ == '__main__':
     main()
