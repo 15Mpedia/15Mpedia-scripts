@@ -100,6 +100,15 @@ def main():
                 newtext = re.sub(ur"(?im)(\|represión={{Persona represaliada)", ur"\1\n|fallecimiento=Sí", newtext)
                 comments.append(u"añadiendo parámetro a plantilla")
             
+            #homegeneizando vease tambien
+            if re.search(ur'(?im){{\s*v[eé]ase tambi[eé]n', newtext):
+                print(u'Ya tiene plantilla véase también')
+            else:
+                newtext2 = newtext
+                newtext = re.sub(ur"""(?im)==\s*Véase también\s*==\s*(\*\s*\[\[Memoria histórica\]\]\s*\*\s*\[\[Nazismo\]\]\s*\*\s*\[\[Lista de víctimas españolas del nazismo\]\]|\*\s*\[\[Memoria histórica\]\]\s*\*\s*\[\[Represión franquista\]\]\s*\*\s*\[\[Lista de personas fusiladas por el franquismo\]\])\s*""", ur"== Véase también ==\n{{véase también}}\n\n", newtext)
+                if newtext != newtext2:
+                    comments.append(u"añadiendo véase también")
+            
             if wtext != newtext:
                 pywikibot.showDiff(wtext, newtext)
                 page.text = newtext
@@ -107,6 +116,7 @@ def main():
                 comments.sort()
                 comment = u'BOT - %s' % (', '.join(comments))
                 try:
+                    #pass
                     page.save(comment, botflag=True)
                 except: # a veces da timeout pero graba y luego editconflict, pasamos
                     pass
