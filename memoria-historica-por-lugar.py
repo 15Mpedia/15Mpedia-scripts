@@ -60,7 +60,7 @@ def main():
                 print("No tiene infobox municipio")
                 continue
             
-            if not re.search(r'(?im){{\s*población\s*\|\s*total\s*=\s*\d{4,}\s*\|\s*año\s*=\s*\d{4,}\s*}}', wtext):
+            if not re.search(r'(?im)total=\d{4,}', wtext):
                 print("Municipio pequeno")
                 continue
             
