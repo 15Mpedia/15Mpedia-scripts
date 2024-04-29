@@ -64,9 +64,9 @@ def main():
                 print("Municipio pequeno")
                 continue
             
-            m = re.findall(r"(?im)\|\s*comunidad autónoma\s*=\s*([^\s*]+)", wtext)
+            m = re.findall(ur"(?im)\|\s*comunidad autónoma\s*=\s*([^\s*]+)", wtext)
             ccaa = m and m[0] or ""
-            m = re.findall(r"(?im)\|\s*provincia\s*=\s*([^\s*]+)", wtext)
+            m = re.findall(ur"(?im)\|\s*provincia\s*=\s*([^\s*]+)", wtext)
             prov = m and m[0] or ""
             
             if not ccaa or not prov:
