@@ -60,7 +60,7 @@ def main():
                 print("No tiene infobox municipio")
                 continue
             
-            if not re.search(r'(?im)total=\d{4,}', wtext):
+            if not re.search(ur'(?im)total=\d{4,}', wtext):
                 print("Municipio pequeno")
                 continue
             
@@ -73,38 +73,38 @@ def main():
                 print("Sin datos de ccaa o prov")
                 continue
             
-            mhtitle = "Memoria Histórica en %s" % (wtitle)
+            mhtitle = u"Memoria Histórica en %s" % (wtitle)
             mhpage = pywikibot.Page(site, mhtitle)
             if not mhpage.exists():
-                mhpage.text = """{{Infobox Memoria Histórica por lugar
+                mhpage.text = u"""{{Infobox Memoria Histórica por lugar
 |país=España
 |comunidad autónoma=%s
 |provincia=%s
 |municipio=%s
 |introducción=
 }}""" % (ccaa, prov, wtitle)
-                mhpage.save("BOT - Creando página", botflag=True)
+                mhpage.save(u"BOT - Creando página", botflag=True)
             redirects = [
-                "Memoria histórica en %s" % (wtitle), 
-                "Memoria Historica en %s" % (wtitle), 
-                "Memoria historica en %s" % (wtitle), 
+                u"Memoria histórica en %s" % (wtitle), 
+                u"Memoria Historica en %s" % (wtitle), 
+                u"Memoria historica en %s" % (wtitle), 
                 
-                "Memoria Histórica de %s" % (wtitle), 
-                "Memoria histórica de %s" % (wtitle), 
-                "Memoria Historica de %s" % (wtitle), 
-                "Memoria historica de %s" % (wtitle), 
+                u"Memoria Histórica de %s" % (wtitle), 
+                u"Memoria histórica de %s" % (wtitle), 
+                u"Memoria Historica de %s" % (wtitle), 
+                u"Memoria historica de %s" % (wtitle), 
                 
-                "MH en %s" % (wtitle), 
-                "MH de %s" % (wtitle), 
-                "mh en %s" % (wtitle), 
-                "mh de %s" % (wtitle), 
+                u"MH en %s" % (wtitle), 
+                u"MH de %s" % (wtitle), 
+                u"mh en %s" % (wtitle), 
+                u"mh de %s" % (wtitle), 
                 
             ]
             for redirect in redirects:
                 mhredpage = pywikibot.Page(site, redirect)
                 if not mhredpage.exists():
-                    mhredpage.text = "#REDIRECT [[%s]]" % (mhtitle)
-                    mhredpage.save("BOT - Creando redirección a [[%s]]" % (mhtitle), botflag=True)
+                    mhredpage.text = u"#REDIRECT [[%s]]" % (mhtitle)
+                    mhredpage.save(u"BOT - Creando redirección a [[%s]]" % (mhtitle), botflag=True)
             
 if __name__ == '__main__':
     main()
