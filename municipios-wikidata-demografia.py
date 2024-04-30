@@ -70,9 +70,9 @@ def main():
                 print("No tiene infobox municipio")
                 continue
             
-            """if re.search(r'demografía=', wtext):
+            if re.search(ur'(?im){{población\|total=\d+\|año=2023}}', wtext):
                 print("Ya tiene demografia")
-                continue"""
+                continue
             
             m = re.findall(r"(?im){{wikidata\|(Q\d+)\}\}", wtext)
             if not m:
